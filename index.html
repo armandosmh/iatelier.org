@@ -411,12 +411,11 @@
     }
     @media (max-width: 767px) {
       .hero {
-        background-position: center center;
-        justify-content: flex-end;
-        padding-bottom: var(--space-3xl);
+        background-image: none;
+        justify-content: center;
       }
       .hero::after {
-        background: linear-gradient(to top, rgba(28,28,30,0.92) 30%, rgba(28,28,30,0.5) 70%, rgba(28,28,30,0.3) 100%);
+        display: none;
       }
     }
 
@@ -1078,10 +1077,6 @@
 
       <p class="subtitle hero-reveal hero-reveal-2">Formación y diseño de herramientas para pensar y trabajar mejor.</p>
 
-      <div class="scroll-indicator hero-reveal hero-reveal-3">
-        <span class="line"></span>
-        <span>Descubre más</span>
-      </div>
     </div>
   </section>
 
