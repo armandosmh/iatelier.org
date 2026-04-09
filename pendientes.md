@@ -11,7 +11,7 @@
 
 - [x] **Página Sobre (sobre.html)** — Página personal de Armando creada. Placeholder para foto. Nav actualizado en las 5 páginas.
 - [x] **Foto para sobre.html** — armando.png integrada.
-- [ ] **Sección Bio/Portafolio (index)** — Está comentada en el HTML. Decidir si se elimina ahora que existe sobre.html.
+- [x] **Sección Bio/Portafolio (index)** — Eliminada (HTML + CSS). Existe sobre.html para esa info.
 - [x] **Nav del index** — Agregados links a Cursos, Servicios (anchor) y Hablemos (CTA). Nav consistente en las 4 páginas.
 - [~] **Sistema de inscripción** — Arquitectura definida: Tally → redirect a Mercado Pago. Sección de "Próximas sesiones" ya en cursos.html. Subtareas:
   - [ ] Crear cuenta en Tally (si no existe)
@@ -33,12 +33,12 @@
 
 ## SEO y metadatos
 
-- [ ] **Meta description** — Agregar en index.html y cursos.html.
-- [ ] **Open Graph tags** — `og:title`, `og:description`, `og:image` para previews en redes. En ambas páginas.
+- [x] **Meta description** — Mejorada en index.html y cursos.html.
+- [x] **Open Graph tags** — `og:title`, `og:description`, `og:image`, `og:url` + Twitter Cards en index y cursos.
 - [ ] **Favicon** — No hay `<link rel="icon">`. Aparece el ícono genérico del navegador.
 
 ## Para cuando haya hosting real
 
 - [x] **Rutas de fuentes Maax** — Fuentes copiadas a `fonts/`. Rutas actualizadas en los 5 HTML.
-- [ ] **CSS compartido** — Tokens, reset y estilos base están duplicados en index y cursos. Extraer a `styles.css` cuando el sitio crezca.
-- [ ] **Limpieza JS en index** — El código del horizontal scroll está desactivado pero los listeners siguen ahí. Limpiar antes de producción.
+- [x] **CSS compartido** — Extraído a `styles.css`: fonts, tokens, reset, nav, grain, utilities. Los 6 HTML lo importan.
+- [x] **Limpieza JS en index** — Revisado. No había código muerto de horizontal scroll pendiente.

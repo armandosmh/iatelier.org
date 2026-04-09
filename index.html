@@ -4,152 +4,39 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>iatelier — Ideas Aumentadas</title>
-  <meta name="description" content="Formación y herramientas de IA para pensar mejor. Cursos, talleres y aumentos a medida para personas y organizaciones."/>
+  <meta name="description" content="iatelier es una práctica de formación y consultoría en IA para personas y organizaciones del sector social. Cursos, talleres y aumentos a medida basados en el marco MAIA."/>
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml"/>
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
 
   <!-- Open Graph -->
-  <meta property="og:title" content="iatelier"/>
-  <meta property="og:description" content="Formación y herramientas de IA para pensar mejor. Cursos, talleres y aumentos a medida para personas y organizaciones."/>
+  <meta property="og:title" content="iatelier — Ideas Aumentadas"/>
+  <meta property="og:description" content="Formación y consultoría en IA para el sector social. Cursos, talleres y aumentos a medida para pensar mejor con inteligencia artificial."/>
   <meta property="og:image" content="https://iatelier.org/img/og-image.png"/>
+  <meta property="og:url" content="https://iatelier.org/"/>
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="iatelier — Ideas Aumentadas"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="iatelier — Ideas Aumentadas"/>
+  <meta name="twitter:description" content="Formación y consultoría en IA para el sector social. Cursos, talleres y aumentos a medida para pensar mejor con inteligencia artificial."/>
+  <meta name="twitter:image" content="https://iatelier.org/img/og-image.png"/>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
 
   <style>
-    /* ========================================
-       @font-face — Maax (local)
-       ======================================== */
-    @font-face {
-      font-family: 'Maax';
-      src: url('fonts/Maax-Regular.otf') format('opentype');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Maax';
-      src: url('fonts/Maax-Medium.otf') format('opentype');
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Maax';
-      src: url('fonts/Maax-Bold.otf') format('opentype');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Maax';
-      src: url('fonts/Maax-Black.otf') format('opentype');
-      font-weight: 900;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Maax';
-      src: url('fonts/Maax-Light.otf') format('opentype');
-      font-weight: 300;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Maax';
-      src: url('fonts/Maax-Italic.otf') format('opentype');
-      font-weight: 400;
-      font-style: italic;
-      font-display: swap;
-    }
-
-    /* ========================================
-       DESIGN TOKENS — v2 palette
-       ======================================== */
-    :root {
-      /* Color palette v2 */
-      --cadmio:      #D92B1F;
-      --azul:        #3D5A6E;
-      --marfil:      #F4F0EB;
-      --tinta:       #1C1C1E;
-      --arena:       #8C8070;
-      --arena-light: #C4B9A8;
-      --pizarra:     #1E2420;
-
-      /* Typography */
-      --font-display: 'Maax', 'Inter', sans-serif;
-      --font-body:    'Inter', sans-serif;
-      --font-mono:    'DM Mono', monospace;
-
-      /* Spacing */
-      --space-xs:  0.25rem;
-      --space-sm:  0.5rem;
-      --space-md:  1rem;
-      --space-lg:  2rem;
-      --space-xl:  4rem;
-      --space-2xl: 6rem;
-      --space-3xl: 10rem;
-
-      /* Texture: SVG grain noise */
-      --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
-    /* ========================================
-       RESET & BASE
-       ======================================== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      font-size: 16px;
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
     body {
-      font-family: var(--font-body);
       color: var(--tinta);
       background: var(--marfil);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3, .display-font {
-      font-family: var(--font-display);
-      font-feature-settings: "ss02" 1;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-    }
-
-    .mono {
-      font-family: var(--font-mono);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    ::selection {
-      background: var(--cadmio);
-      color: var(--marfil);
     }
 
     /* ========================================
-       NAV
+       NAV — index overrides
        ======================================== */
+    /* Transparent nav that becomes solid on scroll */
     .site-nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.25rem clamp(1.5rem, 5vw, 3rem);
       background: transparent;
       transition: background 0.4s ease, backdrop-filter 0.4s ease;
     }
@@ -160,229 +47,56 @@
       -webkit-backdrop-filter: blur(20px);
     }
 
-    .nav-logo svg {
-      height: 22px;
-      width: auto;
-      color: var(--marfil);
-      transition: color 0.4s ease;
-    }
     .site-nav.scrolled .nav-logo svg {
       color: var(--tinta);
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .nav-link {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--marfil);
-      transition: color 0.3s ease;
-    }
     .site-nav.scrolled .nav-link {
       color: var(--tinta);
     }
-    .nav-link:hover {
-      color: var(--cadmio);
-    }
 
-    /* Dropdown */
-    .nav-dropdown {
-      position: relative;
-    }
-    .nav-dropdown-trigger {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--marfil);
-      transition: color 0.3s ease;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      background: none;
-      border: none;
-      padding: 0;
-    }
     .site-nav.scrolled .nav-dropdown-trigger {
       color: var(--tinta);
     }
-    .nav-dropdown:hover .nav-dropdown-trigger,
-    .nav-dropdown-trigger:hover {
-      color: var(--cadmio);
-    }
-    .nav-dropdown-trigger::after {
-      content: '▾';
-      font-size: 0.6rem;
-      transition: transform 0.2s ease;
-    }
-    .nav-dropdown:hover .nav-dropdown-trigger::after {
-      transform: rotate(180deg);
-    }
-    .nav-dropdown-menu {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      min-width: 220px;
-      background: rgba(28, 28, 30, 0.97);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(244, 240, 235, 0.1);
-      padding: 0.75rem 0 0.5rem;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-6px);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
+
     .site-nav.scrolled .nav-dropdown-menu {
       background: rgba(244, 240, 235, 0.97);
       border-color: rgba(28, 28, 30, 0.1);
     }
-    .nav-dropdown:hover .nav-dropdown-menu,
-    .nav-dropdown.open .nav-dropdown-menu {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-    .nav-dropdown:hover .nav-dropdown-trigger::after,
-    .nav-dropdown.open .nav-dropdown-trigger::after {
-      transform: rotate(180deg);
-    }
-    .nav-dropdown-menu a {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--marfil);
-      padding: 0.65rem 1.25rem;
-      transition: background 0.15s ease, color 0.15s ease;
-    }
+
     .site-nav.scrolled .nav-dropdown-menu a {
       color: var(--tinta);
     }
-    .nav-dropdown-menu a:hover {
-      background: rgba(217, 43, 31, 0.12);
-      color: var(--cadmio);
-    }
 
     .nav-cta {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
       color: var(--marfil);
-      padding: 0.55rem 1.4rem;
-      border: 1.5px solid var(--marfil);
-      transition: all 0.3s ease;
+      border-color: var(--marfil);
     }
     .site-nav.scrolled .nav-cta {
       color: var(--tinta);
       border-color: var(--tinta);
     }
-    .nav-cta:hover {
-      background: var(--cadmio);
-      color: var(--marfil);
-      border-color: var(--cadmio);
-    }
 
-    /* Hamburger button — hidden on desktop */
-    .nav-hamburger {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.25rem;
-      z-index: 110;
-    }
-    .nav-hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--marfil);
-      margin: 5px 0;
-      transition: all 0.3s ease;
-    }
     .site-nav.scrolled .nav-hamburger span {
       background: var(--tinta);
     }
-    /* Hamburger → X when open */
-    .nav-hamburger.open span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .nav-hamburger.open span:nth-child(2) {
-      opacity: 0;
-    }
-    .nav-hamburger.open span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+
+    /* Initial state: light text on dark/transparent */
+    .nav-logo svg {
+      color: var(--marfil);
+      transition: color 0.4s ease;
     }
 
-    /* Mobile nav */
-    @media (max-width: 767px) {
-      .nav-hamburger {
-        display: block;
-      }
-      .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70vw;
-        max-width: 300px;
-        height: 100vh;
-        background: rgba(28, 28, 30, 0.97);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding: 5rem 2rem 2rem;
-        gap: 1.5rem;
-        transition: right 0.3s ease;
-        z-index: 105;
-      }
-      .nav-links.open {
-        right: 0;
-      }
-      .nav-links .nav-link,
-      .nav-links .nav-dropdown-trigger,
-      .nav-links .nav-dropdown-menu a {
-        color: var(--marfil) !important;
-        font-size: 0.85rem;
-      }
-      .nav-links .nav-cta {
-        color: var(--marfil) !important;
-        border-color: var(--marfil) !important;
-      }
-      .nav-dropdown-menu {
-        position: static !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        transform: none !important;
-        background: transparent !important;
-        border: none !important;
-        backdrop-filter: none !important;
-        padding: 0.5rem 0 0 1rem !important;
-      }
-      /* Overlay behind menu */
-      .nav-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        z-index: 104;
-      }
-      .nav-overlay.open {
-        display: block;
-      }
+    .nav-link {
+      color: var(--marfil);
+    }
+
+    .nav-dropdown-trigger {
+      color: var(--marfil);
+    }
+
+    .nav-hamburger span {
+      background: var(--marfil);
     }
 
     /* ========================================
@@ -505,18 +219,6 @@
 
     .concepto h2 .accent {
       color: var(--cadmio);
-    }
-
-    /* Highlighter / marcatextos effect — adapted from slides .circled */
-    .mark {
-      font-style: normal;
-      font-weight: inherit;
-      color: var(--azul);
-      background: linear-gradient(104deg, transparent 0%, rgba(61,90,110,0.10) 5%, rgba(61,90,110,0.18) 20%, rgba(61,90,110,0.18) 80%, rgba(61,90,110,0.06) 95%, transparent 80%);
-      padding: 1px 2px;
-      border-radius: 2px;
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
     }
 
     .concepto-columns {
@@ -688,85 +390,6 @@
         flex: none;
         min-height: auto;
       }
-    }
-
-    /* ========================================
-       SECTION: BIO
-       ======================================== */
-    .bio {
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 768px) {
-      .bio { grid-template-columns: 1fr 1fr; }
-    }
-
-    .bio-left {
-      background: var(--cadmio);
-      color: var(--marfil);
-      padding: clamp(3rem, 6vw, 6rem);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .bio-left .bio-name {
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 700;
-      margin-bottom: var(--space-sm);
-    }
-
-    .bio-left .bio-role {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: rgba(244, 240, 235, 0.7);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: var(--space-lg);
-    }
-
-    .bio-left .bio-bar {
-      width: 60px;
-      height: 3px;
-      background: var(--marfil);
-    }
-
-    .bio-right {
-      background: var(--marfil);
-      color: var(--tinta);
-      padding: clamp(3rem, 6vw, 6rem);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .bio-right h3 {
-      font-size: clamp(1.4rem, 2.2vw, 1.8rem);
-      font-weight: 700;
-      margin-bottom: var(--space-lg);
-    }
-
-    .bio-right .bio-text {
-      font-size: clamp(1rem, 1.3vw, 1.1rem);
-      color: var(--arena);
-      line-height: 1.7;
-    }
-    .bio-right .bio-text p + p { margin-top: var(--space-md); }
-
-    .bio-orgs {
-      margin-top: var(--space-lg);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .bio-org-tag {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.8rem;
-      background: var(--azul);
-      color: var(--marfil);
     }
 
     /* ========================================
@@ -949,80 +572,7 @@
        TEXTURE — Capa 1: Grano de fondo
        ======================================== */
 
-    /* Light backgrounds: multiply grain */
-    .grain {
-      position: relative;
-    }
-    .grain > * {
-      position: relative;
-      z-index: 2;
-    }
-    .grain::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: var(--grain);
-      background-repeat: repeat;
-      background-size: 256px 256px;
-      opacity: 0.035;
-      mix-blend-mode: multiply;
-      pointer-events: none;
-      z-index: 1;
-    }
 
-    /* Dark backgrounds: soft-light grain */
-    .grain-dark {
-      position: relative;
-    }
-    .grain-dark > * {
-      position: relative;
-      z-index: 2;
-    }
-    .grain-dark::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: var(--grain);
-      background-repeat: repeat;
-      background-size: 256px 256px;
-      opacity: 0.045;
-      mix-blend-mode: soft-light;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* ========================================
-       TEXTURE — Capa 2: Bio photo container
-       ======================================== */
-
-    /* Bio-left: ready for halftone photo */
-    .bio-photo-container {
-      position: relative;
-      overflow: hidden;
-      min-height: 400px;
-    }
-    .bio-photo-container .bio-photo {
-      position: absolute;
-      inset: 0;
-      /* When you have the halftone image:
-         background-image: url('img/armando-halftone.png');
-         background-size: cover;
-         background-position: center top;
-      */
-      background: var(--cadmio);
-    }
-    .bio-photo-container .bio-info {
-      position: relative;
-      z-index: 2;
-      padding: clamp(3rem, 6vw, 6rem);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      min-height: inherit;
-    }
-    @media (max-width: 767px) {
-      .bio-photo-container { min-height: 280px; }
-    }
   </style>
 </head>
 
@@ -1166,35 +716,6 @@
   </section>
 
 
-  <!-- ============================
-       BIO (comentada — reactivar para portafolio / con quiénes hemos trabajado)
-       ============================
-  <section class="bio" id="bio">
-    <div class="bio-left bio-photo-container">
-      <div class="bio-photo"></div>
-      <div class="bio-info">
-        <h2 class="bio-name">Armando Sobrino</h2>
-        <p class="bio-role">Fundador de iatelier</p>
-        <div class="bio-bar"></div>
-      </div>
-    </div>
-    <div class="bio-right grain">
-      <h3 class="reveal">15 años trabajando donde las decisiones importan</h3>
-      <div class="bio-text reveal reveal-delay-1">
-        <p>Investigación social, incidencia política, comunicación estratégica, organización comunitaria. He trabajado con Oxfam, CONEVAL, UNFPA, CIDE y Banco Mundial en proyectos donde el contexto no es un detalle — es todo.</p>
-
-        <p>iatelier nace de una convicción: las herramientas de IA son extraordinarias, pero sin marco de pensamiento son peligrosas. No porque fallen, sino porque funcionan lo suficiente como para hacerte creer que no necesitas pensar.</p>
-      </div>
-      <div class="bio-orgs">
-        <span class="bio-org-tag reveal">Oxfam</span>
-        <span class="bio-org-tag reveal reveal-delay-1">CONEVAL</span>
-        <span class="bio-org-tag reveal reveal-delay-2">UNFPA</span>
-        <span class="bio-org-tag reveal reveal-delay-3">CIDE</span>
-        <span class="bio-org-tag reveal reveal-delay-4">Banco Mundial</span>
-      </div>
-    </div>
-  </section>
-  -->
 
 
   <!-- ============================
