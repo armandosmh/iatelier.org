@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Fondo tinta -->
+  <rect width="1200" height="630" fill="#1C1C1E"/>
+
+  <!-- Acento cadmio izquierdo -->
+  <rect x="0" y="0" width="6" height="630" fill="#D92B1F"/>
+
+  <!-- Logo iatelier en marfil, centrado verticalmente, izquierda -->
+  <g transform="translate(80, 240) scale(0.38)">
+    <!-- "ia" paths del SVG original, color marfil -->
+    <path d="M7.23672 85.5917C-0.879461 69.7664 -2.30731 53.7425 3.65597 37.2535C4.71918 34.3137 6.27491 31.5519 7.63517 28.3498C15.9207 15.2624 26.9134 6.16202 41.7762 2.13603C76.1355 -7.17111 109.311 16.0067 113.58 49.255C118.599 88.3442 86.0903 119.792 47.1343 113.429C29.9096 110.616 16.0689 101.719 7.23672 85.5917Z" fill="#F4F0EB"/>
+    <path d="M7.39962 480.352C7.3915 477.757 7.53505 475.598 7.53564 473.44C7.56456 367.276 7.5812 261.113 7.68033 154.49C40.2172 154.03 72.673 154.03 105.526 154.03C105.526 267.364 105.526 380.462 105.526 493.841C72.9966 493.841 40.4574 493.841 7.4846 493.841C7.4846 489.366 7.4846 485.077 7.39962 480.352Z" fill="#F4F0EB"/>
+    <path d="M361.629 475.992C361.629 402.382 361.629 329.271 361.629 255.701C300.891 255.701 240.647 255.701 180.1 255.701C180.1 221.681 180.1 188.121 180.1 154.276C274.427 154.276 368.665 154.276 463.206 154.276C463.206 267.342 463.206 380.391 463.206 493.777C429.319 493.777 395.765 493.777 361.629 493.777C361.629 488.037 361.629 482.264 361.629 475.992Z" fill="#F4F0EB"/>
+    <path d="M307.696 337.954C340.301 368.028 349.164 411.754 330.649 450.12C306.237 500.707 239.475 517.903 193.94 484.922C163.772 463.071 149.622 433.193 155.126 396.093C160.705 358.49 182.391 332.345 218.499 320.333C250.799 309.588 280.878 316.091 307.696 337.954Z" fill="#F4F0EB"/>
+  </g>
+
+  <!-- Tagline -->
+  <text x="80" y="380" font-family="Georgia, serif" font-size="28" font-weight="400" fill="#C4B9A8" letter-spacing="1">Ideas Aumentadas</text>
+
+  <!-- Línea divisoria -->
+  <rect x="80" y="420" width="120" height="2" fill="#D92B1F"/>
+
+  <!-- Subtítulo -->
+  <text x="80" y="468" font-family="Arial, sans-serif" font-size="22" font-weight="300" fill="#8C8070">Formación y herramientas de IA para pensar mejor.</text>
+
+  <!-- Dominio esquina inferior derecha -->
+  <text x="1120" y="590" font-family="Arial, sans-serif" font-size="18" fill="#4A4A4C" text-anchor="end">iatelier.org</text>
+</svg>
