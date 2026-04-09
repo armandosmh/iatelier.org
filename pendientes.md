@@ -9,7 +9,9 @@
 
 ## Contenido pendiente
 
-- [ ] **Sección Bio/Portafolio (index)** — Está comentada en el HTML. Decidir si se activa como "con quiénes hemos trabajado", se reescribe o se elimina.
+- [x] **Página Sobre (sobre.html)** — Página personal de Armando creada. Placeholder para foto. Nav actualizado en las 5 páginas.
+- [x] **Foto para sobre.html** — armando.png integrada.
+- [ ] **Sección Bio/Portafolio (index)** — Está comentada en el HTML. Decidir si se elimina ahora que existe sobre.html.
 - [x] **Nav del index** — Agregados links a Cursos, Servicios (anchor) y Hablemos (CTA). Nav consistente en las 4 páginas.
 - [~] **Sistema de inscripción** — Arquitectura definida: Tally → redirect a Mercado Pago. Sección de "Próximas sesiones" ya en cursos.html. Subtareas:
   - [ ] Crear cuenta en Tally (si no existe)

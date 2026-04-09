@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Formación para organizaciones — iatelier</title>
-  <meta name="description" content="Programas de formación en IA diseñados desde las necesidades de tu equipo. Diagnóstico, sesiones prácticas y acompañamiento."/>
+  <title>Historia — iatelier</title>
+  <meta name="description" content="Armando Sobrino, creador de iatelier. 15 años explorando cómo la tecnología puede expandir las capacidades humanas."/>
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml"/>
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Formación para organizaciones — iatelier"/>
-  <meta property="og:description" content="Programas de formación en IA diseñados desde las necesidades de tu equipo. Diagnóstico, sesiones prácticas y acompañamiento."/>
+  <meta property="og:title" content="Historia — iatelier"/>
+  <meta property="og:description" content="Armando Sobrino, creador de iatelier. 15 años explorando cómo la tecnología puede expandir las capacidades humanas."/>
   <meta property="og:image" content="https://iatelier.org/img/og-image.png"/>
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="iatelier — Ideas Aumentadas"/>
@@ -106,8 +106,8 @@
 
     body {
       font-family: var(--font-body);
-      color: var(--marfil);
-      background: var(--tinta);
+      color: var(--tinta);
+      background: var(--marfil);
       line-height: 1.6;
       overflow-x: hidden;
       min-height: 100vh;
@@ -129,13 +129,6 @@
       color: var(--marfil);
     }
 
-    .mark {
-      color: var(--azul);
-      background: rgba(61, 90, 110, 0.12);
-      padding: 0.15em 0.35em;
-      border-radius: 2px;
-    }
-
     /* ========================================
        NAV
        ======================================== */
@@ -148,7 +141,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.25rem clamp(1.5rem, 5vw, 3rem);
-      background: rgba(28, 28, 30, 0.92);
+      background: rgba(244, 240, 235, 0.92);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
@@ -156,7 +149,7 @@
     .nav-logo svg {
       height: 22px;
       width: auto;
-      color: var(--marfil);
+      color: var(--tinta);
     }
 
     .nav-links {
@@ -170,7 +163,7 @@
       font-size: 0.72rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--marfil);
+      color: var(--tinta);
       transition: color 0.3s ease;
     }
     .nav-link:hover {
@@ -186,7 +179,7 @@
       font-size: 0.72rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--marfil);
+      color: var(--tinta);
       transition: color 0.3s ease;
       cursor: pointer;
       display: flex;
@@ -253,9 +246,9 @@
       font-size: 0.72rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--marfil);
+      color: var(--tinta);
       padding: 0.55rem 1.4rem;
-      border: 1.5px solid var(--marfil);
+      border: 1.5px solid var(--tinta);
       transition: all 0.3s ease;
     }
     .nav-cta:hover {
@@ -277,7 +270,7 @@
       display: block;
       width: 24px;
       height: 2px;
-      background: var(--marfil);
+      background: var(--tinta);
       margin: 5px 0;
       transition: all 0.3s ease;
     }
@@ -354,195 +347,139 @@
     }
 
     /* ========================================
-       MAIN — PAGE SECTIONS
+       MAIN — SOBRE
        ======================================== */
-    main {
+    .sobre {
       flex: 1;
-      margin-top: 60px;
+      padding-top: calc(60px + var(--space-xl));
     }
 
-    .section {
-      padding: var(--space-3xl) clamp(1.5rem, 5vw, 4rem);
+    /* Hero: two columns */
+    .sobre-hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      min-height: 50vh;
+    }
+    @media (min-width: 768px) {
+      .sobre-hero {
+        grid-template-columns: 5fr 7fr;
+        min-height: 60vh;
+      }
     }
 
-    /* Hero / Header Section */
-    .hero {
+    /* Photo column */
+    .sobre-photo {
+      background: var(--marfil);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 560px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sobre-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      position: absolute;
+      inset: 0;
+    }
+    @media (min-width: 768px) {
+      .sobre-photo {
+        min-height: 700px;
+      }
+    }
+
+    /* Intro column */
+    .sobre-intro {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      text-align: center;
-      min-height: 55vh;
-      padding: var(--space-3xl) clamp(1.5rem, 5vw, 4rem);
-      background: linear-gradient(135deg, rgba(217, 43, 31, 0.06) 0%, rgba(61, 90, 110, 0.04) 100%);
+      padding: clamp(2.5rem, 5vw, 5rem) clamp(2rem, 5vw, 5rem);
     }
 
-    .hero h1 {
+    .sobre-intro h1 {
       font-size: clamp(2.2rem, 4vw, 3.2rem);
       font-weight: 700;
       margin-bottom: var(--space-sm);
-      max-width: 900px;
     }
 
-    .hero .tagline {
-      font-size: clamp(1rem, 1.3vw, 1.15rem);
-      color: var(--arena-light);
-      max-width: 700px;
-    }
-
-    /* Content Sections */
-    .content-section {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .content-section h2 {
-      font-size: clamp(1.8rem, 2.5vw, 2.2rem);
-      font-weight: 700;
+    .sobre-intro .sobre-role {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--arena);
       margin-bottom: var(--space-lg);
-      color: var(--marfil);
     }
 
-    .content-section > p,
-    .content-section > ul {
-      font-size: clamp(0.95rem, 1.05vw, 1.05rem);
-      color: var(--arena-light);
-      margin-bottom: var(--space-lg);
+    .sobre-intro .sobre-hook {
+      font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+      color: var(--tinta);
       line-height: 1.7;
+      max-width: 540px;
     }
 
-    .content-section ul {
-      list-style: none;
-      padding: 0;
+    /* Story body */
+    .sobre-body {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: var(--space-xl) clamp(1.5rem, 5vw, 2rem) var(--space-2xl);
     }
 
-    .content-section ul li {
-      padding-left: 2.5rem;
-      margin-bottom: var(--space-md);
-      position: relative;
+    .sobre-body p {
+      font-size: clamp(1rem, 1.2vw, 1.08rem);
+      line-height: 1.85;
+      color: var(--tinta);
+      margin-bottom: 1.6em;
     }
 
-    .content-section ul li::before {
-      content: "→";
-      position: absolute;
-      left: 0;
+    .sobre-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .sobre-body em {
+      font-style: italic;
+    }
+
+    .sobre-body .accent {
       color: var(--cadmio);
-      font-weight: 700;
-    }
-
-    /* Process Cards */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-xl);
-      margin: var(--space-2xl) 0;
-    }
-
-    .process-card {
-      padding: var(--space-xl);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .process-card:hover {
-      border-color: rgba(217, 43, 31, 0.3);
-      background: rgba(217, 43, 31, 0.04);
-      transform: translateY(-4px);
-    }
-
-    .process-card .number {
-      display: inline-block;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.6rem;
-      color: var(--cadmio);
-      margin-bottom: var(--space-md);
-    }
-
-    .process-card h3 {
-      font-size: clamp(1.1rem, 1.2vw, 1.3rem);
-      font-weight: 700;
-      margin-bottom: var(--space-md);
-      color: var(--marfil);
-    }
-
-    .process-card p {
-      font-size: 0.95rem;
-      color: var(--arena-light);
-      line-height: 1.6;
-    }
-
-    /* Organization Types List */
-    .org-types {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-lg);
-      margin: var(--space-2xl) 0;
-    }
-
-    .org-type {
-      padding: var(--space-lg);
-      border-left: 3px solid var(--cadmio);
-      background: rgba(217, 43, 31, 0.04);
-      border-radius: 4px;
-    }
-
-    .org-type p {
-      font-size: 0.95rem;
-      color: var(--marfil);
       font-weight: 500;
     }
 
-    /* CTA Section */
-    .cta-section {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      min-height: 35vh;
-      padding: var(--space-3xl) clamp(1.5rem, 5vw, 4rem);
-      background: linear-gradient(135deg, rgba(61, 90, 110, 0.08) 0%, rgba(217, 43, 31, 0.04) 100%);
+    /* Marcatextos — igual que en index */
+    .sobre-body .mark {
+      font-style: normal;
+      font-weight: inherit;
+      color: var(--azul);
+      background: linear-gradient(104deg, transparent 0%, rgba(61,90,110,0.10) 5%, rgba(61,90,110,0.18) 20%, rgba(61,90,110,0.18) 80%, rgba(61,90,110,0.06) 95%, transparent 80%);
+      padding: 1px 2px;
+      border-radius: 2px;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
     }
 
-    .cta-section h2 {
-      font-size: clamp(1.8rem, 2.5vw, 2.2rem);
-      font-weight: 700;
-      margin-bottom: var(--space-lg);
-      max-width: 800px;
+    /* Enlace MAIA */
+    .sobre-body a.maia-link {
+      color: var(--cadmio);
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--cadmio);
+      text-decoration-thickness: 1.5px;
+      transition: opacity 0.2s ease;
+    }
+    .sobre-body a.maia-link:hover {
+      opacity: 0.7;
     }
 
-    .cta-section p {
-      font-size: clamp(0.95rem, 1.05vw, 1.05rem);
-      color: var(--arena-light);
-      margin-bottom: var(--space-lg);
-      max-width: 600px;
-    }
-
-    .btn-cta {
-      display: inline-block;
+    /* Divider */
+    .sobre-divider {
+      width: 60px;
+      height: 3px;
       background: var(--cadmio);
-      color: var(--marfil);
-      padding: 1rem 2.5rem;
-      font-family: var(--font-display);
-      font-feature-settings: "ss02" 1;
-      font-weight: 700;
-      font-size: clamp(0.88rem, 1.1vw, 1rem);
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.15s ease;
-      text-decoration: none;
-    }
-    .btn-cta:hover {
-      background: #b8221a;
-      transform: translateY(-2px);
-    }
-    .btn-cta:active {
-      transform: scale(0.97);
+      margin: 0 auto var(--space-xl);
     }
 
     /* ========================================
@@ -569,25 +506,6 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--arena);
-    }
-
-    /* ========================================
-       RESPONSIVE
-       ======================================== */
-    @media (max-width: 768px) {
-      .process-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .org-types {
-        grid-template-columns: 1fr;
-      }
-
-      .footer {
-        flex-direction: column;
-        gap: var(--space-lg);
-        text-align: center;
-      }
     }
   </style>
 </head>
@@ -632,85 +550,46 @@
     </div>
   </nav>
 
-  <!-- Main content -->
-  <main>
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <h1>Formación para organizaciones</h1>
-      <p class="tagline">Cursos y talleres diseñados desde tus necesidades. <span class="mark">A medida, presencial o virtual.</span></p>
-    </section>
+  <main class="sobre">
 
-    <!-- What is it? -->
-    <section class="section">
-      <div class="content-section">
-        <h2>Qué ofrecemos</h2>
-        <p>Programas de formación en IA diseñados específicamente para tu equipo. No importa cuál sea tu sector, tu nivel de experiencia o los problemas concretos que enfrentas: podemos armar un programa que tenga sentido para ti.</p>
-        <p>No son cursos genéricos. Hablamos con tu equipo, entendemos el contexto en el que trabajan, el sector donde se mueven y los desafíos reales que quieren resolver con IA. Después diseñamos sesiones prácticas donde aprenden a usar herramientas, generan criterio para tomar decisiones informadas y practican sobre problemas reales.</p>
+    <!-- Hero: photo + intro -->
+    <section class="sobre-hero">
+      <div class="sobre-photo">
+        <img src="img/armando.png" alt="Armando Sobrino"/>
+      </div>
+      <div class="sobre-intro">
+        <h1>Armando Sobrino</h1>
+        <p class="sobre-role">Creador de iatelier</p>
+        <p class="sobre-hook">¡Hola! En la conversación sobre IA generativa hay una enorme diversidad de visiones —muchas de ellas radicalmente opuestas— y para explicar cuál es la mía, creo que lo mejor es contar cuál es su origen.</p>
       </div>
     </section>
 
-    <!-- How it works -->
-    <section class="section">
-      <div class="content-section">
-        <h2>Cómo funciona</h2>
-        <div class="process-grid">
-          <div class="process-card">
-            <div class="number">1</div>
-            <h3>Diagnóstico</h3>
-            <p>Entendemos tu contexto: sector, equipo, experiencias previas con IA, desafíos específicos que quieren resolver.</p>
-          </div>
-          <div class="process-card">
-            <div class="number">2</div>
-            <h3>Diseño</h3>
-            <p>Armamos un programa a medida con contenidos, herramientas, dinámicas y casos prácticos relevantes para tu realidad.</p>
-          </div>
-          <div class="process-card">
-            <div class="number">3</div>
-            <h3>Implementación</h3>
-            <p>Sesiones en vivo, trabajo práctico, feedback personalizado y acompañamiento continuo durante el programa.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="sobre-divider"></div>
 
-    <!-- For whom -->
-    <section class="section">
-      <div class="content-section">
-        <h2>Para quién es</h2>
-        <p>Trabajamos con organizaciones de diferentes sectores. Gobiernos, ONGs, organismos de cooperación internacional, universidades, empresas privadas. Cualquiera que necesite que su equipo entienda IA y desarrolle criterio para usarla de manera estratégica.</p>
-        <div class="org-types">
-          <div class="org-type">
-            <p>Gobierno</p>
-          </div>
-          <div class="org-type">
-            <p>Sociedad Civil</p>
-          </div>
-          <div class="org-type">
-            <p>Cooperación Internacional</p>
-          </div>
-          <div class="org-type">
-            <p>Academia</p>
-          </div>
-          <div class="org-type">
-            <p>Empresas</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- Story -->
+    <section class="sobre-body">
 
-    <!-- CTA -->
-    <section class="cta-section">
-      <h2>Hablemos de tu equipo</h2>
-      <p>Cuéntanos qué necesitas y diseñamos un programa que funcione para ustedes.</p>
-      <a href="contacto.html" class="btn-cta">Empezar conversación</a>
+      <p>Comencé a hacer activismo para ampliar los métodos de participación política en México por allá de 2010. Colaboraba en colectivos que buscaban —y lograron— la creación de las candidaturas independientes, consulta popular, referéndum y presupuestos participativos. Poco después, con la primavera árabe, el 15-M español y el movimiento #YoSoy132 como referencias, un grupo de amistades fundamos un colectivo para experimentar cómo herramientas digitales y el internet podían ayudar a ampliar la organización social. Exploramos todo lo que hoy es ya un lugar común: foros, documentos colaborativos, redes sociales, plataformas de mensajería, sistemas de votación...</p>
+
+      <p>Además del activismo —y porque tenía que ganar dinero para comer— hice investigación aplicada en transparencia, participación ciudadana, política social y gobernanza tanto de forma independiente como desde distintos centros de investigación y gobierno.</p>
+
+      <p>Con los años, vino el agotamiento, las tensiones y cierta desilusión con <span class="mark">cómo el internet y las redes sociales fueron transformadas y absorbidas por un par de gobiernos y multinacionales</span>. Después de descansar un tiempo, pasé los últimos cinco años haciendo campañas contra la desigualdad extrema desde la sociedad civil.</p>
+
+      <p>Con la irrupción de ChatGPT en la agenda pública, mi interés en la tecnología y su potencial político se reanimó. La inteligencia artificial me ha interesado desde la universidad —estudié ciencia política y algo de economía— pero no como herramienta de productividad. Me interesan las preguntas que abre sobre la conciencia, la toma de decisiones y lo que implica socialmente. Por ello, <span class="mark">hace un año decidí dedicarme a explorarla con profundidad.</span></p>
+
+      <p>En esa exploración me encontré con el trabajo de Douglas Engelbart, que en los años sesenta planteó algo que sigue siendo radical y verdadero: la tecnología no debería reemplazar las capacidades humanas sino <em>aumentarlas</em>. A partir de sus ideas, los avances en UX y ciencias de la conducta, y mi estudio de las plataformas actuales, desarrollé <a href="maia.html" class="maia-link">MAIA</a>: un marco práctico para entender la IA generativa y usarla con conciencia de lo que puede hacer, lo que no puede y, sobre todo, de lo que no debería.</p>
+
+      <p>Sigo creyendo que la tecnología puede expandir la agencia humana. Pero eso solo pasará si más personas la comprenden y si esa comprensión contribuye a lo que considero la misión más urgente de los próximos años: <span class="mark">asegurar que la inteligencia artificial sirva para crear un mundo más equitativo, no uno aún más desigual.</span> iatelier es mi pequeña contribución a esa misión.</p>
+
     </section>
 
   </main>
 
+
   <!-- Footer -->
   <footer class="footer">
-    <a href="/" class="footer-logo">
+    <div class="footer-logo">
       <svg viewBox="0 0 2107 502" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M7.23672 85.5917C-0.879461 69.7664 -2.30731 53.7425 3.65597 37.2535C4.71918 34.3137 6.27491 31.5519 7.63517 28.3498C15.9207 15.2624 26.9134 6.16202 41.7762 2.13603C76.1355 -7.17111 109.311 16.0067 113.58 49.255C118.599 88.3442 86.0903 119.792 47.1343 113.429C29.9096 110.616 16.0689 101.719 7.23672 85.5917Z" fill="currentColor"/>
         <path d="M7.39962 480.352C7.3915 477.757 7.53505 475.598 7.53564 473.44C7.56456 367.276 7.5812 261.113 7.68033 154.49C40.2172 154.03 72.673 154.03 105.526 154.03C105.526 267.364 105.526 380.462 105.526 493.841C72.9966 493.841 40.4574 493.841 7.4846 493.841C7.4846 489.366 7.4846 485.077 7.39962 480.352Z" fill="currentColor"/>
@@ -727,8 +606,8 @@
           <path d="M93.009941,71.763451 C87.178253,81.448624 78.088303,85.793503 68.565407,83.733223 C59.619362,81.797745 52.265858,74.113373 51.064991,65.445358 C49.737038,55.860008 54.461941,46.588127 62.934765,42.152767 C70.757393,38.057781 80.894463,39.276917 87.583252,45.117119 C95.077332,51.660450 97.092529,61.166870 93.009941,71.763451Z" fill="currentColor"/>
         </g>
       </svg>
-    </a>
-    <p class="footer-copy">© 2026 iatelier — Ideas Aumentadas</p>
+    </div>
+    <span class="footer-copy">&copy; 2026 iatelier — Ideas Aumentadas</span>
   </footer>
 
   <script>
@@ -752,27 +631,6 @@
       link.addEventListener('click', () => {
         if (navLinks.classList.contains('open')) toggleMenu();
       });
-    });
-
-    // === Dropdown: click en touch, hover en desktop ===
-    const dropdowns = document.querySelectorAll('.nav-dropdown');
-
-    dropdowns.forEach((dd) => {
-      const trigger = dd.querySelector('.nav-dropdown-trigger');
-
-      trigger.addEventListener('click', (e) => {
-        const isTouch = window.matchMedia('(hover: none)').matches;
-        if (!isTouch) return;
-
-        e.stopPropagation();
-        const isOpen = dd.classList.contains('open');
-        dropdowns.forEach((d) => d.classList.remove('open'));
-        if (!isOpen) dd.classList.add('open');
-      });
-    });
-
-    document.addEventListener('click', () => {
-      dropdowns.forEach((d) => d.classList.remove('open'));
     });
   </script>
 
