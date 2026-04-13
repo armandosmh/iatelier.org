@@ -5,7 +5,7 @@
 - [x] **Newsletter (index)** — Botón conectado a `armandosmh.substack.com/subscribe`. Copy actualizado.
 - [x] **"Hablemos →" en cards de servicios (index)** — Apuntan a `contacto.html`. Página dedicada creada con formulario (nombre, correo, servicio, mensaje).
 - [x] **Logo del nav (index)** — Apunta a `index.html`.
-- [ ] **Formulario de contacto (contacto.html)** — HTML listo. Conectar con Tally (embed o link) para manejar todo desde ahí junto con inscripciones.
+- [x] **Formulario de contacto (contacto.html)** — Conectado y funcionando.
 
 ## Contenido pendiente
 
@@ -24,20 +24,21 @@
   - [ ] Definir flujo de seguimiento: correo a quienes se inscriben pero no pagan en 48h
   - [ ] Definir proceso para cuando se abra una nueva fecha: qué se duplica, qué se crea nuevo
   - [ ] Probar el flujo completo de punta a punta antes de publicar
-- [ ] **Nivel 0 en cursos.html** — Agregar sección de cursos introductorios gratuitos: uno para Claude, uno para Gemini, uno para ChatGPT. Definir formato, contenido y si llevan inscripción o son abiertos.
+- [~] **Nivel 0 en cursos.html** — Descartado por ahora. Requisito mínimo: haber usado al menos una herramienta de IA. Se revisa cuando escale.
 - [x] **Páginas de servicios** — Creadas formacion.html y aumentos.html. Cards del index actualizadas para apuntar a las nuevas páginas.
-- [ ] **Copy de formacion.html** — Revisar y editar el contenido generado.
-- [ ] **Copy de aumentos.html** — Revisar y editar el contenido generado.
-- [ ] **Diseño de formacion.html** — Revisar estructura visual, secciones y layout.
-- [ ] **Diseño de aumentos.html** — Revisar estructura visual, secciones y layout.
+- [x] **Copy de formacion.html** — Revisado y editado.
+- [x] **Copy de aumentos.html** — Revisado y editado.
+- [x] **Diseño de formacion.html** — Revisado: spacing, section labels, dividers, grain, identidad visual.
+- [x] **Diseño de aumentos.html** — Revisado: spacing, section labels, dividers, grain, proceso rediseñado como lista vertical.
+- [ ] **Página MAIA** — Crear maia.html: explicación del marco metodológico propio. Agregar al nav.
 
 ## SEO y metadatos
 
 - [x] **Meta description** — Mejorada en index.html y cursos.html.
 - [x] **Open Graph tags** — `og:title`, `og:description`, `og:image`, `og:url` + Twitter Cards en index y cursos.
-- [ ] **Favicon** — No hay `<link rel="icon">`. Aparece el ícono genérico del navegador.
+- [x] **Favicon** — Implementado (SVG + apple-touch-icon) en las 6 páginas.
 
-## Para cuando haya hosting real
+## Deuda técnica (resuelta)
 
 - [x] **Rutas de fuentes Maax** — Fuentes copiadas a `fonts/`. Rutas actualizadas en los 5 HTML.
 - [x] **CSS compartido** — Extraído a `styles.css`: fonts, tokens, reset, nav, grain, utilities. Los 6 HTML lo importan.
