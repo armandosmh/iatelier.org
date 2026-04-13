@@ -233,10 +233,31 @@
     .sesion {
       display: flex;
       align-items: baseline;
-      justify-content: space-between;
-      flex-wrap: wrap;
       gap: var(--space-sm) var(--space-md);
       padding: var(--space-sm) 0;
+    }
+
+    .sesiones-cta-wrap {
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(196, 185, 168, 0.35);
+    }
+
+    .sesiones-cta-wrap .sesion-cta {
+      background: var(--cadmio);
+      color: var(--marfil);
+      border-bottom: none;
+      padding: 0.75rem 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      margin-left: 0;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .sesiones-cta-wrap .sesion-cta:hover {
+      background: #b8221a;
+      color: var(--marfil);
+      border-color: transparent;
+      transform: translateY(-1px);
     }
     .sesion + .sesion {
       border-top: 1px solid rgba(196, 185, 168, 0.35);
@@ -263,10 +284,15 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--cadmio);
+      border: none;
       border-bottom: 1.5px solid var(--cadmio);
       padding-bottom: 2px;
-      transition: color 0.2s ease;
+      background: none;
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease;
       margin-left: auto;
+      text-decoration: none;
+      display: inline-block;
     }
     .sesion-cta:hover {
       color: var(--tinta);
@@ -519,19 +545,23 @@
       <div class="sesiones">
         <p class="sesiones-title">Próximas sesiones</p>
         <div class="sesion">
-          <span class="sesion-fecha">Sábado 10 de mayo, 2026</span>
-          <span class="sesion-hora">10:00 – 13:30 · CDMX</span>
-          <a href="#" class="sesion-cta">Inscríbete →</a>
+          <span class="sesion-fecha">Miércoles 6 de mayo, 2026</span>
+          <span class="sesion-hora">10:30 – 14:00 · CDMX</span>
         </div>
         <div class="sesion">
-          <span class="sesion-fecha">Sábado 7 de junio, 2026</span>
-          <span class="sesion-hora">10:00 – 13:30 · CDMX</span>
-          <a href="#" class="sesion-cta">Inscríbete →</a>
+          <span class="sesion-fecha">Sábado 9 de mayo, 2026</span>
+          <span class="sesion-hora">10:30 – 14:00 · CDMX</span>
         </div>
         <div class="sesion">
-          <span class="sesion-fecha">Sábado 5 de julio, 2026</span>
-          <span class="sesion-hora">10:00 – 13:30 · CDMX</span>
-          <a href="#" class="sesion-cta">Inscríbete →</a>
+          <span class="sesion-fecha">Miércoles 13 de mayo, 2026</span>
+          <span class="sesion-hora">10:30 – 14:00 · CDMX</span>
+        </div>
+        <div class="sesion">
+          <span class="sesion-fecha">Sábado 23 de mayo, 2026</span>
+          <span class="sesion-hora">10:30 – 14:00 · CDMX</span>
+        </div>
+        <div class="sesiones-cta-wrap">
+          <button data-tally-open="gD7XbP" data-tally-overlay="1" class="sesion-cta">Inscríbete →</button>
         </div>
       </div>
     </article>
@@ -716,6 +746,9 @@
       dropdowns.forEach((d) => d.classList.remove('open'));
     });
   </script>
+
+  <!-- Tally embed -->
+  <script async src="https://tally.so/widgets/embed.js"></script>
 
 </body>
 </html>
