@@ -4,13 +4,13 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aumentos a medida — iatelier</title>
-  <meta name="description" content="Herramientas y metodologías de IA construidas para tu trabajo real. Diseño a medida, integradas en tus flujos, bajo tu control."/>
+  <meta name="description" content="Herramientas y metodologías de IA construidas para ti. Diseño a medida, integradas en tus flujos, bajo tu control."/>
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml"/>
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Aumentos a medida — iatelier"/>
-  <meta property="og:description" content="Herramientas y metodologías de IA construidas para tu trabajo real. Diseño a medida, integradas en tus flujos, bajo tu control."/>
+  <meta property="og:description" content="Herramientas y metodologías de IA construidas para ti. Diseño a medida, integradas en tus flujos, bajo tu control."/>
   <meta property="og:image" content="https://iatelier.org/img/og-image.png"/>
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="iatelier — Ideas Aumentadas"/>
@@ -38,7 +38,7 @@
        ======================================== */
     main {
       flex: 1;
-      padding-top: 60px;
+      margin-top: 60px;
     }
 
     /* Hero section */
@@ -48,48 +48,106 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: var(--space-3xl) clamp(1.5rem, 5vw, 4rem) var(--space-2xl);
-      min-height: 50vh;
+      padding: 4rem clamp(1.5rem, 5vw, 4rem) 3rem;
+      min-height: 42vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
     }
 
     .hero h1 {
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
       font-weight: 700;
-      margin-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+      max-width: 900px;
     }
 
     .hero .tagline {
-      font-size: clamp(1rem, 1.3vw, 1.1rem);
-      color: var(--arena-light);
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      color: rgba(244, 240, 235, 0.75);
       max-width: 620px;
+      line-height: 1.6;
+    }
+
+    /* Section label — voz técnica en mono */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    /* Divisor gradiente arena */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(140, 128, 112, 0.25) 30%, rgba(140, 128, 112, 0.25) 70%, transparent 100%);
+      margin: 0;
     }
 
     /* Content sections */
     .section {
-      padding: var(--space-3xl) clamp(1.5rem, 5vw, 4rem);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .section:last-of-type {
-      border-bottom: none;
+      padding: 4rem clamp(1.5rem, 5vw, 4rem);
     }
 
     .section h2 {
-      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      font-size: clamp(1.9rem, 2.8vw, 2.6rem);
       font-weight: 700;
       margin-bottom: var(--space-lg);
       color: var(--marfil);
     }
 
     .section p {
-      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-      line-height: 1.8;
-      color: var(--marfil);
+      font-size: clamp(1.05rem, 1.15vw, 1.15rem);
+      line-height: 1.75;
+      color: rgba(244, 240, 235, 0.82);
       margin-bottom: var(--space-lg);
     }
 
     .section p:last-child {
       margin-bottom: 0;
+    }
+
+    /* Grain en secciones alternas */
+    .section-grain {
+      position: relative;
+    }
+    .section-grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--grain);
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      opacity: 0.035;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .section-grain > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Mark highlight */
+    .mark {
+      color: var(--marfil) !important;
+      background: linear-gradient(
+        104deg,
+        transparent 0%,
+        rgba(217, 43, 31, 0.15) 5%,
+        rgba(217, 43, 31, 0.25) 20%,
+        rgba(217, 43, 31, 0.25) 80%,
+        rgba(217, 43, 31, 0.08) 95%,
+        transparent 100%
+      ) !important;
     }
 
     /* What is aumento section */
@@ -98,51 +156,56 @@
       margin: 0 auto;
     }
 
-    .what-is p {
-      font-size: clamp(1rem, 1.2vw, 1.1rem);
-    }
-
     /* Process section */
     .process {
       max-width: 1000px;
       margin: 0 auto;
     }
 
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: var(--space-xl);
-      margin-top: var(--space-xl);
+    .process-list {
+      margin-top: var(--space-lg);
     }
 
     .process-step {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 0 var(--space-md);
+      align-items: baseline;
+      padding: var(--space-md) 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .process-step:last-child {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
     }
 
     .process-step-number {
       font-family: var(--font-display);
-      font-size: clamp(2.2rem, 3vw, 2.8rem);
+      font-feature-settings: "ss02" 1;
+      font-size: clamp(1.6rem, 2.2vw, 2rem);
       font-weight: 900;
       color: var(--cadmio);
       line-height: 1;
-      margin-bottom: var(--space-sm);
+    }
+
+    .process-step-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
     }
 
     .process-step-title {
       font-family: var(--font-display);
       font-feature-settings: "ss02" 1;
-      font-size: clamp(1.1rem, 1.3vw, 1.2rem);
+      font-size: clamp(1rem, 1.2vw, 1.1rem);
       font-weight: 700;
       color: var(--marfil);
-      margin-bottom: var(--space-sm);
-      text-transform: capitalize;
     }
 
     .process-step-desc {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--arena-light);
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
     /* Use cases / examples section */
@@ -152,11 +215,21 @@
     }
 
     .use-case {
-      margin-bottom: var(--space-xl);
+      margin-bottom: var(--space-lg);
       padding: var(--space-lg);
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(61, 90, 110, 0.05);
       border-left: 3px solid var(--azul);
-      border-radius: 4px;
+      border-radius: 2px;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .use-case:last-child {
+      margin-bottom: 0;
+    }
+
+    .use-case:hover {
+      background: rgba(61, 90, 110, 0.10);
+      border-left-color: rgba(61, 90, 110, 0.8);
     }
 
     .use-case-title {
@@ -180,14 +253,45 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: var(--space-3xl) clamp(1.5rem, 5vw, 4rem);
+      padding: 4rem clamp(1.5rem, 5vw, 4rem);
+      background: rgba(61, 90, 110, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Grain en CTA */
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--grain);
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      opacity: 0.05;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    /* Línea accent en CTA */
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--arena);
     }
 
     .cta-section p {
-      font-size: clamp(1rem, 1.2vw, 1.1rem);
-      color: var(--arena-light);
-      margin-bottom: var(--space-lg);
+      font-size: clamp(1.05rem, 1.15vw, 1.15rem);
+      color: rgba(244, 240, 235, 0.72);
+      margin-bottom: var(--space-xl);
       max-width: 600px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
     }
 
     .cta-button {
@@ -201,12 +305,16 @@
       font-size: clamp(0.88rem, 1.1vw, 1rem);
       letter-spacing: -0.01em;
       text-transform: uppercase;
+      text-decoration: none;
       border: none;
       cursor: pointer;
       transition: background 0.3s ease, transform 0.15s ease;
+      position: relative;
+      z-index: 1;
     }
     .cta-button:hover {
       background: #b8221a;
+      transform: translateY(-2px);
     }
     .cta-button:active {
       transform: scale(0.97);
@@ -222,7 +330,6 @@
       align-items: center;
       padding: var(--space-lg) clamp(1.5rem, 5vw, 3rem);
       border-top: 1px solid rgba(255, 255, 255, 0.06);
-      margin-top: var(--space-2xl);
     }
 
     .footer-logo svg {
@@ -246,7 +353,7 @@
       }
 
       .section {
-        padding: var(--space-2xl) clamp(1.5rem, 5vw, 2rem);
+        padding: 3rem clamp(1.5rem, 5vw, 2rem);
       }
 
       .footer {
@@ -303,50 +410,70 @@
 
     <!-- Hero section -->
     <section class="hero">
-      <h1>Aumentos a medida</h1>
-      <p class="tagline">Herramientas y metodologías que integran IA en tu trabajo real, sin reemplazar lo que haces bien.</p>
+      <div class="hero-inner">
+        <span class="section-label">Servicios — Aumentos</span>
+        <h1>Aumentos a medida</h1>
+        <p class="tagline">Herramientas y metodologías que integran IA en tu trabajo real, sin reemplazar lo que haces bien.</p>
+      </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- What is an aumento -->
-    <section class="section what-is">
+    <section class="section what-is section-grain">
+      <span class="section-label">01 — Concepto</span>
       <h2>Qué es un aumento</h2>
       <p>
-        Un <span class="mark">aumento</span> es una herramienta o metodología construida específicamente para ti. No es software genérico ni un prompt generic: es un sistema diseñado desde cero, integrado en tus flujos de trabajo reales.
+        Un <span class="mark">aumento</span> es una herramienta que usa inteligencia artificial construida específicamente para ti. No es software genérico sino un sistema diseñado desde cero a partir de tus necesidades y contexto específico"
       </p>
       <p>
-        La premisa es simple: <span class="mark">la IA debe ampliar tu capacidad, no reemplazar tu criterio</span>. Analizamos qué puede delegarse a modelos (búsqueda, síntesis, generación) y qué debes mantener bajo control (decisiones estratégicas, validación, dirección). El resultado es un aumento: una herramienta que te deja pensar mejor, trabajar más rápido, y controlar lo que importa.
+        La premisa es simple: <span class="mark">la IA debe ampliar tu capacidad, no reemplazar tu criterio</span>. Analizamos qué puede delegarse a modelos (búsqueda, síntesis, generación) y qué debes mantener bajo control (decisiones estratégicas, validación, dirección). El resultado es un aumento; una herramienta que te deja pensar mejor, trabajar más rápido, y controlar lo que importa.
       </p>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- Process section -->
     <section class="section process">
-      <h2>El proceso</h2>
-      <div class="process-grid">
+      <span class="section-label">02 — Proceso</span>
+      <h2>Cómo se construye</h2>
+      <div class="process-list">
         <div class="process-step">
           <div class="process-step-number">1</div>
-          <div class="process-step-title">Diagnóstico</div>
-          <div class="process-step-desc">Mapeamos tus flujos de trabajo. Identificamos qué es repetitivo, dónde se pierde tiempo, qué requiere expertise. Detectamos los puntos donde la IA puede ayudar sin quitar el control.</div>
+          <div class="process-step-content">
+            <div class="process-step-title">Diagnóstico</div>
+            <div class="process-step-desc">Mapeamos tus flujos. Identificamos qué es repetitivo, qué requiere tu criterio, dónde la IA puede ayudar sin quitar el control.</div>
+          </div>
         </div>
         <div class="process-step">
           <div class="process-step-number">2</div>
-          <div class="process-step-title">Propuesta</div>
-          <div class="process-step-desc">Diseñamos el aumento con alcance claro. Qué hace, qué no hace, qué necesitas validar tú. Presentamos un plan: herramientas, ciclo de desarrollo, timeline, impacto esperado.</div>
+          <div class="process-step-content">
+            <div class="process-step-title">Propuesta</div>
+            <div class="process-step-desc">Definimos alcance, herramientas y lo que debes validar tú. </div>
+          </div>
         </div>
         <div class="process-step">
           <div class="process-step-number">3</div>
-          <div class="process-step-title">Desarrollo</div>
-          <div class="process-step-desc">Construimos iterativamente. Probamos con datos reales, ajustamos según tu feedback, refinamos prompts y flujos. No es software black-box: ves cómo funciona en cada paso.</div>
+          <div class="process-step-content">
+            <div class="process-step-title">Desarrollo</div>
+            <div class="process-step-desc">Construimos con datos reales, ajustamos con tu feedback. No es caja negra, ves cómo funciona en cada paso.</div>
+          </div>
         </div>
         <div class="process-step">
           <div class="process-step-number">4</div>
-          <div class="process-step-title">Entrega</div>
-          <div class="process-step-desc">Documentamos todo. Te explicamos cómo funciona, cómo mantenerlo, cuándo ajustarlo. Tu equipo recibe capacitación. El aumento vive, evoluciona, se mejora con el tiempo.</div>
+          <div class="process-step-content">
+            <div class="process-step-title">Entrega</div>
+            <div class="process-step-desc">Documentamos todo. Capacitamos a tu equipo. El aumento es tuyo. Lo entiendes, lo mantienes, lo mejoras.</div>
+          </div>
         </div>
       </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Use cases section -->
-    <section class="section use-cases">
+    <section class="section use-cases section-grain">
+      <span class="section-label">03 — Ejemplos</span>
       <h2>Qué puede ser un aumento</h2>
 
       <div class="use-case">
@@ -377,7 +504,7 @@
 
     <!-- CTA section -->
     <section class="cta-section">
-      <p>Cada aumento es diferente porque cada trabajo es diferente. Veamos si podemos construir uno para ti.</p>
+      <p>Cada aumento es diferente porque cada trabajo es diferente.</p>
       <a href="contacto.html" class="cta-button">Hablemos</a>
     </section>
 
