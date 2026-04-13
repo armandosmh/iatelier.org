@@ -4,13 +4,13 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Formación para organizaciones — iatelier</title>
-  <meta name="description" content="Programas de formación en IA diseñados desde las necesidades de tu equipo. Diagnóstico, sesiones prácticas y acompañamiento."/>
+  <meta name="description" content="Formación en IA diseñada a medida de tu equipo. Diagnóstico, sesiones prácticas y acompañamiento."/>
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml"/>
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
 
   <!-- Open Graph -->
   <meta property="og:title" content="Formación para organizaciones — iatelier"/>
-  <meta property="og:description" content="Programas de formación en IA diseñados desde las necesidades de tu equipo. Diagnóstico, sesiones prácticas y acompañamiento."/>
+  <meta property="og:description" content="Formación en IA diseñada a medida de tu equipo. Diagnóstico, sesiones prácticas y acompañamiento."/>
   <meta property="og:image" content="https://iatelier.org/img/og-image.png"/>
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="iatelier — Ideas Aumentadas"/>
@@ -42,7 +42,7 @@
     }
 
     .section {
-      padding: var(--space-3xl) clamp(1.5rem, 5vw, 4rem);
+      padding: 4rem clamp(1.5rem, 5vw, 4rem);
     }
 
     /* Hero / Header Section */
@@ -52,32 +52,49 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      min-height: 55vh;
-      padding: var(--space-3xl) clamp(1.5rem, 5vw, 4rem);
-      background: linear-gradient(135deg, rgba(217, 43, 31, 0.06) 0%, rgba(61, 90, 110, 0.04) 100%);
+      min-height: 42vh;
+      padding: 4rem clamp(1.5rem, 5vw, 4rem) 3rem;
+      background: linear-gradient(135deg, rgba(61, 90, 110, 0.08) 0%, rgba(61, 90, 110, 0.03) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
     }
 
     .hero h1 {
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
       font-weight: 700;
-      margin-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
       max-width: 900px;
     }
 
     .hero .tagline {
-      font-size: clamp(1rem, 1.3vw, 1.15rem);
-      color: var(--arena-light);
-      max-width: 700px;
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      color: rgba(244, 240, 235, 0.75);
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    /* Línea separadora */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(140, 128, 112, 0.25) 30%, rgba(140, 128, 112, 0.25) 70%, transparent 100%);
+      margin: 0;
     }
 
     /* Content Sections */
     .content-section {
-      max-width: 900px;
+      max-width: 860px;
       margin: 0 auto;
     }
 
     .content-section h2 {
-      font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+      font-size: clamp(1.9rem, 2.8vw, 2.6rem);
       font-weight: 700;
       margin-bottom: var(--space-lg);
       color: var(--marfil);
@@ -85,10 +102,10 @@
 
     .content-section > p,
     .content-section > ul {
-      font-size: clamp(0.95rem, 1.05vw, 1.05rem);
-      color: var(--arena-light);
+      font-size: clamp(1.05rem, 1.15vw, 1.15rem);
+      color: rgba(244, 240, 235, 0.82);
       margin-bottom: var(--space-lg);
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     .content-section ul {
@@ -113,66 +130,92 @@
     /* Process Cards */
     .process-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-xl);
-      margin: var(--space-2xl) 0;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-lg);
+      margin: var(--space-xl) 0 0;
     }
 
     .process-card {
       padding: var(--space-xl);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 2px;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Grain texture en las cards */
+    .process-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--grain);
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      opacity: 0.04;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
     }
 
     .process-card:hover {
-      border-color: rgba(217, 43, 31, 0.3);
-      background: rgba(217, 43, 31, 0.04);
+      border-color: rgba(61, 90, 110, 0.4);
+      background: rgba(61, 90, 110, 0.06);
       transform: translateY(-4px);
     }
 
     .process-card .number {
       display: inline-block;
       font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.6rem;
-      color: var(--cadmio);
-      margin-bottom: var(--space-md);
+      font-weight: 900;
+      font-size: 2.8rem;
+      color: var(--arena-light);
+      line-height: 1;
+      margin-bottom: var(--space-sm);
+      letter-spacing: -0.04em;
     }
 
     .process-card h3 {
-      font-size: clamp(1.1rem, 1.2vw, 1.3rem);
+      font-size: clamp(1.1rem, 1.3vw, 1.35rem);
       font-weight: 700;
       margin-bottom: var(--space-md);
       color: var(--marfil);
     }
 
     .process-card p {
-      font-size: 0.95rem;
-      color: var(--arena-light);
-      line-height: 1.6;
+      font-size: 1rem;
+      color: rgba(244, 240, 235, 0.72);
+      line-height: 1.7;
     }
 
     /* Organization Types List */
     .org-types {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-lg);
-      margin: var(--space-2xl) 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: var(--space-lg) 0 0;
     }
 
     .org-type {
-      padding: var(--space-lg);
-      border-left: 3px solid var(--cadmio);
-      background: rgba(217, 43, 31, 0.04);
-      border-radius: 4px;
+      padding: 0.55rem 1.1rem;
+      border: 1px solid rgba(61, 90, 110, 0.35);
+      background: rgba(61, 90, 110, 0.06);
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+
+    .org-type:hover {
+      background: rgba(61, 90, 110, 0.12);
+      border-color: rgba(61, 90, 110, 0.6);
     }
 
     .org-type p {
-      font-size: 0.95rem;
-      color: var(--marfil);
-      font-weight: 500;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: rgba(244, 240, 235, 0.8);
+      font-weight: 400;
     }
 
     /* CTA Section */
@@ -182,23 +225,54 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      min-height: 35vh;
-      padding: var(--space-3xl) clamp(1.5rem, 5vw, 4rem);
-      background: linear-gradient(135deg, rgba(61, 90, 110, 0.08) 0%, rgba(217, 43, 31, 0.04) 100%);
+      padding: 4rem clamp(1.5rem, 5vw, 4rem);
+      background: rgba(61, 90, 110, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Grain en CTA */
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--grain);
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      opacity: 0.05;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    /* Línea separadora en CTA */
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--arena);
     }
 
     .cta-section h2 {
-      font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+      font-size: clamp(1.9rem, 2.8vw, 2.6rem);
       font-weight: 700;
-      margin-bottom: var(--space-lg);
-      max-width: 800px;
+      margin-bottom: var(--space-md);
+      max-width: 700px;
+      position: relative;
+      z-index: 1;
     }
 
     .cta-section p {
-      font-size: clamp(0.95rem, 1.05vw, 1.05rem);
-      color: var(--arena-light);
-      margin-bottom: var(--space-lg);
-      max-width: 600px;
+      font-size: clamp(1.05rem, 1.15vw, 1.15rem);
+      color: rgba(244, 240, 235, 0.72);
+      margin-bottom: var(--space-xl);
+      max-width: 520px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
     }
 
     .btn-cta {
@@ -216,6 +290,8 @@
       cursor: pointer;
       transition: background 0.3s ease, transform 0.15s ease;
       text-decoration: none;
+      position: relative;
+      z-index: 1;
     }
     .btn-cta:hover {
       background: #b8221a;
@@ -223,6 +299,52 @@
     }
     .btn-cta:active {
       transform: scale(0.97);
+    }
+
+    /* Mark override: sobre fondo oscuro */
+    .mark {
+      color: var(--marfil) !important;
+      background: linear-gradient(
+        104deg,
+        transparent 0%,
+        rgba(217, 43, 31, 0.15) 5%,
+        rgba(217, 43, 31, 0.25) 20%,
+        rgba(217, 43, 31, 0.25) 80%,
+        rgba(217, 43, 31, 0.08) 95%,
+        transparent 100%
+      ) !important;
+    }
+
+    /* Grain en secciones de contenido */
+    .section-grain {
+      position: relative;
+    }
+    .section-grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--grain);
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      opacity: 0.035;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .section-grain > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Número de sección pequeño */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      margin-bottom: 1.2rem;
+      display: block;
     }
 
     /* ========================================
@@ -317,36 +439,45 @@
 
     <!-- Hero Section -->
     <section class="hero">
-      <h1>Formación para organizaciones</h1>
-      <p class="tagline">Cursos y talleres diseñados desde tus necesidades. <span class="mark">A medida, presencial o virtual.</span></p>
-    </section>
-
-    <!-- What is it? -->
-    <section class="section">
-      <div class="content-section">
-        <h2>Qué ofrecemos</h2>
-        <p>Programas de formación en IA diseñados específicamente para tu equipo. No importa cuál sea tu sector, tu nivel de experiencia o los problemas concretos que enfrentas: podemos armar un programa que tenga sentido para ti.</p>
-        <p>No son cursos genéricos. Hablamos con tu equipo, entendemos el contexto en el que trabajan, el sector donde se mueven y los desafíos reales que quieren resolver con IA. Después diseñamos sesiones prácticas donde aprenden a usar herramientas, generan criterio para tomar decisiones informadas y practican sobre problemas reales.</p>
+      <div class="hero-inner">
+        <span class="section-label">Servicios — Formación</span>
+        <h1>Formación para organizaciones</h1>
+        <p class="tagline">Cursos y talleres diseñados para tu equipo.</p>
       </div>
     </section>
+
+    <div class="section-divider"></div>
+
+    <!-- What is it? -->
+    <section class="section section-grain">
+      <div class="content-section">
+        <span class="section-label">01 — Propuesta</span>
+        <h2>Qué ofrecemos</h2>
+        <p>Programas de formación en IA <span class="mark">diseñados específicamente para tu equipo</span>. No importa cuál sea tu sector, tu nivel de experiencia o los problemas concretos que enfrentas: podemos armar un programa que tenga sentido para ti.</p>
+        <p>No son cursos genéricos. Hablamos con tu equipo, entendemos el contexto en el que trabajan, el sector donde se mueven y los desafíos reales que quieren resolver con IA. Después diseñamos <span class="mark">sesiones prácticas sobre problemas reales</span>.</p>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
 
     <!-- How it works -->
     <section class="section">
       <div class="content-section">
+        <span class="section-label">02 — Proceso</span>
         <h2>Cómo funciona</h2>
         <div class="process-grid">
           <div class="process-card">
-            <div class="number">1</div>
+            <div class="number">01</div>
             <h3>Diagnóstico</h3>
             <p>Entendemos tu contexto: sector, equipo, experiencias previas con IA, desafíos específicos que quieren resolver.</p>
           </div>
           <div class="process-card">
-            <div class="number">2</div>
+            <div class="number">02</div>
             <h3>Diseño</h3>
             <p>Armamos un programa a medida con contenidos, herramientas, dinámicas y casos prácticos relevantes para tu realidad.</p>
           </div>
           <div class="process-card">
-            <div class="number">3</div>
+            <div class="number">03</div>
             <h3>Implementación</h3>
             <p>Sesiones en vivo, trabajo práctico, feedback personalizado y acompañamiento continuo durante el programa.</p>
           </div>
@@ -354,35 +485,28 @@
       </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- For whom -->
-    <section class="section">
+    <section class="section section-grain">
       <div class="content-section">
+        <span class="section-label">03 — Clientes</span>
         <h2>Para quién es</h2>
         <p>Trabajamos con organizaciones de diferentes sectores. Gobiernos, ONGs, organismos de cooperación internacional, universidades, empresas privadas. Cualquiera que necesite que su equipo entienda IA y desarrolle criterio para usarla de manera estratégica.</p>
         <div class="org-types">
-          <div class="org-type">
-            <p>Gobierno</p>
-          </div>
-          <div class="org-type">
-            <p>Sociedad Civil</p>
-          </div>
-          <div class="org-type">
-            <p>Cooperación Internacional</p>
-          </div>
-          <div class="org-type">
-            <p>Academia</p>
-          </div>
-          <div class="org-type">
-            <p>Empresas</p>
-          </div>
+          <div class="org-type"><p>Gobierno</p></div>
+          <div class="org-type"><p>Sociedad Civil</p></div>
+          <div class="org-type"><p>Cooperación Internacional</p></div>
+          <div class="org-type"><p>Academia</p></div>
+          <div class="org-type"><p>Empresas</p></div>
         </div>
       </div>
     </section>
 
     <!-- CTA -->
     <section class="cta-section">
-      <h2>Hablemos de tu equipo</h2>
-      <p>Cuéntanos qué necesitas y diseñamos un programa que funcione para ustedes.</p>
+      <h2>Hablemos</h2>
+      <p>Cuéntanos qué necesitan y diseñamos un programa que funcione para su equipo.</p>
       <a href="contacto.html" class="btn-cta">Empezar conversación</a>
     </section>
 
