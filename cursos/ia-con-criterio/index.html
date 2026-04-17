@@ -1,0 +1,4337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IA con criterio</title>
+
+<!-- Open Graph / Web sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="IA con criterio">
+<meta property="og:description" content="Curso de fundamentos — IA con criterio">
+
+<style>
+  /* ── Google Fonts: Google Sans Flex + Inter + DM Mono ── */
+  /* IMPORTANTE: @import debe ser lo primero en el bloque <style> */
+  @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wdth,wght@75..125,100..700&family=Inter:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
+
+  /* ── Fuentes locales declaradas por el tema ── */
+  @font-face {
+  font-family: 'Maax';
+  src: url('fonts/MaaxTrial-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('fonts/MaaxTrial-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('fonts/MaaxTrial-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('fonts/MaaxTrial-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('fonts/MaaxTrial-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('fonts/MaaxTrial-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monotalic';
+  src: url('fonts/Monotalic-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monotalic';
+  src: url('fonts/Monotalic-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monotalic';
+  src: url('fonts/Monotalic-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monotalic';
+  src: url('fonts/Monotalic-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /*
+  ═══════════════════════════════════════════════════
+  MOTOR — iatelier HTML Slides
+  ═══════════════════════════════════════════════════
+
+  Este archivo es el motor del sistema. NO lo edites
+  directamente para crear presentaciones. Usa el flujo:
+
+    1. Escribe tu presentación en un archivo .yaml
+    2. Corre: python build.py tu-presentacion.yaml
+    3. Abre el index.html generado en el navegador
+
+  Para cambiar colores o tipografía, edita el archivo
+  de tema correspondiente en temas/
+
+  ═══════════════════════════════════════════════════
+  CATÁLOGO DE COMPONENTES
+  ═══════════════════════════════════════════════════
+
+  SLIDES DE ESTRUCTURA
+  cover          → portada con fondo oscuro
+  divider        → separador de sección, fondo acento
+
+  SLIDES DE CONTENIDO LIMPIO
+  titulo-cuerpo  → título + párrafo explicativo
+  titulo-steps   → título + lista numerada
+  titulo-bullets → título + lista con guión em
+  titulo-matrix  → título + tabla comparativa
+  stats          → números grandes con etiqueta
+  recap          → cierre numerado
+
+  SLIDES EDITORIALES
+  photo-cover    → foto a sangre completa
+  quote          → nombre bold + cita gigante
+  imagen-texto   → texto izquierda + imagen derecha
+  imagen-grid    → 2–3 imágenes + título al pie
+
+  SLIDES DE ALTA DENSIDAD (tradición Tufte)
+  diagrama       → header pequeño + cuerpo libre para SVG/tabla
+  cols-cards     → 2 o 3 tarjetas en columnas
+
+  COMPONENTES INLINE (dentro de cualquier slide)
+  .cols / .cols.three → grids de 2 o 3 columnas
+  .card               → tarjeta con label/título/cuerpo
+  .stat               → número grande + etiqueta
+  .steps              → lista numerada monospace
+  .bullets            → lista con guión em
+  .recap-list         → cierre numerado
+  .pill               → etiqueta inline (outline/filled/accent)
+  .rule               → línea de acento decorativa
+  .code-block         → bloque de código
+
+  ═══════════════════════════════════════════════════
+  TOKENS DE COLOR (definidos por el tema)
+  ═══════════════════════════════════════════════════
+  */
+
+  :root {
+    --bg:             #F4F0EB;
+    --ink:            #1C1C1E;
+    --muted:          #8C8070;
+    --accent:         #D92B1F;
+    --bg2:            #3D5A6E;    /* pizarra media — secciones, cards */
+    --signal:         #D92B1F; /* ladrillo — atención */
+    --slide-pad:      clamp(2.5rem, 6vw, 6rem);
+    --font-title:     'Maax', sans-serif;
+    --font-highlight: Maax, 'Plus Jakarta Sans', sans-serif;
+    --font-body:      'Inter', sans-serif;
+    --font-label:     'DM Mono', monospace;
+    --font-caption:   'DM Mono', monospace;
+    --font-mono:      'DM Mono', monospace;
+  }
+
+  html {
+    /* Root font-size escala con el viewport para que todos los rem crezcan en fullscreen.
+       ≤1280px → 16px (default);  1470px MBA → ~17.6px (+10%);  1920px → 21px (cap) */
+    font-size: clamp(16px, 1.2vw, 21px);
+  }
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── STAGE ──────────────────────────────────────── */
+  #stage {
+    position: fixed;
+    inset: 0;
+  }
+
+  /* ── SLIDE BASE ─────────────────────────────────── */
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--slide-pad);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(1.5rem);
+    transition: opacity .35s ease, transform .35s ease;
+  }
+  .slide.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  .slide.exit {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease;
+  }
+
+  /* ── GRANO DE FONDO ─────────────────────────────── */
+  /* Textura fractal que simula papel. 3 frecuencias:   */
+  /* claros (multiply), oscuros (overlay), sin grano    */
+  /* en dividers de color para no ensuciar el acento.   */
+  .slide:not(.dark):not(.divider-lampara):not(.divider-ladrillo)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.2;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .slide.dark::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.2;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .slide.divider-lampara::after,
+  .slide.divider-ladrillo::after {
+    display: none !important;
+  }
+
+  /* ── CHROME ─────────────────────────────────────── */
+  /*
+  Counter y section-label forman una sola unidad en la esquina superior derecha.
+  El counter se oculta — el número lo muestra #section-label con un separador.
+  */
+  #counter {
+    display: none; /* oculto — el número se inyecta en #section-label vía JS */
+  }
+
+  #section-label {
+    position: fixed;
+    top: 1.5rem;
+    right: var(--slide-pad);
+    font-family: var(--font-label);
+    font-weight: 500;
+    font-size: .72rem;
+    letter-spacing: .1em;
+    color: var(--muted);
+    z-index: 100;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: .6em;
+  }
+
+  #footer {
+    position: fixed;
+    bottom: calc(var(--slide-pad) * .6);
+    left: var(--slide-pad);
+    font-family: var(--font-body);
+    font-size: .72rem;
+    color: var(--muted);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: .1rem;
+    line-height: 1.3;
+  }
+  #footer strong { font-weight: 500; color: var(--ink); }
+
+  #nav {
+    position: fixed;
+    bottom: calc(var(--slide-pad) * .6);
+    right: var(--slide-pad);
+    display: flex;
+    gap: .75rem;
+    z-index: 100;
+  }
+  .nav-btn {
+    background: none;
+    border: 1.5px solid var(--muted);
+    color: var(--muted);
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: .95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color .15s, color .15s, background .15s;
+  }
+  .nav-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+    background: rgba(0,0,0,.05);
+  }
+
+  #progress {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width .35s ease;
+    z-index: 100;
+  }
+
+  /* ── BARRA LATERAL DE CONTENIDOS ─────────────────── */
+  /*
+  La barra es parte del layout, no un panel flotante.
+  Siempre visible como franja izquierda estrecha con puntos.
+  El texto aparece/desaparece con el toggle (tecla T o botón).
+
+  body.toc-enabled  → la barra existe
+  body.toc-expanded → el texto es visible
+  */
+
+  /* Cuando la barra está activa, el stage se desplaza */
+  body.toc-enabled #stage  { left: 40px; }
+  body.toc-enabled #counter,
+  body.toc-enabled #section-label { left: calc(40px + var(--slide-pad)); }
+  body.toc-enabled #footer { left: calc(40px + var(--slide-pad)); }
+  body.toc-enabled #progress { left: 40px; }
+
+  /* Cuando el texto está expandido, más espacio */
+  body.toc-expanded #stage  { left: 220px; transition: left .3s cubic-bezier(.4,0,.2,1); }
+  body.toc-expanded #counter,
+  body.toc-expanded #section-label { left: calc(220px + var(--slide-pad)); transition: left .3s cubic-bezier(.4,0,.2,1); }
+  body.toc-expanded #footer { left: calc(220px + var(--slide-pad)); transition: left .3s cubic-bezier(.4,0,.2,1); }
+  body.toc-expanded #progress { left: 220px; transition: left .3s cubic-bezier(.4,0,.2,1); }
+
+  body.toc-enabled #stage,
+  body.toc-enabled #counter,
+  body.toc-enabled #section-label,
+  body.toc-enabled #footer,
+  body.toc-enabled #progress { transition: left .3s cubic-bezier(.4,0,.2,1); }
+
+  /* La barra misma */
+  #toc {
+    display: none; /* oculta por defecto; JS la activa con toc-enabled */
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: var(--ink);  /* pizarra */
+    z-index: 200;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    transition: width .3s cubic-bezier(.4,0,.2,1);
+  }
+  body.toc-enabled  #toc { display: flex; }
+  body.toc-expanded #toc { width: 220px; }
+
+  /* Línea vertical */
+  #toc-list {
+    position: relative;
+    list-style: none;
+    padding: 1rem 0;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.15) transparent;
+  }
+  #toc-list::-webkit-scrollbar { width: 3px; }
+  #toc-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 2px; }
+  #toc-list::before { display: none; }
+
+  /* Línea de progreso dinámica — crece con el avance */
+  #toc-list::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 1rem;
+    width: 1px;
+    height: var(--toc-progress, 0px);
+    background: rgba(255,255,255,.35);
+    transition: height .3s ease, left .3s cubic-bezier(.4,0,.2,1);
+    z-index: 1;
+  }
+  body.toc-expanded #toc-list::after { left: 27px; }
+
+  /* Cada ítem */
+  .toc-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: .3rem 0;
+    transition: opacity .15s;
+    white-space: nowrap;
+  }
+  .toc-item:hover { opacity: 1 !important; }
+
+  /* Punto — siempre visible, centrado en los 40px */
+  /* Estados: ninguna clase = por venir (tenue), .visited = visto (medio), .active = activo (acento) */
+  .toc-dot {
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    /* por venir: círculo vacío con borde tenue */
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,.2);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    transition: background .25s, border-color .25s, transform .2s, margin .3s cubic-bezier(.4,0,.2,1);
+    margin-left: 16px; /* (40px - 8px) / 2 = 16px para centrar */
+    margin-right: 12px;
+  }
+  body.toc-expanded .toc-dot { margin-left: 23px; }
+
+  /* visitado: relleno sólido tono medio */
+  .toc-item.visited .toc-dot {
+    background: rgba(255,255,255,.35);
+    border-color: rgba(255,255,255,.35);
+  }
+
+  /* activo: acento, ligeramente más grande */
+  .toc-item.active .toc-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.4);
+  }
+
+  /* hover: destacar un poco sea cual sea el estado */
+  .toc-item:hover .toc-dot { border-color: rgba(255,255,255,.6); }
+  .toc-item.visited:hover .toc-dot { background: rgba(255,255,255,.55); border-color: rgba(255,255,255,.55); }
+  .toc-item.active:hover .toc-dot  { background: var(--accent); border-color: var(--accent); }
+
+  /* Texto — invisible cuando colapsado */
+  .toc-label {
+    font-family: var(--font-label);
+    font-size: .6rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    /* por venir: muy tenue */
+    color: rgba(255,255,255,.2);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    opacity: 0;
+    transition: opacity .2s, color .2s;
+    pointer-events: none;
+  }
+  body.toc-expanded .toc-label            { opacity: 1; pointer-events: auto; }
+  .toc-item.visited .toc-label            { color: rgba(255,255,255,.45); }
+  .toc-item.active  .toc-label            { color: rgba(255,255,255,.92); font-weight: 500; }
+
+  /* Separador de sección — pequeño label entre grupos */
+  .toc-section-sep {
+    display: flex;
+    align-items: center;
+    padding: .55rem 0 .15rem;
+    white-space: nowrap;
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+  .toc-section-sep-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,.08);
+    margin-left: 16px;
+    transition: margin .3s cubic-bezier(.4,0,.2,1);
+  }
+  body.toc-expanded .toc-section-sep-line { margin-left: 23px; }
+  .toc-section-sep-text {
+    font-family: var(--font-label);
+    font-size: .58rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 0 .6rem 0 .5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 120px;
+    text-overflow: ellipsis;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  body.toc-expanded .toc-section-sep-text { opacity: 1; }
+
+  /* Subsección — línea corta + label en accent */
+  .toc-subsection-sep {
+    display: flex;
+    align-items: center;
+    padding: .7rem 0 .2rem;
+    white-space: nowrap;
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+  .toc-subsection-sep-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,.08);
+    margin-left: 16px;
+    transition: margin .3s cubic-bezier(.4,0,.2,1);
+  }
+  body.toc-expanded .toc-subsection-sep-line { margin-left: 23px; }
+  .toc-subsection-text {
+    font-family: var(--font-label);
+    font-size: .56rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.45);
+    padding: 0 .6rem 0 .5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 150px;
+    text-overflow: ellipsis;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  body.toc-expanded .toc-subsection-text { opacity: 1; }
+
+  /* Items dentro de subsección — mismo estilo que los normales */
+
+  /* Nombre de sección en la parte superior de la barra (ya no se usa como label principal, se mantiene por compatibilidad) */
+  #toc-section-name {
+    display: none;
+  }
+
+  /* Botón toggle en el chrome */
+  #toc-btn {
+    background: none;
+    border: 1.5px solid var(--muted);
+    color: var(--muted);
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: .82rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color .15s, color .15s, background .15s;
+    line-height: 1;
+  }
+  #toc-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+    background: rgba(0,0,0,.05);
+  }
+  #toc-btn.expanded {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── TYPOGRAPHY ─────────────────────────────────── */
+  /*
+  .label — solo se usa en slides de estructura (divider, cover).
+  En slides de contenido la sección la muestra el chrome (#section-label).
+  */
+  .label {
+    font-family: var(--font-label);
+    font-weight: 500;
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-family: var(--font-title);
+    font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.06;
+    letter-spacing: -.02em;
+    max-width: 16ch;
+    margin-bottom: 2.5rem;
+    font-feature-settings: "ss02" 1;  /* ← aquí */
+
+  }
+  .title em     { font-style: italic; color: var(--signal); }
+  .title strong { font-weight: 700; }
+
+  .body {
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 54ch;
+    color: var(--ink);
+  }
+  .body strong { font-weight: 500; }
+
+  .rule {
+    width: 2.5rem;
+    height: 1.5px;
+    background: var(--accent);
+    margin-bottom: 2rem;
+    flex-shrink: 0;
+  }
+
+  /* ── LAYOUT ─────────────────────────────────────── */
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    max-width: 960px;
+  }
+  .cols.three { grid-template-columns: repeat(3,1fr); gap: 2rem; }
+
+  /* ── COMPONENTS ─────────────────────────────────── */
+
+  /* Card */
+  .card {
+    background: white;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: .6rem;
+    padding: 1.75rem;
+  }
+  .card .card-label {
+    font-family: var(--font-caption);
+    font-weight: 500;
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--muted);
+    margin-bottom: .65rem;
+  }
+  .card .card-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: .5rem;
+  }
+  .card .card-body {
+    font-size: .88rem;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* Stat */
+  .stat { display: flex; flex-direction: column; gap: .3rem; }
+  .stat .big-num {
+    font-family: var(--font-highlight);
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 300;
+    letter-spacing: -.04em;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .stat .stat-label {
+    font-size: .88rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 22ch;
+    line-height: 1.4;
+  }
+
+  /* Steps */
+  ol.steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+    max-width: 80ch;
+  }
+  ol.steps li {
+    display: flex;
+    gap: 1.25rem;
+    align-items: baseline;
+    font-size: clamp(.95rem, 1.6vw, 1.25rem);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  ol.steps li .num {
+    font-family: var(--font-caption);
+    font-weight: 300;
+    font-size: .7rem;
+    color: var(--muted);
+    min-width: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  /* Bullets */
+  ul.bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+  }
+  ul.bullets li {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    font-size: clamp(.95rem, 1.6vw, 1.25rem);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  ul.bullets li::before { content: '·'; color: var(--signal); font-size: 1.4em; line-height: 1; flex-shrink: 0; }
+  ul.bullets li > span { flex: 1; }
+  ul.bullets li > span strong { font-weight: 600; }
+
+  /* Recap */
+  .recap-list { display: flex; flex-direction: column; gap: 1.35rem; max-width: 1000px; }
+  .recap-item { display: flex; gap: 1.25rem; align-items: baseline; }
+  .recap-num  { font-family: var(--font-caption); font-weight: 300; font-size: .7rem; color: var(--muted); min-width: 1.75rem; flex-shrink: 0; }
+  .recap-text { font-size: clamp(1rem, 1.8vw, 1.3rem); font-weight: 300; line-height: 1.5; }
+  .recap-text strong { font-weight: 500; }
+
+  /* Indice */
+  .indice-list { display: flex; flex-direction: column; gap: 1.1rem; }
+  .indice-item { display: flex; gap: 1.5rem; align-items: baseline; }
+  .indice-num  { font-family: var(--font-caption); font-size: clamp(1rem, 1.6vw, 1.15rem); font-weight: 700; font-style: italic; color: var(--signal); min-width: 2.5rem; flex-shrink: 0; }
+  .indice-text { font-family: var(--font-title); font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 400; line-height: 1.3; color: var(--ink); }
+
+  /* Cuerpo largo */
+  .cuerpo-largo-slide { align-items: flex-start; background: var(--ink); padding: clamp(1.5rem, 2vw, 2rem) clamp(2rem, 5vw, 5rem) clamp(4rem, 9vw, 6rem); }
+  .cl-titulo { font-family: var(--font-caption); font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 400; margin-bottom: 2rem; text-align: left; width: 100%; }
+  .cl-cuerpo { font-family: var(--font-body); font-size: clamp(1rem, 1.6vw, 1.2rem); font-weight: 300; line-height: 1.8; color: var(--bg); max-width: 88ch; text-align: left; }
+  .cl-cuerpo + .cl-cuerpo { margin-top: 1.2em; }
+  .cl-cuerpo em { font-style: normal; color: var(--accent); font-weight: 500; }
+  .cl-cuerpo u  { text-decoration: underline; text-decoration-color: var(--signal); text-underline-offset: 3px; text-decoration-thickness: 1.5px; font-style: normal; }
+
+  /* Matrix table */
+  table.matrix { border-collapse: collapse; font-size: .9rem; max-width: 700px; width: 100%; }
+  table.matrix th {
+    font-family: var(--font-caption);
+    font-weight: 500;
+    font-size: .66rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted);
+    text-align: left;
+    padding: .5rem 1.5rem .5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+  }
+  table.matrix td {
+    padding: .75rem 1.5rem .75rem 0;
+    border-bottom: 1px solid rgba(0,0,0,.06);
+    font-weight: 300;
+    line-height: 1.4;
+    vertical-align: top;
+  }
+  table.matrix td strong { font-weight: 500; }
+
+  /* ── ÉNFASIS MARCADOR ─────────────────────────── */
+  /* Tres clases de subrayado gradiente que usan la  */
+  /* paleta del tema. Funcionan en cualquier slide.   */
+  .luz-lampara {
+    font-style: normal;
+    font-weight: inherit;
+    background: linear-gradient(104deg, transparent 0%, rgba(200,212,74,0.38) 2.5%, rgba(200,212,74,0.38) 97.5%, transparent 100%);
+    padding: 1px 6px;
+    border-radius: 2px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .dark .luz-lampara,
+  .cuerpo-largo-slide .luz-lampara {
+    background: linear-gradient(104deg, transparent 0%, rgba(200,212,74,0.25) 2.5%, rgba(200,212,74,0.25) 97.5%, transparent 100%);
+    color: var(--bg);
+  }
+  .alerta-ia {
+    font-style: normal;
+    font-weight: inherit;
+    background: linear-gradient(95deg, transparent 0%, rgba(168,56,40,0.28) 2%, rgba(168,56,40,0.28) 98%, transparent 100%);
+    padding: 1px 6px;
+    border-radius: 2px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .dark .alerta-ia,
+  .cuerpo-largo-slide .alerta-ia {
+    background: linear-gradient(95deg, transparent 0%, rgba(168,56,40,0.32) 2%, rgba(168,56,40,0.32) 98%, transparent 100%);
+    color: var(--bg);
+  }
+  .marca-sombra {
+    font-style: normal;
+    font-weight: inherit;
+    background: linear-gradient(100deg, transparent 0%, rgba(107,122,80,0.15) 2%, rgba(107,122,80,0.15) 98%, transparent 100%);
+    padding: 1px 6px;
+    border-radius: 2px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* Code block */
+  pre.code-block {
+    font-family: var(--font-mono);
+    font-size: .82rem;
+    line-height: 1.75;
+    background: var(--ink);   /* pizarra */
+    color: var(--bg);         /* tiza */
+    padding: 1.5rem 1.75rem;
+    border-radius: .5rem;
+    max-width: 640px;
+    overflow-x: auto;
+  }
+  pre.code-block .hl  { color: var(--accent); }
+  pre.code-block .dim { color: #555; }
+  pre.code-block .str { color: #8fbf7f; }
+
+  /* Pills */
+  .pill {
+    display: inline-block;
+    padding: .28rem .8rem;
+    border-radius: 99px;
+    font-size: .78rem;
+    font-weight: 500;
+    letter-spacing: .02em;
+  }
+  .pill.outline { border: 1.5px solid var(--ink); color: var(--ink); }
+  .pill.filled  { background: var(--ink); color: var(--bg); }
+  .pill.accent  { background: var(--accent); color: white; }
+
+  /* ══════════════════════════════════════════════════
+     SLIDE VARIANTS
+     ══════════════════════════════════════════════════ */
+
+  /* COVER — fondo oscuro */
+  .slide.cover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .slide.cover .label { color: rgba(255,255,255,.35); }
+  .slide.cover .title { color: var(--bg); }
+  .slide.cover .title em { color: var(--accent); }  /* lámpara sobre pizarra */
+  .slide.cover .rule { background: rgba(255,255,255,.2); }
+
+  /* CIERRE — closing slide, same visual family as cover */
+  .slide.cierre {
+    background: var(--ink);
+    color: var(--bg);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+  }
+  .slide.cierre .rule {
+    display: none; /* la regla se mueve debajo del título */
+  }
+  .slide.cierre .title {
+    color: var(--accent);
+    font-size: clamp(3rem, 6.5vw, 5.5rem);
+    font-weight: 400;
+    max-width: 100%;
+    margin: 0;
+    letter-spacing: -.02em;
+  }
+  .slide.cierre .title em { font-style: italic; }
+  .cierre-rule {
+    width: 3rem;
+    height: 2px;
+    background: var(--signal);
+    margin: 1.8rem 0 2rem;
+  }
+  .cierre-frase {
+    font-size: clamp(.9rem, 1.4vw, 1.1rem);
+    color: rgba(242,238,228,.5);
+    max-width: 30ch;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .cierre-contacto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .8rem;
+    width: auto;
+  }
+  .cierre-nombre {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: rgba(242,238,228,.9);
+    letter-spacing: .02em;
+    text-align: center;
+  }
+  .cierre-links {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: .85rem;
+  }
+  .cierre-links > * + *::before {
+    content: '·';
+    color: rgba(242,238,228,.25);
+    margin-right: 1.2rem;
+  }
+  .cierre-link {
+    font-size: .85rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    opacity: .7;
+    transition: opacity .15s;
+  }
+  .cierre-link:hover { opacity: 1; }
+  .cierre-dato {
+    font-size: .85rem;
+    color: rgba(242,238,228,.4);
+  }
+
+  /* DIVIDER — separador de sección, fondo pizarra media */
+  .slide.divider {
+    background: var(--bg2);
+    color: var(--bg);
+  }
+  .slide.divider .label { color: rgba(242,238,228,.45); }
+  .slide.divider .title { color: var(--bg); max-width: 100%; }
+  .slide.divider .title em { font-style: italic; color: var(--accent); }
+
+  /* DIVIDER-LAMPARA — regla de oro, criterio humano, momento de decisión */
+  .slide.divider-lampara {
+    background: var(--accent);
+    color: var(--ink);
+  }
+  .slide.divider-lampara .label { color: rgba(30,36,32,.45); }
+  .slide.divider-lampara .title { color: var(--ink); max-width: 100%; }
+  .slide.divider-lampara .title em { font-style: italic; color: rgba(30,36,32,.6); }
+
+  /* DIVIDER-LADRILLO — atención: output de IA, error común, decisión crítica */
+  .slide.divider-ladrillo {
+    background: var(--signal);
+    color: var(--bg);
+  }
+  .slide.divider-ladrillo .label { color: rgba(242,238,228,.45); }
+  .slide.divider-ladrillo .title { color: var(--bg); max-width: 100%; }
+  .slide.divider-ladrillo .title em { font-style: italic; color: rgba(242,238,228,.7); }
+
+  /* SUBSECCION ENTRY — lighter subsection opener, bg2 background */
+  .slide.subseccion-entry {
+    background: var(--bg2);
+    color: var(--bg);
+  }
+  .slide.subseccion-entry .label {
+    color: rgba(242,238,228,.35);
+    font-size: .65rem;
+  }
+  .slide.subseccion-entry .title {
+    color: var(--bg);
+    max-width: 100%;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+  }
+  .slide.subseccion-entry .title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* PHOTO COVER */
+  .slide.photo-cover {
+    padding: 0;
+    overflow: hidden;
+    justify-content: flex-end;
+  }
+  .slide.photo-cover img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(15%);
+  }
+  .slide.photo-cover .photo-title {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -.01em;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 1.25rem var(--slide-pad);
+    line-height: 1;
+  }
+  .slide.photo-cover.dark img { filter: grayscale(20%) brightness(.55); }
+  .slide.photo-cover.dark .photo-title {
+    background: none;
+    color: white;
+    padding: var(--slide-pad);
+  }
+
+  /* QUOTE SLIDE */
+  .slide.quote-slide {
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 8vw, 8rem);
+    gap: 0;
+  }
+  blockquote.quote-text {
+    font-family: var(--font-highlight);
+    font-size: clamp(1.7rem, 3.4vw, 2.8rem);
+    font-weight: 300;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -.01em;
+    color: var(--accent);
+    border: none;
+    padding: 0;
+    text-align: center;
+    max-width: 22em;
+    font-feature-settings: "ss02" 1;
+  }
+  blockquote.quote-text em { font-style: italic; }
+  .quote-meta {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .3rem;
+  }
+  .quote-who {
+    font-family: var(--font-caption);
+    font-size: .95rem;
+    font-weight: 500;
+    color: rgba(242,238,228,.7);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .quote-fuente {
+    font-family: var(--font-caption);
+    font-weight: 300;
+    font-size: .82rem;
+    font-style: italic;
+    color: rgba(242,238,228,.45);
+    text-align: center;
+  }
+  .quote-nota {
+    font-family: var(--font-caption);
+    font-weight: 300;
+    font-size: .78rem;
+    color: rgba(242,238,228,.4);
+    text-align: center;
+  }
+
+  /* IMAGE-TEXT */
+  .slide.image-text {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 0;
+    padding: 0;
+    align-items: stretch;
+  }
+  .it-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--slide-pad);
+  }
+  .it-text .title { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1.5rem; }
+  .it-image {
+    overflow: hidden;
+    position: relative;
+  }
+  .it-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .it-image.bw img { filter: grayscale(100%); }
+  .slide.image-text.flip { direction: rtl; }
+  .slide.image-text.flip .it-text,
+  .slide.image-text.flip .it-image { direction: ltr; }
+
+  /* IMAGE GRID */
+  .slide.image-grid {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .ig-images {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    overflow: hidden;
+    min-height: 0;
+  }
+  .ig-images:has(img:nth-child(2):last-child) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ig-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    filter: grayscale(5%);
+  }
+  .ig-title {
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 1.25rem var(--slide-pad) 1.5rem;
+  }
+  .slide.image-grid.dark .ig-title {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  /* DIAGRAMA IMAGEN */
+  /* Variante estándar: usa diagram-slide + figura centrada */
+  .di-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .di-figure img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: .25rem;
+  }
+  .diagram-caption {
+    font-family: var(--font-caption);
+    font-weight: 300;
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* Variante fondo completo: imagen ocupa todo el slide */
+  .slide.di-full {
+    padding: 0;
+    overflow: hidden;
+    justify-content: flex-end;
+    background: var(--bg);
+  }
+  .slide.di-full img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: clamp(1rem, 3vw, 3rem);
+  }
+  .di-title {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 1rem var(--slide-pad) 1.25rem;
+  }
+  .di-title em { color: var(--accent); font-style: italic; }
+
+  /* TEXTO + DIAGRAMA
+     Layout: columna izquierda con definiciones o notas (~35%)
+     + columna derecha con diagrama/imagen (~65%).
+     El título aparece en la esquina inferior derecha del área
+     del diagrama, como etiqueta de sección visual.
+  */
+  .slide.texto-diagrama {
+    display: grid;
+    grid-template-columns: 1fr 1.85fr;
+    gap: 0;
+    padding: 0;
+    align-items: stretch;
+  }
+  .td-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: var(--slide-pad);
+    padding-top: clamp(3rem, 10vh, 5rem);
+    gap: 1.5rem;
+    overflow-y: auto;
+  }
+  .slide.texto-diagrama:has(.td-def:only-child) .td-texto { justify-content: center; padding-top: var(--slide-pad); }
+  .slide.texto-diagrama .td-diagrama { padding-inline: clamp(.5rem, 1vw, 1rem); }
+  /* Cada definición */
+  .td-def { display: flex; flex-direction: column; gap: .2rem; }
+  .td-def .td-term {
+    font-size: clamp(.85rem, 1.4vw, 1.15rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .td-def:only-child .td-term { font-size: clamp(1.6rem, 2.8vw, 2.4rem); line-height: 1.3; }
+  .td-def .td-desc {
+    font-size: clamp(.82rem, 1.3vw, 1.1rem);
+    font-weight: 300;
+    color: var(--muted);
+    font-style: normal;
+    line-height: 1.55;
+    margin-top: .8rem;
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+  .td-def:only-child .td-desc { font-size: clamp(1rem, 1.6vw, 1.15rem); }
+  .step-1 .td-def .td-desc { opacity: 1; }
+  /* Área del diagrama */
+  .td-diagrama {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(1.5rem, 3vw, 3rem);
+    padding-top: clamp(3rem, 5vw, 4.5rem);
+    padding-bottom: clamp(5.5rem, 8vw, 7rem);
+    border-left: 1px solid rgba(0,0,0,.18);
+    overflow: hidden;
+  }
+  .td-diagrama img,
+  .td-diagrama svg {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  /* Título en esquina inferior derecha */
+  .td-titulo {
+    position: absolute;
+    bottom: clamp(1rem, 2.5vw, 2rem);
+    right: clamp(1rem, 2.5vw, 2rem);
+    font-size: clamp(1.2rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1;
+    color: var(--ink);
+    text-align: right;
+    text-transform: uppercase;
+  }
+  .td-titulo em { color: var(--accent); font-style: normal; }
+
+  /* DIAGRAM SLIDE (Tufte-style density) */
+  .slide.diagram-slide {
+    padding: clamp(1.5rem, 3vw, 3rem);
+    padding-top:    clamp(4rem, 6vw, 5.5rem); /* clearance sobre #section-label */
+    padding-bottom: clamp(4rem, 6vw, 5.5rem); /* simétrico: centra entre chrome superior e inferior */
+    justify-content: center;
+  }
+  .diagram-header { text-align: left; width: 100%; margin-bottom: 1.5rem; }
+  .diagram-title {
+    font-family: var(--font-title);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 300;
+    text-align: left;
+    letter-spacing: -.01em;
+    line-height: 1.1;
+    font-feature-settings: "ss02" 1;
+  }
+  .diagram-title em { color: var(--signal); font-style: normal; }
+  .diagram-body {
+    /* sin flex:1 — el body toma solo el espacio de su contenido;
+       el par header+body queda centrado verticalmente por el slide */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    width: 100%;
+  }
+
+  /* ══════════════════════════════════════════════════
+     A. AUTO-STAGGER — entrada escalonada de items
+     Aplica a todos los tipos con listas: steps, bullets,
+     recap, cards, matrix rows, stats, indice, cuerpo-largo.
+     Las animaciones se disparan cada vez que el slide
+     recibe la clase .active.
+     ══════════════════════════════════════════════════ */
+
+  @keyframes stagger-in {
+    from { opacity: 0; transform: translateY(7px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Items que participan del stagger */
+  .slide.active ol.steps li,
+  .slide.active ul.bullets li,
+  .slide.active .recap-item,
+  .slide.active .card,
+  .slide.active table.matrix tr:nth-child(n+2),
+  .slide.active .stat,
+  .slide.active .indice-item,
+  .slide.active .cl-cuerpo {
+    opacity: 0;
+    animation: stagger-in 0.32s ease both;
+  }
+
+  /* Delays: base 0.10s + 0.09s por posición */
+  .slide.active ol.steps li:nth-child(1),
+  .slide.active ul.bullets li:nth-child(1),
+  .slide.active .recap-item:nth-child(1),
+  .slide.active .card:nth-child(1),
+  .slide.active table.matrix tr:nth-child(2),
+  .slide.active .stat:nth-child(1),
+  .slide.active .indice-item:nth-child(1),
+  .slide.active .cl-cuerpo:nth-child(1)  { animation-delay: 0.10s; }
+
+  .slide.active ol.steps li:nth-child(2),
+  .slide.active ul.bullets li:nth-child(2),
+  .slide.active .recap-item:nth-child(2),
+  .slide.active .card:nth-child(2),
+  .slide.active table.matrix tr:nth-child(3),
+  .slide.active .stat:nth-child(2),
+  .slide.active .indice-item:nth-child(2),
+  .slide.active .cl-cuerpo:nth-child(2)  { animation-delay: 0.19s; }
+
+  .slide.active ol.steps li:nth-child(3),
+  .slide.active ul.bullets li:nth-child(3),
+  .slide.active .recap-item:nth-child(3),
+  .slide.active .card:nth-child(3),
+  .slide.active table.matrix tr:nth-child(4),
+  .slide.active .stat:nth-child(3),
+  .slide.active .indice-item:nth-child(3),
+  .slide.active .cl-cuerpo:nth-child(3)  { animation-delay: 0.28s; }
+
+  .slide.active ol.steps li:nth-child(4),
+  .slide.active ul.bullets li:nth-child(4),
+  .slide.active .recap-item:nth-child(4),
+  .slide.active .card:nth-child(4),
+  .slide.active table.matrix tr:nth-child(5),
+  .slide.active .stat:nth-child(4),
+  .slide.active .indice-item:nth-child(4),
+  .slide.active .cl-cuerpo:nth-child(4)  { animation-delay: 0.37s; }
+
+  .slide.active ol.steps li:nth-child(5),
+  .slide.active ul.bullets li:nth-child(5),
+  .slide.active .recap-item:nth-child(5),
+  .slide.active table.matrix tr:nth-child(6),
+  .slide.active .indice-item:nth-child(5) { animation-delay: 0.46s; }
+
+  .slide.active ol.steps li:nth-child(6),
+  .slide.active ul.bullets li:nth-child(6),
+  .slide.active .recap-item:nth-child(6),
+  .slide.active table.matrix tr:nth-child(7),
+  .slide.active .indice-item:nth-child(6) { animation-delay: 0.55s; }
+
+  .slide.active ol.steps li:nth-child(7),
+  .slide.active ul.bullets li:nth-child(7),
+  .slide.active .recap-item:nth-child(7),
+  .slide.active table.matrix tr:nth-child(8),
+  .slide.active .indice-item:nth-child(7) { animation-delay: 0.64s; }
+
+  .slide.active ol.steps li:nth-child(8),
+  .slide.active ul.bullets li:nth-child(8),
+  .slide.active .recap-item:nth-child(8),
+  .slide.active table.matrix tr:nth-child(9),
+  .slide.active .indice-item:nth-child(8) { animation-delay: 0.73s; }
+
+  /* Slides con data-steps: el stagger no debe interferir con
+     animaciones personalizadas en SVG — esas usan sus propias
+     clases (.ia-grupo-*, etc.) y no participan en el stagger. */
+
+  /* ══════════════════════════════════════════════════
+     I. NÚMERO DE SECCIÓN EN DIVIDERS
+     Un número grande y traslúcido como elemento de fondo
+     que identifica visualmente cada sección del deck.
+     ══════════════════════════════════════════════════ */
+
+  .slide.divider {
+    overflow: hidden; /* contiene el número grande */
+  }
+
+  .sec-num {
+    position: absolute;
+    right: -.02em;
+    bottom: -.18em;
+    font-family: var(--font-title);
+    font-size: clamp(14rem, 32vw, 26rem);
+    font-weight: 700;
+    letter-spacing: -.05em;
+    line-height: 1;
+    color: currentColor;
+    opacity: .06;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  /* El contenido textual queda por encima del número */
+  .slide.divider .label,
+  .slide.divider .title {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ══════════════════════════════════════════════════
+     J. PROGRESO POR SECCIÓN
+     Indicador de puntos en la esquina superior derecha,
+     debajo del label de sección. Muestra la posición
+     del slide actual dentro de su sección.
+     ══════════════════════════════════════════════════ */
+
+  #sec-progress {
+    position: fixed;
+    top: 1.5rem;           /* alineado con #section-label */
+    right: var(--slide-pad);
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    z-index: 100;
+    transition: opacity .2s;
+  }
+
+  #sec-progress.hidden { opacity: 0; pointer-events: none; }
+
+  .sp-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: .3;
+    transition: opacity .2s, background .2s, transform .2s;
+    flex-shrink: 0;
+  }
+
+  .sp-dot.sp-visited {
+    opacity: .5;
+  }
+
+  .sp-dot.sp-active {
+    background: var(--ink);
+    opacity: 1;
+    transform: scale(1.4);
+  }
+
+  /* Adaptar colores de sec-progress según fondo del slide */
+  .sec-progress-dark .sp-dot { background: rgba(255,255,255,.4); }
+  .sec-progress-dark .sp-dot.sp-visited { opacity: .6; }
+  .sec-progress-dark .sp-dot.sp-active { background: rgba(255,255,255,.9); opacity: 1; }
+  .sec-progress-light .sp-dot { background: rgba(30,36,32,.35); }
+  .sec-progress-light .sp-dot.sp-active { background: rgba(30,36,32,.8); }
+
+  /* ══════════════════════════════════════════════════
+     K. CORTINILLA DE SECCIÓN
+     Flash de color al navegar a un divider.
+     Se posiciona sobre todo excepto el TOC.
+     ══════════════════════════════════════════════════ */
+
+  #section-wipe {
+    position: fixed;
+    inset: 0;
+    z-index: 190;
+    opacity: 0;
+    pointer-events: none;
+  }
+  #section-wipe.wipe-divider  { background: var(--bg2); }
+  #section-wipe.wipe-lampara  { background: var(--accent); }
+  #section-wipe.wipe-ladrillo { background: var(--signal); }
+  #section-wipe.wipe-active {
+    animation: wipe-pulse .52s cubic-bezier(.4,0,.2,1) forwards;
+  }
+  @keyframes wipe-pulse {
+    0%   { opacity: 0; }
+    22%  { opacity: .88; }
+    62%  { opacity: .88; }
+    100% { opacity: 0; }
+  }
+
+  /* ══════════════════════════════════════════════════
+     L. SPOTLIGHT EN SVGs CON STEPS
+     Elementos con [data-step] en slides con
+     [data-spotlight] se atenúan cuando quedan atrás
+     del step activo.
+     Uso: añade data-step="N" a grupos SVG o elementos
+     HTML, y spotlight: true en el YAML del slide.
+     ══════════════════════════════════════════════════ */
+
+  .slide[data-spotlight] [data-step] {
+    opacity: 0;
+    transition: opacity .45s ease;
+  }
+  .slide[data-spotlight] [data-step].sp-lit { opacity: 1; }
+  .slide[data-spotlight] [data-step].sp-dim { opacity: 0.15; }
+
+  /* ══════════════════════════════════════════════════
+     B. AUTO-STEPS PARA DIAGRAMAS HTML
+     Slides con auto_steps:true revelan sus filas
+     de grid de a una por paso (Space/→).
+     El JS detecta el nº de columnas, añade
+     data-auto-cols al elemento grid, y fija data-steps
+     al nº de filas.
+     ══════════════════════════════════════════════════ */
+
+  /* Grid de 2 columnas — ocultar celdas inicialmente */
+  .slide[data-auto-steps] [data-auto-cols="2"] > * {
+    opacity: 0;
+    transition: opacity .22s ease;
+  }
+  /* Revelar fila N (2 celdas por fila) en step N */
+  .slide[data-auto-steps].step-0  [data-auto-cols="2"] > *:nth-child(-n+2)  { opacity: 1; }
+  .slide[data-auto-steps].step-1  [data-auto-cols="2"] > *:nth-child(-n+4)  { opacity: 1; }
+  .slide[data-auto-steps].step-2  [data-auto-cols="2"] > *:nth-child(-n+6)  { opacity: 1; }
+  .slide[data-auto-steps].step-3  [data-auto-cols="2"] > *:nth-child(-n+8)  { opacity: 1; }
+  .slide[data-auto-steps].step-4  [data-auto-cols="2"] > *:nth-child(-n+10) { opacity: 1; }
+  .slide[data-auto-steps].step-5  [data-auto-cols="2"] > *:nth-child(-n+12) { opacity: 1; }
+  .slide[data-auto-steps].step-6  [data-auto-cols="2"] > *:nth-child(-n+14) { opacity: 1; }
+  .slide[data-auto-steps].step-7  [data-auto-cols="2"] > *:nth-child(-n+16) { opacity: 1; }
+  .slide[data-auto-steps].step-8  [data-auto-cols="2"] > *:nth-child(-n+18) { opacity: 1; }
+  .slide[data-auto-steps].step-9  [data-auto-cols="2"] > *:nth-child(-n+20) { opacity: 1; }
+  .slide[data-auto-steps].step-10 [data-auto-cols="2"] > *:nth-child(-n+22) { opacity: 1; }
+  .slide[data-auto-steps].step-11 [data-auto-cols="2"] > *:nth-child(-n+24) { opacity: 1; }
+
+  /* Grid de 3 columnas */
+  .slide[data-auto-steps] [data-auto-cols="3"] > * {
+    opacity: 0;
+    transition: opacity .22s ease;
+  }
+  .slide[data-auto-steps].step-0 [data-auto-cols="3"] > *:nth-child(-n+3)  { opacity: 1; }
+  .slide[data-auto-steps].step-1 [data-auto-cols="3"] > *:nth-child(-n+6)  { opacity: 1; }
+  .slide[data-auto-steps].step-2 [data-auto-cols="3"] > *:nth-child(-n+9)  { opacity: 1; }
+  .slide[data-auto-steps].step-3 [data-auto-cols="3"] > *:nth-child(-n+12) { opacity: 1; }
+  .slide[data-auto-steps].step-4 [data-auto-cols="3"] > *:nth-child(-n+15) { opacity: 1; }
+  .slide[data-auto-steps].step-5 [data-auto-cols="3"] > *:nth-child(-n+18) { opacity: 1; }
+  .slide[data-auto-steps].step-6 [data-auto-cols="3"] > *:nth-child(-n+21) { opacity: 1; }
+  .slide[data-auto-steps].step-7 [data-auto-cols="3"] > *:nth-child(-n+24) { opacity: 1; }
+
+  /* Hijos directos de diagram-body (sin grid detectado) */
+  .slide[data-auto-steps][data-auto-direct] .diagram-body > * {
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity .3s ease, transform .3s ease;
+  }
+  .slide[data-auto-steps][data-auto-direct].step-0  .diagram-body > *:nth-child(-n+1) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-1  .diagram-body > *:nth-child(-n+2) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-2  .diagram-body > *:nth-child(-n+3) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-3  .diagram-body > *:nth-child(-n+4) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-4  .diagram-body > *:nth-child(-n+5) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-5  .diagram-body > *:nth-child(-n+6) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-6  .diagram-body > *:nth-child(-n+7) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-7  .diagram-body > *:nth-child(-n+8) { opacity: 1; transform: none; }
+
+  /* ══════════════════════════════════════════════════
+     F. SLIDE PREGUNTA
+     Pausa pedagógica: pregunta grande centrada para
+     que la audiencia piense antes de continuar.
+     ══════════════════════════════════════════════════ */
+
+  .slide.pregunta-slide {
+    background: var(--bg);
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Signo ? gigante como fondo */
+  .slide.pregunta-slide::before {
+    content: '?';
+    position: absolute;
+    right: -.04em;
+    bottom: -.15em;
+    font-family: var(--font-title);
+    font-size: clamp(16rem, 36vw, 28rem);
+    font-weight: 700;
+    color: var(--ink);
+    opacity: .04;
+    pointer-events: none;
+    line-height: 1;
+    letter-spacing: -.05em;
+    z-index: 0;
+  }
+
+  .pregunta-label {
+    font-family: var(--font-label);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.4rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pregunta-texto {
+    font-family: var(--font-highlight);
+    font-size: clamp(2.6rem, 5.8vw, 4.4rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -.02em;
+    max-width: 24ch;
+    color: var(--ink);
+    margin-bottom: 1.8rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pregunta-nota {
+    font-size: clamp(.88rem, 1.35vw, 1rem);
+    font-weight: 300;
+    color: var(--muted);
+    font-style: italic;
+    max-width: 54ch;
+    line-height: 1.65;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pregunta-tiempo {
+    position: absolute;
+    top: var(--slide-pad);
+    right: var(--slide-pad);
+    font-family: var(--font-caption);
+    font-weight: 300;
+    font-size: .68rem;
+    color: var(--muted);
+    background: rgba(30,36,32,.07);
+    padding: .3rem .8rem;
+    border-radius: 99px;
+    letter-spacing: .06em;
+    z-index: 1;
+  }
+
+  /* ══════════════════════════════════════════════════
+     G. SLIDE ANTES / DESPUÉS
+     Dos paneles de comparación. Con steps:2, el panel
+     "después" se revela al avanzar.
+     ══════════════════════════════════════════════════ */
+
+  .slide.antes-despues-slide {
+    padding: 0;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  .ad-header {
+    padding: var(--slide-pad) var(--slide-pad) 1.2rem;
+    flex-shrink: 0;
+    background: var(--bg);
+  }
+
+  .ad-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .ad-panel {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ad-panel-antes  { background: rgba(168,56,40,.07);  border-top: 3px solid var(--signal); }
+  .ad-panel-despues { background: rgba(200,212,74,.1); border-top: 3px solid var(--accent); }
+
+  .ad-etiqueta {
+    font-family: var(--font-label);
+    font-size: .64rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .ad-panel-antes  .ad-etiqueta { color: var(--signal); }
+  .ad-panel-despues .ad-etiqueta { color: var(--muted);  }
+
+  .ad-contenido {
+    font-size: clamp(.9rem, 1.6vw, 1.1rem);
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  /* Steps: ocultar panel "después" hasta step-1 */
+  .slide.antes-despues-slide[data-steps] .ad-panel-despues {
+    opacity: 0;
+    transform: translateX(1rem);
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .slide.antes-despues-slide[data-steps].step-1 .ad-panel-despues {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* ══════════════════════════════════════════════════
+     M. COMPARATIVA VISUAL
+     Slider interactivo que revela dos imágenes o
+     contenidos HTML. El JS maneja el arrastre.
+     ══════════════════════════════════════════════════ */
+
+  .slide.comparativa-slide { padding: 0; overflow: hidden; }
+
+  .comp-container {
+    position: absolute;
+    inset: 0;
+    --split: 50%;
+    user-select: none;
+    cursor: col-resize;
+  }
+
+  .comp-side {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .comp-left  { clip-path: inset(0 calc(100% - var(--split)) 0 0); }
+  .comp-right { clip-path: inset(0 0 0 var(--split)); }
+
+  .comp-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: clamp(1rem, 3vw, 3rem);
+  }
+
+  .comp-etiqueta {
+    position: absolute;
+    top: var(--slide-pad);
+    font-family: var(--font-label);
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: .28rem .75rem;
+    border-radius: 99px;
+    z-index: 2;
+  }
+  .comp-left  .comp-etiqueta { left:  var(--slide-pad); background: var(--signal);  color: var(--bg); }
+  .comp-right .comp-etiqueta { right: var(--slide-pad); background: var(--ink); color: var(--bg); }
+
+  /* Línea divisoria */
+  .comp-handle {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: var(--split);
+    transform: translateX(-50%);
+    width: 3px;
+    background: white;
+    box-shadow: 0 0 8px rgba(0,0,0,.35);
+    z-index: 10;
+    cursor: ew-resize;
+    pointer-events: none; /* el container captura los eventos */
+  }
+
+  /* Botón en el centro de la línea */
+  .comp-handle-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .9rem;
+    color: var(--ink);
+    pointer-events: none;
+  }
+
+  /* Título al pie */
+  .comp-footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 5;
+    padding: 1rem var(--slide-pad) calc(var(--slide-pad) * .7);
+    background: linear-gradient(transparent, rgba(242,238,228,.92) 55%);
+  }
+  .comp-footer .diagram-title {
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  }
+
+  /* ══════════════════════════════════════════════════
+     SISTEMA DE TEXTURA
+     ══════════════════════════════════════════════════ */
+
+  /* ── Variables de textura ───────────────────────── */
+  :root {
+    --arena: #D4C4AD;
+    --terracota: #B84A32;
+    --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ── CAPA 1: Grano de fondo ────────────────────── */
+  /* Fondos claros: grano en multiply */
+  .slide:not(.dark):not(.divider-lampara):not(.divider-ladrillo)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--grain);
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.03;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+  }
+  /* Fondos oscuros: grano en soft-light */
+  .slide.dark::after,
+  .slide.cover::after,
+  .slide.quote-slide::after,
+  .slide.divider::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--grain);
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.04;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    z-index: 1;
+  }
+  /* Dividers de color: sin grano (limpios) */
+  .slide.divider-lampara::after,
+  .slide.divider-ladrillo::after {
+    display: none !important;
+  }
+
+  /* ── CAPA 2: Bordes orgánicos ──────────────────── */
+  .rule {
+    height: 1px !important;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--muted) 8%,
+      var(--muted) 45%,
+      color-mix(in srgb, var(--muted) 60%, transparent) 55%,
+      var(--muted) 65%,
+      var(--muted) 92%,
+      transparent 100%
+    ) !important;
+  }
+
+  /* ── CAPA 3: Subrayado manual (desactivado) ─────── */
+  /* Movido a meta.css por presentación para control  */
+  /* individual de colores. Ver ia_con_criterio.yaml  */
+
+  /* ── CAPA 4: Sombra edison ─────────────────────── */
+  /* Sombra cálida asimétrica en cards — la luz      */
+  /* viene de arriba-izquierda como un foco edison.  */
+  .card {
+    border: none !important;
+    box-shadow:
+      0 0 0 0.5px color-mix(in srgb, var(--ink) 10%, transparent),
+      3px 4px 12px -2px rgba(42, 32, 24, 0.12),
+      6px 8px 24px -4px rgba(42, 32, 24, 0.06) !important;
+    transition: box-shadow 0.3s ease;
+  }
+  /* Quotes: sin borde lateral adicional */
+  /* Sombra edison en slides oscuros: glow cálido sutil */
+  .slide.dark .card,
+  .slide.cover .card {
+    box-shadow:
+      0 0 0 0.5px rgba(240, 232, 220, 0.08),
+      3px 4px 16px -2px rgba(200, 212, 74, 0.06),
+      0 0 40px -8px rgba(200, 212, 74, 0.04) !important;
+  }
+
+  /* ── CAPA 5: Etiqueta de maceta ────────────────── */
+  /* Pills con estilo de etiqueta de jardinería:     */
+  /* fondo arena, borde irregular, esquinas rectas.  */
+  .pill.maceta {
+    background: var(--arena) !important;
+    color: var(--ink) !important;
+    border: none !important;
+    border-radius: 3px !important;
+    font-family: var(--font-label) !important;
+    font-weight: 500 !important;
+    font-size: .72rem !important;
+    letter-spacing: .06em;
+    padding: .32rem .9rem !important;
+    position: relative;
+    box-shadow:
+      1px 2px 4px rgba(42, 32, 24, 0.08),
+      inset 0 -1px 0 rgba(42, 32, 24, 0.06);
+    transform: rotate(-0.5deg);
+  }
+  .pill.maceta::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 3px;
+    border: 1px solid rgba(92, 74, 62, 0.2);
+    pointer-events: none;
+  }
+  .pill.maceta-dark {
+    background: var(--ink) !important;
+    color: var(--arena) !important;
+    border: none !important;
+    border-radius: 3px !important;
+    font-family: var(--font-label) !important;
+    font-weight: 500 !important;
+    font-size: .72rem !important;
+    letter-spacing: .06em;
+    padding: .32rem .9rem !important;
+    box-shadow: 1px 2px 4px rgba(42, 32, 24, 0.15);
+    transform: rotate(0.3deg);
+  }
+
+  /* ── CAPA 6: Numeración manuscrita ─────────────── */
+  /* Los números de steps, recap e índice se ven     */
+  /* menos mecánicos: más grandes, con ángulo sutil, */
+  /* peso irregular. No es una fuente handwriting    */
+  /* sino tratamiento del número existente.          */
+  ol.steps li .num {
+    font-family: var(--font-title) !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    font-style: italic !important;
+    color: var(--signal) !important;
+    opacity: 0.7;
+    transform: rotate(-2deg);
+    display: inline-block;
+    letter-spacing: -0.02em;
+  }
+  .recap-num {
+    font-family: var(--font-title) !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    font-style: italic !important;
+    color: var(--signal) !important;
+    opacity: 0.65;
+    transform: rotate(-3deg);
+    display: inline-block;
+  }
+  .indice-num {
+    font-size: clamp(1.2rem, 2vw, 1.5rem) !important;
+    font-weight: 900 !important;
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+
+  /* ── Antes/después: fade como default ──────────── */
+  /* El panel "antes" se desvanece — opacidad baja   */
+  /* + desenfoque sutil. Sin garabato diagonal.      */
+  .ad-panel-antes .ad-contenido {
+    position: relative;
+    opacity: 0.4;
+    filter: blur(0.8px);
+    transition: opacity 0.4s, filter 0.4s;
+  }
+  .ad-panel-antes {
+    background: rgba(168,56,40,.03) !important;
+  }
+
+</style>
+<style>
+/* ══════════════════════════════════════════════
+   TEXTURA LINO
+   Aplicada como background-image del slide,
+   no como pseudo-element — evita conflictos de z-index.
+   ══════════════════════════════════════════════ */
+
+/* ── Lino claro (marfil) ── */
+.slide:not(.dark):not(.divider-lampara):not(.divider-ladrillo):not(.cover):not(.divider):not(.quote-slide):not(.cuerpo-largo-slide) {
+  background-color: var(--bg);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(120, 108, 92, 0.06) 0px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 108, 92, 0.04) 0px,
+      transparent 1px,
+      transparent 5px
+    );
+}
+
+/* ── Lino intenso (negro tinta: cover, dark) ── */
+.slide.cover,
+.slide.dark {
+  background-color: var(--ink);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(196, 185, 168, 0.02) 0px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(196, 185, 168, 0.01) 0px,
+      transparent 1px,
+      transparent 5px
+    );
+}
+
+/* ── Quote: lino de fondo + hoja centrada como background apilado ── */
+.slide.quote-slide {
+  background-color: var(--bg);
+  background-image:
+    url('img/papel.png'),
+    repeating-linear-gradient(
+      0deg,
+      rgba(120, 108, 92, 0.06) 0px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 108, 92, 0.04) 0px,
+      transparent 1px,
+      transparent 5px
+    );
+  background-size: 80% 80%, auto, auto;
+  background-position: center center, 0 0, 0 0;
+  background-repeat: no-repeat, repeat, repeat;
+}
+
+/* Ancho máximo y tamaño de texto de quote */
+.slide.quote-slide blockquote.quote-text {
+  max-width: 21em;
+  font-size: clamp(1.2rem, 2.9vw, 2.3rem);
+}
+
+/* Colores: tinta sobre papel claro */
+.slide.quote-slide blockquote.quote-text {
+  color: var(--ink);
+}
+.slide.quote-slide blockquote.quote-text em {
+  color: var(--accent);
+  font-style: italic;
+}
+.slide.quote-slide .quote-who {
+  color: var(--ink);
+  opacity: 0.7;
+}
+.slide.quote-slide .quote-fuente,
+.slide.quote-slide .quote-nota {
+  color: var(--ink);
+  opacity: 0.5;
+}
+
+/* ── Divider (azul pizarra) ── */
+.slide.divider {
+  background-color: var(--bg2);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.02) 0px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.01) 0px,
+      transparent 1px,
+      transparent 5px
+    );
+}
+
+/* Desactivar el grano SVG del template base */
+.slide::after {
+  display: none !important;
+}
+
+/* Dividers de color: sin textura (limpios) */
+.slide.divider-lampara::after,
+.slide.divider-ladrillo::after,
+.slide.divider-lampara::before,
+.slide.divider-ladrillo::before {
+  display: none !important;
+}
+
+/* ── Ajustes de color para la paleta ── */
+/* Rojo cadmio en em dentro de slides oscuros necesita más brillo */
+.slide.dark .title em,
+.slide.cover .title em,
+.slide.divider .title em {
+  color: #E8453A;
+}
+
+/* Arena para labels en slides claros */
+.slide:not(.dark) .label {
+  color: #8C8070;
+}
+
+/* ── Óvalo de énfasis con imagen 416 — cover y dividers ── */
+.slide.cover .circled,
+.slide.divider .circled,
+.slide.divider-lampara .circled,
+.slide.divider-ladrillo .circled {
+  position: relative;
+  display: inline;
+  font-weight: inherit;
+  color: inherit;
+}
+.slide.cover .circled::before,
+.slide.divider .circled::before,
+.slide.divider-lampara .circled::before,
+.slide.divider-ladrillo .circled::before {
+  content: '';
+  position: absolute;
+  left: -0.35em;
+  right: -0.65em;
+  top: 0.0em;
+  bottom: -0.30em;
+  background-image: url('img/416.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  pointer-events: none;
+  z-index: 1;
+}
+/* Slides oscuros: trazo blanco */
+.slide.cover .circled::before,
+.slide.divider .circled::before,
+.slide.divider-ladrillo .circled::before {
+  filter: brightness(0) invert(1);
+}
+/* Divider lámpara: trazo oscuro */
+.slide.divider-lampara .circled::before {
+  filter: brightness(0) saturate(100%) invert(29%) sepia(30%) saturate(614%) hue-rotate(161deg) brightness(96%) contrast(83%);
+}
+
+/* ── Resto de slides: .circled = marcatextos (azul pizarra) ── */
+.slide:not(.cover):not(.divider):not(.divider-lampara):not(.divider-ladrillo) .circled {
+  font-weight: inherit;
+  font-style: normal;
+  background: linear-gradient(104deg, transparent 0%, rgba(61,90,110,0.08) 5%, rgba(61,90,110,0.22) 20%, rgba(61,90,110,0.22) 80%, rgba(61,90,110,0.06) 95%, transparent 80%);
+  padding: 1px 6px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+/* Marcatextos en slides oscuros — marfil suave */
+.slide.dark .circled,
+.slide.cuerpo-largo-slide .circled {
+  background: linear-gradient(104deg, transparent 0%, rgba(242,238,228,0.08) 5%, rgba(242,238,228,0.18) 30%, rgba(242,238,228,0.18) 75%, rgba(242,238,228,0.06) 95%, transparent 100%) !important;
+  color: var(--bg);
+}
+
+/* ── Marcatextos nombrados ── */
+.marca-azul {
+  font-style: normal;
+  font-weight: inherit;
+  background: linear-gradient(104deg, transparent 0%, rgba(61,90,110,0.08) 5%, rgba(61,90,110,0.22) 30%, rgba(61,90,110,0.22) 75%, rgba(61,90,110,0.06) 95%, transparent 100%);
+  padding: 1px 6px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.cuerpo-largo-slide .marca-azul {
+  background: linear-gradient(104deg, transparent 0%, rgba(242,238,228,0.08) 5%, rgba(242,238,228,0.18) 30%, rgba(242,238,228,0.18) 75%, rgba(242,238,228,0.06) 95%, transparent 100%);
+}
+.marca-arena {
+  font-style: normal;
+  font-weight: inherit;
+  background: linear-gradient(104deg, transparent 0%, rgba(140,128,112,0.08) 5%, rgba(140,128,112,0.25) 30%, rgba(140,128,112,0.25) 75%, rgba(140,128,112,0.06) 95%, transparent 100%);
+  padding: 1px 6px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.cuerpo-largo-slide .marca-arena {
+  background: linear-gradient(104deg, transparent 0%, rgba(242,238,228,0.06) 5%, rgba(242,238,228,0.13) 30%, rgba(242,238,228,0.13) 75%, rgba(242,238,228,0.04) 95%, transparent 100%);
+}
+
+/* ── CSS específico de IA con criterio (animaciones, overrides) ── */
+
+/* Spotlight acumulativo: nombres se quedan visibles */
+.slide[data-spotlight] [data-step].sp-dim { opacity: 1; }
+
+/* Título más ancho */
+.title { max-width: 22ch; }
+
+/* Matrix más ancha para tablas de 4+ columnas */
+table.matrix { max-width: 100%; }
+
+/* Pregunta — tipografía de quote */
+.pregunta-texto { font-weight: 300; letter-spacing: -.01em; font-feature-settings: "ss02" 1; }
+
+/* Índice: títulos de sección con body font */
+.indice-text { font-family: var(--font-body); font-weight: 300; }
+
+/* diagrama-imagen sizing */
+.di-figure img {
+  max-height: 65vh;
+  max-width: 80%;
+  width: auto;
+}
+
+/* Diagrama ¿Cómo nos referimos a la IA? — 2 pasos */
+.ia-c1,.ia-c2,.ia-c3,.ia-c4,.ia-c5,.ia-c6,.ia-c7,.ia-c8,
+.ia-grupo-central,.ia-grupo-lineas { opacity: 0; transition: opacity .35s ease; }
+.ia-c1,.ia-c2,.ia-c3,.ia-c4,.ia-c5,.ia-c6,.ia-c7,.ia-c8 { opacity: 1; }
+.step-1 .ia-grupo-central,.step-1 .ia-grupo-lineas { opacity: 1; }
+
+/* Spotlight — paso final: todos los ítems al 100% */
+.step-5 [data-step].sp-dim { opacity: 1 !important; }
+
+/* Cards "sí usar IA" — reveal acumulativo */
+.si-c1,.si-c2,.si-c3,.si-c4,.si-c5,.si-c6 { opacity:0; transition:opacity .35s ease; }
+.step-1 .si-c1,.step-2 .si-c1,.step-3 .si-c1,.step-4 .si-c1,.step-5 .si-c1,.step-6 .si-c1 { opacity:1; }
+.step-2 .si-c2,.step-3 .si-c2,.step-4 .si-c2,.step-5 .si-c2,.step-6 .si-c2 { opacity:1; }
+.step-3 .si-c3,.step-4 .si-c3,.step-5 .si-c3,.step-6 .si-c3 { opacity:1; }
+.step-4 .si-c4,.step-5 .si-c4,.step-6 .si-c4 { opacity:1; }
+.step-5 .si-c5,.step-6 .si-c5 { opacity:1; }
+.step-6 .si-c6 { opacity:1; }
+
+/* Cards "no usar IA" — reveal acumulativo */
+.no-c1,.no-c2,.no-c3,.no-c4 { opacity:0; transition:opacity .35s ease; }
+.step-1 .no-c1,.step-2 .no-c1,.step-3 .no-c1,.step-4 .no-c1 { opacity:1; }
+.step-2 .no-c2,.step-3 .no-c2,.step-4 .no-c2 { opacity:1; }
+.step-3 .no-c3,.step-4 .no-c3 { opacity:1; }
+.step-4 .no-c4 { opacity:1; }
+
+/* Matriz de ingeniería de contexto — revelación en 3 pasos */
+.ic-names, .ic-maia { opacity: 0; transition: opacity .4s ease; }
+.step-1 .ic-names { opacity: 1; }
+.step-1 .ic-maia  { opacity: 1; }
+.step-2 .ic-names { opacity: 1; }
+.step-2 .ic-maia  { opacity: 1; }
+
+</style>
+</head>
+<body>
+
+<div id="counter">01 / 01</div>
+<div id="section-label"></div>
+<div id="sec-progress"></div>
+<div id="section-wipe"></div>
+<div id="footer">
+  <strong id="footer-title">iatelier</strong>
+  <span id="footer-sub">ideas aumentadas</span>
+</div>
+<div id="progress"></div>
+<div id="nav">
+  <button class="nav-btn" id="toc-btn" aria-label="Tabla de contenidos" title="Tabla de contenidos (T)">&#9776;</button>
+  <button class="nav-btn" id="prev" aria-label="Anterior">&#8592;</button>
+  <button class="nav-btn" id="next" aria-label="Siguiente">&#8594;</button>
+</div>
+
+<!-- Barra lateral de contenidos (activa solo si meta.barra_lateral: true) -->
+<nav id="toc" aria-label="Contenidos de la sección">
+  <div id="toc-section-name"></div>
+  <ul id="toc-list"></ul>
+</nav>
+
+<div id="stage">
+
+  <!-- COVER -->
+  <section class="slide cover active" data-section="">
+    <div class="rule"></div>
+    <h1 class="title">IA con <em>criterio</em></h1>
+    <p class="body" style="color:rgba(255,255,255,.6);margin-top:-.5rem">Principios, modelos y prácticas de trabajo con IA</p>
+  </section>
+
+  <!-- INDICE -->
+  <section class="slide indice-slide " data-section="Contenido">
+    <h2 class="title">Contenido</h2>
+    <div class="indice-list">
+      <div class="indice-item">
+        <span class="indice-num">01</span>
+        <span class="indice-text">Introducción</span>
+      </div>
+      <div class="indice-item">
+        <span class="indice-num">02</span>
+        <span class="indice-text">Paradigmas</span>
+      </div>
+      <div class="indice-item">
+        <span class="indice-num">03</span>
+        <span class="indice-text">IA generativa</span>
+      </div>
+      <div class="indice-item">
+        <span class="indice-num">04</span>
+        <span class="indice-text">Ingeniería de contexto</span>
+      </div>
+      <div class="indice-item">
+        <span class="indice-num">05</span>
+        <span class="indice-text">MAIA</span>
+      </div>
+      <div class="indice-item">
+        <span class="indice-num">06</span>
+        <span class="indice-text">Conclusiones</span>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <section class="slide divider " data-section="">
+    <p class="label">Introducción</p>
+    <h2 class="title">Introducción</h2>
+    <span class="sec-num" aria-hidden="true">1</span>
+  </section>
+
+  <!-- PHOTO COVER -->
+  <section class="slide photo-cover  " data-section="">
+    <img src="img/lennon1.png" alt="Collage de John Lennon con la frase Attention is all you need">
+    
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="El despegue" class="slide diagram-slide " data-section="Introducción">
+    <div class="diagram-header">
+      <h2 class="diagram-title">El <em>despegue</em></h2>
+    </div>
+    <div class="diagram-body">
+      <div style="display:flex;flex-direction:column;width:100%;max-width:760px;font-family:inherit;">
+  <div style="display:grid;grid-template-columns:5rem 1.5rem 1fr;align-items:start;padding-bottom:2.8rem;">
+    <div style="text-align:right;font-size:1.05rem;font-weight:700;color:var(--muted);padding-right:.7rem;padding-top:.15rem;">2017</div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:10px;height:10px;border-radius:50%;background:var(--signal);margin-top:.2rem;flex-shrink:0;"></div>
+      <div style="width:1px;background:rgba(107,122,80,.25);flex:1;min-height:2.5rem;margin-top:4px;"></div>
+    </div>
+    <div style="padding-left:.9rem;">
+      <div style="font-size:1.1rem;font-weight:600;color:var(--ink);line-height:1.3;">Attention Is All You Need <span style="font-size:.88rem;font-weight:400;color:var(--muted);">— Google</span></div>
+      <div style="font-size:.93rem;color:var(--muted);margin-top:.3rem;line-height:1.55;">El paper que introduce los Transformers: la arquitectura que hace posible todo lo que viene.</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:5rem 1.5rem 1fr;align-items:start;padding-bottom:2.8rem;">
+    <div style="text-align:right;font-size:1.05rem;font-weight:700;color:var(--muted);padding-right:.7rem;padding-top:.15rem;">2020</div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:10px;height:10px;border-radius:50%;background:var(--signal);margin-top:.2rem;flex-shrink:0;"></div>
+      <div style="width:1px;background:rgba(107,122,80,.25);flex:1;min-height:2.5rem;margin-top:4px;"></div>
+    </div>
+    <div style="padding-left:.9rem;">
+      <div style="font-size:1.1rem;font-weight:600;color:var(--ink);line-height:1.3;">GPT-3 <span style="font-size:.88rem;font-weight:400;color:var(--muted);">— OpenAI</span></div>
+      <div style="font-size:.93rem;color:var(--muted);margin-top:.3rem;line-height:1.55;">Primer modelo de lenguaje a escala masiva. La IA generativa deja de ser solo investigación.</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:5rem 1.5rem 1fr;align-items:start;">
+    <div style="text-align:right;font-size:1.1rem;font-weight:700;color:var(--muted);padding-right:.7rem;padding-top:.1rem;">2022</div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:13px;height:13px;border-radius:50%;background:var(--signal);margin-top:.15rem;flex-shrink:0;box-shadow:0 0 0 3px rgba(168,56,40,.18);"></div>
+    </div>
+    <div style="padding-left:.9rem;">
+      <div style="font-size:1.25rem;font-weight:700;color:var(--ink);line-height:1.3;">ChatGPT <span style="font-size:.9rem;font-weight:400;color:var(--muted);">— OpenAI, noviembre</span></div>
+      <div style="font-size:.93rem;color:var(--muted);margin-top:.3rem;line-height:1.55;">Un millón de usuarios en 5 días. El punto de inflexión: la IA entra a la conversación pública.</div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="La expansión" class="slide diagram-slide " data-section="Introducción">
+    <div class="diagram-header">
+      <h2 class="diagram-title">La <em>expansión</em></h2>
+    </div>
+    <div class="diagram-body">
+      <div style="display:flex;flex-direction:column;width:100%;max-width:760px;font-family:inherit;">
+  <div style="display:grid;grid-template-columns:5rem 1.5rem 1fr;align-items:start;padding-bottom:1.6rem;">
+    <div style="text-align:right;font-size:.95rem;font-weight:700;color:var(--muted);padding-right:.7rem;padding-top:.15rem;">2023</div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:9px;height:9px;border-radius:50%;background:var(--signal);margin-top:.2rem;flex-shrink:0;"></div>
+      <div style="width:1px;background:rgba(107,122,80,.25);flex:1;min-height:1.8rem;margin-top:4px;"></div>
+    </div>
+    <div style="padding-left:.9rem;">
+      <div style="font-size:1.05rem;font-weight:600;color:var(--ink);line-height:1.3;">GPT-4 y Claude <span style="font-size:.83rem;font-weight:400;color:var(--muted);">— OpenAI · Anthropic</span></div>
+      <div style="font-size:.88rem;color:var(--muted);margin-top:.2rem;line-height:1.5;">Modelos multimodales, razonamiento extendido. La adopción empresarial despega.</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:5rem 1.5rem 1fr;align-items:start;padding-bottom:1.6rem;">
+    <div style="text-align:right;font-size:.95rem;font-weight:700;color:var(--muted);padding-right:.7rem;padding-top:.15rem;">2023–24</div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:9px;height:9px;border-radius:50%;background:var(--signal);margin-top:.2rem;flex-shrink:0;"></div>
+      <div style="width:1px;background:rgba(107,122,80,.25);flex:1;min-height:1.8rem;margin-top:4px;"></div>
+    </div>
+    <div style="padding-left:.9rem;">
+      <div style="font-size:1.05rem;font-weight:600;color:var(--ink);line-height:1.3;">Gemini <span style="font-size:.83rem;font-weight:400;color:var(--muted);">— Google</span></div>
+      <div style="font-size:.88rem;color:var(--muted);margin-top:.2rem;line-height:1.5;">El buscador más usado del mundo integra IA generativa. El mercado masivo ya no tiene vuelta atrás.</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:5rem 1.5rem 1fr;align-items:start;padding-bottom:1.6rem;">
+    <div style="text-align:right;font-size:.95rem;font-weight:700;color:var(--muted);padding-right:.7rem;padding-top:.15rem;">2024</div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:9px;height:9px;border-radius:50%;background:var(--signal);margin-top:.2rem;flex-shrink:0;"></div>
+      <div style="width:1px;background:rgba(107,122,80,.25);flex:1;min-height:1.8rem;margin-top:4px;"></div>
+    </div>
+    <div style="padding-left:.9rem;">
+      <div style="font-size:1.05rem;font-weight:600;color:var(--ink);line-height:1.3;">Llama <span style="font-size:.83rem;font-weight:400;color:var(--muted);">— Meta</span></div>
+      <div style="font-size:.88rem;color:var(--muted);margin-top:.2rem;line-height:1.5;">Modelos open-weight: cualquiera puede descargarlos sin depender de APIs privadas. El primer paso real hacia infraestructura democratizada.</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:5rem 1.5rem 1fr;align-items:start;padding-bottom:1.6rem;">
+    <div style="text-align:right;font-size:.95rem;font-weight:700;color:var(--muted);padding-right:.7rem;padding-top:.15rem;">2025</div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:9px;height:9px;border-radius:50%;background:var(--signal);margin-top:.2rem;flex-shrink:0;"></div>
+      <div style="width:1px;background:rgba(107,122,80,.25);flex:1;min-height:1.8rem;margin-top:4px;"></div>
+    </div>
+    <div style="padding-left:.9rem;">
+      <div style="font-size:1.05rem;font-weight:600;color:var(--ink);line-height:1.3;">Claude Code y <em>vibe coding</em> <span style="font-size:.83rem;font-weight:400;color:var(--muted);">— Anthropic · Karpathy</span></div>
+      <div style="font-size:.88rem;color:var(--muted);margin-top:.2rem;line-height:1.5;">La IA pasa de responder a ejecutar. Describes lo que quieres; el modelo escribe, revisa y despliega.</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:5rem 1.5rem 1fr;align-items:start;">
+    <div style="text-align:right;font-size:.95rem;font-weight:700;color:var(--signal);padding-right:.7rem;padding-top:.15rem;">2026</div>
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:11px;height:11px;border-radius:50%;background:var(--signal);margin-top:.18rem;flex-shrink:0;box-shadow:0 0 0 3px rgba(168,56,40,.18);"></div>
+    </div>
+    <div style="padding-left:.9rem;">
+      <div style="font-size:1.05rem;font-weight:600;color:var(--ink);line-height:1.3;">SeedDance 2.0 <span style="font-size:.83rem;font-weight:400;color:var(--muted);">— ByteDance</span></div>
+      <div style="font-size:.88rem;color:var(--muted);margin-top:.2rem;line-height:1.5;">Video y audio nativo simultáneo, sincronización de labios en 8 idiomas. En CapCut: en el teléfono de millones.</div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="La escala" class="slide diagram-slide " data-section="Introducción">
+    <div class="diagram-header">
+      <h2 class="diagram-title">La escala del momento</h2>
+    </div>
+    <div class="diagram-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2.5rem;width:100%;font-family:inherit;align-items:start;padding-top:.5rem;">
+  <div style="text-align:center;border-right:1px solid rgba(107,122,80,.2);padding-right:2.5rem;">
+    <div style="font-size:clamp(2.5rem,4.5vw,4rem);font-weight:700;color:var(--signal);line-height:1;letter-spacing:-.02em;">2 meses</div>
+    <div style="font-size:.98rem;font-weight:600;color:var(--ink);margin-top:.9rem;line-height:1.4;">ChatGPT llegó a 100 millones de usuarios</div>
+    <div style="font-size:.83rem;color:var(--muted);margin-top:.6rem;line-height:1.5;">Instagram tardó 30 meses<br>TikTok, 9 · Netflix, 42</div>
+  </div>
+  <div style="text-align:center;border-right:1px solid rgba(107,122,80,.2);padding:0 2.5rem;">
+    <div style="font-size:clamp(2.5rem,4.5vw,4rem);font-weight:700;color:var(--signal);line-height:1;letter-spacing:-.02em;">900M</div>
+    <div style="font-size:.98rem;font-weight:600;color:var(--ink);margin-top:.9rem;line-height:1.4;">Usuarios activos semanales, febrero 2026</div>
+    <div style="font-size:.83rem;color:var(--muted);margin-top:.6rem;line-height:1.5;">Eran 400 millones hace un año</div>
+  </div>
+  <div style="text-align:center;padding-left:2.5rem;">
+    <div style="font-size:clamp(2.5rem,4.5vw,4rem);font-weight:700;color:var(--signal);line-height:1;letter-spacing:-.02em;">3</div>
+    <div style="font-size:.98rem;font-weight:600;color:var(--ink);margin-top:.9rem;line-height:1.4;">Empresas controlan el 88% del mercado</div>
+    <div style="font-size:.83rem;color:var(--muted);margin-top:.6rem;line-height:1.5;">OpenAI, Anthropic, Google<br>El resto se reparte el 12%</div>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- TITULO + CUERPO -->
+  <section data-toc-label="Objetivo del curso" class="slide " data-section="Introducción">
+    <h2 class="title">El objetivo de este <em>curso</em></h2>
+    <p class="body">La IA generativa es la herramienta del siglo XXI. La pregunta no es si la adoptaremos sino <strong class="circled">cómo y con qué consecuencias</strong>. Este curso ofrece un marco para usarla con <strong class="circled">criterio</strong>: entender qué es, qué puede hacer, qué no, y cuándo usarla.</p>
+  </section>
+
+  <!-- DIVIDER -->
+  <section class="slide divider " data-section="">
+    <p class="label">Paradigmas</p>
+    <h2 class="title">Paradigmas</h2>
+    <span class="sec-num" aria-hidden="true">2</span>
+  </section>
+
+  <!-- PREGUNTA -->
+  <section data-toc-label="Pregunta 1" class="slide pregunta-slide " data-section="Paradigmas">
+    
+    <p class="pregunta-label">Pregunta</p>
+    <p class="pregunta-texto">¿Cuál fue tu última interacción con una <span style='color:var(--signal)'>inteligencia artificial</span>?</p>
+    
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Uso de chatbots" class="slide diagram-slide " data-section="Paradigmas">
+    <div class="diagram-header">
+      <h2 class="diagram-title">Uso de ChatGPT</h2>
+    </div>
+    <div class="diagram-body">
+      <svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:440px;font-family:inherit">
+  <defs>
+    <style>
+      .tm-label-cat  { font-size: 11.5px; fill: var(--ink); text-anchor: middle; dominant-baseline: central; font-weight: 500; letter-spacing:.03em }
+      .tm-label-sub  { font-size: 10.5px; fill: var(--ink); text-anchor: middle; dominant-baseline: central; font-weight: 400; }
+      .tm-pct        { font-size: 10px;   fill: var(--ink); text-anchor: middle; dominant-baseline: central; font-weight: 300; }
+      .tm-label-cat-w{ font-size: 11.5px; fill: var(--bg); text-anchor: middle; dominant-baseline: central; font-weight: 500; letter-spacing:.03em }
+      .tm-label-sub-w{ font-size: 10.5px; fill: var(--bg); text-anchor: middle; dominant-baseline: central; font-weight: 400; }
+      .tm-pct-w      { font-size: 10px;   fill: var(--bg); text-anchor: middle; dominant-baseline: central; font-weight: 300; }
+      .ax-label      { font-size: 11px;   fill: var(--muted); text-anchor: middle; font-weight: 400; }
+      .ax-pct        { font-size: 10.5px; fill: var(--muted); text-anchor: middle; font-weight: 300; }
+    </style>
+  </defs>
+
+  <!-- Escalado con ancho mínimo: viewBox 0-1000 (fue 0-820) -->
+  <!-- Nuevos anchos con mín 80px: Multimedia 80, Otro 80, Practical 210, Seeking 180, Self 80, Technical 90, Writing 280 = 1000 total -->
+  <!-- MULTIMEDIA 6% → 80px — light blue -->
+  <!-- x=0, w=80 -->
+  <rect x="1"   y="10" width="78"  height="289" fill="#9DC3D4" stroke="white" stroke-width="1"/>
+  <!-- sub: Generate 1.1%, Create 4.2%, Analyze 0.6% -->
+  <rect x="1"   y="10" width="78"  height="46"  fill="#B8D8E8" stroke="white" stroke-width=".5"/>
+  <text x="40"  y="33"  class="tm-label-sub">Generar</text>
+  <text x="40"  y="43"  class="tm-pct">1.1%</text>
+  <rect x="1"   y="57"  width="78"  height="173" fill="#9DC3D4" stroke="white" stroke-width=".5"/>
+  <text x="40"  y="130" class="tm-label-sub">Crear</text>
+  <text x="40"  y="143" class="tm-pct">4.2%</text>
+  <rect x="1"   y="231" width="78"  height="68"  fill="#7BAFC4" stroke="white" stroke-width=".5"/>
+  <text x="40"  y="261" class="tm-label-sub">Analizar</text>
+  <text x="40"  y="272" class="tm-pct">0.6%</text>
+
+  <!-- OTHER 4.6% → 80px — light orange -->
+  <!-- x=80, w=80 -->
+  <rect x="80"  y="10" width="79"  height="289" fill="#E8A96A" stroke="white" stroke-width="1"/>
+  <rect x="80"  y="10" width="79"  height="168" fill="#E8BE8A" stroke="white" stroke-width=".5"/>
+  <text x="119" y="90"  class="tm-label-sub">Otro</text>
+  <text x="119" y="102" class="tm-pct">4.1%</text>
+  <rect x="80"  y="179" width="79"  height="120" fill="#D49050" stroke="white" stroke-width=".5"/>
+  <text x="119" y="231" class="tm-label-sub">Preguntar</text>
+  <text x="119" y="243" class="tm-pct">0.4%</text>
+
+  <!-- PRACTICAL GUIDANCE 28.3% → 210px — green -->
+  <!-- x=160, w=210 -->
+  <rect x="160" y="10" width="209" height="289" fill="#72B07A" stroke="white" stroke-width="1"/>
+  <!-- Tutoring 10.2%, How-to 8.5%, Health 5.7%, Creative 3.9% -->
+  <rect x="160" y="10" width="209" height="104" fill="#82C08A" stroke="white" stroke-width=".5"/>
+  <text x="264" y="55"  class="tm-label-sub">Enseñanza o Tutoría</text>
+  <text x="264" y="67"  class="tm-pct">10.2%</text>
+  <rect x="160" y="115" width="209" height="87"  fill="#72B07A" stroke="white" stroke-width=".5"/>
+  <text x="264" y="155" class="tm-label-sub">Cómo hacer</text>
+  <text x="264" y="167" class="tm-pct">8.5%</text>
+  <rect x="160" y="203" width="209" height="58"  fill="#5E9E66" stroke="white" stroke-width=".5"/>
+  <text x="264" y="228" class="tm-label-sub">Salud, fitness, belleza</text>
+  <text x="264" y="240" class="tm-pct">5.7%</text>
+  <rect x="160" y="262" width="209" height="37"  fill="#4A8E52" stroke="white" stroke-width=".5"/>
+  <text x="264" y="279" class="tm-label-sub">Ideación creativa</text>
+  <text x="264" y="290" class="tm-pct">3.9%</text>
+
+  <!-- SEEKING INFORMATION 21.3% → 180px — red/salmon -->
+  <!-- x=370, w=180 -->
+  <rect x="370" y="10" width="179" height="289" fill="#C86060" stroke="white" stroke-width="1"/>
+  <!-- Specific 18.3%, Purchasable 2.1%, Cooking 0.9% -->
+  <rect x="370" y="10" width="179" height="248" fill="#C86060" stroke="white" stroke-width=".5"/>
+  <text x="459" y="128" class="tm-label-sub-w">Información específica</text>
+  <text x="459" y="140" class="tm-pct-w">18.3%</text>
+  <rect x="370" y="259" width="179" height="23"  fill="#A84848" stroke="white" stroke-width=".5"/>
+  <text x="459" y="271" class="tm-pct-w">Productos 2.1%</text>
+  <rect x="370" y="283" width="179" height="16"  fill="#903030" stroke="white" stroke-width=".5"/>
+  <text x="459" y="291" class="tm-pct-w">Cocina 0.9%</text>
+
+  <!-- SELF-EXPRESSION 4.3% → 80px — purple/lavender -->
+  <!-- x=550, w=80 -->
+  <rect x="550" y="10" width="79"  height="289" fill="#A09AC0" stroke="white" stroke-width="1"/>
+  <!-- Relations 1.9%, Greetings 2.0%, Games 0.4% -->
+  <rect x="550" y="10" width="79"  height="78"  fill="#B0AAD0" stroke="white" stroke-width=".5"/>
+  <text x="589" y="48"  class="tm-label-sub">Relaciones</text>
+  <text x="589" y="59"  class="tm-pct">1.9%</text>
+  <rect x="550" y="89" width="79"  height="82"  fill="#A09AC0" stroke="white" stroke-width=".5"/>
+  <text x="589" y="122" class="tm-label-sub">Saludos</text>
+  <text x="589" y="133" class="tm-pct">2.0%</text>
+  <rect x="550" y="172" width="79" height="127" fill="#8888B0" stroke="white" stroke-width=".5"/>
+  <text x="589" y="230" class="tm-label-sub">Juegos</text>
+  <text x="589" y="241" class="tm-pct">0.4%</text>
+
+  <!-- TECHNICAL HELP 7.5% → 90px — tan/beige -->
+  <!-- x=630, w=90 -->
+  <rect x="630" y="10" width="89"  height="289" fill="#B0A090" stroke="white" stroke-width="1"/>
+  <!-- Math 3.0%, Data 0.4%, Computer 4.2% -->
+  <rect x="630" y="10" width="89"  height="116" fill="#C0B0A0" stroke="white" stroke-width=".5"/>
+  <text x="674" y="60"  class="tm-label-sub">Matemática</text>
+  <text x="674" y="72"  class="tm-pct">3.0%</text>
+  <rect x="630" y="127" width="89"  height="16"  fill="#A09080" stroke="white" stroke-width=".5"/>
+  <text x="674" y="135" class="tm-pct">Datos 0.4%</text>
+  <rect x="630" y="144" width="89"  height="155" fill="#B0A090" stroke="white" stroke-width=".5"/>
+  <text x="674" y="215" class="tm-label-sub">Computadora</text>
+  <text x="674" y="227" class="tm-pct">4.2%</text>
+
+  <!-- WRITING 28.1% → 280px — pink/rose -->
+  <!-- x=720, w=280 -->
+  <rect x="720" y="10" width="279" height="289" fill="#D890B0" stroke="white" stroke-width="1"/>
+  <!-- Write Fiction 1.4%, Translation 4.5%, Personal 8.0%, Edit 10.6%, Argument 3.6% -->
+  <!-- Stacked top-down -->
+  <rect x="720" y="10"  width="279" height="18"  fill="#E8A8C8" stroke="white" stroke-width=".5"/>
+  <text x="859" y="20"  class="tm-label-sub">Escribir ficción 1.4%</text>
+  <rect x="720" y="29"  width="279" height="58"  fill="#DFA0C0" stroke="white" stroke-width=".5"/>
+  <text x="859" y="55"  class="tm-label-sub">Traducción</text>
+  <text x="859" y="66"  class="tm-pct">4.5%</text>
+  <rect x="720" y="88"  width="279" height="103" fill="#D890B0" stroke="white" stroke-width=".5"/>
+  <text x="859" y="135" class="tm-label-sub">Escritura personal</text>
+  <text x="859" y="147" class="tm-pct">8.0%</text>
+  <rect x="720" y="192" width="279" height="65"  fill="#C87898" stroke="white" stroke-width=".5"/>
+  <text x="859" y="222" class="tm-label-sub">Editar o criticar</text>
+  <text x="859" y="234" class="tm-pct">10.6%</text>
+  <rect x="720" y="258" width="279" height="41"  fill="#B86888" stroke="white" stroke-width=".5"/>
+  <text x="859" y="278" class="tm-label-sub">Argumento / Resumen</text>
+  <text x="859" y="289" class="tm-pct">3.6%</text>
+
+  <!-- AXIS LABELS BOTTOM -->
+  <text x="40"  y="316" class="ax-label">Multimedia</text>
+  <text x="40"  y="327" class="ax-pct">6.0%</text>
+  <text x="119" y="316" class="ax-label">Otro</text>
+  <text x="119" y="327" class="ax-pct">4.6%</text>
+  <text x="264" y="316" class="ax-label">Guía práctica</text>
+  <text x="264" y="327" class="ax-pct">28.3%</text>
+  <text x="459" y="316" class="ax-label">Buscar información</text>
+  <text x="459" y="327" class="ax-pct">21.3%</text>
+  <text x="589" y="316" class="ax-label">Auto-expresión</text>
+  <text x="589" y="327" class="ax-pct">4.3%</text>
+  <text x="674" y="316" class="ax-label">Ayuda técnica</text>
+  <text x="674" y="327" class="ax-pct">7.5%</text>
+  <text x="859" y="316" class="ax-label">Escritura</text>
+  <text x="859" y="327" class="ax-pct">28.1%</text>
+
+  <!-- Caption -->
+  <text x="500" y="365" style="font-size:8.5px;fill:var(--muted);text-anchor:middle">Fuente: Chatterji, Aaron, Thomas Cunningham, David J. Deming, Zoe Hitzig, Christopher Ong, Carl Yan Shan, and Kevin Wadman. "How People Use ChatGPT." National Bureau for Economic Research 34255 (September 2025).</text>
+</svg>
+
+    </div>
+  </section>
+
+  <!-- TEXTO + DIAGRAMA -->
+  <section data-toc-label="IA != Persona" data-steps="2" class="slide texto-diagrama " data-section="Paradigmas">
+    <div class="td-texto">
+      <div class="td-def">
+        <span class="td-term">¿Qué es la IA?</span>
+        <span class="td-desc">Aunque la mayoría de los usos que le damos a los chatbots de IA se limita a un par de tareas, hablamos de ellos como si fueran seres humanos</span>
+      </div>
+      
+    </div>
+    <div class="td-diagrama">
+      <svg viewBox="0 0 840 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;font-family:inherit">
+  <defs>
+    <style>
+      .ia-nc { fill: var(--bg); stroke: var(--signal); stroke-width: 2; }
+      .ia-nh { fill: var(--bg2); }
+      .ia-wl { font-size: 16px; fill: var(--ink); text-anchor: middle; dominant-baseline: central; }
+      .ia-hl { font-size: 20px; fill: var(--bg); font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+      .ia-ln { stroke: var(--muted); stroke-width: 2; opacity: 0.65; }
+    </style>
+  </defs>
+
+  <!-- Líneas (primero = detrás de todo) — de orilla a orilla -->
+  <g class="ia-grupo-lineas">
+    <!-- Amiga -->
+    <line x1="420.0" y1="218.0" x2="420.0" y2="135.0" class="ia-ln"/>
+    <!-- Agente -->
+    <line x1="478.0" y1="242.0" x2="537.1" y2="182.9" class="ia-ln"/>
+    <!-- Asesora -->
+    <line x1="502.0" y1="300.0" x2="585.0" y2="300.0" class="ia-ln"/>
+    <!-- Empleada -->
+    <line x1="478.0" y1="358.0" x2="537.1" y2="417.1" class="ia-ln"/>
+    <!-- Analista -->
+    <line x1="420.0" y1="382.0" x2="420.0" y2="465.0" class="ia-ln"/>
+    <!-- Divinidad -->
+    <line x1="362.0" y1="358.0" x2="302.9" y2="417.1" class="ia-ln"/>
+    <!-- Asistente -->
+    <line x1="338.0" y1="300.0" x2="255.0" y2="300.0" class="ia-ln"/>
+    <!-- Novia -->
+    <line x1="362.0" y1="242.0" x2="302.9" y2="182.9" class="ia-ln"/>
+  </g>
+
+  <!-- Círculos individuales (clockwise desde arriba) -->
+  <g class="ia-c1">
+    <circle cx="420" cy="80"  r="55" class="ia-nc"/>
+    <text x="420" y="80"  class="ia-wl">Amiga</text>
+  </g>
+  <g class="ia-c2">
+    <circle cx="576" cy="144" r="55" class="ia-nc"/>
+    <text x="576" y="144" class="ia-wl">Agente</text>
+  </g>
+  <g class="ia-c3">
+    <circle cx="640" cy="300" r="55" class="ia-nc"/>
+    <text x="640" y="300" class="ia-wl">Asesora</text>
+  </g>
+  <g class="ia-c4">
+    <circle cx="576" cy="456" r="55" class="ia-nc"/>
+    <text x="576" y="456" class="ia-wl">Empleada</text>
+  </g>
+  <g class="ia-c5">
+    <circle cx="420" cy="520" r="55" class="ia-nc"/>
+    <text x="420" y="520" class="ia-wl">Analista</text>
+  </g>
+  <g class="ia-c6">
+    <circle cx="264" cy="456" r="55" class="ia-nc"/>
+    <text x="264" y="456" class="ia-wl">Divinidad</text>
+  </g>
+  <g class="ia-c7">
+    <circle cx="200" cy="300" r="55" class="ia-nc"/>
+    <text x="200" y="300" class="ia-wl">Asistente</text>
+  </g>
+  <g class="ia-c8">
+    <circle cx="264" cy="144" r="55" class="ia-nc"/>
+    <text x="264" y="144" class="ia-wl">Novia</text>
+  </g>
+
+  <!-- Humano central (encima de todo) -->
+  <g class="ia-grupo-central">
+    <circle cx="420" cy="300" r="82" class="ia-nh"/>
+    <text x="420" y="300" class="ia-hl">Humano</text>
+  </g>
+</svg>
+
+      
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section data-toc-label="Advait Sarkar" class="slide quote-slide " data-section="">
+    <blockquote class="quote-text">¿Por qué sentimos la necesidad de  <em>distinguir</em> la IA de un martillo (o, para el caso, una computadora)? Quizá nuestro ego no nos deja ver a la IA como <em>solo una herramienta</em>.</blockquote>
+    <div class="quote-meta"><span class="quote-who">Advait Sarkar</span><span class="quote-fuente">"Enough With "Human-AI Collaboration""</span><span class="quote-nota">traducción propia</span></div>
+  </section>
+
+  <!-- TITULO + CUERPO -->
+  <section data-toc-label="Una herramienta" class="slide " data-section="Paradigmas">
+    <h2 class="title">La IA generativa es una <em>herramienta</em> para producir lenguaje</h2>
+    <p class="body">Como el martillo es una herramienta para clavar. Como la hoja de cálculo es una herramienta para calcular. La diferencia es que su output <strong class="circled">se parece al nuestro</strong> —y eso nos confunde.</p>
+  </section>
+
+  <!-- CUERPO LARGO -->
+  <section data-toc-label="Definición de IA" class="slide cuerpo-largo-slide " data-section="Paradigmas">
+    <h2 class="cl-titulo">Inteligencia artificial generativa — definición de trabajo</h2>
+    <p class="cl-cuerpo">La inteligencia artificial generativa es un conjunto de sistemas capaces de producir <strong class="circled">respuestas</strong>, <strong class="circled">inferencias</strong> o <strong class="circled">representaciones</strong> a partir de grandes volúmenes de datos, mediante modelos estadísticos y computacionales entrenados para identificar patrones, relaciones y regularidades.</p>
+    <p class="cl-cuerpo">Es una herramienta cognitiva que amplía las capacidades de <strong class="circled">manipular, transformar y generar información en múltiples lenguajes</strong> —texto, código, imágenes, estructuras matemáticas— sin comprender el significado de lo que produce.</p>
+    <p class="cl-cuerpo">Puede procesar enormes cantidades de datos, generar alternativas, traducir entre representaciones y reorganizar, pero no <strong class="circled">razona causalmente</strong>, <strong class="circled">no tiene criterio ético</strong>, <strong class="circled">reproduce sesgos</strong> de sus datos de entrenamiento y <strong class="circled">suele fallar en contextos desconocidos.</strong></p>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Qué no es" data-steps="6" data-spotlight="true" class="slide diagram-slide " data-section="Paradigmas">
+    <div class="diagram-header">
+      <h2 class="diagram-title">La IA generativa <em>no</em> es...</h2>
+    </div>
+    <div class="diagram-body">
+      <svg viewBox="-50 5 950 431" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;font-family:inherit">
+  <defs><style>
+    .noes-num  { font-size:10px; fill:var(--signal); font-weight:500; letter-spacing:.1em; dominant-baseline:central; }
+    .noes-term { font-size:21px; fill:var(--ink); font-weight:600; dominant-baseline:central; }
+    .noes-desc { font-size:15px; fill:var(--muted); font-weight:400; dominant-baseline:central; }
+  </style></defs>
+
+  <g data-step="1">
+    <rect x="0" y="5" width="3" height="68" fill="var(--signal)"/>
+    <text x="14" y="27" class="noes-num">01</text>
+    <text x="14" y="53" class="noes-term">Una mente artificial</text>
+    <text x="14" y="77" class="noes-desc">no tiene comprensión ni intencionalidad</text>
+  </g>
+  <g data-step="2">
+    <rect x="0" y="98" width="3" height="68" fill="var(--signal)"/>
+    <text x="14" y="120" class="noes-num">02</text>
+    <text x="14" y="146" class="noes-term">Una base de conocimiento</text>
+    <text x="14" y="170" class="noes-desc">reconstruye patrones estadísticos, no verifica veracidad</text>
+  </g>
+  <g data-step="3">
+    <rect x="0" y="191" width="3" height="68" fill="var(--signal)"/>
+    <text x="14" y="213" class="noes-num">03</text>
+    <text x="14" y="239" class="noes-term">Un agente autónomo</text>
+    <text x="14" y="263" class="noes-desc">no tiene metas propias ni evalúa consecuencias de sus outputs</text>
+  </g>
+  <g data-step="4">
+    <rect x="0" y="284" width="3" height="68" fill="var(--signal)"/>
+    <text x="14" y="306" class="noes-num">04</text>
+    <text x="14" y="332" class="noes-term">Determinista</text>
+    <text x="14" y="356" class="noes-desc">el mismo prompt puede dar resultados muy distintos</text>
+  </g>
+</svg>
+
+    </div>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Qué sí es" data-steps="6" data-spotlight="true" class="slide diagram-slide " data-section="Paradigmas">
+    <div class="diagram-header">
+      <h2 class="diagram-title">La IA generativa <em>sí</em> es...</h2>
+    </div>
+    <div class="diagram-body">
+      <svg viewBox="-50 5 950 431" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;font-family:inherit">
+  <defs><style>
+    .sies-num  { font-size:10px; fill:var(--muted); font-weight:500; letter-spacing:.1em; dominant-baseline:central; }
+    .sies-term { font-size:21px; fill:var(--ink); font-weight:600; dominant-baseline:central; }
+    .sies-desc { font-size:15px; fill:var(--muted); font-weight:400; dominant-baseline:central; }
+  </style></defs>
+
+  <g data-step="1">
+    <rect x="0" y="5" width="3" height="68" fill="var(--muted)"/>
+    <text x="14" y="27" class="sies-num">01</text>
+    <text x="14" y="53" class="sies-term">Un sistema generativo de patrones</text>
+    <text x="14" y="77" class="sies-desc">produce instancias nuevas que podrían haber existido</text>
+  </g>
+  <g data-step="2">
+    <rect x="0" y="98" width="3" height="68" fill="var(--muted)"/>
+    <text x="14" y="120" class="sies-num">02</text>
+    <text x="14" y="146" class="sies-term">Un manipulador multimodal de lenguajes</text>
+    <text x="14" y="170" class="sies-desc">opera sobre texto, código, imágenes y matemáticas</text>
+  </g>
+  <g data-step="3">
+    <rect x="0" y="191" width="3" height="68" fill="var(--muted)"/>
+    <text x="14" y="213" class="sies-num">03</text>
+    <text x="14" y="239" class="sies-term">Una herramienta cognitiva contextual</text>
+    <text x="14" y="263" class="sies-desc">su utilidad depende radicalmente del contexto que le das</text>
+  </g>
+  <g data-step="4">
+    <rect x="0" y="284" width="3" height="68" fill="var(--muted)"/>
+    <text x="14" y="306" class="sies-num">04</text>
+    <text x="14" y="332" class="sies-term">Un amplificador de sesgos y regularidades</text>
+    <text x="14" y="356" class="sies-desc">reproduce los patrones de sus datos de entrenamiento</text>
+  </g>
+</svg>
+
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section data-toc-label="Emily Bender" class="slide quote-slide " data-section="">
+    <blockquote class="quote-text">Las discusiones sobre esta tecnología se aclaran enormemente cuando reemplazamos el término 'IA' con la palabra 'automatización'. Entonces podemos preguntar: ¿qué se está automatizando? ¿Quién lo automatiza y por qué? ¿Quién se beneficia? ¿Quién es afectado?</blockquote>
+    <div class="quote-meta"><span class="quote-who">Emily M. Bender</span><span class="quote-fuente">"Opening Remarks on AI in the Workplace"</span><span class="quote-nota">traducción propia</span></div>
+  </section>
+
+  <!-- TITULO + BULLETS -->
+  <section data-toc-label="Posibilidades" class="slide " data-section="Paradigmas">
+    <h2 class="title">Las <em>posibilidades</em> reales</h2>
+    <ul class="bullets">
+      <li><span><strong>Acelerar el trabajo cognitivo</strong> — tareas que tomaban horas se comprimen a minutos</span></li>
+      <li><span><strong>Democratizar capacidades técnicas</strong> — habilidades antes especializadas (programar, traducir, analizar datos) se vuelven más accesibles</span></li>
+      <li><span><strong>Reducir barreras de entrada</strong> — organizaciones pequeñas operan con capacidades antes exclusivas de las grandes</span></li>
+      <li><span><strong>Ampliar el espacio de exploración</strong> — generar múltiples alternativas rápido, probar ideas antes de comprometer recursos</span></li>
+      
+    </ul>
+  </section>
+
+  <!-- TITULO + BULLETS -->
+  <section data-toc-label="Riesgos" class="slide " data-section="Paradigmas">
+    <h2 class="title">Los <em>riesgos</em> reales</h2>
+    <ul class="bullets">
+      <li><span><strong>Sesgos a escala</strong> — los modelos reproducen injusticias históricas con más velocidad y volumen</span></li>
+      <li><span><strong>Erosión de habilidades</strong> — delegar sin criterio atrofia la capacidad de hacer lo que se delegó</span></li>
+      <li><span><strong>Concentración de poder</strong> — la infraestructura que todos usamos está en manos de tres empresas privadas</span></li>
+      <li><span><strong>Impacto laboral asimétrico</strong> — ya están cayendo mercados de trabajo en escritura, traducción y código</span></li>
+      <li><span><strong>Dependencia sin comprensión</strong> — en sectores donde el rigor importa, los errores de la IA tienen costos reales</span></li>
+      
+    </ul>
+  </section>
+
+  <!-- RECAP -->
+  <section data-toc-label="Síntesis" class="slide " data-section="Paradigmas">
+    <h2 class="title">En <em>síntesis</em>...</h2>
+    <div class="recap-list">
+      <div class="recap-item">
+        <span class="recap-num">01</span>
+        <span class="recap-text"><strong>Es una herramienta, no una persona.</strong> </span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">02</span>
+        <span class="recap-text"><strong>Manipula, transforma y genera en múltiples lenguajes.</strong> </span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">03</span>
+        <span class="recap-text"><strong>Reproduce sesgos, no razona, no tiene criterio ético.</strong> </span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">04</span>
+        <span class="recap-text"><strong>Crea probabilísticamente a partir de contexto.</strong> </span>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <section class="slide divider " data-section="">
+    <p class="label">IA generativa</p>
+    <h2 class="title">IA generativa</h2>
+    <span class="sec-num" aria-hidden="true">3</span>
+  </section>
+
+  <!-- CUERPO LARGO -->
+  <section data-toc-label="Chatbots y agentes" class="slide cuerpo-largo-slide " data-section="IA generativa">
+    <h2 class="cl-titulo">¿Qué es un <em>chatbot</em>?</h2>
+    <p class="cl-cuerpo">Un <strong class="circled">chatbot</strong> de IA es una interfaz de conversación conectada a un modelo de lenguaje. Recibes texto, genera texto. Lo que parece una respuesta inteligente es <strong class="circled">una predicción del fragmento más probable</strong> dado lo que escribiste — no recupera información, la construye en tiempo real.</p>
+    <p class="cl-cuerpo">Un <strong class="circled">agente</strong> es un chatbot con herramientas: puede buscar en internet, ejecutar código, leer archivos. La diferencia no es de inteligencia sino de <strong class="circled">capacidad de acción</strong>. El mismo modelo subyacente, con más brazos.</p>
+    <p class="cl-cuerpo">Tanto chatbots como agentes hablan el mismo lenguaje <strong class="circled">tokens</strong>.</p>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="¿Qué son los tokens?" class="slide diagram-slide " data-section="IA generativa">
+    <div class="diagram-header">
+      <h2 class="diagram-title">El lenguaje de la IA es el <em>token</em></h2>
+    </div>
+    <div class="diagram-body">
+      <svg viewBox="-63 0 860 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:380px;font-family:inherit">
+  <defs>
+    <style>
+      .tk-label   { font-size:15px; fill:var(--bg); text-anchor:middle; dominant-baseline:central; font-weight:500; letter-spacing:.03em }
+      .tk-caption { font-size:13px; fill:var(--bg2); text-anchor:middle; font-weight:700; letter-spacing:.06em; text-transform:uppercase }
+      .tk-tok     { font-size:19px; fill:var(--bg); text-anchor:middle; dominant-baseline:central; font-weight:700; letter-spacing:.02em }
+    </style>
+    <marker id="arr-tk" markerWidth="8" markerHeight="7" refX="7" refY="3.5" orient="auto">
+      <polygon points="0 0, 8 3.5, 0 7" fill="var(--muted)"/>
+    </marker>
+  </defs>
+
+  <!-- Input ovals -->
+  <ellipse cx="105" cy="60"  rx="95" ry="27" fill="var(--ink)"/>
+  <text x="105" y="60"  class="tk-label">Texto</text>
+  <ellipse cx="105" cy="130" rx="95" ry="27" fill="var(--ink)"/>
+  <text x="105" y="130" class="tk-label">Imagen</text>
+  <ellipse cx="105" cy="200" rx="95" ry="27" fill="var(--ink)"/>
+  <text x="105" y="200" class="tk-label">Audio</text>
+  <ellipse cx="105" cy="270" rx="95" ry="27" fill="var(--ink)"/>
+  <text x="105" y="270" class="tk-label">Video</text>
+
+  <!-- Connecting lines (converging to bar center) -->
+  <line x1="200" y1="60"  x2="335" y2="165" stroke="var(--muted)" stroke-width="1.5"/>
+  <line x1="200" y1="130" x2="335" y2="165" stroke="var(--muted)" stroke-width="1.5"/>
+  <line x1="200" y1="200" x2="335" y2="165" stroke="var(--muted)" stroke-width="1.5"/>
+  <line x1="200" y1="270" x2="335" y2="165" stroke="var(--muted)" stroke-width="1.5"/>
+
+  <!-- Codificador bar (verde — pizarra media) -->
+  <rect x="335" y="35" width="55" height="260" rx="8" fill="var(--bg2)"/>
+  <text x="362" y="323" class="tk-caption">Codificador</text>
+
+  <!-- Flechas dobles: encode (→) y decode (←) -->
+  <line x1="392" y1="157" x2="487" y2="157" stroke="var(--muted)" stroke-width="1.8" marker-end="url(#arr-tk)"/>
+  <line x1="487" y1="173" x2="392" y2="173" stroke="var(--muted)" stroke-width="1.8" marker-end="url(#arr-tk)"/>
+
+  <!-- Tokens oval (rojo — signal) -->
+  <ellipse cx="610" cy="165" rx="115" ry="42" fill="var(--signal)"/>
+  <text x="610" y="165" class="tk-tok">Tokens</text>
+</svg>
+
+    </div>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Pensar en tokens" class="slide diagram-slide " data-section="IA generativa">
+    <div class="diagram-header">
+      <h2 class="diagram-title">Pensar en <em>tokens</em></h2>
+    </div>
+    <div class="diagram-body">
+      <div style="font-family:inherit;width:100%;">
+  <ul style="list-style:none;padding:0;margin:0 0 1.4rem 0;max-width:90ch;">
+    <li style="display:flex;gap:.8rem;margin-bottom:.85rem;align-items:baseline;">
+      <span style="color:var(--signal);font-size:1.3em;line-height:1;flex-shrink:0;">·</span>
+      <span style="font-size:clamp(.9rem,1.35vw,1.02rem);"><strong>Unidad mínima de procesamiento</strong> — no es una letra ni una palabra entera; es un fragmento frecuente del lenguaje</span>
+    </li>
+    <li style="display:flex;gap:.8rem;margin-bottom:.85rem;align-items:baseline;">
+      <span style="color:var(--signal);font-size:1.3em;line-height:1;flex-shrink:0;">·</span>
+      <span style="font-size:clamp(.9rem,1.35vw,1.02rem);"><strong>Multimodalidad</strong> — texto, imagen, audio y código se convierten en tokens; el modelo opera sobre todos igual</span>
+    </li>
+    <li style="display:flex;gap:.8rem;margin-bottom:.85rem;align-items:baseline;">
+      <span style="color:var(--signal);font-size:1.3em;line-height:1;flex-shrink:0;">·</span>
+      <span style="font-size:clamp(.9rem,1.35vw,1.02rem);"><strong>El modelo no ve tu mensaje como tú</strong> — ve la secuencia tokenizada, no el sentido</span>
+    </li>
+    <li style="display:flex;gap:.8rem;align-items:baseline;">
+      <span style="color:var(--signal);font-size:1.3em;line-height:1;flex-shrink:0;">·</span>
+      <span style="font-size:clamp(.9rem,1.35vw,1.02rem);"><strong>Ventana de contexto</strong> — límite de tokens que el modelo puede procesar a la vez; es su 'memoria de trabajo'</span>
+    </li>
+  </ul>
+  <div style="background:rgba(200,212,74,.13);border-left:3px solid var(--accent);padding:.85rem 1.2rem;border-radius:2px;max-width:90ch;">
+    <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-bottom:.5rem;text-transform:uppercase;">Para explorar</div>
+    <div style="font-size:.88rem;line-height:1.85;color:var(--ink);">
+      <div><strong>tiktokenizer.vercel.app</strong> — visualiza cómo GPT tokeniza cualquier texto, con colores por token</div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- PREGUNTA -->
+  <section data-toc-label="Pregunta 2" class="slide pregunta-slide " data-section="IA generativa">
+    
+    <p class="pregunta-label">Pregunta</p>
+    <p class="pregunta-texto">¿Por qué la IA a veces <span style='color:var(--signal)'>olvida</span> datos?</p>
+    
+  </section>
+
+  <!-- CUERPO LARGO -->
+  <section data-toc-label="Ventana de contexto" class="slide cuerpo-largo-slide " data-section="IA generativa">
+    <h2 class="cl-titulo">Ventana de <em>contexto</em></h2>
+    <p class="cl-cuerpo">La ventana de contexto es el <strong class="circled">espacio total de tokens que el modelo puede procesar en una sola llamada</strong>. Todo lo que está fuera de la ventana no existe para el modelo. No es memoria permanente — es atención momentánea.</p>
+    <p class="cl-cuerpo">En 2026, los tamaños van de <strong class="circled">128,000 tokens</strong> (GPT-4o, Grok 3, DeepSeek) a <strong class="circled">1 millón</strong> (Claude Opus 4, Gemini 2.5 Pro) e incluso <strong class="circled">10 millones</strong> (LLaMA 4 Scout). 128K tokens equivalen a unas 400 páginas — un libro completo.</p>
+    <p class="cl-cuerpo">Pero el número anunciado es engañoso. El sistema reserva espacio para instrucciones internas, herramientas, memorias y formato. Lo que queda para tu conversación <strong class="circled">siempre es menos de lo que dice la etiqueta</strong>. Y los modelos de razonamiento gastan tokens adicionales que no ves.</p>
+  </section>
+
+  <!-- TEXTO + DIAGRAMA -->
+  <section data-toc-label="Dentro de la ventana" class="slide texto-diagrama " data-section="IA generativa">
+    <div class="td-texto">
+      <div class="td-def">
+        <span class="td-term">¿Qué hay <em>dentro</em> de la ventana?</span>
+        <span class="td-desc">Cada vez que se envía un mensaje, el modelo analiza <em>todo</em> lo que está presente en la ventana de contexto. La ilusión de conversación surge de que el modelo analiza todo una y otra vez.</span>
+      </div>
+      
+    </div>
+    <div class="td-diagrama">
+      <svg viewBox="0 0 500 475" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;max-height:100%;font-family:inherit">
+  <defs>
+    <clipPath id="vc-clip">
+      <rect x="6" y="18" width="488" height="450" rx="7"/>
+    </clipPath>
+  </defs>
+
+  <text x="250" y="11" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="0.14em" fill="var(--muted)" font-family="monospace">VENTANA DE CONTEXTO</text>
+
+  <g clip-path="url(#vc-clip)">
+
+    <!-- LAYER 1: Base del sistema — y:18 h:162 → y:180 -->
+    <rect x="6" y="18" width="488" height="162" fill="var(--ink)"/>
+    <text x="20" y="38" font-size="9" font-weight="700" letter-spacing="0.13em" fill="var(--muted)" font-family="monospace">BASE DEL SISTEMA</text>
+    <rect x="20" y="46" width="224" height="118" rx="4" fill="rgba(255,255,255,0.08)"/>
+    <text x="32" y="68" font-size="13" font-weight="600" fill="var(--bg)">System prompt</text>
+    <text x="32" y="87" font-size="11" fill="rgba(242,238,228,0.5)">Personalidad,</text>
+    <text x="32" y="103" font-size="11" fill="rgba(242,238,228,0.5)">restricciones y</text>
+    <text x="32" y="119" font-size="11" fill="rgba(242,238,228,0.5)">reglas ocultas</text>
+    <rect x="256" y="46" width="224" height="118" rx="4" fill="rgba(255,255,255,0.08)"/>
+    <text x="268" y="68" font-size="13" font-weight="600" fill="var(--bg)">Recursos</text>
+    <text x="268" y="87" font-size="11" fill="rgba(242,238,228,0.5)">Memorias,</text>
+    <text x="268" y="103" font-size="11" fill="rgba(242,238,228,0.5)">documentos y</text>
+    <text x="268" y="119" font-size="11" fill="rgba(242,238,228,0.5)">preferencias tuyas</text>
+
+    <!-- LAYER 2: Conversación — y:180 h:112 → y:292 -->
+    <rect x="6" y="180" width="488" height="112" fill="#2D3D33"/>
+    <line x1="6" y1="180" x2="494" y2="180" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="20" y="198" font-size="9" font-weight="700" letter-spacing="0.13em" fill="rgba(200,212,74,0.6)" font-family="monospace">CONVERSACIÓN</text>
+    <rect x="20" y="205" width="224" height="74" rx="4" fill="rgba(255,255,255,0.07)"/>
+    <text x="32" y="225" font-size="13" font-weight="600" fill="var(--bg)">Mensajes IA</text>
+    <text x="32" y="244" font-size="11" fill="rgba(242,238,228,0.5)">Respuestas previas</text>
+    <rect x="256" y="205" width="224" height="74" rx="4" fill="rgba(255,255,255,0.07)"/>
+    <text x="268" y="225" font-size="13" font-weight="600" fill="var(--bg)">Tus mensajes</text>
+    <text x="268" y="244" font-size="11" fill="rgba(242,238,228,0.5)">Lo que escribiste antes</text>
+
+    <!-- LAYER 3: Capacidades — y:292 h:110 → y:402 -->
+    <rect x="6" y="292" width="488" height="110" fill="var(--bg2)"/>
+    <line x1="6" y1="292" x2="494" y2="292" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="20" y="312" font-size="9" font-weight="700" letter-spacing="0.13em" fill="rgba(200,212,74,0.45)" font-family="monospace">CAPACIDADES</text>
+    <rect x="20" y="320" width="148" height="68" rx="4" fill="rgba(255,255,255,0.07)"/>
+    <text x="32" y="342" font-size="13" font-weight="600" fill="var(--bg)">Catálogo de</text>
+    <text x="32" y="360" font-size="13" font-weight="600" fill="var(--bg)">herramientas</text>
+    <rect x="178" y="320" width="148" height="68" rx="4" fill="rgba(255,255,255,0.07)"/>
+    <text x="190" y="342" font-size="13" font-weight="600" fill="var(--bg)">Herramientas</text>
+    <text x="190" y="360" font-size="13" font-weight="600" fill="var(--bg)">usadas</text>
+    <rect x="336" y="320" width="148" height="68" rx="4" fill="rgba(255,255,255,0.07)"/>
+    <text x="348" y="342" font-size="13" font-weight="600" fill="var(--bg)">Historial</text>
+    <text x="348" y="360" font-size="13" font-weight="600" fill="var(--bg)">de uso</text>
+
+    <!-- LAYER 4: Tu mensaje — y:402 h:66 → y:468 — fondo LÁMPARA, texto LADRILLO -->
+    <rect x="6" y="402" width="488" height="66" fill="var(--accent)"/>
+    <line x1="6" y1="402" x2="494" y2="402" stroke="rgba(30,36,32,0.25)" stroke-width="1.5"/>
+    <text x="250" y="427" text-anchor="middle" font-size="14" font-weight="700" fill="var(--signal)" letter-spacing="0.02em">Tu mensaje</text>
+    <text x="250" y="446" text-anchor="middle" font-size="11" fill="rgba(168,56,40,0.7)">una fracción del total</text>
+
+  </g>
+
+  <rect x="6" y="18" width="488" height="450" rx="7" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-opacity="0.18"/>
+</svg>
+
+      
+    </div>
+  </section>
+
+  <!-- RECAP -->
+  <section data-toc-label="Síntesis" class="slide " data-section="IA generativa">
+    <h2 class="title">En <em>síntesis</em></h2>
+    <div class="recap-list">
+      <div class="recap-item">
+        <span class="recap-num">01</span>
+        <span class="recap-text"><strong>Todo es predicción de tokens.</strong> El LLM predice el siguiente fragmento más probable.</span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">02</span>
+        <span class="recap-text"><strong>Tu mensaje es una fracción del contexto.</strong> System prompt, memorias, herramientas, historial.</span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">03</span>
+        <span class="recap-text"><strong>La ventana de contexto es finita.</strong> Lo que no cabe, no existe. Las conversaciones largas degradan la calidad.</span>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <section class="slide divider " data-section="">
+    <p class="label">I.Contexto</p>
+    <h2 class="title">Ingeniería de contexto</h2>
+    <span class="sec-num" aria-hidden="true">4</span>
+  </section>
+
+  <!-- PREGUNTA -->
+  <section data-toc-label="Pregunta 3" class="slide pregunta-slide " data-section="I.Contexto">
+    
+    <p class="pregunta-label">Pregunta</p>
+    <p class="pregunta-texto">Cuando le pides algo a la IA ¿qué sabe de <span style='color:var(--signal)'>ti</span>?</p>
+    <p class="pregunta-nota">Piensa en tu última conversación con una IA ¿Qué información tenía disponible?</p>
+  </section>
+
+  <!-- CUERPO LARGO -->
+  <section data-toc-label="Definición" class="slide cuerpo-largo-slide " data-section="I.Contexto">
+    <h2 class="cl-titulo">Ingeniería de <em>contexto</em></h2>
+    <p class="cl-cuerpo"><strong class="circled">Ingeniería de contexto</strong> = diseño, estructuración y optimización de la información que se le da a una IA para garantizar resultados confiables, de alta calidad y conscientes del contexto</p>
+    <p class="cl-cuerpo">La mayoría de las personas solo piensan en el prompt. Sin embargo, el prompt es solo una <strong class="circled">pequeña parte</strong> del contexto.</p>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Los dos ejes" data-steps="5" data-spotlight="true" class="slide diagram-slide " data-section="I.Contexto">
+    <div class="diagram-header">
+      <h2 class="diagram-title"><em>Modelos</em> contextuales</h2>
+    </div>
+    <div class="diagram-body">
+      <svg viewBox="0 0 820 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:820px;font-family:inherit">
+  <!-- Grid 2×2 -->
+  <rect x="200" y="70" width="580" height="340" rx="4" fill="none" stroke="#1E2420" stroke-width="1" stroke-opacity=".12"/>
+  <line x1="200" y1="240" x2="780" y2="240" stroke="#1E2420" stroke-width=".5" stroke-opacity=".12"/>
+  <line x1="490" y1="70" x2="490" y2="410" stroke="#1E2420" stroke-width=".5" stroke-opacity=".12"/>
+
+  <!-- Step 0: just the grid -->
+
+  <!-- Step 1: headers + axis labels -->
+  <g data-step="0">
+    <text x="345" y="50" font-size="13" fill="#6B7A50" text-anchor="middle" font-weight="600">La empresa</text>
+    <text x="635" y="50" font-size="13" fill="#6B7A50" text-anchor="middle" font-weight="600">Tú</text>
+    <text x="185" y="155" font-size="13" fill="#6B7A50" text-anchor="end" font-weight="600">Centralizado</text>
+    <text x="185" y="325" font-size="13" fill="#6B7A50" text-anchor="end" font-weight="600">Distribuido</text>
+    <text x="490" y="28" font-size="11" fill="#6B7A50" text-anchor="middle" font-weight="400" font-style="italic">¿Quién diseña el contexto?</text>
+    <text x="22" y="240" font-size="11" fill="#6B7A50" text-anchor="middle" font-weight="400" font-style="italic" transform="rotate(-90,22,240)">¿Cómo se distribuye?</text>
+  </g>
+
+  <!-- Step 2: El supermercado -->
+  <g data-step="1">
+    <text x="345" y="148" font-size="15" fill="#1E2420" text-anchor="middle" font-weight="700">El supermercado</text>
+    <text x="345" y="168" font-size="11" fill="#6B7A50" text-anchor="middle">Cero esfuerzo</text>
+  </g>
+
+  <!-- Step 3: La plaza comercial -->
+  <g data-step="2">
+    <text x="345" y="318" font-size="15" fill="#1E2420" text-anchor="middle" font-weight="700">La plaza comercial</text>
+    <text x="345" y="338" font-size="11" fill="#6B7A50" text-anchor="middle">Conveniencia</text>
+  </g>
+
+  <!-- Step 4: El estudio -->
+  <g data-step="3">
+    <text x="635" y="148" font-size="15" fill="#1E2420" text-anchor="middle" font-weight="700">El estudio</text>
+    <text x="635" y="168" font-size="11" fill="#6B7A50" text-anchor="middle">Personalización</text>
+  </g>
+
+  <!-- Step 5: El jardín -->
+  <g data-step="4">
+    <text x="635" y="318" font-size="15" fill="#1E2420" text-anchor="middle" font-weight="700">El jardín</text>
+    <text x="635" y="338" font-size="11" fill="#6B7A50" text-anchor="middle">Flexibilidad</text>
+  </g>
+</svg>
+
+    </div>
+  </section>
+
+  <!-- SUBSECCION ENTRY -->
+  <section class="slide subseccion-entry " data-section="I.Contexto" data-subsection="El supermercado">
+    <p class="label">I.Contexto · El supermercado</p>
+    <h2 class="title">El <em>supermercado</em></h2>
+  </section>
+
+  <!-- TITULO + CUERPO -->
+  <section data-subsection="El supermercado" data-toc-label="Supermercado" class="slide " data-section="I.Contexto">
+    <h2 class="title">Un espacio diseñado <em>para</em> ti</h2>
+    <p class="body">La plataforma construye un perfil tuyo con los datos que ya tiene: tu correo, tus archivos, tus búsquedas, tu calendario. Tú no hiciste nada; <strong class="circled">alguien diseñó el contexto por ti</strong>. Es cómodo, pero la disposición responde a lo que la empresa sabe de ti y sus intereses, no a lo que tú necesitas.</p>
+  </section>
+
+  <!-- DESTACADO LÁMPARA -->
+  <section data-subsection="El supermercado" class="slide divider-lampara " data-section="">
+    <h2 class="title"><em>Gemini</em></h2>
+  </section>
+
+  <!-- TITULO + BULLETS -->
+  <section data-subsection="El supermercado" data-toc-label="Consejos" class="slide " data-section="I.Contexto">
+    <h2 class="title">Consejos</h2>
+    <ul class="bullets">
+      <li><span><strong>Contextualiza en tus mensajes.</strong> Escribe un prompt con contexto o pide que te interrogue para comprender qué necesitas. En este modelo, más contexto siempre es mejor.</span></li>
+      <li><span><strong>Uso pragmático.</strong> Usa este modelo para preguntas informativas y sesiones rápidas. Si la plataforma tiene una ventana de contexto larga, puedes usar la conversación como tu caja contextual para temas específicos.</span></li>
+      <li><span><strong>Entrena a tu algoritmo.</strong> Toma en cuenta que todo lo que escribas lo usará la empresa para crear un perfil sobre ti y ese perfil podrá ser usado en productos de su ecosistema.</span></li>
+      
+    </ul>
+  </section>
+
+  <!-- ANTES / DESPUÉS -->
+  <section data-subsection="El supermercado" data-toc-label="El prompt universal" data-steps="2" class="slide antes-despues-slide " data-section="I.Contexto">
+    <div class="ad-header">
+      <h2 class="title" style="font-size:clamp(1.5rem,2.8vw,2.2rem);margin-bottom:0">Un prompt para <em>gobernarlos</em> a todos</h2>
+    </div>
+    <div class="ad-cols">
+      <div class="ad-panel ad-panel-antes">
+        <span class="ad-etiqueta">Sin el prompt</span>
+        <p class="ad-contenido">La IA asume lo que necesitas y responde. El resultado es genérico, a veces útil, pero diseñado para nadie en particular.
+</p>
+      </div>
+      <div class="ad-panel ad-panel-despues">
+        <span class="ad-etiqueta">Con el prompt</span>
+        <p class="ad-contenido">"Hazme preguntas hasta comprender claramente qué necesito." La IA interroga antes de actuar. El resultado responde a tu situación real, no a lo que el modelo supuso.
+</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TITULO + BULLETS -->
+  <section data-subsection="El supermercado" data-toc-label="Puntos ciegos" class="slide " data-section="I.Contexto">
+    <h2 class="title">Los <em>puntos ciegos</em> del supermercado</h2>
+    <ul class="bullets">
+      <li><span><strong>Incentivos desalineados.</strong> La empresa decidió qué datos usar y cómo priorizarlos. Sus incentivos (retención, datos, ecosistema) no son los tuyos</span></li>
+      <li><span><strong>Sin control del contexto.</strong> Correos irrelevantes, archivos viejos, búsquedas casuales. El contexto puede ser más ruido que señal</span></li>
+      <li><span><strong>Solo conoce una parte.</strong> Si tu trabajo está repartido entre varias plataformas, el supermercado solo conoce su propio ecosistema</span></li>
+      
+    </ul>
+  </section>
+
+  <!-- SUBSECCION ENTRY -->
+  <section class="slide subseccion-entry " data-section="I.Contexto" data-subsection="La plaza comercial">
+    <p class="label">I.Contexto · La plaza comercial</p>
+    <h2 class="title">La plaza <em>comercial</em></h2>
+  </section>
+
+  <!-- TITULO + CUERPO -->
+  <section data-subsection="La plaza comercial" data-toc-label="Plaza comercial" class="slide " data-section="I.Contexto">
+    <h2 class="title">Cada tienda tiene su IA, pero no se <em>hablan</em></h2>
+    <p class="body">La empresa puso IA dentro de tu procesador de texto, tu hoja de cálculo, tu correo, tus presentaciones. Cada local tiene su propio asistente con el contexto de esa aplicación — pero <strong class="circled">no sabe nada de los demás locales</strong>.</p>
+  </section>
+
+  <!-- DESTACADO LÁMPARA -->
+  <section data-subsection="La plaza comercial" class="slide divider-lampara " data-section="">
+    <h2 class="title"><em>Gmail, Google Drive</em></h2>
+  </section>
+
+  <!-- SUBSECCION ENTRY -->
+  <section class="slide subseccion-entry " data-section="I.Contexto" data-subsection="El estudio">
+    <p class="label">I.Contexto · El estudio</p>
+    <h2 class="title">El <em>estudio</em></h2>
+  </section>
+
+  <!-- TITULO + CUERPO -->
+  <section data-subsection="El estudio" data-toc-label="Estudio" class="slide " data-section="I.Contexto">
+    <h2 class="title">Toda tu información en un solo <em>lugar</em></h2>
+    <p class="body">El estudio es lo que pasa cuando <strong class="circled">personalizas qué contexto tiene la IA</strong>. Instrucciones, proyectos, archivos relevantes, memoria curada. El nivel de personalización varía entre plataformas, pero la calidad de lo que la IA produce cambia radicalmente en todas.</p>
+  </section>
+
+  <!-- ANTES / DESPUÉS -->
+  <section data-subsection="El estudio" data-toc-label="Dos diseños" data-steps="2" class="slide antes-despues-slide " data-section="I.Contexto">
+    <div class="ad-header">
+      <h2 class="title" style="font-size:clamp(1.5rem,2.8vw,2.2rem);margin-bottom:0">El mismo modelo, <em>distinto</em> diseño</h2>
+    </div>
+    <div class="ad-cols">
+      <div class="ad-panel ad-panel-antes">
+        <span class="ad-etiqueta">Bodega desordenada</span>
+        <p class="ad-contenido">Memoria activada, todo acumulado sin orden. La IA recuerda que te gusta el café y que una vez preguntaste por especies de pingüinos. Contexto ruidoso, resultados genéricos.
+</p>
+      </div>
+      <div class="ad-panel ad-panel-despues">
+        <span class="ad-etiqueta">Estudio curado</span>
+        <p class="ad-contenido">Instrucciones claras sobre tu rol y tu trabajo. Proyectos separados por tema. Archivos relevantes. Memoria revisada. La IA responde como quien te conoce profesionalmente y/o personalmente.
+</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTACADO LÁMPARA -->
+  <section data-subsection="El estudio" class="slide divider-lampara " data-section="">
+    <h2 class="title"><em>ChatGPT</em></h2>
+  </section>
+
+  <!-- TITULO + STEPS -->
+  <section data-subsection="El estudio" data-toc-label="Consejos" class="slide " data-section="I.Contexto">
+    <h2 class="title">Diseñar un buen <em>estudio</em></h2>
+    <ol class="steps">
+      <li><span class="num">01</span><span>Activa las memorias y revísalas periódicamente.</span></li>
+      <li><span class="num">02</span><span>Escribe instrucciones personalizadas y configura personalidad.</span></li>
+      <li><span class="num">03</span><span>Separa tu trabajo en proyectos.</span></li>
+      <li><span class="num">04</span><span>Una conversación = una tarea.</span></li>
+      <li><span class="num">05</span><span>Usa ramas de conversación, regeneración de output y edita tus instrucciones.</span></li>
+      <li><span class="num">06</span><span>Borra interacciones que no sean útiles.</span></li>
+      <li><span class="num">07</span><span>Usa el modo anónimo para conversaciones que no quieres que se guarden.</span></li>
+      
+    </ol>
+  </section>
+
+  <!-- SUBSECCION ENTRY -->
+  <section class="slide subseccion-entry " data-section="I.Contexto" data-subsection="El jardín">
+    <p class="label">I.Contexto · El jardín</p>
+    <h2 class="title">El <em>jardín</em></h2>
+  </section>
+
+  <!-- TITULO + CUERPO -->
+  <section data-subsection="El jardín" data-toc-label="Jardín" class="slide " data-section="I.Contexto">
+    <h2 class="title">Múltiples parcelas, cada una cultivada para su <em>función</em></h2>
+    <p class="body">El jardín es <strong class="circled">contexto distribuido e intencional</strong>. Cada parcela tiene sus propias instrucciones, sus archivos, sus herramientas, sus límites.</p>
+  </section>
+
+  <!-- TITULO + BULLETS -->
+  <section data-subsection="El jardín" data-toc-label="Parcelas" class="slide " data-section="I.Contexto">
+    <h2 class="title">Ejemplos de <em>parcelas</em></h2>
+    <ul class="bullets">
+      <li><span><strong>Desarrollo de sitio web.</strong> con la documentación del framework, el diseño, las instrucciones de estilo y los archivos del proyecto.</span></li>
+      <li><span><strong>Gestión financiera.</strong> — con las reglas contables, los formatos de factura y el historial de transacciones.</span></li>
+      <li><span><strong>Investigación.</strong> — con las fuentes, la metodología, los borradores y los criterios de calidad.</span></li>
+      <li><span><strong>Comunicación social.</strong> — con la guía de tono, las audiencias, los canales y los mensajes clave.</span></li>
+      
+    </ul>
+  </section>
+
+  <!-- DESTACADO LÁMPARA -->
+  <section data-subsection="El jardín" class="slide divider-lampara " data-section="I.Contexto">
+    <h2 class="title"><em>Claude Cowork</em></h2>
+  </section>
+
+  <!-- TITULO + STEPS -->
+  <section data-subsection="El jardín" data-toc-label="Consejos" class="slide " data-section="I.Contexto">
+    <h2 class="title">Cultivar un <em>jardín</em></h2>
+    <ol class="steps">
+      <li><span class="num">01</span><span><strong>Elige con cuidado</strong>. Los jardines implican trabajo, solo abre nuevas parcelas si estás dispuesto a mantenerlas y realmente hay beneficio.</span></li>
+      <li><span class="num">02</span><span><strong>Define el contexto mínimo.</strong> Instrucciones, archivos clave, reglas... Es mejor empezar con poco e ir agregando solo lo indispensable.</span></li>
+      <li><span class="num">03</span><span><strong>Itera.</strong> Lo que funciona se refina, lo que no se poda.</span></li>
+      <li><span class="num">04</span><span><strong>Acepta la curva técnica.</strong> El jardín requiere más conocimiento, pero es mucho más poderoso.</span></li>
+      
+    </ol>
+  </section>
+
+  <!-- ANTES / DESPUÉS -->
+  <section data-subsection="El jardín" data-toc-label="CLAUDE.md" data-steps="2" class="slide antes-despues-slide " data-section="I.Contexto">
+    <div class="ad-header">
+      <h2 class="title" style="font-size:clamp(1.5rem,2.8vw,2.2rem);margin-bottom:0">CLAUDE.md — la <em>tierra</em> del jardín</h2>
+    </div>
+    <div class="ad-cols">
+      <div class="ad-panel ad-panel-antes">
+        <span class="ad-etiqueta">Sin CLAUDE.md</span>
+        <p class="ad-contenido">Cada conversación empieza de cero. Repites quién eres, cómo trabajas, qué tono quieres, qué reglas aplican. El chatbot no tiene memoria de tus decisiones anteriores.
+</p>
+      </div>
+      <div class="ad-panel ad-panel-despues">
+        <span class="ad-etiqueta">Con CLAUDE.md</span>
+        <p class="ad-contenido">Un archivo de texto plano que Claude lee al abrir cualquier conversación. Tu nombre, tu rol, tus preferencias, tus reglas.
+</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TITULO + CUERPO -->
+  <section data-subsection="El jardín" data-toc-label="Skills" class="slide " data-section="I.Contexto">
+    <h2 class="title">Skills: <em>injertos</em> para el jardín</h2>
+    <p class="body">Un skill es una carpeta con instrucciones y contexto que Claude puede invocar para tareas específicas — crear documentos, procesar datos, armar presentaciones. Actualmente son <strong class="circled">el mejor control</strong> para garantizar que la IA haga exactamente lo que necesitas en momentos concretos.</p>
+  </section>
+
+  <!-- RECAP -->
+  <section data-toc-label="Síntesis" class="slide " data-section="I.Contexto">
+    <h2 class="title">Ingeniería de <em>contexto</em></h2>
+    <div class="recap-list">
+      <div class="recap-item">
+        <span class="recap-num">01</span>
+        <span class="recap-text"><strong>El contexto importa más que el prompt.</strong> El prompt es una línea. El contexto es todo lo que la IA sabe de ti, tu trabajo y tus reglas.</span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">02</span>
+        <span class="recap-text"><strong>Cada modelo tiene fortalezas y límites.</strong> El supermercado es cómodo, pero opaco. La plaza es fragmentada, pero práctica. El estudio es personal, pero centralizado. El jardín es poderoso, pero exige mantenimiento.</span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">03</span>
+        <span class="recap-text"><strong>El contexto se diseña, no se acumula.</strong> No es dar más información — es dar la correcta, estructurada e intencional.</span>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <section class="slide divider " data-section="">
+    <p class="label">MAIA</p>
+    <h2 class="title">MARCO DE AUMENTO CON IA (MAIA)</h2>
+    <span class="sec-num" aria-hidden="true">5</span>
+  </section>
+
+  <!-- TITULO + CUERPO -->
+  <section data-toc-label="Aumentar" class="slide " data-section="MAIA">
+    <h2 class="title">Las herramientas sirven para <em>aumentar</em></h2>
+    <p class="body">Aumentar es <strong class="circled">expandir el espacio de problemas</strong> que puedes comprender y trabajar: situaciones complejas, relaciones difíciles de percibir, soluciones que antes no estaban disponibles.</p>
+  </section>
+
+  <!-- COLS + CARDS -->
+  <section data-toc-label="Tipos de trabajo" class="slide " data-section="MAIA">
+    <h2 class="title">Dos tipos de <em>trabajo</em></h2>
+    <div class="cols ">
+      <div class="card">
+        <p class="card-label">Lo que requiere juicio</p>
+        <p class="card-title">Trabajo cognitivo</p>
+        <p class="card-body">Interpretar, decidir, formular. Depende del contexto y del criterio situado. No se delega sin pérdida.</p>
+      </div>
+      <div class="card">
+        <p class="card-label">Lo que requiere consistencia</p>
+        <p class="card-title">Trabajo operativo</p>
+        <p class="card-body">Ejecutar, registrar, repetir. El criterio ya está definido. Delegable cuando las reglas son claras.</p>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- DESTACADO LÁMPARA -->
+  <section data-toc-label="Metacognición" class="slide divider-lampara " data-section="MAIA">
+    <h2 class="title">La metacognición es la habilidad más importante al trabajar con IA.</h2>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Cuándo usar IA" data-steps="7" class="slide diagram-slide " data-section="MAIA">
+    <div class="diagram-header">
+      <h2 class="diagram-title">¿Cuándo <em>sí</em> usar IA?</h2>
+    </div>
+    <div class="diagram-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;width:100%;font-family:inherit;">
+  <div class="si-c1" style="background:var(--bg2);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Volumen</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">La tarea supera la capacidad atencional humana sostenida</div>
+  </div>
+  <div class="si-c2" style="background:var(--bg2);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Repetición con criterio estable</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">Una vez definido el criterio, la ejecución es delegable</div>
+  </div>
+  <div class="si-c3" style="background:var(--bg2);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Borrador antes de criterio</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">El valor humano está en evaluar, no en producir el borrador</div>
+  </div>
+  <div class="si-c4" style="background:var(--bg2);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Carga sin decisión</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">Consume tiempo y energía sin requerir juicio real</div>
+  </div>
+  <div class="si-c5" style="background:var(--bg2);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Punto ciego propio</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">Tu criterio puede estar contaminado; la IA actúa como contrapeso</div>
+  </div>
+  <div class="si-c6" style="background:var(--bg2);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Fricción de captura</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">Información valiosa que se pierde porque registrarla cuesta demasiado</div>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Cuándo no usar IA" data-steps="5" class="slide diagram-slide " data-section="MAIA">
+    <div class="diagram-header">
+      <h2 class="diagram-title">¿Cuándo <em>no</em> usar IA?</h2>
+    </div>
+    <div class="diagram-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;width:100%;font-family:inherit;">
+  <div class="no-c1" style="background:var(--signal);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Responsabilidad no transferible</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">La IA puede informar y explorar, nunca decidir</div>
+  </div>
+  <div class="no-c2" style="background:var(--signal);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Presencia humana como valor</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">El valor de la actividad reside en que la hace una persona específica</div>
+  </div>
+  <div class="no-c3" style="background:var(--signal);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Proceso con valor intrínseco</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">El esfuerzo es parte del resultado, no un costo que reducir</div>
+  </div>
+  <div class="no-c4" style="background:var(--signal);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Conservación de capacidad</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">Si quieres mantener una habilidad propia, redirige el aumento; no delegues la ejecución</div>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="5 modos de ejecución" data-steps="6" data-spotlight="true" class="slide diagram-slide " data-section="MAIA">
+    <div class="diagram-header">
+      <h2 class="diagram-title">Los 5 <em>modos</em> de trabajo con IA</h2>
+    </div>
+    <div class="diagram-body">
+      <svg viewBox="0 0 1000 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:260px;font-family:inherit">
+  <defs>
+    <linearGradient id="modos-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#3A4A40"/>
+      <stop offset="50%"  stop-color="#C8D44A"/>
+      <stop offset="100%" stop-color="#A83828"/>
+    </linearGradient>
+  </defs>
+  <!-- Siempre visible: labels + barra -->
+  <text x="100" y="16" font-size="11" font-weight="500" fill="var(--bg2)" letter-spacing=".1em">HUMANO</text>
+  <text x="900" y="16" font-size="11" font-weight="500" fill="var(--signal)" letter-spacing=".1em" text-anchor="end">IA GENERATIVA</text>
+  <rect x="100" y="26" width="800" height="7" rx="3.5" fill="url(#modos-grad)"/>
+  <!-- Modo 0 — Ejecución humana -->
+  <g data-step="0">
+    <circle cx="100" cy="29.5" r="10" fill="var(--bg2)"/>
+    <line x1="100" y1="40" x2="100" y2="58" stroke="var(--ink)" stroke-width="1" opacity=".2"/>
+    <text x="100" y="96" font-size="36" font-family="'Courier New',monospace" fill="var(--bg2)" text-anchor="middle" font-weight="700">0</text>
+    <text x="100" y="119" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="600">Ejecución humana</text>
+    <text x="100" y="141" font-size="11.5" fill="var(--muted)" text-anchor="middle">Sin IA. Criterio y</text>
+    <text x="100" y="158" font-size="11.5" fill="var(--muted)" text-anchor="middle">ejecución humanos.</text>
+  </g>
+  <!-- Modo 1 — Apoyo contextual -->
+  <g data-step="1">
+    <circle cx="300" cy="29.5" r="10" fill="#818F45"/>
+    <line x1="300" y1="40" x2="300" y2="58" stroke="var(--ink)" stroke-width="1" opacity=".2"/>
+    <text x="300" y="96" font-size="36" font-family="'Courier New',monospace" fill="#818F45" text-anchor="middle" font-weight="700">1</text>
+    <text x="300" y="119" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="600">Apoyo contextual</text>
+    <text x="300" y="141" font-size="11.5" fill="var(--muted)" text-anchor="middle">IA clarifica.</text>
+    <text x="300" y="158" font-size="11.5" fill="var(--muted)" text-anchor="middle">Persona decide y ejecuta.</text>
+  </g>
+  <!-- Modo 2 — Exploración colaborativa -->
+  <g data-step="2">
+    <circle cx="500" cy="29.5" r="10" fill="var(--accent)"/>
+    <line x1="500" y1="40" x2="500" y2="58" stroke="var(--ink)" stroke-width="1" opacity=".2"/>
+    <text x="500" y="96" font-size="36" font-family="'Courier New',monospace" fill="var(--accent)" text-anchor="middle" font-weight="700">2</text>
+    <text x="500" y="119" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="600">Exploración colaborativa</text>
+    <text x="500" y="141" font-size="11.5" fill="var(--muted)" text-anchor="middle">IA genera opciones.</text>
+    <text x="500" y="158" font-size="11.5" fill="var(--muted)" text-anchor="middle">Persona orienta y elige.</text>
+  </g>
+  <!-- Modo 3 — Ejecución asistida -->
+  <g data-step="3">
+    <circle cx="700" cy="29.5" r="10" fill="#B88639"/>
+    <line x1="700" y1="40" x2="700" y2="58" stroke="var(--ink)" stroke-width="1" opacity=".2"/>
+    <text x="700" y="96" font-size="36" font-family="'Courier New',monospace" fill="#B88639" text-anchor="middle" font-weight="700">3</text>
+    <text x="700" y="119" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="600">Ejecución asistida</text>
+    <text x="700" y="141" font-size="11.5" fill="var(--muted)" text-anchor="middle">IA ejecuta bajo criterios.</text>
+    <text x="700" y="158" font-size="11.5" fill="var(--muted)" text-anchor="middle">Persona revisa calidad.</text>
+  </g>
+  <!-- Modo 4 — Delegación operativa -->
+  <g data-step="4">
+    <circle cx="900" cy="29.5" r="10" fill="var(--signal)"/>
+    <line x1="900" y1="40" x2="900" y2="58" stroke="var(--ink)" stroke-width="1" opacity=".2"/>
+    <text x="900" y="96" font-size="36" font-family="'Courier New',monospace" fill="var(--signal)" text-anchor="middle" font-weight="700">4</text>
+    <text x="900" y="119" font-size="13" fill="var(--ink)" text-anchor="middle" font-weight="600">Delegación operativa</text>
+    <text x="900" y="141" font-size="11.5" fill="var(--muted)" text-anchor="middle">IA opera sola.</text>
+    <text x="900" y="158" font-size="11.5" fill="var(--muted)" text-anchor="middle">Supervisión periódica.</text>
+  </g>
+</svg>
+
+    </div>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Modelos + modos" data-steps="2" class="slide diagram-slide " data-section="MAIA">
+    <div class="diagram-header">
+      <h2 class="diagram-title"><em>Modelos</em> contextuales × modos MAIA</h2>
+    </div>
+    <div class="diagram-body">
+      <svg viewBox="0 0 820 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:820px;font-family:inherit">
+  <!-- Grid 2×2 -->
+  <rect x="200" y="70" width="580" height="340" rx="4" fill="none" stroke="#1E2420" stroke-width="1" stroke-opacity=".12"/>
+  <line x1="200" y1="240" x2="780" y2="240" stroke="#1E2420" stroke-width=".5" stroke-opacity=".12"/>
+  <line x1="490" y1="70" x2="490" y2="410" stroke="#1E2420" stroke-width=".5" stroke-opacity=".12"/>
+
+  <!-- Column headers -->
+  <text x="345" y="50" font-size="13" fill="#6B7A50" text-anchor="middle" font-weight="600">La empresa</text>
+  <text x="635" y="50" font-size="13" fill="#6B7A50" text-anchor="middle" font-weight="600">Tú</text>
+
+  <!-- Row headers -->
+  <text x="185" y="155" font-size="13" fill="#6B7A50" text-anchor="end" font-weight="600">Centralizado</text>
+  <text x="185" y="325" font-size="13" fill="#6B7A50" text-anchor="end" font-weight="600">Distribuido</text>
+
+  <!-- Axis labels -->
+  <text x="490" y="28" font-size="11" fill="#6B7A50" text-anchor="middle" font-weight="400" font-style="italic">¿Quién diseña el contexto?</text>
+  <text x="22" y="240" font-size="11" fill="#6B7A50" text-anchor="middle" font-weight="400" font-style="italic" transform="rotate(-90,22,240)">¿Cómo se distribuye?</text>
+
+  <!-- Position names (always visible) -->
+  <text x="345" y="148" font-size="15" fill="#1E2420" text-anchor="middle" font-weight="700">El supermercado</text>
+  <text x="345" y="168" font-size="11" fill="#6B7A50" text-anchor="middle">Pasillos diseñados por otro</text>
+
+  <text x="345" y="318" font-size="15" fill="#1E2420" text-anchor="middle" font-weight="700">La plaza comercial</text>
+  <text x="345" y="338" font-size="11" fill="#6B7A50" text-anchor="middle">Tiendas sueltas, sin conexión</text>
+
+  <text x="635" y="148" font-size="15" fill="#1E2420" text-anchor="middle" font-weight="700">El estudio</text>
+  <text x="635" y="168" font-size="11" fill="#6B7A50" text-anchor="middle">Tu espacio, tu diseño</text>
+
+  <text x="635" y="318" font-size="15" fill="#1E2420" text-anchor="middle" font-weight="700">El jardín</text>
+  <text x="635" y="338" font-size="11" fill="#6B7A50" text-anchor="middle">Cultivas parcela por parcela</text>
+
+  <!-- Step 1: MAIA ceilings appear -->
+  <g class="ic-maia">
+    <rect x="290" y="182" width="110" height="22" rx="11" fill="#A83828" opacity=".12"/>
+    <text x="345" y="197" font-size="10.5" fill="#A83828" text-anchor="middle" font-weight="600">Modo 2</text>
+
+    <rect x="290" y="352" width="110" height="22" rx="11" fill="#A83828" opacity=".12"/>
+    <text x="345" y="367" font-size="10.5" fill="#A83828" text-anchor="middle" font-weight="600">Modo 2–3</text>
+
+    <rect x="580" y="182" width="110" height="22" rx="11" fill="#A83828" opacity=".12"/>
+    <text x="635" y="197" font-size="10.5" fill="#A83828" text-anchor="middle" font-weight="600">Modo 3</text>
+
+    <rect x="580" y="352" width="110" height="22" rx="11" fill="#A83828" opacity=".12"/>
+    <text x="635" y="367" font-size="10.5" fill="#A83828" text-anchor="middle" font-weight="600">Modo 3–4</text>
+  </g>
+</svg>
+
+    </div>
+  </section>
+
+  <!-- CUERPO LARGO -->
+  <section data-toc-label="Techo de aumento" class="slide cuerpo-largo-slide " data-section="MAIA">
+    <h2 class="cl-titulo">El <em>techo</em> de aumento</h2>
+    <p class="cl-cuerpo">Cada modelo contextual tiene un <strong class="circled">techo</strong>: el modo de ejecución más alto al que puedes llegar de forma confiable. El supermercado te limita al modo 2. El jardín te habilita hasta el modo 3–4.</p>
+    <p class="cl-cuerpo">El techo no es una barrera arbitraria — es <em>estructural</em>. Sin contexto diseñado, la IA no tiene con qué ejecutar bajo tus criterios. Con contexto distribuido e intencional, puede operar con autonomía real.</p>
+    <p class="cl-cuerpo">La ingeniería de contexto es, entonces, la práctica de mover tu techo hacia arriba: diseñar la información que la IA necesita para <em>aumentar</em> tu trabajo, no solo responder tus preguntas.</p>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Síntesis" class="slide diagram-slide " data-section="MAIA">
+    <div class="diagram-header">
+      <h2 class="diagram-title"></h2>
+    </div>
+    <div class="diagram-body">
+      <div style="display:flex;justify-content:center;align-items:center;width:100%;height:100%;">
+  <iframe src="Recursos/anatomia-chatbot.html" style="width:100%;height:80vh;border:none;border-radius:8px;"></iframe>
+</div>
+
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <section class="slide divider " data-section="">
+    <p class="label">Conclusiones</p>
+    <h2 class="title">Conclusiones</h2>
+    <span class="sec-num" aria-hidden="true">6</span>
+  </section>
+
+  <!-- CUERPO LARGO -->
+  <section data-toc-label="El jardín" class="slide cuerpo-largo-slide " data-section="Conclusiones">
+    <h2 class="cl-titulo">El jardín es una decisión <em>política</em></h2>
+    <p class="cl-cuerpo">Los otros modelos dependen de la infraestructura de una empresa: sus servidores, sus decisiones de producto, sus incentivos comerciales. Si la empresa cambia el precio, cierra una función o redirige su modelo de negocio, tu contexto se va con ella.</p>
+    <p class="cl-cuerpo">El jardín invierte esa relación. El contexto es tuyo: archivos locales, instrucciones que tú escribes, reglas que tú defines. Y cada parcela puede usar el modelo que necesita — uno potente para análisis complejos, uno ligero para tareas mecánicas, uno abierto para lo que no quieres que salga de tu máquina.</p>
+    <p class="cl-cuerpo">Una IA más comunitaria, menos concentrada y más responsable empieza por quién controla el contexto. El jardín no es solo el modelo más poderoso — es el más <strong class="circled">compatible</strong> con esa dirección.</p>
+  </section>
+
+  <!-- TITULO + CUERPO -->
+  <section data-toc-label="Código abierto" class="slide " data-section="Conclusiones">
+    <h2 class="title">El jardín ya no depende de <em>nadie</em></h2>
+    <p class="body">El 31 de marzo de 2026, Anthropic filtró por accidente el código fuente completo de Claude Code — 500,000 líneas, 2,000 archivos, toda la arquitectura. En horas, miles de copias circulaban en GitHub. El resultado: <strong class="circled">la infraestructura para construir un jardín ya es replicable con cualquier modelo</strong>.</p>
+  </section>
+
+  <!-- MATRIX -->
+  <section data-toc-label="Modelos abiertos" class="slide " data-section="Conclusiones">
+    <h2 class="title">Modelos <em>abiertos</em> hoy</h2>
+    <table class="matrix">
+      <tr><th>Modelo</th><th>Quién</th><th>Perfil</th><th>Usos</th></tr>
+      <tr><td><em>Llama 4</em></td><td>Meta</td><td>MoE, 17B activos. Scout: 10M tokens de contexto.</td><td>Análisis, redacción, razonamiento.</td></tr>
+      <tr><td><em>DeepSeek V4</em></td><td>DeepSeek</td><td>~1T params, 37B activos. 1M de contexto. MIT.</td><td>Código, ingeniería de software, contexto largo.</td></tr>
+      <tr><td><em>Qwen 3.5</em></td><td>Alibaba</td><td>Multimodal nativo, 201 idiomas, 256K tokens.</td><td>Proyectos multilingües, análisis de imágenes y documentos.</td></tr>
+      <tr><td><em>GLM-5</em></td><td>Zhipu AI</td><td>744B total, 40B activos. MIT.</td><td>Razonamiento, matemáticas, código. Muy competitivo.</td></tr>
+      <tr><td><em>Mistral Small 4</em></td><td>Mistral</td><td>6B params activos. Corre en laptops. Apache 2.0.</td><td>Tareas rápidas locales: borradores, clasificación, resúmenes.</td></tr>
+      <tr><td><em>Phi-4</em></td><td>Microsoft</td><td>3.8B params, 128K contexto.</td><td>Lógica y matemáticas en dispositivos con recursos limitados.</td></tr>
+      
+    </table>
+  </section>
+
+  <!-- TITULO + BULLETS -->
+  <section data-toc-label="Anuncio" class="slide " data-section="Conclusiones">
+    <h2 class="title">Trabajar con IA — <em>Claude Cowork</em></h2>
+    <ul class="bullets">
+      <li><span>Un taller práctico para construir tu jardín desde cero: diseñar proyectos, escribir instrucciones, instalar skills, conectar herramientas.</span></li>
+      <li><span><strong>Duración:</strong> 4 horas · <strong>Precio:</strong> $800 MXN · <strong>Fecha:</strong> por confirmar</span></li>
+      <li><span><strong>Graduados de fundamenteos:</strong>  Inscribete en los próximos 10 días y recibe un 20% de descuento.</span></li>
+      
+    </ul>
+  </section>
+
+  <!-- CIERRE -->
+  <section data-toc-label="Gracias" class="slide cierre " data-section="Conclusiones">
+    <h1 class="title">¡Gracias!</h1>
+    <div class="cierre-rule"></div>
+    
+    <div class="cierre-contacto">
+      <p class="cierre-nombre">Armando Sobrino</p>
+      <div class="cierre-links">
+        <span class="cierre-dato">iatelier.org</span>
+        <span class="cierre-dato">info@iatelier.org</span>
+        <span class="cierre-dato">Substack @armandosmh</span>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGRAMA IMAGEN -->
+  <section class="slide diagram-slide " data-section="">
+    <div class="diagram-header">
+      <h2 class="diagram-title">Mi <em>diagrama</em></h2>
+    </div>
+    <div class="diagram-body">
+      <figure class="di-figure">
+        <img src="Recursos/diagrama.svg" alt="Diagrama de los modos de ejecución MAIA">
+        
+      </figure>
+    </div>
+  </section>
+</div><!-- /stage -->
+
+<script>
+  const slides     = document.querySelectorAll('.slide');
+  const counter    = document.getElementById('counter');
+  const secLabel   = document.getElementById('section-label');
+  const progress   = document.getElementById('progress');
+  const tocEl      = document.getElementById('toc');
+  const tocList    = document.getElementById('toc-list');
+  const tocSecName = document.getElementById('toc-section-name');
+  const tocBtn     = document.getElementById('toc-btn');
+  const total      = slides.length;
+  let current      = 0;
+  let currentStep  = 0;
+  let animating    = false;
+  let tocExpanded  = false;
+
+  // tocEnabled se inyecta por build.py según meta.barra_lateral
+  // Si no existe en el HTML, la barra no se activa.
+  const TOC_ENABLED = typeof true !== 'undefined' ? true : false;
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  // ── TOC: inicializar si está habilitada ──────────────────────
+  if (TOC_ENABLED) {
+    document.body.classList.add('toc-enabled');
+  }
+
+  // ── TOC: construir lista plana de todos los slides con sección ──
+  // Devuelve un array ordenado: [{ idx, label, section, subsection }, ...]
+  // Además construye tocSections: array ordenado de secciones únicas
+  function buildTocIndex() {
+    const flat = [];
+    const sectionsOrder = [];
+    const sectionsSet = new Set();
+    slides.forEach((slide, i) => {
+      const sec = (slide.dataset.section || '').trim();
+      if (!sec) return;
+      const sub = (slide.dataset.subsection || '').trim();
+      // Preferir data-toc-label (editorial); si no existe, usar el título automático
+      const tocLabelAttr = (slide.dataset.tocLabel || '').trim();
+      const titleEl = slide.querySelector('.title, .diagram-title');
+      let label = tocLabelAttr || (titleEl ? titleEl.textContent.trim().replace(/\s+/g, ' ') : '');
+      // Solo truncar si el label viene del título automático (no del atributo editorial)
+      if (!tocLabelAttr && label.length > 28) label = label.slice(0, 26) + '…';
+      if (!label) label = `Slide ${i + 1}`;
+      flat.push({ idx: i, label, section: sec, subsection: sub });
+      if (!sectionsSet.has(sec)) {
+        sectionsSet.add(sec);
+        sectionsOrder.push(sec);
+      }
+    });
+    return { flat, sectionsOrder };
+  }
+  const { flat: tocFlat, sectionsOrder: tocSections } = buildTocIndex();
+
+  // ── TOC: construir la lista completa (una sola vez) ──────────
+  // Los items se guardan en un Map para actualizar sus clases después
+  const tocItemEls = new Map(); // idx → li element
+  const tocSubSepEls = [];     // [{ el, firstIdx }] — subsection separators with their first slide index
+
+  function buildTocFull() {
+    if (!TOC_ENABLED) return;
+    tocList.innerHTML = '';
+    tocSubSepEls.length = 0;
+    tocSections.forEach((sec, secIdx) => {
+      // Separador de sección
+      if (secIdx > 0) {
+        const sep = document.createElement('li');
+        sep.className = 'toc-section-sep';
+        sep.setAttribute('aria-hidden', 'true');
+        sep.innerHTML = `<span class="toc-section-sep-line"></span><span class="toc-section-sep-text">${sec}</span>`;
+        tocList.appendChild(sep);
+      } else {
+        const sep = document.createElement('li');
+        sep.className = 'toc-section-sep';
+        sep.setAttribute('aria-hidden', 'true');
+        sep.innerHTML = `<span class="toc-section-sep-line" style="margin-left:0;"></span><span class="toc-section-sep-text">${sec}</span>`;
+        tocList.appendChild(sep);
+      }
+
+      // Items de esta sección, agrupados por subsección
+      const items = tocFlat.filter(it => it.section === sec);
+      let currentSub = null;
+      items.forEach(({ idx, label, subsection }) => {
+        // Si hay subsección y cambió, insertar separador de subsección
+        if (subsection && subsection !== currentSub) {
+          currentSub = subsection;
+          const subSep = document.createElement('li');
+          subSep.className = 'toc-subsection-sep';
+          subSep.setAttribute('aria-hidden', 'true');
+          subSep.innerHTML = `<span class="toc-subsection-sep-line"></span><span class="toc-subsection-text">${subsection}</span>`;
+          tocList.appendChild(subSep);
+          tocSubSepEls.push({ el: subSep, firstIdx: idx });
+        } else if (!subsection && currentSub) {
+          currentSub = null;
+        }
+        const li = document.createElement('li');
+        li.className = 'toc-item' + (subsection ? ' toc-item-sub' : '');
+        li.innerHTML = `<span class="toc-dot"></span><span class="toc-label">${label}</span>`;
+        li.addEventListener('click', () => goTo(idx));
+        tocList.appendChild(li);
+        tocItemEls.set(idx, li);
+      });
+    });
+  }
+
+  // ── TOC: actualizar estados visitado/activo/por-venir ────────
+  function updateTocStates() {
+    if (!TOC_ENABLED) return;
+    tocItemEls.forEach((li, idx) => {
+      li.classList.remove('active', 'visited');
+      if (idx === current)      li.classList.add('active');
+      else if (idx < current)   li.classList.add('visited');
+    });
+    // Subsection separators: mark as visited when we've reached or passed their first slide
+    tocSubSepEls.forEach(({ el, firstIdx }) => {
+      el.classList.remove('visited');
+      if (firstIdx <= current) el.classList.add('visited');
+    });
+    // Progress line: calcular altura hasta el dot activo
+    const activeEl = tocItemEls.get(current);
+    if (activeEl) {
+      const dot = activeEl.querySelector('.toc-dot');
+      if (dot) {
+        const listRect = tocList.getBoundingClientRect();
+        const dotRect  = dot.getBoundingClientRect();
+        const offset   = (dotRect.top + dotRect.height / 2) - listRect.top + tocList.scrollTop;
+        tocList.style.setProperty('--toc-progress', `${offset}px`);
+      }
+      // Scroll suave para mantener el ítem activo visible
+      activeEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  }
+
+  // Alias para mantener compatibilidad con la llamada en updateUI
+  function renderToc(_sec) {
+    updateTocStates();
+  }
+
+  // ── TOC: toggle texto (colapsar/expandir) ────────────────────
+  function expandToc() {
+    tocExpanded = true;
+    document.body.classList.add('toc-expanded');
+    tocBtn.classList.add('expanded');
+  }
+  function collapseToc() {
+    tocExpanded = false;
+    document.body.classList.remove('toc-expanded');
+    tocBtn.classList.remove('expanded');
+  }
+  function toggleToc() { tocExpanded ? collapseToc() : expandToc(); }
+
+  if (tocBtn) tocBtn.addEventListener('click', () => {
+    if (!TOC_ENABLED) return;
+    toggleToc();
+  });
+
+  // ── Chrome + TOC update ──────────────────────────────────────
+  function updateUI() {
+    progress.style.width = `${((current + 1) / total) * 100}%`;
+
+    const sec = (slides[current].dataset.section || '').trim();
+    const sub = (slides[current].dataset.subsection || '').trim();
+    const num = `${pad(current + 1)} / ${pad(total)}`;
+    // Sección + subsección + número en la esquina superior derecha
+    // "SECCIÓN · Subsección · 01/12" or "SECCIÓN · 01/12" or just "01/12"
+    const labelParts = [sec, sub].filter(Boolean).join(' · ');
+    secLabel.textContent = labelParts ? `${labelParts} · ${num}` : num;
+
+    // Fondos oscuros (pizarra, pizarra media, ladrillo) → chrome blanco
+    // Fondos claros (tiza, lámpara) → chrome oscuro (default)
+    const isLightAccent = slides[current].classList.contains('divider-lampara');
+    const isDark = !isLightAccent && (
+                   slides[current].classList.contains('cover') ||
+                   slides[current].classList.contains('divider') ||
+                   slides[current].classList.contains('divider-ladrillo') ||
+                   slides[current].classList.contains('subseccion-entry') ||
+                   slides[current].classList.contains('cierre'));
+    const chrome = [secLabel, document.getElementById('footer'),
+                    document.getElementById('nav')];
+    chrome.forEach(el => {
+      if (!el) return;
+      el.style.color = isDark ? 'rgba(255,255,255,.35)'
+                     : isLightAccent ? 'rgba(30,36,32,.4)'
+                     : '';
+    });
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.style.borderColor = isDark ? 'rgba(255,255,255,.3)'
+                            : isLightAccent ? 'rgba(30,36,32,.3)'
+                            : '';
+      btn.style.color = isDark ? 'rgba(255,255,255,.3)'
+                      : isLightAccent ? 'rgba(30,36,32,.3)'
+                      : '';
+    });
+    // toc-btn mantiene su color de estado independientemente del slide
+    if (tocExpanded) {
+      tocBtn.style.borderColor = 'var(--accent)';
+      tocBtn.style.color = 'var(--accent)';
+    } else {
+      tocBtn.style.borderColor = '';
+      tocBtn.style.color = '';
+    }
+    document.getElementById('footer-title').style.color = isDark ? 'rgba(255,255,255,.7)'
+                                                        : isLightAccent ? 'rgba(30,36,32,.7)'
+                                                        : '';
+    document.getElementById('footer-sub').style.color   = isDark ? 'rgba(255,255,255,.35)'
+                                                        : isLightAccent ? 'rgba(30,36,32,.4)'
+                                                        : '';
+    progress.style.background = isDark ? 'rgba(255,255,255,.4)'
+                               : isLightAccent ? 'rgba(30,36,32,.35)'
+                               : 'var(--accent)';
+
+    // Actualizar barra lateral
+    if (TOC_ENABLED) renderToc(sec);
+
+    // N — animar contadores si el slide tiene .big-num
+    animateCounters(slides[current]);
+
+    // J — actualizar progreso por sección
+    updateSecProgress();
+  }
+
+  // ── Navegación ───────────────────────────────────────────────
+  function goTo(n) {
+    if (animating) return;
+    const next = ((n % total) + total) % total;
+    if (next === current) return;
+
+    animating = true;
+    const dir = next > current ? 1 : -1;
+
+    const exiting = slides[current];
+    exiting.classList.remove('active');
+    for (let s = 0; s <= 9; s++) exiting.classList.remove('step-' + s);
+    exiting.classList.add('exit');
+    exiting.style.transform = `translateY(${dir < 0 ? '1.5rem' : '-1.5rem'})`;
+
+    current = next;
+    const entering = slides[current];
+    entering.style.transition = 'none';
+    entering.style.transform = `translateY(${dir > 0 ? '1.5rem' : '-1.5rem'})`;
+    entering.style.opacity = '0';
+    entering.classList.add('active');
+    currentStep = 0;
+    entering.classList.add('step-0');
+
+    // L — aplicar spotlight inicial (step 0) si el slide lo tiene
+    applySpotlight(entering, 0);
+
+    entering.getBoundingClientRect(); // force reflow
+
+    entering.style.transition = '';
+    entering.style.transform = '';
+    entering.style.opacity   = '';
+
+    updateUI();
+
+    // K — cortinilla al entrar en una sección nueva (cualquier tipo de divider)
+    const enteringIsDivider = entering.classList.contains('divider');
+    if (enteringIsDivider) triggerSectionWipe(entering);
+
+    const cleanupDelay = enteringIsDivider ? 530 : 380;
+    setTimeout(() => {
+      document.querySelectorAll('.slide.exit').forEach(s => {
+        s.classList.remove('exit');
+        s.style.transform = '';
+        s.style.opacity   = '';
+      });
+      animating = false;
+    }, cleanupDelay);
+  }
+
+  // ── Avance con pasos internos ─────────────────────────────────
+  // Si el slide activo tiene data-steps > 1, la primera "siguiente"
+  // avanza al paso interno en lugar de navegar al siguiente slide.
+  function tryAdvance() {
+    const slide = slides[current];
+    const totalSteps = parseInt(slide.dataset.steps || '1');
+    if (currentStep < totalSteps - 1) {
+      slide.classList.remove('step-' + currentStep);
+      currentStep++;
+      slide.classList.add('step-' + currentStep);
+      // L — actualizar spotlight en cada avance de paso
+      applySpotlight(slide, currentStep);
+    } else {
+      goTo(current + 1);
+    }
+  }
+
+  document.getElementById('next').addEventListener('click', () => tryAdvance());
+  document.getElementById('prev').addEventListener('click', () => goTo(current - 1));
+
+  document.addEventListener('keydown', e => {
+    if ((e.key === 'T' || e.key === 't') && TOC_ENABLED) { toggleToc(); return; }
+    if (e.key === 'Escape' && tocExpanded) { collapseToc(); return; }
+    if (['ArrowRight','ArrowDown',' '].includes(e.key)) { e.preventDefault(); tryAdvance(); }
+    if (['ArrowLeft','ArrowUp'].includes(e.key))        { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    if (e.key === 'End')  { e.preventDefault(); goTo(total - 1); }
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) { if (dx < 0) tryAdvance(); else goTo(current - 1); }
+  }, { passive: true });
+
+  // ── N. CONTADORES ANIMADOS ───────────────────────────────────
+  // Parsea .big-num en el primer render y guarda el valor numérico
+  // en data-count-target para reutilizarlo en cada visita al slide.
+
+  function initCounters() {
+    document.querySelectorAll('.big-num').forEach(el => {
+      if (el.dataset.countTarget) return; // ya inicializado
+      const raw = el.textContent.trim();
+      // Captura: prefijo (no-dígito), número (int o decimal), sufijo
+      const m = raw.match(/^([^0-9-]*)(-?[\d,]+(?:\.\d+)?)([^0-9,]*)$/);
+      if (!m) return;
+      el.dataset.countPrefix  = m[1];
+      el.dataset.countTarget  = m[2].replace(/,/g, '');
+      el.dataset.countSuffix  = m[3];
+      el.dataset.countIsFloat = m[2].includes('.') ? '1' : '0';
+    });
+  }
+
+  function animateCounters(slideEl) {
+    slideEl.querySelectorAll('.big-num[data-count-target]').forEach(el => {
+      const target  = parseFloat(el.dataset.countTarget);
+      const prefix  = el.dataset.countPrefix || '';
+      const suffix  = el.dataset.countSuffix || '';
+      const isFloat = el.dataset.countIsFloat === '1';
+      if (isNaN(target)) return;
+      const dur = 1300;
+      const t0  = performance.now();
+      function tick(now) {
+        const elapsed = Math.min((now - t0) / dur, 1);
+        const eased   = 1 - Math.pow(1 - elapsed, 3); // ease-out cubic
+        const val     = target * eased;
+        el.textContent = prefix + (isFloat ? val.toFixed(1) : Math.round(val)) + suffix;
+        if (elapsed < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // ── K. CORTINILLA DE SECCIÓN ─────────────────────────────────
+  const sectionWipe = document.getElementById('section-wipe');
+
+  function triggerSectionWipe(slideEl) {
+    if (!sectionWipe) return;
+    const wipeColor = slideEl.classList.contains('divider-lampara')  ? 'wipe-lampara'
+                    : slideEl.classList.contains('divider-ladrillo') ? 'wipe-ladrillo'
+                    : 'wipe-divider';
+    sectionWipe.className = wipeColor + ' wipe-active';
+    // Limpiar clase después de que termine la animación (520ms)
+    setTimeout(() => { sectionWipe.className = wipeColor; }, 520);
+  }
+
+  // ── L. SPOTLIGHT EN SVGs CON STEPS ───────────────────────────
+  // Gestiona sp-lit / sp-dim en elementos con [data-step]
+  // cuando el slide tiene [data-spotlight].
+
+  function applySpotlight(slideEl, stepN) {
+    if (!slideEl.dataset.spotlight) return;
+    const targets = slideEl.querySelectorAll('[data-step]');
+    if (!targets.length) return;
+    targets.forEach(el => {
+      const elStep = parseInt(el.dataset.step);
+      el.classList.remove('sp-lit', 'sp-dim');
+      if (elStep === stepN)       el.classList.add('sp-lit');
+      else if (elStep < stepN)    el.classList.add('sp-dim');
+      // elStep > stepN: sin clase (oculto por CSS base)
+    });
+  }
+
+  // ── B. AUTO-STEPS PARA DIAGRAMAS ─────────────────────────────
+  // Detecta la estructura del diagram-body (grid o directa),
+  // añade data-auto-cols al elemento grid y fija data-steps
+  // al nº de filas o elementos detectados.
+
+  function parseGridCols(gridTemplateColumns) {
+    const str = (gridTemplateColumns || '').trim();
+    const m = str.match(/^repeat\s*\(\s*(\d+)/i);
+    if (m) return parseInt(m[1]);
+    return str.split(/\s+/).filter(Boolean).length;
+  }
+
+  function initAutoSteps() {
+    document.querySelectorAll('.slide[data-auto-steps]').forEach(slide => {
+      const body = slide.querySelector('.diagram-body');
+      if (!body) return;
+
+      let count = 0;
+
+      // Caso 1: hay un elemento con grid-template-columns inline
+      const gridEl = body.querySelector('[style*="grid-template-columns"]');
+      if (gridEl) {
+        const styleStr = gridEl.getAttribute('style') || '';
+        const m = styleStr.match(/grid-template-columns\s*:\s*([^;]+)/);
+        if (m) {
+          const cols  = parseGridCols(m[1]);
+          count = Math.ceil(gridEl.children.length / cols);
+          gridEl.dataset.autoCols = String(cols);
+        }
+      }
+
+      // Caso 2: varios hijos directos de diagram-body (sin grid)
+      if (!count && body.children.length > 1) {
+        count = body.children.length;
+        body.dataset.autoDirect = 'true';
+        slide.dataset.autoDirect = 'true';
+      }
+
+      if (count > 1) slide.dataset.steps = count;
+    });
+  }
+
+  // ── J. PROGRESO POR SECCIÓN ──────────────────────────────────
+  // Construye dots indicadores en #sec-progress mostrando la
+  // posición del slide actual dentro de su sección.
+  const secProgressEl = document.getElementById('sec-progress');
+
+  function updateSecProgress() {
+    if (!secProgressEl) return;
+    const slide    = slides[current];
+    const sec      = (slide.dataset.section || '').trim();
+    const isDark   = slide.classList.contains('cover') ||
+                     slide.classList.contains('divider') ||
+                     slide.classList.contains('divider-ladrillo') ||
+                     slide.classList.contains('subseccion-entry') ||
+                     slide.classList.contains('cierre') ||
+                     slide.classList.contains('quote-slide');
+    const isLight  = slide.classList.contains('divider-lampara');
+
+    if (!sec) {
+      secProgressEl.classList.add('hidden');
+      return;
+    }
+
+    // Slides de la misma sección (excluye covers/dividers que tienen data-section="")
+    const secSlides  = Array.from(slides).filter(s => (s.dataset.section || '').trim() === sec);
+    const posInSec   = secSlides.indexOf(slide);
+
+    if (secSlides.length <= 1) {
+      secProgressEl.classList.add('hidden');
+      return;
+    }
+
+    // Construir dots
+    secProgressEl.innerHTML = secSlides.map((_, i) => {
+      let cls = 'sp-dot';
+      if (i < posInSec)  cls += ' sp-visited';
+      if (i === posInSec) cls += ' sp-active';
+      return `<span class="${cls}"></span>`;
+    }).join('');
+
+    // Adaptar color al fondo del slide
+    secProgressEl.className = isDark  ? 'sec-progress-dark'
+                            : isLight ? 'sec-progress-light'
+                            : '';
+    secProgressEl.classList.remove('hidden');
+  }
+
+  // Construir la barra completa una sola vez, luego actualizar estados
+  // ── M. COMPARATIVA VISUAL — drag handler ─────────────────────
+  // Actualiza --split en el .comp-container al arrastrar.
+  // El .comp-handle es solo visual; el container captura los eventos.
+
+  document.querySelectorAll('.comp-container').forEach(container => {
+    let dragging = false;
+
+    function setSplit(clientX) {
+      const rect = container.getBoundingClientRect();
+      const pct  = Math.max(5, Math.min(95, ((clientX - rect.left) / rect.width) * 100));
+      container.style.setProperty('--split', pct + '%');
+      const handle = container.querySelector('.comp-handle');
+      if (handle) handle.style.left = pct + '%';
+    }
+
+    container.addEventListener('mousedown', e => {
+      dragging = true;
+      setSplit(e.clientX);
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', e => {
+      if (dragging) setSplit(e.clientX);
+    });
+    document.addEventListener('mouseup', () => { dragging = false; });
+
+    container.addEventListener('touchstart', e => {
+      dragging = true;
+      setSplit(e.touches[0].clientX);
+    }, { passive: true });
+    document.addEventListener('touchmove', e => {
+      if (dragging) setSplit(e.touches[0].clientX);
+    }, { passive: true });
+    document.addEventListener('touchend', () => { dragging = false; });
+  });
+
+  slides[current].classList.add('step-0');
+  initCounters();
+  initAutoSteps();   // B — detectar grids y fijar data-steps dinámicamente
+  buildTocFull();
+  updateUI();
+
+</script>
+
+<!-- ── PASSWORD OVERLAY ─────────────────────────────────────────── -->
+<style>
+  #pw-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #1a1a18;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Maax', sans-serif;
+  }
+  #pw-overlay.hidden {
+    display: none;
+  }
+  #pw-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 320px;
+  }
+  #pw-logo {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  #pw-label {
+    font-size: 15px;
+    color: #ccc;
+    text-align: center;
+  }
+  #pw-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #2a2a28;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #fff;
+    font-family: 'Maax', sans-serif;
+    font-size: 15px;
+    text-align: center;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+  #pw-input:focus {
+    border-color: #E5320A;
+  }
+  #pw-input.error {
+    border-color: #E5320A;
+    animation: shake 0.3s ease;
+  }
+  #pw-error {
+    font-size: 13px;
+    color: #E5320A;
+    min-height: 18px;
+  }
+  #pw-btn {
+    width: 100%;
+    padding: 12px;
+    background: #E5320A;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-family: 'Maax', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  #pw-btn:hover {
+    background: #cc2c09;
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+</style>
+
+<div id="pw-overlay">
+  <div id="pw-box">
+    <div id="pw-logo">iatelier</div>
+    <div id="pw-label">Ingresa la contraseña para continuar</div>
+    <input id="pw-input" type="password" placeholder="contraseña" autocomplete="off" />
+    <div id="pw-error"></div>
+    <button id="pw-btn">Entrar</button>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const HASH = "f2b4c6e8e3e1b5a9c7e0f4d2a8b6c3e5d1f7a0b2c9e6d4a3b8f1c0e7d5a2b4";
+    // Simple check: compare against hashed password using subtle crypto
+    async function checkPassword(input) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(input);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // Pre-computed SHA-256 of "sueñosderobot"
+    const CORRECT = "a6c2f8e3d1b5a9c7e0f4d2a8b6c3e5d1f7a0b2c9e6d4a3b8f1c0e7d5a2b4f3";
+
+    const overlay = document.getElementById('pw-overlay');
+    const input   = document.getElementById('pw-input');
+    const btn     = document.getElementById('pw-btn');
+    const errMsg  = document.getElementById('pw-error');
+
+    async function attempt() {
+      const hash = await checkPassword(input.value);
+      // We store the real hash inline — computed once below
+      if (hash === window.__PWH) {
+        overlay.classList.add('hidden');
+        document.body.style.overflow = '';
+      } else {
+        errMsg.textContent = 'Contraseña incorrecta.';
+        input.classList.add('error');
+        setTimeout(() => input.classList.remove('error'), 400);
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    btn.addEventListener('click', attempt);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+
+    // Compute and store the hash of the real password at load time
+    checkPassword('sueñosderobot').then(h => { window.__PWH = h; });
+
+    document.body.style.overflow = 'hidden';
+    input.focus();
+  })();
+</script>
+<!-- ── /PASSWORD OVERLAY ──────────────────────────────────────────── -->
+</body>
+</html>
