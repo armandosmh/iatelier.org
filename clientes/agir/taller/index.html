@@ -1,0 +1,4145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trabajar con Claude — AGIR</title>
+
+<!-- Open Graph / Web sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Trabajar con Claude — AGIR">
+<meta property="og:description" content="Taller de introducción a Claude para AGIR">
+
+<style>
+  /* ── Google Fonts: Google Sans Flex + Inter + DM Mono ── */
+  /* IMPORTANTE: @import debe ser lo primero en el bloque <style> */
+  @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wdth,wght@75..125,100..700&family=Inter:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
+
+  /* ── Fuentes locales declaradas por el tema ── */
+  @font-face {
+  font-family: 'Maax';
+  src: url('fonts/205TF-Maax-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('fonts/205TF-Maax-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('fonts/205TF-Maax-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('fonts/205TF-Maax-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('fonts/205TF-Maax-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('fonts/205TF-Maax-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('fonts/205TF-Maax-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('fonts/205TF-Maax-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monotalic';
+  src: url('fonts/Monotalic-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monotalic';
+  src: url('fonts/Monotalic-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monotalic';
+  src: url('fonts/Monotalic-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Monotalic';
+  src: url('fonts/Monotalic-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /*
+  ═══════════════════════════════════════════════════
+  MOTOR — iatelier HTML Slides
+  ═══════════════════════════════════════════════════
+
+  Este archivo es el motor del sistema. NO lo edites
+  directamente para crear presentaciones. Usa el flujo:
+
+    1. Escribe tu presentación en un archivo .yaml
+    2. Corre: python build.py tu-presentacion.yaml
+    3. Abre el index.html generado en el navegador
+
+  Para cambiar colores o tipografía, edita el archivo
+  de tema correspondiente en temas/
+
+  ═══════════════════════════════════════════════════
+  CATÁLOGO DE COMPONENTES
+  ═══════════════════════════════════════════════════
+
+  SLIDES DE ESTRUCTURA
+  cover          → portada con fondo oscuro
+  divider        → separador de sección, fondo acento
+
+  SLIDES DE CONTENIDO LIMPIO
+  titulo-cuerpo  → título + párrafo explicativo
+  titulo-steps   → título + lista numerada
+  titulo-bullets → título + lista con guión em
+  titulo-matrix  → título + tabla comparativa
+  stats          → números grandes con etiqueta
+  recap          → cierre numerado
+
+  SLIDES EDITORIALES
+  photo-cover    → foto a sangre completa
+  quote          → nombre bold + cita gigante
+  imagen-texto   → texto izquierda + imagen derecha
+  imagen-grid    → 2–3 imágenes + título al pie
+
+  SLIDES DE ALTA DENSIDAD (tradición Tufte)
+  diagrama       → header pequeño + cuerpo libre para SVG/tabla
+  cols-cards     → 2 o 3 tarjetas en columnas
+
+  COMPONENTES INLINE (dentro de cualquier slide)
+  .cols / .cols.three → grids de 2 o 3 columnas
+  .card               → tarjeta con label/título/cuerpo
+  .stat               → número grande + etiqueta
+  .steps              → lista numerada monospace
+  .bullets            → lista con guión em
+  .recap-list         → cierre numerado
+  .pill               → etiqueta inline (outline/filled/accent)
+  .rule               → línea de acento decorativa
+  .code-block         → bloque de código
+
+  ═══════════════════════════════════════════════════
+  TOKENS DE COLOR (definidos por el tema)
+  ═══════════════════════════════════════════════════
+  */
+
+  :root {
+    --bg:             #F4F0EB;
+    --ink:            #1C1C1E;
+    --muted:          #8C8070;
+    --accent:         #D92B1F;
+    --bg2:            #3D5A6E;    /* pizarra media — secciones, cards */
+    --signal:         #D92B1F; /* ladrillo — atención */
+    --slide-pad:      clamp(2.5rem, 6vw, 6rem);
+    --font-title:     'Maax', sans-serif;
+    --font-highlight: Maax, 'Plus Jakarta Sans', sans-serif;
+    --font-body:      'Inter', sans-serif;
+    --font-label:     'DM Mono', monospace;
+    --font-caption:   'DM Mono', monospace;
+    --font-mono:      'DM Mono', monospace;
+  }
+
+  html {
+    /* Root font-size escala con el viewport para que todos los rem crezcan en fullscreen.
+       ≤1280px → 16px (default);  1470px MBA → ~17.6px (+10%);  1920px → 21px (cap) */
+    font-size: clamp(16px, 1.2vw, 21px);
+  }
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── STAGE ──────────────────────────────────────── */
+  #stage {
+    position: fixed;
+    inset: 0;
+  }
+
+  /* ── SLIDE BASE ─────────────────────────────────── */
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--slide-pad);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(1.5rem);
+    transition: opacity .35s ease, transform .35s ease;
+  }
+  .slide.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  .slide.exit {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease;
+  }
+
+  /* ── GRANO DE FONDO ─────────────────────────────── */
+  /* Textura fractal que simula papel. 3 frecuencias:   */
+  /* claros (multiply), oscuros (overlay), sin grano    */
+  /* en dividers de color para no ensuciar el acento.   */
+  .slide:not(.dark):not(.divider-criterio):not(.divider-artefacto):not(.divider-lampara):not(.divider-ladrillo)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.2;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .slide.dark::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.2;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .slide.divider-criterio::after,
+  .slide.divider-artefacto::after,
+  .slide.divider-lampara::after,
+  .slide.divider-ladrillo::after {
+    display: none !important;
+  }
+
+  /* ── CHROME ─────────────────────────────────────── */
+  /*
+  Counter y section-label forman una sola unidad en la esquina superior derecha.
+  El counter se oculta — el número lo muestra #section-label con un separador.
+  */
+  #counter {
+    display: none; /* oculto — el número se inyecta en #section-label vía JS */
+  }
+
+  #section-label {
+    position: fixed;
+    top: 1.5rem;
+    right: var(--slide-pad);
+    font-family: var(--font-label);
+    font-weight: 500;
+    font-size: .72rem;
+    letter-spacing: .1em;
+    color: rgba(28,28,30,.55); /* tinta al 55% — legible sobre marfil */
+    z-index: 100;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: .6em;
+  }
+
+  #footer {
+    position: fixed;
+    bottom: calc(var(--slide-pad) * .6);
+    left: var(--slide-pad);
+    font-family: var(--font-body);
+    font-size: .72rem;
+    color: var(--muted);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: .1rem;
+    line-height: 1.3;
+  }
+  #footer strong { font-weight: 500; color: var(--ink); }
+
+  #nav {
+    position: fixed;
+    bottom: calc(var(--slide-pad) * .6);
+    right: var(--slide-pad);
+    display: flex;
+    gap: .75rem;
+    z-index: 100;
+  }
+  .nav-btn {
+    background: none;
+    border: 1.5px solid var(--muted);
+    color: var(--muted);
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: .95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color .15s, color .15s, background .15s;
+  }
+  .nav-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+    background: rgba(0,0,0,.05);
+  }
+
+  #progress {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width .35s ease;
+    z-index: 100;
+  }
+
+  /* ── BARRA LATERAL DE CONTENIDOS ─────────────────── */
+  /*
+  La barra es parte del layout, no un panel flotante.
+  Siempre visible como franja izquierda estrecha con puntos.
+  El texto aparece/desaparece con el toggle (tecla T o botón).
+
+  body.toc-enabled  → la barra existe
+  body.toc-expanded → el texto es visible
+  */
+
+  /* Cuando la barra está activa, el stage se desplaza */
+  body.toc-enabled #stage  { left: 40px; }
+  body.toc-enabled #counter,
+  body.toc-enabled #section-label { left: calc(40px + var(--slide-pad)); }
+  body.toc-enabled #footer { left: calc(40px + var(--slide-pad)); }
+  body.toc-enabled #progress { left: 40px; }
+
+  /* Cuando el texto está expandido, más espacio */
+  body.toc-expanded #stage  { left: 220px; transition: left .3s cubic-bezier(.4,0,.2,1); }
+  body.toc-expanded #counter,
+  body.toc-expanded #section-label { left: calc(220px + var(--slide-pad)); transition: left .3s cubic-bezier(.4,0,.2,1); }
+  body.toc-expanded #footer { left: calc(220px + var(--slide-pad)); transition: left .3s cubic-bezier(.4,0,.2,1); }
+  body.toc-expanded #progress { left: 220px; transition: left .3s cubic-bezier(.4,0,.2,1); }
+
+  body.toc-enabled #stage,
+  body.toc-enabled #counter,
+  body.toc-enabled #section-label,
+  body.toc-enabled #footer,
+  body.toc-enabled #progress { transition: left .3s cubic-bezier(.4,0,.2,1); }
+
+  /* La barra misma */
+  #toc {
+    display: none; /* oculta por defecto; JS la activa con toc-enabled */
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: var(--ink);  /* pizarra */
+    z-index: 200;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    transition: width .3s cubic-bezier(.4,0,.2,1);
+  }
+  body.toc-enabled  #toc { display: flex; }
+  body.toc-expanded #toc { width: 220px; }
+
+  /* Línea vertical */
+  #toc-list {
+    position: relative;
+    list-style: none;
+    padding: 1rem 0;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.15) transparent;
+  }
+  #toc-list::-webkit-scrollbar { width: 3px; }
+  #toc-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 2px; }
+  #toc-list::before { display: none; }
+
+  /* Línea de progreso dinámica — crece con el avance */
+  #toc-list::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 1rem;
+    width: 1px;
+    height: var(--toc-progress, 0px);
+    background: rgba(255,255,255,.35);
+    transition: height .3s ease, left .3s cubic-bezier(.4,0,.2,1);
+    z-index: 1;
+  }
+  body.toc-expanded #toc-list::after { left: 27px; }
+
+  /* Cada ítem */
+  .toc-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: .3rem 0;
+    transition: opacity .15s;
+    white-space: nowrap;
+  }
+  .toc-item:hover { opacity: 1 !important; }
+
+  /* Punto — siempre visible, centrado en los 40px */
+  /* Estados: ninguna clase = por venir (tenue), .visited = visto (medio), .active = activo (acento) */
+  .toc-dot {
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    /* por venir: círculo vacío con borde tenue */
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,.2);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    transition: background .25s, border-color .25s, transform .2s, margin .3s cubic-bezier(.4,0,.2,1);
+    margin-left: 16px; /* (40px - 8px) / 2 = 16px para centrar */
+    margin-right: 12px;
+  }
+  body.toc-expanded .toc-dot { margin-left: 23px; }
+
+  /* visitado: relleno sólido tono medio */
+  .toc-item.visited .toc-dot {
+    background: rgba(255,255,255,.35);
+    border-color: rgba(255,255,255,.35);
+  }
+
+  /* activo: acento, ligeramente más grande */
+  .toc-item.active .toc-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.4);
+  }
+
+  /* hover: destacar un poco sea cual sea el estado */
+  .toc-item:hover .toc-dot { border-color: rgba(255,255,255,.6); }
+  .toc-item.visited:hover .toc-dot { background: rgba(255,255,255,.55); border-color: rgba(255,255,255,.55); }
+  .toc-item.active:hover .toc-dot  { background: var(--accent); border-color: var(--accent); }
+
+  /* Texto — invisible cuando colapsado */
+  .toc-label {
+    font-family: var(--font-label);
+    font-size: .6rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    /* por venir: muy tenue */
+    color: rgba(255,255,255,.2);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    opacity: 0;
+    transition: opacity .2s, color .2s;
+    pointer-events: none;
+  }
+  body.toc-expanded .toc-label            { opacity: 1; pointer-events: auto; }
+  .toc-item.visited .toc-label            { color: rgba(255,255,255,.45); }
+  .toc-item.active  .toc-label            { color: rgba(255,255,255,.92); font-weight: 500; }
+
+  /* Separador de sección — pequeño label entre grupos */
+  .toc-section-sep {
+    display: flex;
+    align-items: center;
+    padding: .55rem 0 .15rem;
+    white-space: nowrap;
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+  .toc-section-sep-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,.08);
+    margin-left: 16px;
+    transition: margin .3s cubic-bezier(.4,0,.2,1);
+  }
+  body.toc-expanded .toc-section-sep-line { margin-left: 23px; }
+  .toc-section-sep-text {
+    font-family: var(--font-label);
+    font-size: .58rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 0 .6rem 0 .5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 120px;
+    text-overflow: ellipsis;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  body.toc-expanded .toc-section-sep-text { opacity: 1; }
+
+  /* Subsección — línea corta + label en accent */
+  .toc-subsection-sep {
+    display: flex;
+    align-items: center;
+    padding: .7rem 0 .2rem;
+    white-space: nowrap;
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+  .toc-subsection-sep-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,.08);
+    margin-left: 16px;
+    transition: margin .3s cubic-bezier(.4,0,.2,1);
+  }
+  body.toc-expanded .toc-subsection-sep-line { margin-left: 23px; }
+  .toc-subsection-text {
+    font-family: var(--font-label);
+    font-size: .56rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.45);
+    padding: 0 .6rem 0 .5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 150px;
+    text-overflow: ellipsis;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  body.toc-expanded .toc-subsection-text { opacity: 1; }
+
+  /* Items dentro de subsección — mismo estilo que los normales */
+
+  /* Nombre de sección en la parte superior de la barra (ya no se usa como label principal, se mantiene por compatibilidad) */
+  #toc-section-name {
+    display: none;
+  }
+
+  /* Botón toggle en el chrome */
+  #toc-btn {
+    background: none;
+    border: 1.5px solid var(--muted);
+    color: var(--muted);
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: .82rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color .15s, color .15s, background .15s;
+    line-height: 1;
+  }
+  #toc-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+    background: rgba(0,0,0,.05);
+  }
+  #toc-btn.expanded {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── TYPOGRAPHY ─────────────────────────────────── */
+  /*
+  .label — solo se usa en slides de estructura (divider, cover).
+  En slides de contenido la sección la muestra el chrome (#section-label).
+  */
+  .label {
+    font-family: var(--font-label);
+    font-weight: 500;
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-family: var(--font-title);
+    font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+    font-weight: 500;
+    line-height: 1.06;
+    letter-spacing: -.02em;
+    max-width: 16ch;
+    margin-bottom: 2.5rem;
+    font-feature-settings: "ss02" 1;  /* ← aquí */
+
+  }
+  .title em     { font-style: italic; color: var(--signal); }
+  .title strong { font-weight: 700; }
+
+  .body {
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 54ch;
+    color: var(--ink);
+  }
+  .body strong { font-weight: 500; }
+
+  .rule {
+    width: 2.5rem;
+    height: 1.5px;
+    background: var(--accent);
+    margin-bottom: 2rem;
+    flex-shrink: 0;
+  }
+
+  /* ── LAYOUT ─────────────────────────────────────── */
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    max-width: 960px;
+  }
+  .cols.three { grid-template-columns: repeat(3,1fr); gap: 2rem; }
+
+  /* ── COMPONENTS ─────────────────────────────────── */
+
+  /* Card */
+  .card {
+    background: white;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: .6rem;
+    padding: 1.75rem;
+  }
+  .card .card-label {
+    font-family: var(--font-caption);
+    font-weight: 500;
+    font-size: .65rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--muted);
+    margin-bottom: .65rem;
+  }
+  .card .card-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: .5rem;
+  }
+  .card .card-body {
+    font-size: .88rem;
+    font-weight: 300;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* Stat */
+  .stat { display: flex; flex-direction: column; gap: .3rem; }
+  .stat .big-num {
+    font-family: var(--font-highlight);
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 300;
+    letter-spacing: -.04em;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .stat .stat-label {
+    font-size: .88rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 22ch;
+    line-height: 1.4;
+  }
+
+  /* Steps */
+  ol.steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+    max-width: 80ch;
+  }
+  ol.steps li {
+    display: flex;
+    gap: 1.25rem;
+    align-items: baseline;
+    font-size: clamp(.95rem, 1.6vw, 1.25rem);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  ol.steps li .num {
+    font-family: var(--font-caption);
+    font-weight: 300;
+    font-size: .7rem;
+    color: var(--muted);
+    min-width: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  /* Bullets */
+  ul.bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+  }
+  ul.bullets li {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    font-size: clamp(.95rem, 1.6vw, 1.25rem);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  ul.bullets li::before { content: '·'; color: var(--signal); font-size: 1.4em; line-height: 1; flex-shrink: 0; }
+  ul.bullets li > span { flex: 1; }
+  ul.bullets li > span strong { font-weight: 600; }
+
+  /* Recap */
+  .recap-list { display: flex; flex-direction: column; gap: 1.35rem; max-width: 1000px; }
+  .recap-item { display: flex; gap: 1.25rem; align-items: baseline; }
+  .recap-num  { font-family: var(--font-caption); font-weight: 300; font-size: .7rem; color: var(--muted); min-width: 1.75rem; flex-shrink: 0; }
+  .recap-text { font-size: clamp(1rem, 1.8vw, 1.3rem); font-weight: 300; line-height: 1.5; }
+  .recap-text strong { font-weight: 500; }
+
+  /* Indice */
+  .indice-list { display: flex; flex-direction: column; gap: 1.1rem; }
+  .indice-item { display: flex; gap: 1.5rem; align-items: baseline; }
+  .indice-num  { font-family: var(--font-caption); font-size: clamp(1rem, 1.6vw, 1.15rem); font-weight: 700; font-style: italic; color: var(--signal); min-width: 2.5rem; flex-shrink: 0; }
+  .indice-text { font-family: var(--font-title); font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 400; line-height: 1.3; color: var(--ink); }
+
+  /* Cuerpo largo */
+  .cuerpo-largo-slide { align-items: flex-start; background: var(--ink); padding: clamp(1.5rem, 2vw, 2rem) clamp(2rem, 5vw, 5rem) clamp(4rem, 9vw, 6rem); }
+  .cl-titulo { font-family: var(--font-caption); font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 400; margin-bottom: 2rem; text-align: left; width: 100%; }
+  .cl-cuerpo { font-family: var(--font-body); font-size: clamp(1rem, 1.6vw, 1.2rem); font-weight: 300; line-height: 1.8; color: var(--bg); max-width: 88ch; text-align: left; }
+  .cl-cuerpo + .cl-cuerpo { margin-top: 1.2em; }
+  .cl-cuerpo em { font-style: normal; color: var(--accent); font-weight: 500; }
+  .cl-cuerpo u  { text-decoration: underline; text-decoration-color: var(--signal); text-underline-offset: 3px; text-decoration-thickness: 1.5px; font-style: normal; }
+
+  /* Matrix table */
+  table.matrix { border-collapse: collapse; font-size: .9rem; max-width: 700px; width: 100%; }
+  table.matrix th {
+    font-family: var(--font-caption);
+    font-weight: 500;
+    font-size: .66rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted);
+    text-align: left;
+    padding: .5rem 1.5rem .5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+  }
+  table.matrix td {
+    padding: .75rem 1.5rem .75rem 0;
+    border-bottom: 1px solid rgba(0,0,0,.06);
+    font-weight: 300;
+    line-height: 1.4;
+    vertical-align: top;
+  }
+  table.matrix td strong { font-weight: 500; }
+
+  /* ── ÉNFASIS MARCADOR ─────────────────────────── */
+  /* Tres clases de subrayado gradiente que usan la  */
+  /* paleta del tema. Funcionan en cualquier slide.   */
+  .luz-lampara {
+    font-style: normal;
+    font-weight: inherit;
+    background: linear-gradient(104deg, transparent 0%, rgba(200,212,74,0.38) 2.5%, rgba(200,212,74,0.38) 97.5%, transparent 100%);
+    padding: 1px 6px;
+    border-radius: 2px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .dark .luz-lampara,
+  .cuerpo-largo-slide .luz-lampara {
+    background: linear-gradient(104deg, transparent 0%, rgba(200,212,74,0.25) 2.5%, rgba(200,212,74,0.25) 97.5%, transparent 100%);
+    color: var(--bg);
+  }
+  .alerta-ia {
+    font-style: normal;
+    font-weight: inherit;
+    background: linear-gradient(95deg, transparent 0%, rgba(168,56,40,0.28) 2%, rgba(168,56,40,0.28) 98%, transparent 100%);
+    padding: 1px 6px;
+    border-radius: 2px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .dark .alerta-ia,
+  .cuerpo-largo-slide .alerta-ia {
+    background: linear-gradient(95deg, transparent 0%, rgba(168,56,40,0.32) 2%, rgba(168,56,40,0.32) 98%, transparent 100%);
+    color: var(--bg);
+  }
+  .marca-sombra {
+    font-style: normal;
+    font-weight: inherit;
+    background: linear-gradient(100deg, transparent 0%, rgba(107,122,80,0.15) 2%, rgba(107,122,80,0.15) 98%, transparent 100%);
+    padding: 1px 6px;
+    border-radius: 2px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* Code block */
+  pre.code-block {
+    font-family: var(--font-mono);
+    font-size: .82rem;
+    line-height: 1.75;
+    background: var(--ink);   /* pizarra */
+    color: var(--bg);         /* tiza */
+    padding: 1.5rem 1.75rem;
+    border-radius: .5rem;
+    max-width: 640px;
+    overflow-x: auto;
+  }
+  pre.code-block .hl  { color: var(--accent); }
+  pre.code-block .dim { color: #555; }
+  pre.code-block .str { color: #8fbf7f; }
+
+  /* Pills */
+  .pill {
+    display: inline-block;
+    padding: .28rem .8rem;
+    border-radius: 99px;
+    font-size: .78rem;
+    font-weight: 500;
+    letter-spacing: .02em;
+  }
+  .pill.outline { border: 1.5px solid var(--ink); color: var(--ink); }
+  .pill.filled  { background: var(--ink); color: var(--bg); }
+  .pill.accent  { background: var(--accent); color: white; }
+
+  /* ══════════════════════════════════════════════════
+     SLIDE VARIANTS
+     ══════════════════════════════════════════════════ */
+
+  /* COVER — fondo oscuro */
+  .slide.cover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .slide.cover .label { color: rgba(255,255,255,.35); }
+  .slide.cover .title { color: var(--bg); }
+  .slide.cover .title em { color: var(--accent); }  /* lámpara sobre pizarra */
+  .slide.cover .rule { background: rgba(255,255,255,.2); }
+
+  /* CIERRE — closing slide, same visual family as cover */
+  .slide.cierre {
+    background: var(--ink);
+    color: var(--bg);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+  }
+  .slide.cierre .rule {
+    display: none; /* la regla se mueve debajo del título */
+  }
+  .slide.cierre .title {
+    color: var(--accent);
+    font-size: clamp(3rem, 6.5vw, 5.5rem);
+    font-weight: 400;
+    max-width: 100%;
+    margin: 0;
+    letter-spacing: -.02em;
+  }
+  .slide.cierre .title em { font-style: italic; }
+  .cierre-rule {
+    width: 3rem;
+    height: 2px;
+    background: var(--signal);
+    margin: 1.8rem 0 2rem;
+  }
+  .cierre-frase {
+    font-size: clamp(.9rem, 1.4vw, 1.1rem);
+    color: rgba(242,238,228,.5);
+    max-width: 30ch;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .cierre-contacto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .8rem;
+    width: auto;
+  }
+  .cierre-nombre {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: rgba(242,238,228,.9);
+    letter-spacing: .02em;
+    text-align: center;
+  }
+  .cierre-links {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+    font-size: .85rem;
+    min-width: min(80ch, 80vw);
+  }
+  .cierre-links > * + * {
+    position: relative;
+  }
+  .cierre-links > * + *::before {
+    content: '·';
+    color: rgba(242,238,228,.25);
+    position: absolute;
+    left: 0;
+    transform: translateX(-50%);
+  }
+  .cierre-link {
+    font-size: .85rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    opacity: .7;
+    transition: opacity .15s;
+  }
+  .cierre-link:hover { opacity: 1; }
+  .cierre-dato {
+    font-size: .85rem;
+    color: rgba(242,238,228,.4);
+  }
+
+  /* DIVIDER — separador de sección neutro, fondo negro tinta (persona/artefacto system v2) */
+  .slide.divider {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .slide.divider .label { color: rgba(242,238,228,.45); }
+  .slide.divider .title { color: var(--bg); max-width: 100%; }
+  .slide.divider .title em { font-style: italic; color: var(--accent); }
+
+  /* DIVIDER-CRITERIO — criterio humano, regla de oro, decisión, atención crítica.
+     Fondo rojo cadmio. Es el divider "persona" del sistema. */
+  .slide.divider-criterio {
+    background: var(--accent);
+    color: var(--ink);
+  }
+  .slide.divider-criterio .label { color: rgba(30,36,32,.45); }
+  .slide.divider-criterio .title { color: var(--ink); max-width: 100%; }
+  .slide.divider-criterio .title em { font-style: italic; color: rgba(30,36,32,.6); }
+
+  /* DIVIDER-ARTEFACTO — herramienta, producto, output de IA, contexto de máquina.
+     Fondo azul pizarra. Es el divider "artefacto" del sistema.
+     El em va en arena (no rojo) — el rojo se reserva para persona. */
+  .slide.divider-artefacto {
+    background: var(--bg2);
+    color: var(--bg);
+  }
+  .slide.divider-artefacto .label { color: rgba(242,238,228,.45); }
+  .slide.divider-artefacto .title { color: var(--bg); max-width: 100%; }
+  .slide.divider-artefacto .title em { font-style: italic; color: #C4B9A8; } /* arena clara — se lee bien sobre azul */
+
+  /* SUBSECCION ENTRY — lighter subsection opener, bg2 background */
+  .slide.subseccion-entry {
+    background: var(--bg2);
+    color: var(--bg);
+  }
+  .slide.subseccion-entry .label {
+    color: rgba(242,238,228,.35);
+    font-size: .65rem;
+  }
+  .slide.subseccion-entry .title {
+    color: var(--bg);
+    max-width: 100%;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+  }
+  .slide.subseccion-entry .title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* PHOTO COVER */
+  .slide.photo-cover {
+    padding: 0;
+    overflow: hidden;
+    justify-content: flex-end;
+  }
+  .slide.photo-cover img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(15%);
+  }
+  .slide.photo-cover .photo-title {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -.01em;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 1.25rem var(--slide-pad);
+    line-height: 1;
+  }
+  .slide.photo-cover.dark img { filter: grayscale(20%) brightness(.55); }
+  .slide.photo-cover.dark .photo-title {
+    background: none;
+    color: white;
+    padding: var(--slide-pad);
+  }
+
+  /* QUOTE SLIDE */
+  .slide.quote-slide {
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 8vw, 8rem);
+    gap: 0;
+  }
+  blockquote.quote-text {
+    font-family: var(--font-highlight);
+    font-size: clamp(1.7rem, 3.4vw, 2.8rem);
+    font-weight: 300;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: -.01em;
+    color: var(--accent);
+    border: none;
+    padding: 0;
+    text-align: center;
+    max-width: 22em;
+    font-feature-settings: "ss02" 1;
+  }
+  blockquote.quote-text em { font-style: italic; }
+  .quote-meta {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .3rem;
+  }
+  .quote-who {
+    font-family: var(--font-caption);
+    font-size: .95rem;
+    font-weight: 500;
+    color: rgba(242,238,228,.7);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .quote-fuente {
+    font-family: var(--font-caption);
+    font-weight: 300;
+    font-size: .82rem;
+    font-style: italic;
+    color: rgba(242,238,228,.45);
+    text-align: center;
+  }
+  .quote-nota {
+    font-family: var(--font-caption);
+    font-weight: 300;
+    font-size: .78rem;
+    color: rgba(242,238,228,.4);
+    text-align: center;
+  }
+
+  /* IMAGE-TEXT */
+  .slide.image-text {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 0;
+    padding: 0;
+    align-items: stretch;
+  }
+  .it-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--slide-pad);
+  }
+  .it-text .title { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1.5rem; }
+  .it-image {
+    overflow: hidden;
+    position: relative;
+  }
+  .it-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .it-image.bw img { filter: grayscale(100%); }
+  .slide.image-text.flip { direction: rtl; }
+  .slide.image-text.flip .it-text,
+  .slide.image-text.flip .it-image { direction: ltr; }
+
+  /* IMAGE GRID */
+  .slide.image-grid {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .ig-images {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    overflow: hidden;
+    min-height: 0;
+  }
+  .ig-images:has(img:nth-child(2):last-child) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ig-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    filter: grayscale(5%);
+  }
+  .ig-title {
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 1.25rem var(--slide-pad) 1.5rem;
+  }
+  .slide.image-grid.dark .ig-title {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  /* DIAGRAMA IMAGEN */
+  /* Variante estándar: usa diagram-slide + figura centrada */
+  .di-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .di-figure img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: .25rem;
+  }
+  .diagram-caption {
+    font-family: var(--font-caption);
+    font-weight: 300;
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* Variante fondo completo: imagen ocupa todo el slide */
+  .slide.di-full {
+    padding: 0;
+    overflow: hidden;
+    justify-content: flex-end;
+    background: var(--bg);
+  }
+  .slide.di-full img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: clamp(1rem, 3vw, 3rem);
+  }
+  .di-title {
+    position: relative;
+    z-index: 2;
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1;
+    color: var(--ink);
+    background: var(--bg);
+    padding: 1rem var(--slide-pad) 1.25rem;
+  }
+  .di-title em { color: var(--accent); font-style: italic; }
+
+  /* TEXTO + DIAGRAMA
+     Layout: columna izquierda con definiciones o notas (~35%)
+     + columna derecha con diagrama/imagen (~65%).
+     El título aparece en la esquina inferior derecha del área
+     del diagrama, como etiqueta de sección visual.
+  */
+  .slide.texto-diagrama {
+    display: grid;
+    grid-template-columns: 1fr 1.85fr;
+    gap: 0;
+    padding: 0;
+    align-items: stretch;
+  }
+  .td-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: var(--slide-pad);
+    padding-top: clamp(3rem, 10vh, 5rem);
+    gap: 1.5rem;
+    overflow-y: auto;
+  }
+  .slide.texto-diagrama:has(.td-def:only-child) .td-texto { justify-content: center; padding-top: var(--slide-pad); }
+  .slide.texto-diagrama .td-diagrama { padding-inline: clamp(.5rem, 1vw, 1rem); }
+  /* Cada definición */
+  .td-def { display: flex; flex-direction: column; gap: .2rem; }
+  .td-def .td-term {
+    font-size: clamp(.85rem, 1.4vw, 1.15rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .td-def:only-child .td-term { font-size: clamp(1.6rem, 2.8vw, 2.4rem); line-height: 1.3; }
+  .td-def .td-desc {
+    font-size: clamp(.82rem, 1.3vw, 1.1rem);
+    font-weight: 300;
+    color: var(--muted);
+    font-style: normal;
+    line-height: 1.55;
+    margin-top: .8rem;
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+  .td-def:only-child .td-desc { font-size: clamp(1rem, 1.6vw, 1.15rem); }
+  .step-1 .td-def .td-desc { opacity: 1; }
+  /* Área del diagrama */
+  .td-diagrama {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(1.5rem, 3vw, 3rem);
+    padding-top: clamp(3rem, 5vw, 4.5rem);
+    padding-bottom: clamp(5.5rem, 8vw, 7rem);
+    border-left: 1px solid rgba(0,0,0,.18);
+    overflow: hidden;
+  }
+  .td-diagrama img,
+  .td-diagrama svg {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  /* Título en esquina inferior derecha */
+  .td-titulo {
+    position: absolute;
+    bottom: clamp(1rem, 2.5vw, 2rem);
+    right: clamp(1rem, 2.5vw, 2rem);
+    font-size: clamp(1.2rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1;
+    color: var(--ink);
+    text-align: right;
+    text-transform: uppercase;
+  }
+  .td-titulo em { color: var(--accent); font-style: normal; }
+
+  /* DIAGRAM SLIDE (Tufte-style density) */
+  .slide.diagram-slide {
+    padding: clamp(1.5rem, 3vw, 3rem);
+    padding-top:    clamp(4rem, 6vw, 5.5rem); /* clearance sobre #section-label */
+    padding-bottom: clamp(4rem, 6vw, 5.5rem); /* simétrico: centra entre chrome superior e inferior */
+    justify-content: center;
+  }
+  .diagram-header { text-align: left; width: 100%; margin-bottom: 1.5rem; }
+  .diagram-title {
+    font-family: var(--font-title);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 300;
+    text-align: left;
+    letter-spacing: -.01em;
+    line-height: 1.1;
+    font-feature-settings: "ss02" 1;
+  }
+  .diagram-title em { color: var(--signal); font-style: normal; }
+  .diagram-body {
+    /* sin flex:1 — el body toma solo el espacio de su contenido;
+       el par header+body queda centrado verticalmente por el slide */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    width: 100%;
+  }
+
+  /* ══════════════════════════════════════════════════
+     A. AUTO-STAGGER — entrada escalonada de items
+     Aplica a todos los tipos con listas: steps, bullets,
+     recap, cards, matrix rows, stats, indice, cuerpo-largo.
+     Las animaciones se disparan cada vez que el slide
+     recibe la clase .active.
+     ══════════════════════════════════════════════════ */
+
+  @keyframes stagger-in {
+    from { opacity: 0; transform: translateY(7px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Items que participan del stagger */
+  .slide.active ol.steps li,
+  .slide.active ul.bullets li,
+  .slide.active .recap-item,
+  .slide.active .card,
+  .slide.active table.matrix tr:nth-child(n+2),
+  .slide.active .stat,
+  .slide.active .indice-item,
+  .slide.active .cl-cuerpo {
+    opacity: 0;
+    animation: stagger-in 0.32s ease both;
+  }
+
+  /* Delays: base 0.10s + 0.09s por posición */
+  .slide.active ol.steps li:nth-child(1),
+  .slide.active ul.bullets li:nth-child(1),
+  .slide.active .recap-item:nth-child(1),
+  .slide.active .card:nth-child(1),
+  .slide.active table.matrix tr:nth-child(2),
+  .slide.active .stat:nth-child(1),
+  .slide.active .indice-item:nth-child(1),
+  .slide.active .cl-cuerpo:nth-child(1)  { animation-delay: 0.10s; }
+
+  .slide.active ol.steps li:nth-child(2),
+  .slide.active ul.bullets li:nth-child(2),
+  .slide.active .recap-item:nth-child(2),
+  .slide.active .card:nth-child(2),
+  .slide.active table.matrix tr:nth-child(3),
+  .slide.active .stat:nth-child(2),
+  .slide.active .indice-item:nth-child(2),
+  .slide.active .cl-cuerpo:nth-child(2)  { animation-delay: 0.19s; }
+
+  .slide.active ol.steps li:nth-child(3),
+  .slide.active ul.bullets li:nth-child(3),
+  .slide.active .recap-item:nth-child(3),
+  .slide.active .card:nth-child(3),
+  .slide.active table.matrix tr:nth-child(4),
+  .slide.active .stat:nth-child(3),
+  .slide.active .indice-item:nth-child(3),
+  .slide.active .cl-cuerpo:nth-child(3)  { animation-delay: 0.28s; }
+
+  .slide.active ol.steps li:nth-child(4),
+  .slide.active ul.bullets li:nth-child(4),
+  .slide.active .recap-item:nth-child(4),
+  .slide.active .card:nth-child(4),
+  .slide.active table.matrix tr:nth-child(5),
+  .slide.active .stat:nth-child(4),
+  .slide.active .indice-item:nth-child(4),
+  .slide.active .cl-cuerpo:nth-child(4)  { animation-delay: 0.37s; }
+
+  .slide.active ol.steps li:nth-child(5),
+  .slide.active ul.bullets li:nth-child(5),
+  .slide.active .recap-item:nth-child(5),
+  .slide.active table.matrix tr:nth-child(6),
+  .slide.active .indice-item:nth-child(5) { animation-delay: 0.46s; }
+
+  .slide.active ol.steps li:nth-child(6),
+  .slide.active ul.bullets li:nth-child(6),
+  .slide.active .recap-item:nth-child(6),
+  .slide.active table.matrix tr:nth-child(7),
+  .slide.active .indice-item:nth-child(6) { animation-delay: 0.55s; }
+
+  .slide.active ol.steps li:nth-child(7),
+  .slide.active ul.bullets li:nth-child(7),
+  .slide.active .recap-item:nth-child(7),
+  .slide.active table.matrix tr:nth-child(8),
+  .slide.active .indice-item:nth-child(7) { animation-delay: 0.64s; }
+
+  .slide.active ol.steps li:nth-child(8),
+  .slide.active ul.bullets li:nth-child(8),
+  .slide.active .recap-item:nth-child(8),
+  .slide.active table.matrix tr:nth-child(9),
+  .slide.active .indice-item:nth-child(8) { animation-delay: 0.73s; }
+
+  /* Slides con data-steps: el stagger no debe interferir con
+     animaciones personalizadas en SVG — esas usan sus propias
+     clases (.ia-grupo-*, etc.) y no participan en el stagger. */
+
+  /* ══════════════════════════════════════════════════
+     I. NÚMERO DE SECCIÓN EN DIVIDERS
+     Un número grande y traslúcido como elemento de fondo
+     que identifica visualmente cada sección del deck.
+     ══════════════════════════════════════════════════ */
+
+  .slide.divider {
+    overflow: hidden; /* contiene el número grande */
+  }
+
+  .sec-num {
+    position: absolute;
+    right: -.02em;
+    bottom: -.18em;
+    font-family: var(--font-title);
+    font-size: clamp(14rem, 32vw, 26rem);
+    font-weight: 700;
+    letter-spacing: -.05em;
+    line-height: 1;
+    color: currentColor;
+    opacity: .06;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  /* El contenido textual queda por encima del número */
+  .slide.divider .label,
+  .slide.divider .title {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ══════════════════════════════════════════════════
+     J. PROGRESO POR SECCIÓN
+     Indicador de puntos en la esquina superior derecha,
+     debajo del label de sección. Muestra la posición
+     del slide actual dentro de su sección.
+     ══════════════════════════════════════════════════ */
+
+  #sec-progress {
+    position: fixed;
+    top: 1.5rem;           /* alineado con #section-label */
+    right: var(--slide-pad);
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    z-index: 100;
+    transition: opacity .2s;
+  }
+
+  #sec-progress.hidden { opacity: 0; pointer-events: none; }
+
+  .sp-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: .3;
+    transition: opacity .2s, background .2s, transform .2s;
+    flex-shrink: 0;
+  }
+
+  .sp-dot.sp-visited {
+    opacity: .5;
+  }
+
+  .sp-dot.sp-active {
+    background: var(--ink);
+    opacity: 1;
+    transform: scale(1.4);
+  }
+
+  /* Adaptar colores de sec-progress según fondo del slide */
+  .sec-progress-dark .sp-dot { background: rgba(255,255,255,.4); }
+  .sec-progress-dark .sp-dot.sp-visited { opacity: .6; }
+  .sec-progress-dark .sp-dot.sp-active { background: rgba(255,255,255,.9); opacity: 1; }
+  .sec-progress-light .sp-dot { background: rgba(30,36,32,.35); }
+  .sec-progress-light .sp-dot.sp-active { background: rgba(30,36,32,.8); }
+
+  /* ══════════════════════════════════════════════════
+     K. CORTINILLA DE SECCIÓN
+     Flash de color al navegar a un divider.
+     Se posiciona sobre todo excepto el TOC.
+     ══════════════════════════════════════════════════ */
+
+  #section-wipe {
+    position: fixed;
+    inset: 0;
+    z-index: 190;
+    opacity: 0;
+    pointer-events: none;
+  }
+  #section-wipe.wipe-divider   { background: var(--ink); }
+  #section-wipe.wipe-criterio  { background: var(--accent); }
+  #section-wipe.wipe-artefacto { background: var(--bg2); }
+  /* Legacy aliases — still referenced by some older builds */
+  #section-wipe.wipe-lampara   { background: var(--accent); }
+  #section-wipe.wipe-ladrillo  { background: var(--signal); }
+  #section-wipe.wipe-active {
+    animation: wipe-pulse .52s cubic-bezier(.4,0,.2,1) forwards;
+  }
+  @keyframes wipe-pulse {
+    0%   { opacity: 0; }
+    22%  { opacity: .88; }
+    62%  { opacity: .88; }
+    100% { opacity: 0; }
+  }
+
+  /* ══════════════════════════════════════════════════
+     L. SPOTLIGHT EN SVGs CON STEPS
+     Elementos con [data-step] en slides con
+     [data-spotlight] se atenúan cuando quedan atrás
+     del step activo.
+     Uso: añade data-step="N" a grupos SVG o elementos
+     HTML, y spotlight: true en el YAML del slide.
+     ══════════════════════════════════════════════════ */
+
+  .slide[data-spotlight] [data-step] {
+    opacity: 0;
+    transition: opacity .45s ease;
+  }
+  .slide[data-spotlight] [data-step].sp-lit { opacity: 1; }
+  .slide[data-spotlight] [data-step].sp-dim { opacity: 0.15; }
+
+  /* ══════════════════════════════════════════════════
+     B. AUTO-STEPS PARA DIAGRAMAS HTML
+     Slides con auto_steps:true revelan sus filas
+     de grid de a una por paso (Space/→).
+     El JS detecta el nº de columnas, añade
+     data-auto-cols al elemento grid, y fija data-steps
+     al nº de filas.
+     ══════════════════════════════════════════════════ */
+
+  /* Grid de 2 columnas — ocultar celdas inicialmente */
+  .slide[data-auto-steps] [data-auto-cols="2"] > * {
+    opacity: 0;
+    transition: opacity .22s ease;
+  }
+  /* Revelar fila N (2 celdas por fila) en step N */
+  .slide[data-auto-steps].step-0  [data-auto-cols="2"] > *:nth-child(-n+2)  { opacity: 1; }
+  .slide[data-auto-steps].step-1  [data-auto-cols="2"] > *:nth-child(-n+4)  { opacity: 1; }
+  .slide[data-auto-steps].step-2  [data-auto-cols="2"] > *:nth-child(-n+6)  { opacity: 1; }
+  .slide[data-auto-steps].step-3  [data-auto-cols="2"] > *:nth-child(-n+8)  { opacity: 1; }
+  .slide[data-auto-steps].step-4  [data-auto-cols="2"] > *:nth-child(-n+10) { opacity: 1; }
+  .slide[data-auto-steps].step-5  [data-auto-cols="2"] > *:nth-child(-n+12) { opacity: 1; }
+  .slide[data-auto-steps].step-6  [data-auto-cols="2"] > *:nth-child(-n+14) { opacity: 1; }
+  .slide[data-auto-steps].step-7  [data-auto-cols="2"] > *:nth-child(-n+16) { opacity: 1; }
+  .slide[data-auto-steps].step-8  [data-auto-cols="2"] > *:nth-child(-n+18) { opacity: 1; }
+  .slide[data-auto-steps].step-9  [data-auto-cols="2"] > *:nth-child(-n+20) { opacity: 1; }
+  .slide[data-auto-steps].step-10 [data-auto-cols="2"] > *:nth-child(-n+22) { opacity: 1; }
+  .slide[data-auto-steps].step-11 [data-auto-cols="2"] > *:nth-child(-n+24) { opacity: 1; }
+
+  /* Grid de 3 columnas */
+  .slide[data-auto-steps] [data-auto-cols="3"] > * {
+    opacity: 0;
+    transition: opacity .22s ease;
+  }
+  .slide[data-auto-steps].step-0 [data-auto-cols="3"] > *:nth-child(-n+3)  { opacity: 1; }
+  .slide[data-auto-steps].step-1 [data-auto-cols="3"] > *:nth-child(-n+6)  { opacity: 1; }
+  .slide[data-auto-steps].step-2 [data-auto-cols="3"] > *:nth-child(-n+9)  { opacity: 1; }
+  .slide[data-auto-steps].step-3 [data-auto-cols="3"] > *:nth-child(-n+12) { opacity: 1; }
+  .slide[data-auto-steps].step-4 [data-auto-cols="3"] > *:nth-child(-n+15) { opacity: 1; }
+  .slide[data-auto-steps].step-5 [data-auto-cols="3"] > *:nth-child(-n+18) { opacity: 1; }
+  .slide[data-auto-steps].step-6 [data-auto-cols="3"] > *:nth-child(-n+21) { opacity: 1; }
+  .slide[data-auto-steps].step-7 [data-auto-cols="3"] > *:nth-child(-n+24) { opacity: 1; }
+
+  /* Hijos directos de diagram-body (sin grid detectado) */
+  .slide[data-auto-steps][data-auto-direct] .diagram-body > * {
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity .3s ease, transform .3s ease;
+  }
+  .slide[data-auto-steps][data-auto-direct].step-0  .diagram-body > *:nth-child(-n+1) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-1  .diagram-body > *:nth-child(-n+2) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-2  .diagram-body > *:nth-child(-n+3) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-3  .diagram-body > *:nth-child(-n+4) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-4  .diagram-body > *:nth-child(-n+5) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-5  .diagram-body > *:nth-child(-n+6) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-6  .diagram-body > *:nth-child(-n+7) { opacity: 1; transform: none; }
+  .slide[data-auto-steps][data-auto-direct].step-7  .diagram-body > *:nth-child(-n+8) { opacity: 1; transform: none; }
+
+  /* ══════════════════════════════════════════════════
+     F. SLIDE PREGUNTA
+     Pausa pedagógica: pregunta grande centrada para
+     que la audiencia piense antes de continuar.
+     ══════════════════════════════════════════════════ */
+
+  .slide.pregunta-slide {
+    background: var(--muted);
+    color: var(--bg);
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Signo ? gigante como fondo */
+  .slide.pregunta-slide::before {
+    content: '?';
+    position: absolute;
+    right: -.04em;
+    bottom: -.15em;
+    font-family: var(--font-title);
+    font-size: clamp(16rem, 36vw, 28rem);
+    font-weight: 700;
+    color: var(--bg);
+    opacity: .10;
+    pointer-events: none;
+    line-height: 1;
+    letter-spacing: -.05em;
+    z-index: 0;
+  }
+
+  .pregunta-label {
+    font-family: var(--font-label);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.4rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pregunta-texto {
+    font-family: var(--font-highlight);
+    font-size: clamp(2.6rem, 5.8vw, 4.4rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -.02em;
+    max-width: 24ch;
+    color: var(--bg);
+    margin-bottom: 1.8rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pregunta-nota {
+    font-size: clamp(.88rem, 1.35vw, 1rem);
+    font-weight: 300;
+    color: rgba(244,240,235,.75);
+    font-style: italic;
+    max-width: 54ch;
+    line-height: 1.65;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pregunta-tiempo {
+    position: absolute;
+    top: var(--slide-pad);
+    right: var(--slide-pad);
+    font-family: var(--font-caption);
+    font-weight: 300;
+    font-size: .68rem;
+    color: var(--bg);
+    background: rgba(244,240,235,.15);
+    padding: .3rem .8rem;
+    border-radius: 99px;
+    letter-spacing: .06em;
+    z-index: 1;
+  }
+
+  /* ══════════════════════════════════════════════════
+     F'. SLIDE PRÁCTICA
+     Pausa accional: la audiencia para y hace algo.
+     Hermana de `pregunta` pero con pasos concretos.
+     ══════════════════════════════════════════════════ */
+
+  .slide.practica-slide {
+    background: var(--muted);
+    color: var(--bg);
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Paloma ✓ gigante como marca de fondo */
+  .slide.practica-slide::before {
+    content: '✓';
+    position: absolute;
+    right: -.02em;
+    bottom: -.22em;
+    font-family: var(--font-title);
+    font-size: clamp(18rem, 40vw, 32rem);
+    font-weight: 500;
+    color: var(--accent);
+    opacity: .22;
+    pointer-events: none;
+    line-height: 1;
+    letter-spacing: -.05em;
+    z-index: 0;
+    transform: rotate(-8deg);
+    transform-origin: bottom right;
+  }
+
+  .practica-label {
+    font-family: var(--font-label);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--bg);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+
+  .practica-label-numero {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg);
+    padding: .14rem .5rem;
+    border-radius: 2px;
+    font-weight: 600;
+    letter-spacing: .08em;
+  }
+
+  .practica-titulo {
+    font-family: var(--font-highlight);
+    font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+    max-width: 22ch;
+    color: var(--bg);
+    margin-bottom: 2.2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .practica-pasos {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    max-width: 58ch;
+    position: relative;
+    z-index: 1;
+    counter-reset: paso;
+  }
+
+  .practica-pasos li {
+    counter-increment: paso;
+    position: relative;
+    padding-left: 2.6rem;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.55vw, 1.2rem);
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--bg);
+  }
+
+  .practica-pasos li::before {
+    content: counter(paso, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: .05em;
+    font-family: var(--font-caption);
+    font-size: .78rem;
+    font-weight: 500;
+    color: var(--bg);
+    letter-spacing: .04em;
+    padding-top: .25em;
+    border-top: 1.5px solid var(--bg);
+    width: 1.9rem;
+  }
+
+  .practica-pasos li strong {
+    font-weight: 600;
+    color: var(--bg);
+  }
+
+  .practica-entregable {
+    margin-top: 2rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid rgba(244,240,235,.25);
+    font-family: var(--font-body);
+    font-size: clamp(.88rem, 1.3vw, 1rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(244,240,235,.8);
+    max-width: 58ch;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  .practica-entregable-label {
+    font-family: var(--font-label);
+    font-style: normal;
+    font-size: .62rem;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-right: .6rem;
+  }
+
+  .practica-tiempo {
+    position: absolute;
+    top: var(--slide-pad);
+    right: var(--slide-pad);
+    font-family: var(--font-caption);
+    font-weight: 400;
+    font-size: .72rem;
+    color: var(--bg);
+    background: var(--accent);
+    padding: .35rem .85rem;
+    border-radius: 99px;
+    letter-spacing: .06em;
+    z-index: 1;
+  }
+
+  /* ══════════════════════════════════════════════════
+     F''. SLIDE DEMO
+     Pausa de observación: el facilitador muestra la
+     herramienta en vivo. Hermana de practica, pero
+     sin pasos accionables — la audiencia mira.
+     ══════════════════════════════════════════════════ */
+
+  .slide.demo-slide {
+    background: var(--muted);
+    color: var(--bg);
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Signo ◉ gigante (grabación en vivo) */
+  .slide.demo-slide::before {
+    content: '◉';
+    position: absolute;
+    right: -.02em;
+    bottom: -.18em;
+    font-family: var(--font-title);
+    font-size: clamp(16rem, 36vw, 28rem);
+    font-weight: 400;
+    color: var(--accent);
+    opacity: .16;
+    pointer-events: none;
+    line-height: 1;
+    letter-spacing: -.05em;
+    z-index: 0;
+  }
+
+  .demo-label {
+    font-family: var(--font-label);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--bg);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+
+  .demo-label-live {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    background: var(--accent);
+    color: var(--bg);
+    padding: .14rem .55rem;
+    border-radius: 2px;
+    font-weight: 600;
+    letter-spacing: .08em;
+  }
+
+  .demo-label-live::before {
+    content: '';
+    width: .4rem;
+    height: .4rem;
+    border-radius: 99px;
+    background: var(--bg);
+    animation: demo-pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes demo-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: .3; }
+  }
+
+  .demo-label-numero {
+    display: inline-block;
+    background: rgba(244,240,235,.15);
+    color: var(--bg);
+    padding: .14rem .5rem;
+    border-radius: 2px;
+    font-weight: 500;
+    letter-spacing: .08em;
+  }
+
+  .demo-titulo {
+    font-family: var(--font-highlight);
+    font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+    max-width: 22ch;
+    color: var(--bg);
+    margin-bottom: 2.2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .demo-mirar-label {
+    font-family: var(--font-label);
+    font-size: .6rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(244,240,235,.7);
+    margin-bottom: .8rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+  }
+
+  .demo-mirar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+    max-width: 58ch;
+    position: relative;
+    z-index: 1;
+  }
+
+  .demo-mirar li {
+    position: relative;
+    padding-left: 1.9rem;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--bg);
+  }
+
+  .demo-mirar li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .demo-mirar li strong {
+    font-weight: 600;
+    color: var(--bg);
+  }
+
+  .demo-nota {
+    margin-top: 2rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid rgba(244,240,235,.25);
+    font-family: var(--font-body);
+    font-size: clamp(.88rem, 1.3vw, 1rem);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(244,240,235,.8);
+    max-width: 58ch;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  .demo-tiempo {
+    position: absolute;
+    top: var(--slide-pad);
+    right: var(--slide-pad);
+    font-family: var(--font-caption);
+    font-weight: 400;
+    font-size: .72rem;
+    color: var(--bg);
+    background: var(--accent);
+    padding: .35rem .85rem;
+    border-radius: 99px;
+    letter-spacing: .06em;
+    z-index: 1;
+  }
+
+  /* ══════════════════════════════════════════════════
+     F'''. SLIDE REFLEXIÓN
+     Pausa de conversación grupal. Cuarta hermana de la
+     familia pedagógica: pregunta (piensa), practica (hace),
+     demo (mira), reflexion (comparte).
+     ══════════════════════════════════════════════════ */
+
+  .slide.reflexion-slide {
+    background: var(--muted);
+    color: var(--bg);
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Círculo abierto ◌ gigante como marca de fondo */
+  .slide.reflexion-slide::before {
+    content: '◌';
+    position: absolute;
+    right: -.05em;
+    bottom: -.18em;
+    font-family: var(--font-title);
+    font-size: clamp(18rem, 40vw, 32rem);
+    font-weight: 300;
+    color: var(--accent);
+    opacity: .22;
+    pointer-events: none;
+    line-height: 1;
+    letter-spacing: -.05em;
+    z-index: 0;
+  }
+
+  .reflexion-label {
+    font-family: var(--font-label);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.4rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+  }
+
+  .reflexion-sub {
+    color: rgba(244,240,235,.55);
+    font-weight: 400;
+  }
+  .reflexion-sub::after {
+    content: '·';
+    margin-left: .6rem;
+    color: rgba(244,240,235,.35);
+  }
+
+  .reflexion-pregunta {
+    font-family: var(--font-highlight);
+    font-size: clamp(2.2rem, 4.8vw, 3.8rem);
+    font-weight: 500;
+    line-height: 1.22;
+    letter-spacing: -.02em;
+    max-width: 26ch;
+    color: var(--bg);
+    margin-bottom: 2.4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .reflexion-prompts-label {
+    font-family: var(--font-label);
+    font-size: .62rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: .9rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+  }
+
+  .reflexion-prompts {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    max-width: 58ch;
+    position: relative;
+    z-index: 1;
+  }
+
+  .reflexion-prompts li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-family: var(--font-body);
+    font-size: clamp(.95rem, 1.4vw, 1.1rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.55;
+    color: rgba(244,240,235,.8);
+  }
+
+  .reflexion-prompts li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: rgba(244,240,235,.45);
+    font-style: normal;
+  }
+
+  .reflexion-prompts li em {
+    font-weight: 400;
+    color: var(--bg);
+  }
+
+  .reflexion-tiempo {
+    position: absolute;
+    top: var(--slide-pad);
+    right: var(--slide-pad);
+    font-family: var(--font-caption);
+    font-weight: 400;
+    font-size: .72rem;
+    color: var(--bg);
+    background: var(--accent);
+    padding: .35rem .85rem;
+    border-radius: 99px;
+    letter-spacing: .06em;
+    z-index: 1;
+  }
+
+  /* ══════════════════════════════════════════════════
+     G. SLIDE ANTES / DESPUÉS
+     Dos paneles de comparación. Con steps:2, el panel
+     "después" se revela al avanzar.
+     ══════════════════════════════════════════════════ */
+
+  .slide.antes-despues-slide {
+    padding: 0;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  .ad-header {
+    padding: var(--slide-pad) var(--slide-pad) 1.2rem;
+    flex-shrink: 0;
+    background: var(--bg);
+  }
+
+  .ad-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .ad-panel {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ad-panel-antes  { background: rgba(168,56,40,.07);  border-top: 3px solid var(--signal); }
+  .ad-panel-despues { background: rgba(200,212,74,.1); border-top: 3px solid var(--accent); }
+
+  .ad-etiqueta {
+    font-family: var(--font-label);
+    font-size: .64rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .ad-panel-antes  .ad-etiqueta { color: var(--signal); }
+  .ad-panel-despues .ad-etiqueta { color: var(--muted);  }
+
+  .ad-contenido {
+    font-size: clamp(.9rem, 1.6vw, 1.1rem);
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  /* Steps: ocultar panel "después" hasta step-1 */
+  .slide.antes-despues-slide[data-steps] .ad-panel-despues {
+    opacity: 0;
+    transform: translateX(1rem);
+    transition: opacity .4s ease, transform .4s ease;
+  }
+  .slide.antes-despues-slide[data-steps].step-1 .ad-panel-despues {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* ══════════════════════════════════════════════════
+     M. COMPARATIVA VISUAL
+     Slider interactivo que revela dos imágenes o
+     contenidos HTML. El JS maneja el arrastre.
+     ══════════════════════════════════════════════════ */
+
+  .slide.comparativa-slide { padding: 0; overflow: hidden; }
+
+  .comp-container {
+    position: absolute;
+    inset: 0;
+    --split: 50%;
+    user-select: none;
+    cursor: col-resize;
+  }
+
+  .comp-side {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .comp-left  { clip-path: inset(0 calc(100% - var(--split)) 0 0); }
+  .comp-right { clip-path: inset(0 0 0 var(--split)); }
+
+  .comp-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: clamp(1rem, 3vw, 3rem);
+  }
+
+  .comp-etiqueta {
+    position: absolute;
+    top: var(--slide-pad);
+    font-family: var(--font-label);
+    font-size: .68rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: .28rem .75rem;
+    border-radius: 99px;
+    z-index: 2;
+  }
+  .comp-left  .comp-etiqueta { left:  var(--slide-pad); background: var(--signal);  color: var(--bg); }
+  .comp-right .comp-etiqueta { right: var(--slide-pad); background: var(--ink); color: var(--bg); }
+
+  /* Línea divisoria */
+  .comp-handle {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: var(--split);
+    transform: translateX(-50%);
+    width: 3px;
+    background: white;
+    box-shadow: 0 0 8px rgba(0,0,0,.35);
+    z-index: 10;
+    cursor: ew-resize;
+    pointer-events: none; /* el container captura los eventos */
+  }
+
+  /* Botón en el centro de la línea */
+  .comp-handle-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .9rem;
+    color: var(--ink);
+    pointer-events: none;
+  }
+
+  /* Título al pie */
+  .comp-footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 5;
+    padding: 1rem var(--slide-pad) calc(var(--slide-pad) * .7);
+    background: linear-gradient(transparent, rgba(242,238,228,.92) 55%);
+  }
+  .comp-footer .diagram-title {
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  }
+
+  /* ══════════════════════════════════════════════════
+     SISTEMA DE TEXTURA
+     ══════════════════════════════════════════════════ */
+
+  /* ── Variables de textura ───────────────────────── */
+  :root {
+    --arena: #D4C4AD;
+    --terracota: #B84A32;
+    --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ── CAPA 1: Grano de fondo ────────────────────── */
+  /* Fondos claros: grano en multiply */
+  .slide:not(.dark):not(.divider-criterio):not(.divider-artefacto):not(.divider-lampara):not(.divider-ladrillo)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--grain);
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.03;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 1;
+  }
+  /* Fondos oscuros: grano en soft-light */
+  .slide.dark::after,
+  .slide.cover::after,
+  .slide.quote-slide::after,
+  .slide.divider::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--grain);
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    opacity: 0.04;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    z-index: 1;
+  }
+  /* Dividers de color (persona/artefacto): sin grano (limpios) */
+  .slide.divider-criterio::after,
+  .slide.divider-artefacto::after,
+  .slide.divider-lampara::after,
+  .slide.divider-ladrillo::after {
+    display: none !important;
+  }
+
+  /* ── CAPA 2: Bordes orgánicos ──────────────────── */
+  .rule {
+    height: 1px !important;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--muted) 8%,
+      var(--muted) 45%,
+      color-mix(in srgb, var(--muted) 60%, transparent) 55%,
+      var(--muted) 65%,
+      var(--muted) 92%,
+      transparent 100%
+    ) !important;
+  }
+
+  /* ── CAPA 3: Subrayado manual (desactivado) ─────── */
+  /* Movido a meta.css por presentación para control  */
+  /* individual de colores. Ver ia_con_criterio.yaml  */
+
+  /* ── CAPA 4: Sombra edison ─────────────────────── */
+  /* Sombra cálida asimétrica en cards — la luz      */
+  /* viene de arriba-izquierda como un foco edison.  */
+  .card {
+    border: none !important;
+    box-shadow:
+      0 0 0 0.5px color-mix(in srgb, var(--ink) 10%, transparent),
+      3px 4px 12px -2px rgba(42, 32, 24, 0.12),
+      6px 8px 24px -4px rgba(42, 32, 24, 0.06) !important;
+    transition: box-shadow 0.3s ease;
+  }
+  /* Quotes: sin borde lateral adicional */
+  /* Sombra edison en slides oscuros: glow cálido sutil */
+  .slide.dark .card,
+  .slide.cover .card {
+    box-shadow:
+      0 0 0 0.5px rgba(240, 232, 220, 0.08),
+      3px 4px 16px -2px rgba(200, 212, 74, 0.06),
+      0 0 40px -8px rgba(200, 212, 74, 0.04) !important;
+  }
+
+  /* ── CAPA 5: Etiqueta de maceta ────────────────── */
+  /* Pills con estilo de etiqueta de jardinería:     */
+  /* fondo arena, borde irregular, esquinas rectas.  */
+  .pill.maceta {
+    background: var(--arena) !important;
+    color: var(--ink) !important;
+    border: none !important;
+    border-radius: 3px !important;
+    font-family: var(--font-label) !important;
+    font-weight: 500 !important;
+    font-size: .72rem !important;
+    letter-spacing: .06em;
+    padding: .32rem .9rem !important;
+    position: relative;
+    box-shadow:
+      1px 2px 4px rgba(42, 32, 24, 0.08),
+      inset 0 -1px 0 rgba(42, 32, 24, 0.06);
+    transform: rotate(-0.5deg);
+  }
+  .pill.maceta::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 3px;
+    border: 1px solid rgba(92, 74, 62, 0.2);
+    pointer-events: none;
+  }
+  .pill.maceta-dark {
+    background: var(--ink) !important;
+    color: var(--arena) !important;
+    border: none !important;
+    border-radius: 3px !important;
+    font-family: var(--font-label) !important;
+    font-weight: 500 !important;
+    font-size: .72rem !important;
+    letter-spacing: .06em;
+    padding: .32rem .9rem !important;
+    box-shadow: 1px 2px 4px rgba(42, 32, 24, 0.15);
+    transform: rotate(0.3deg);
+  }
+
+  /* ── CAPA 6: Numeración manuscrita ─────────────── */
+  /* Los números de steps, recap e índice se ven     */
+  /* menos mecánicos: más grandes, con ángulo sutil, */
+  /* peso irregular. No es una fuente handwriting    */
+  /* sino tratamiento del número existente.          */
+  ol.steps li .num {
+    font-family: var(--font-title) !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    font-style: italic !important;
+    color: var(--signal) !important;
+    opacity: 0.7;
+    transform: rotate(-2deg);
+    display: inline-block;
+    letter-spacing: -0.02em;
+  }
+  .recap-num {
+    font-family: var(--font-title) !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    font-style: italic !important;
+    color: var(--signal) !important;
+    opacity: 0.65;
+    transform: rotate(-3deg);
+    display: inline-block;
+  }
+  .indice-num {
+    font-size: clamp(1.2rem, 2vw, 1.5rem) !important;
+    font-weight: 900 !important;
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+
+  /* ── Antes/después: fade como default ──────────── */
+  /* El panel "antes" se desvanece — opacidad baja   */
+  /* + desenfoque sutil. Sin garabato diagonal.      */
+  .ad-panel-antes .ad-contenido {
+    position: relative;
+    opacity: 0.4;
+    filter: blur(0.8px);
+    transition: opacity 0.4s, filter 0.4s;
+  }
+  .ad-panel-antes {
+    background: rgba(168,56,40,.03) !important;
+  }
+
+</style>
+<style>
+/* ══════════════════════════════════════════════
+   TEXTURA LINO
+   Aplicada como background-image del slide,
+   no como pseudo-element — evita conflictos de z-index.
+   ══════════════════════════════════════════════ */
+
+/* ── Lino claro (marfil) ── */
+.slide:not(.dark):not(.divider-criterio):not(.divider-artefacto):not(.divider-lampara):not(.divider-ladrillo):not(.cover):not(.divider):not(.quote-slide):not(.cuerpo-largo-slide):not(.pregunta-slide):not(.practica-slide):not(.demo-slide):not(.reflexion-slide):not(.subseccion-entry):not(.cierre) {
+  background-color: var(--bg);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(120, 108, 92, 0.06) 0px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 108, 92, 0.04) 0px,
+      transparent 1px,
+      transparent 5px
+    );
+}
+
+/* ── Lino arena (familia pedagógica: pregunta, practica, demo) ── */
+.slide.pregunta-slide,
+.slide.practica-slide,
+.slide.demo-slide {
+  background-color: var(--muted);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(28, 28, 30, 0.05) 0px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(28, 28, 30, 0.03) 0px,
+      transparent 1px,
+      transparent 5px
+    );
+}
+
+/* ── Lino intenso (negro tinta: cover, dark) ── */
+.slide.cover,
+.slide.dark {
+  background-color: var(--ink);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(196, 185, 168, 0.02) 0px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(196, 185, 168, 0.01) 0px,
+      transparent 1px,
+      transparent 5px
+    );
+}
+
+/* ── Quote: lino de fondo + hoja centrada como background apilado ── */
+.slide.quote-slide {
+  background-color: var(--bg);
+  background-image:
+    url('img/papel.png'),
+    repeating-linear-gradient(
+      0deg,
+      rgba(120, 108, 92, 0.06) 0px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(120, 108, 92, 0.04) 0px,
+      transparent 1px,
+      transparent 5px
+    );
+  background-size: 80% 80%, auto, auto;
+  background-position: center center, 0 0, 0 0;
+  background-repeat: no-repeat, repeat, repeat;
+}
+
+/* Ancho máximo y tamaño de texto de quote */
+.slide.quote-slide blockquote.quote-text {
+  max-width: 21em;
+  font-size: clamp(1.2rem, 2.9vw, 2.3rem);
+}
+
+/* Colores: tinta sobre papel claro */
+.slide.quote-slide blockquote.quote-text {
+  color: var(--ink);
+}
+.slide.quote-slide blockquote.quote-text em {
+  color: var(--accent);
+  font-style: italic;
+}
+.slide.quote-slide .quote-who {
+  color: var(--ink);
+  opacity: 0.7;
+}
+.slide.quote-slide .quote-fuente,
+.slide.quote-slide .quote-nota {
+  color: var(--ink);
+  opacity: 0.5;
+}
+
+/* ── Divider neutro (negro tinta, v2) ──
+   En el sistema persona/artefacto, el divider base es tinta oscura.
+   El color (rojo o azul) se reserva para dividers semánticos. */
+.slide.divider {
+  background-color: var(--ink);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(196, 185, 168, 0.02) 0px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(196, 185, 168, 0.01) 0px,
+      transparent 1px,
+      transparent 5px
+    );
+}
+
+/* Desactivar el grano SVG del template base */
+.slide::after {
+  display: none !important;
+}
+
+/* Dividers de color: sin textura (limpios) */
+.slide.divider-criterio::after,
+.slide.divider-artefacto::after,
+.slide.divider-criterio::before,
+.slide.divider-artefacto::before,
+.slide.divider-lampara::after,
+.slide.divider-ladrillo::after,
+.slide.divider-lampara::before,
+.slide.divider-ladrillo::before {
+  display: none !important;
+}
+
+/* ── Ajustes de color para la paleta ── */
+/* Rojo cadmio en em dentro de slides oscuros necesita más brillo */
+.slide.dark .title em,
+.slide.cover .title em,
+.slide.divider .title em {
+  color: #E8453A;
+}
+
+/* Arena para labels en slides claros */
+.slide:not(.dark) .label {
+  color: #8C8070;
+}
+
+/* ── Óvalo de énfasis con imagen 416 — cover y dividers ── */
+.slide.cover .circled,
+.slide.divider .circled,
+.slide.divider-criterio .circled,
+.slide.divider-artefacto .circled,
+.slide.divider-lampara .circled,
+.slide.divider-ladrillo .circled {
+  position: relative;
+  display: inline;
+  font-weight: inherit;
+  color: inherit;
+}
+.slide.cover .circled::before,
+.slide.divider .circled::before,
+.slide.divider-criterio .circled::before,
+.slide.divider-artefacto .circled::before,
+.slide.divider-lampara .circled::before,
+.slide.divider-ladrillo .circled::before {
+  content: '';
+  position: absolute;
+  left: -0.35em;
+  right: -0.65em;
+  top: 0.0em;
+  bottom: -0.30em;
+  background-image: url('img/416.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  pointer-events: none;
+  z-index: 1;
+}
+/* Slides con fondo oscuro (texto claro): trazo blanco */
+.slide.cover .circled::before,
+.slide.divider .circled::before,
+.slide.divider-artefacto .circled::before,
+.slide.divider-ladrillo .circled::before {
+  filter: brightness(0) invert(1);
+}
+/* Slides con fondo saturado pero texto oscuro (divider-criterio / rojo): trazo oscuro */
+.slide.divider-criterio .circled::before,
+.slide.divider-lampara .circled::before {
+  filter: brightness(0) saturate(100%) invert(29%) sepia(30%) saturate(614%) hue-rotate(161deg) brightness(96%) contrast(83%);
+}
+
+/* ── Resto de slides: .circled = marcatextos (azul pizarra) ── */
+.slide:not(.cover):not(.divider):not(.divider-criterio):not(.divider-artefacto):not(.divider-lampara):not(.divider-ladrillo) .circled {
+  font-weight: inherit;
+  font-style: normal;
+  background: linear-gradient(104deg, transparent 0%, rgba(61,90,110,0.08) 5%, rgba(61,90,110,0.22) 20%, rgba(61,90,110,0.22) 80%, rgba(61,90,110,0.06) 95%, transparent 80%);
+  padding: 1px 6px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+/* Marcatextos en slides oscuros — marfil suave */
+.slide.dark .circled,
+.slide.cuerpo-largo-slide .circled {
+  background: linear-gradient(104deg, transparent 0%, rgba(242,238,228,0.08) 5%, rgba(242,238,228,0.18) 30%, rgba(242,238,228,0.18) 75%, rgba(242,238,228,0.06) 95%, transparent 100%) !important;
+  color: var(--bg);
+}
+
+/* ── Marcatextos nombrados ── */
+.marca-azul {
+  font-style: normal;
+  font-weight: inherit;
+  background: linear-gradient(104deg, transparent 0%, rgba(61,90,110,0.08) 5%, rgba(61,90,110,0.22) 30%, rgba(61,90,110,0.22) 75%, rgba(61,90,110,0.06) 95%, transparent 100%);
+  padding: 1px 6px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.cuerpo-largo-slide .marca-azul {
+  background: linear-gradient(104deg, transparent 0%, rgba(242,238,228,0.08) 5%, rgba(242,238,228,0.18) 30%, rgba(242,238,228,0.18) 75%, rgba(242,238,228,0.06) 95%, transparent 100%);
+}
+.marca-arena {
+  font-style: normal;
+  font-weight: inherit;
+  background: linear-gradient(104deg, transparent 0%, rgba(140,128,112,0.08) 5%, rgba(140,128,112,0.25) 30%, rgba(140,128,112,0.25) 75%, rgba(140,128,112,0.06) 95%, transparent 100%);
+  padding: 1px 6px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.cuerpo-largo-slide .marca-arena {
+  background: linear-gradient(104deg, transparent 0%, rgba(242,238,228,0.06) 5%, rgba(242,238,228,0.13) 30%, rgba(242,238,228,0.13) 75%, rgba(242,238,228,0.04) 95%, transparent 100%);
+}
+
+/* ── CSS específico del taller AGIR ── */
+
+/* Título más ancho */
+.title { max-width: 22ch; }
+
+/* Bajar peso de títulos Maax — Medium (500) se siente grueso en display.
+   Regular (400) da aire sin adelgazar como Light. */
+.title,
+.slide.cover .title,
+.slide.divider .title,
+.slide.divider-lampara .title,
+.slide.divider-ladrillo .title {
+  font-weight: 400;
+}
+
+/* Más aire entre título y cuerpo en slides tipo diagrama */
+.diagram-header { margin-bottom: 2.8rem; }
+
+/* Reveal paso a paso — ¿Cuándo sí usar IA? (6 cards) */
+.si-c1,.si-c2,.si-c3,.si-c4,.si-c5,.si-c6 { opacity: 0; transition: opacity .35s ease; }
+.step-1 .si-c1,.step-2 .si-c1,.step-3 .si-c1,.step-4 .si-c1,.step-5 .si-c1,.step-6 .si-c1 { opacity: 1; }
+.step-2 .si-c2,.step-3 .si-c2,.step-4 .si-c2,.step-5 .si-c2,.step-6 .si-c2 { opacity: 1; }
+.step-3 .si-c3,.step-4 .si-c3,.step-5 .si-c3,.step-6 .si-c3 { opacity: 1; }
+.step-4 .si-c4,.step-5 .si-c4,.step-6 .si-c4 { opacity: 1; }
+.step-5 .si-c5,.step-6 .si-c5 { opacity: 1; }
+.step-6 .si-c6 { opacity: 1; }
+
+/* Reveal paso a paso — ¿Cuándo no usar IA? (4 cards) */
+.no-c1,.no-c2,.no-c3,.no-c4 { opacity: 0; transition: opacity .35s ease; }
+.step-1 .no-c1,.step-2 .no-c1,.step-3 .no-c1,.step-4 .no-c1 { opacity: 1; }
+.step-2 .no-c2,.step-3 .no-c2,.step-4 .no-c2 { opacity: 1; }
+.step-3 .no-c3,.step-4 .no-c3 { opacity: 1; }
+.step-4 .no-c4 { opacity: 1; }
+
+/* Matrix más grande — para "Tres alternativas" */
+table.matrix {
+  max-width: 1000px;
+  font-size: 1.05rem;
+}
+table.matrix th {
+  font-size: .85rem;
+  padding-bottom: 1rem;
+}
+table.matrix td {
+  padding: 1.2rem 1.8rem 1.2rem 0;
+  font-size: 1.1rem;
+  line-height: 1.45;
+}
+table.matrix td:first-child {
+  font-family: var(--font-title);
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--ink);
+}
+
+</style>
+</head>
+<body>
+
+<div id="counter">01 / 01</div>
+<div id="section-label"></div>
+<div id="sec-progress"></div>
+<div id="section-wipe"></div>
+<div id="footer">
+  <strong id="footer-title">iatelier</strong>
+  <span id="footer-sub">ideas aumentadas</span>
+</div>
+<div id="progress"></div>
+<div id="nav">
+  <button class="nav-btn" id="toc-btn" aria-label="Tabla de contenidos" title="Tabla de contenidos (T)">&#9776;</button>
+  <button class="nav-btn" id="prev" aria-label="Anterior">&#8592;</button>
+  <button class="nav-btn" id="next" aria-label="Siguiente">&#8594;</button>
+</div>
+
+<!-- Barra lateral de contenidos (activa solo si meta.barra_lateral: true) -->
+<nav id="toc" aria-label="Contenidos de la sección">
+  <div id="toc-section-name"></div>
+  <ul id="toc-list"></ul>
+</nav>
+
+<div id="stage">
+
+  <!-- COVER -->
+  <section class="slide cover active" data-section="">
+    <div class="rule"></div>
+    <h1 class="title">Trabajar con <em>Claude</em></h1>
+    <p class="body" style="color:rgba(255,255,255,.6);margin-top:-.5rem">Taller de introducción — AGIR</p>
+  </section>
+
+  <!-- INDICE -->
+  <section class="slide indice-slide " data-section="Contenido">
+    <h2 class="title">Contenido</h2>
+    <div class="indice-list">
+      <div class="indice-item">
+        <span class="indice-num">01</span>
+        <span class="indice-text">Entender la herramienta</span>
+      </div>
+      <div class="indice-item">
+        <span class="indice-num">02</span>
+        <span class="indice-text">Conocer a Claude</span>
+      </div>
+      <div class="indice-item">
+        <span class="indice-num">03</span>
+        <span class="indice-text">Trabajar con Claude</span>
+      </div>
+      <div class="indice-item">
+        <span class="indice-num">04</span>
+        <span class="indice-text">Cierre</span>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <section data-toc-label="La herramienta" class="slide divider " data-section="">
+    <p class="label">Entender la herramienta</p>
+    <h2 class="title">Entender la herramienta</h2>
+    <span class="sec-num" aria-hidden="true">1</span>
+  </section>
+
+  <!-- PREGUNTA -->
+  <section data-toc-label="¿Qué es?" class="slide pregunta-slide " data-section="Entender la herramienta">
+    
+    <p class="pregunta-label">Pregunta</p>
+    <p class="pregunta-texto"><span style="font-family:var(--font-title);font-feature-settings:'ss02' 1;">¿Qué es la IA generativa?</span></p>
+    
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Máquina de producir" data-auto-steps="true" class="slide diagram-slide " data-section="Entender la herramienta">
+    <div class="diagram-header">
+      <h2 class="diagram-title">Una máquina de <em>producir</em> lenguaje</h2>
+    </div>
+    <div class="diagram-body">
+      <div style="display:grid;grid-template-columns:14rem 1fr;row-gap:1.4rem;column-gap:2rem;max-width:880px;align-items:start;">
+  <div style="font-weight:600;color:var(--ink);font-size:1.1rem;">1. Entrada</div>
+  <div style="color:var(--muted);font-size:1rem;line-height:1.55;">Escribes un mensaje. Pero tu mensaje no llega solo: se acomoda junto a instrucciones del sistema, memorias, archivos del proyecto y el historial de la conversación. Todo eso es el <strong>contexto</strong> que el modelo recibe.</div>
+
+  <div style="font-weight:600;color:var(--ink);font-size:1.1rem;">2. Tokens</div>
+  <div style="color:var(--muted);font-size:1rem;line-height:1.55;">El modelo no lee palabras. Descompone todo en <strong>tokens</strong>: fragmentos codificados que puede procesar. Y no solo texto; también código, fórmulas, imágenes. Cualquier cosa que pueda tokenizarse es lenguaje para el modelo.</div>
+
+  <div style="font-weight:600;color:var(--ink);font-size:1.1rem;">3. Producción</div>
+  <div style="color:var(--muted);font-size:1rem;line-height:1.55;">Calcula la <strong>siguiente pieza más probable</strong>. Pero esa probabilidad está informada por todo lo que aprendió en el entrenamiento: gramática, lógica, convenciones, estilos.</div>
+
+  <div style="font-weight:600;color:var(--ink);font-size:1.1rem;">4. Ensamblaje</div>
+  <div style="color:var(--muted);font-size:1rem;line-height:1.55;">Ensambla uno, lo agrega, ensambla el siguiente. Así, pieza por pieza, va <strong>armando la respuesta</strong>.</div>
+
+  <div style="font-weight:600;color:var(--ink);font-size:1.1rem;">5. Salida</div>
+  <div style="color:var(--muted);font-size:1rem;line-height:1.55;">Lo que ves en pantalla es el <strong>resultado de ese cálculo</strong>, no una respuesta pensada.</div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- CUERPO LARGO -->
+  <section data-toc-label="Produce vs. diriges" class="slide cuerpo-largo-slide " data-section="Entender la herramienta">
+    <h2 class="cl-titulo">El modelo <em>produce</em>, tú <em>diriges</em></h2>
+    <p class="cl-cuerpo">Los modelos de lenguaje rompieron algo que hasta hace poco iba junto: la producción de lenguaje y la producción de significado. El modelo arma frases sin saber qué dicen. Calcula la siguiente pieza más probable, no la siguiente pieza verdadera, ni útil, ni pertinente. <span class="marca-arena">El significado no está en el texto que produce — está en quien lo lee y decide qué hacer con él.</span></p>
+    <p class="cl-cuerpo">Por eso la palabra "alucinación" es engañosa. El modelo no se equivoca cuando inventa una cita falsa o afirma algo impreciso: está haciendo lo mismo que cuando acierta, producir la continuación más probable. Lo que llamamos alucinación es el momento en que esa producción se desajusta del sentido que tú esperabas sostener.</p>
+    <p class="cl-cuerpo">Trabajar con IA no es leer su respuesta. Es darle dirección antes y significado después. El criterio de si lo producido es cierto, preciso, útil o responsable no vive en el modelo: vive en ti. <span class="marca-arena">Esa parte no se delega.</span></p>
+  </section>
+
+  <!-- TEXTO + DIAGRAMA -->
+  <section data-toc-label="Dentro de la ventana" class="slide texto-diagrama " data-section="Entender la herramienta">
+    <div class="td-texto">
+      <div class="td-def">
+        <span class="td-term">Dentro de la <em>ventana</em></span>
+        <span class="td-desc">La ventana de contexto es el espacio total que el modelo puede atender a la vez. Tu mensaje es solo una fracción: la mayor parte ya está ocupada por instrucciones, memorias, herramientas y el historial de la conversación. Lo que no cabe, <em>no existe</em> para el modelo.</span>
+      </div>
+      
+    </div>
+    <div class="td-diagrama">
+      <svg viewBox="0 0 500 475" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;max-height:100%;font-family:inherit">
+  <defs>
+    <clipPath id="vc-clip">
+      <rect x="6" y="18" width="488" height="450" rx="7"/>
+    </clipPath>
+  </defs>
+
+  <text x="250" y="11" text-anchor="middle" font-size="9" font-weight="700" letter-spacing="0.14em" fill="var(--muted)" font-family="monospace">VENTANA DE CONTEXTO</text>
+
+  <g clip-path="url(#vc-clip)">
+
+    <!-- LAYER 1: Base del sistema -->
+    <rect x="6" y="18" width="488" height="162" fill="var(--ink)"/>
+    <text x="20" y="38" font-size="9" font-weight="700" letter-spacing="0.13em" fill="var(--muted)" font-family="monospace">BASE DEL SISTEMA</text>
+    <rect x="20" y="46" width="224" height="118" rx="4" fill="rgba(255,255,255,0.08)"/>
+    <text x="32" y="68" font-size="13" font-weight="600" fill="var(--bg)">System prompt</text>
+    <text x="32" y="87" font-size="11" fill="rgba(242,238,228,0.5)">Personalidad,</text>
+    <text x="32" y="103" font-size="11" fill="rgba(242,238,228,0.5)">restricciones y</text>
+    <text x="32" y="119" font-size="11" fill="rgba(242,238,228,0.5)">reglas ocultas</text>
+    <rect x="256" y="46" width="224" height="118" rx="4" fill="rgba(255,255,255,0.08)"/>
+    <text x="268" y="68" font-size="13" font-weight="600" fill="var(--bg)">Recursos</text>
+    <text x="268" y="87" font-size="11" fill="rgba(242,238,228,0.5)">Memorias,</text>
+    <text x="268" y="103" font-size="11" fill="rgba(242,238,228,0.5)">documentos y</text>
+    <text x="268" y="119" font-size="11" fill="rgba(242,238,228,0.5)">preferencias tuyas</text>
+
+    <!-- LAYER 2: Conversación -->
+    <rect x="6" y="180" width="488" height="112" fill="#2A3D4A"/>
+    <line x1="6" y1="180" x2="494" y2="180" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="20" y="198" font-size="9" font-weight="700" letter-spacing="0.13em" fill="var(--muted)" font-family="monospace">CONVERSACIÓN</text>
+    <rect x="20" y="205" width="224" height="74" rx="4" fill="rgba(255,255,255,0.07)"/>
+    <text x="32" y="225" font-size="13" font-weight="600" fill="var(--bg)">Mensajes IA</text>
+    <text x="32" y="244" font-size="11" fill="rgba(242,238,228,0.5)">Respuestas previas</text>
+    <rect x="256" y="205" width="224" height="74" rx="4" fill="rgba(255,255,255,0.07)"/>
+    <text x="268" y="225" font-size="13" font-weight="600" fill="var(--bg)">Tus mensajes</text>
+    <text x="268" y="244" font-size="11" fill="rgba(242,238,228,0.5)">Lo que escribiste antes</text>
+
+    <!-- LAYER 3: Capacidades -->
+    <rect x="6" y="292" width="488" height="110" fill="var(--bg2)"/>
+    <line x1="6" y1="292" x2="494" y2="292" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+    <text x="20" y="312" font-size="9" font-weight="700" letter-spacing="0.13em" fill="var(--muted)" font-family="monospace">CAPACIDADES</text>
+    <rect x="20" y="320" width="148" height="68" rx="4" fill="rgba(255,255,255,0.07)"/>
+    <text x="32" y="342" font-size="13" font-weight="600" fill="var(--bg)">Catálogo de</text>
+    <text x="32" y="360" font-size="13" font-weight="600" fill="var(--bg)">herramientas</text>
+    <rect x="178" y="320" width="148" height="68" rx="4" fill="rgba(255,255,255,0.07)"/>
+    <text x="190" y="342" font-size="13" font-weight="600" fill="var(--bg)">Herramientas</text>
+    <text x="190" y="360" font-size="13" font-weight="600" fill="var(--bg)">usadas</text>
+    <rect x="336" y="320" width="148" height="68" rx="4" fill="rgba(255,255,255,0.07)"/>
+    <text x="348" y="342" font-size="13" font-weight="600" fill="var(--bg)">Historial</text>
+    <text x="348" y="360" font-size="13" font-weight="600" fill="var(--bg)">de uso</text>
+
+    <!-- LAYER 4: Tu mensaje -->
+    <rect x="6" y="402" width="488" height="66" fill="var(--accent)"/>
+    <line x1="6" y1="402" x2="494" y2="402" stroke="rgba(30,36,32,0.25)" stroke-width="1.5"/>
+    <text x="250" y="427" text-anchor="middle" font-size="14" font-weight="700" fill="var(--bg)" letter-spacing="0.02em">Tu mensaje</text>
+    <text x="250" y="446" text-anchor="middle" font-size="11" fill="rgba(244,240,235,0.75)">una fracción del total</text>
+
+  </g>
+
+  <rect x="6" y="18" width="488" height="450" rx="7" fill="none" stroke="var(--ink)" stroke-width="1.5" stroke-opacity="0.18"/>
+</svg>
+
+      
+    </div>
+  </section>
+
+  <!-- ANTES / DESPUÉS -->
+  <section data-toc-label="Cómo pides" data-steps="1" class="slide antes-despues-slide " data-section="Entender la herramienta">
+    <div class="ad-header">
+      <h2 class="title" style="font-size:clamp(1.5rem,2.8vw,2.2rem);margin-bottom:0">Cómo <em>pides</em> cambia lo que recibes</h2>
+    </div>
+    <div class="ad-cols">
+      <div class="ad-panel ad-panel-antes">
+        <span class="ad-etiqueta">Pedido mínimo</span>
+        <p class="ad-contenido">Redacta un comunicado sobre el cambio en el día de recolección.
+</p>
+      </div>
+      <div class="ad-panel ad-panel-despues">
+        <span class="ad-etiqueta">Pedido con criterio</span>
+        <p class="ad-contenido">Redacta un comunicado de 200 palabras dirigido a vecinos de una colonia, informando el cambio del día de recolección del martes al jueves a partir del 1 de mayo. Tono institucional pero claro. Incluye qué hacer si aún sacan la basura el martes. Evita tecnicismos. Firma: Dirección de Operaciones.
+</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTACADO CRITERIO (persona) -->
+  <section data-toc-label="Metacognición" class="slide divider-criterio " data-section="Entender la herramienta">
+    <h2 class="title">La metacognición es la habilidad <em>más importante</em> al trabajar con IA.</h2>
+  </section>
+
+  <!-- CUERPO LARGO -->
+  <section data-toc-label="Qué es" class="slide cuerpo-largo-slide " data-section="Entender la herramienta">
+    <h2 class="cl-titulo">Pensar sobre cómo estás <em>pensando</em></h2>
+    <p class="cl-cuerpo">La metacognición es la capacidad de <span class="marca-arena">observar tu propio proceso mientras lo haces</span>: qué estás haciendo tú, qué le estás pidiendo al modelo, qué estás entendiendo, qué se te está escapando.</p>
+    <p class="cl-cuerpo">Al trabajar con IA importa más que ninguna otra habilidad, porque el modelo produce con solvencia cosas que suenan bien y no sabe si son ciertas. Sin alguien que se pregunte si el resultado tiene sentido, si el criterio se está sosteniendo, si se sigue aprendiendo o solo firmando, el trabajo se vuelve <span class="marca-arena">ejecución sin gobierno</span>.</p>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Cuándo no usar IA" data-steps="4" class="slide diagram-slide " data-section="Entender la herramienta">
+    <div class="diagram-header">
+      <h2 class="diagram-title">¿Cuándo <em>no</em> usar IA?</h2>
+    </div>
+    <div class="diagram-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;width:100%;font-family:inherit;">
+  <div class="no-c1" style="background:var(--signal);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Responsabilidad no transferible</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">La IA puede informar y explorar, nunca decidir</div>
+  </div>
+  <div class="no-c2" style="background:var(--signal);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Presencia humana como valor</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">El valor de la actividad reside en que la hace una persona específica</div>
+  </div>
+  <div class="no-c3" style="background:var(--signal);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Proceso con valor intrínseco</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">El esfuerzo es parte del resultado, no un costo que reducir</div>
+  </div>
+  <div class="no-c4" style="background:var(--signal);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Conservación de capacidad</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">Si quieres mantener una habilidad propia, redirige el aumento; no delegues la ejecución</div>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Cuándo usar IA" data-steps="6" class="slide diagram-slide " data-section="Entender la herramienta">
+    <div class="diagram-header">
+      <h2 class="diagram-title">¿Cuándo <em>sí</em> usar IA?</h2>
+    </div>
+    <div class="diagram-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;width:100%;font-family:inherit;">
+  <div class="si-c1" style="background:var(--bg2);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Volumen</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">La tarea supera la capacidad atencional humana sostenida</div>
+  </div>
+  <div class="si-c2" style="background:var(--bg2);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Repetición con criterio estable</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">Una vez definido el criterio, la ejecución es delegable</div>
+  </div>
+  <div class="si-c3" style="background:var(--bg2);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Borrador antes de criterio</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">El valor humano está en evaluar, no en producir el borrador</div>
+  </div>
+  <div class="si-c4" style="background:var(--bg2);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Carga sin decisión</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">Consume tiempo y energía sin requerir juicio real</div>
+  </div>
+  <div class="si-c5" style="background:var(--bg2);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Punto ciego propio</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">Tu criterio puede estar contaminado; la IA actúa como contrapeso</div>
+  </div>
+  <div class="si-c6" style="background:var(--bg2);border-radius:6px;padding:1.4rem 1.6rem;">
+    <div style="font-size:1.15rem;font-weight:700;color:var(--bg);margin-bottom:.5rem;line-height:1.25;">Fricción de captura</div>
+    <div style="font-size:1rem;color:rgba(242,238,228,.72);line-height:1.55;">Información valiosa que se pierde porque registrarla cuesta demasiado</div>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- RECAP -->
+  <section data-toc-label="En resumen" class="slide " data-section="Entender la herramienta">
+    <h2 class="title">En <em>resumen</em></h2>
+    <div class="recap-list">
+      <div class="recap-item">
+        <span class="recap-num">01</span>
+        <span class="recap-text"><strong>Produce lenguaje, no significado.</strong> Arma frases sin saber qué dicen. El sentido lo pones tú.</span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">02</span>
+        <span class="recap-text"><strong>La ventana de contexto es finita.</strong> Lo que no cabe, no existe para el modelo.</span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">03</span>
+        <span class="recap-text"><strong>Cómo pides cambia lo que recibes.</strong> Una consigna clara hace la mitad del trabajo.</span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">04</span>
+        <span class="recap-text"><strong>Supervisa cómo trabajas, no solo lo que sale.</strong> Qué delegas, qué sostienes, qué aprendes. Esa pregunta no se delega.</span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">05</span>
+        <span class="recap-text"><strong>La responsabilidad siempre es tuya.</strong> Si firmas, respondes. El modelo no.</span>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <section data-toc-label="Conocer a Claude" class="slide divider " data-section="">
+    <p class="label">Conocer a Claude</p>
+    <h2 class="title">Conocer a Claude</h2>
+    <span class="sec-num" aria-hidden="true">2</span>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Anthropic" class="slide diagram-slide " data-section="Conocer a Claude">
+    <div class="diagram-header">
+      <h2 class="diagram-title">Claude lo hace <em>Anthropic</em></h2>
+    </div>
+    <div class="diagram-body">
+      <div style="max-width:1080px;width:100%;padding:2rem 0;">
+  <!-- Timeline horizontal -->
+  <div style="position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:0;">
+
+    <!-- Línea base -->
+    <div style="position:absolute;top:3.2rem;left:6%;right:6%;height:1.5px;background:var(--muted);opacity:.35;"></div>
+
+    <!-- Hito 1: 2021 -->
+    <div style="text-align:center;position:relative;z-index:2;">
+      <div style="font-family:var(--font-caption);font-size:1.1rem;font-weight:500;color:var(--signal);letter-spacing:.04em;margin-bottom:1rem;">2021</div>
+      <div style="width:14px;height:14px;border-radius:50%;background:var(--signal);margin:0 auto 1.4rem;"></div>
+      <div style="font-size:.95rem;font-weight:500;color:var(--ink);margin-bottom:.4rem;line-height:1.3;">Fundación</div>
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.5;padding:0 .6rem;">Un grupo sale de OpenAI buscando construir IA con la seguridad como problema de investigación.</div>
+    </div>
+
+    <!-- Hito 2: 2022 -->
+    <div style="text-align:center;position:relative;z-index:2;">
+      <div style="font-family:var(--font-caption);font-size:1.1rem;font-weight:500;color:var(--ink);letter-spacing:.04em;margin-bottom:1rem;">2022</div>
+      <div style="width:12px;height:12px;border-radius:50%;background:var(--ink);margin:0 auto 1.4rem;"></div>
+      <div style="font-size:.95rem;font-weight:500;color:var(--ink);margin-bottom:.4rem;line-height:1.3;">Constitutional AI</div>
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.5;padding:0 .6rem;">Publican el método para entrenar modelos con principios explícitos.</div>
+    </div>
+
+    <!-- Hito 3: 2023 -->
+    <div style="text-align:center;position:relative;z-index:2;">
+      <div style="font-family:var(--font-caption);font-size:1.1rem;font-weight:500;color:var(--ink);letter-spacing:.04em;margin-bottom:1rem;">2023</div>
+      <div style="width:12px;height:12px;border-radius:50%;background:var(--ink);margin:0 auto 1.4rem;"></div>
+      <div style="font-size:.95rem;font-weight:500;color:var(--ink);margin-bottom:.4rem;line-height:1.3;">Claude 1</div>
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.5;padding:0 .6rem;">Primer modelo público. Anthropic entra al mercado con su propio asistente.</div>
+    </div>
+
+    <!-- Hito 4: 2024 -->
+    <div style="text-align:center;position:relative;z-index:2;">
+      <div style="font-family:var(--font-caption);font-size:1.1rem;font-weight:500;color:var(--ink);letter-spacing:.04em;margin-bottom:1rem;">2024</div>
+      <div style="width:12px;height:12px;border-radius:50%;background:var(--ink);margin:0 auto 1.4rem;"></div>
+      <div style="font-size:.95rem;font-weight:500;color:var(--ink);margin-bottom:.4rem;line-height:1.3;">Artefactos y Proyectos</div>
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.5;padding:0 .6rem;">Claude deja de ser un chatbot y se vuelve un espacio de trabajo.</div>
+    </div>
+
+    <!-- Hito 5: 2026 -->
+    <div style="text-align:center;position:relative;z-index:2;">
+      <div style="font-family:var(--font-caption);font-size:1.1rem;font-weight:500;color:var(--accent);letter-spacing:.04em;margin-bottom:1rem;">2026</div>
+      <div style="width:14px;height:14px;border-radius:50%;background:var(--accent);margin:0 auto 1.4rem;"></div>
+      <div style="font-size:.95rem;font-weight:500;color:var(--ink);margin-bottom:.4rem;line-height:1.3;">Claude Cowork</div>
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.5;padding:0 .6rem;">Skills, conectores, plugins. Claude se abre como plataforma.</div>
+    </div>
+
+  </div>
+
+  <!-- Cierre narrativo -->
+  <div style="margin-top:3.2rem;padding-top:1.6rem;border-top:1px solid rgba(30,36,32,.1);font-size:1rem;color:var(--ink);line-height:1.6;max-width:780px;">
+    Elegir un asistente de IA <em style="color:var(--signal);font-style:normal;font-weight:500;">también es una decisión</em> sobre con qué empresa quieres trabajar.
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- MATRIX -->
+  <section data-toc-label="Tres alternativas" class="slide " data-section="Conocer a Claude">
+    <h2 class="title">Tres <em>alternativas</em></h2>
+    <table class="matrix">
+      <tr><th></th><th>Empresa</th><th>Fortaleza</th><th>Cuándo elegirlo</th></tr>
+      <tr><td>Claude</td><td>Anthropic</td><td>Razonamiento y texto cuidado</td><td>Análisis, escritura, trabajo con documentos</td></tr>
+      <tr><td>ChatGPT</td><td>OpenAI</td><td>Ecosistema amplio, multimodal maduro</td><td>Tareas variadas, integraciones, uso general</td></tr>
+      <tr><td>Gemini</td><td>Google</td><td>Contextos muy largos, integrado a Workspace</td><td>Si tu trabajo ya vive en Drive, Gmail y Docs</td></tr>
+      
+    </table>
+  </section>
+
+  <!-- COLS + CARDS -->
+  <section data-toc-label="Modelos" class="slide " data-section="Conocer a Claude">
+    <h2 class="title">Tres <em>modelos</em>, una misma familia</h2>
+    <div class="cols three">
+      <div class="card">
+        <p class="card-label">El más capaz</p>
+        <p class="card-title">Opus 4.7</p>
+        <p class="card-body">Razonamiento complejo, análisis largo, trabajo profundo. Más lento y consume más.</p>
+      </div>
+      <div class="card">
+        <p class="card-label">El caballo de batalla</p>
+        <p class="card-title">Sonnet 4.6</p>
+        <p class="card-body">Equilibrio entre capacidad y velocidad. El default razonable para la mayoría del trabajo.</p>
+      </div>
+      <div class="card">
+        <p class="card-label">Rápido y económico</p>
+        <p class="card-title">Haiku 4.5</p>
+        <p class="card-body">Para tareas simples, respuestas cortas, clasificaciones, primeras pasadas.</p>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Funcionalidades" data-auto-steps="true" class="slide diagram-slide " data-section="Conocer a Claude">
+    <div class="diagram-header">
+      <h2 class="diagram-title">Lo que <em>sabe hacer</em> Claude</h2>
+    </div>
+    <div class="diagram-body">
+      <div style="display:grid;grid-template-columns:14rem 1fr;row-gap:1.4rem;column-gap:2rem;max-width:880px;align-items:start;">
+  <div style="font-weight:600;color:var(--ink);font-size:1.1rem;">Búsqueda web</div>
+  <div style="color:var(--muted);font-size:1rem;line-height:1.55;">Consulta internet en vivo y <strong>cita las fuentes</strong>. Sirve para datos actuales, normativas vigentes, hechos verificables.</div>
+
+  <div style="font-weight:600;color:var(--ink);font-size:1.1rem;">Artefactos</div>
+  <div style="color:var(--muted);font-size:1rem;line-height:1.55;">Documentos, tablas, esquemas e interfaces que Claude crea <strong>en una ventana al lado del chat</strong>. Editables, exportables, compartibles.</div>
+
+  <div style="font-weight:600;color:var(--ink);font-size:1.1rem;">Memoria</div>
+  <div style="color:var(--muted);font-size:1rem;line-height:1.55;">Claude puede recordar lo que importa entre conversaciones. <strong>Tú decides qué guarda</strong> y puedes revisar o borrar lo que aprendió.</div>
+
+  <div style="font-weight:600;color:var(--ink);font-size:1.1rem;">Conectores</div>
+  <div style="color:var(--muted);font-size:1rem;line-height:1.55;">Acceso directo a herramientas externas: Drive, Gmail, calendarios, repositorios. Claude trabaja con <strong>tus archivos</strong>, no con copias pegadas.</div>
+
+  <div style="font-weight:600;color:var(--signal);font-size:1.1rem;">Skills y personalización</div>
+  <div style="color:var(--ink);font-size:1rem;line-height:1.55;">Instrucciones, estilos y conjuntos de habilidades que Claude carga según el contexto. <strong>Es donde el sistema deja de ser genérico y empieza a adaptarse a ti.</strong></div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section data-toc-label="Demo" class="slide demo-slide " data-section="Conocer a Claude">
+    <span class="demo-tiempo">⏱ 8 min</span>
+    <p class="demo-label"><span class="demo-label-live">LIVE</span><span>Demo</span><span class="demo-label-numero">01</span></p>
+    <h2 class="demo-titulo">Claude en <em>vivo</em></h2>
+    <p class="demo-mirar-label">Qué mirar</p><ul class="demo-mirar">
+      <li>Dónde vive la <strong>configuración personal</strong> (Profile, estilos, memoria).</li>
+      <li>Cómo se ve un <strong>proyecto</strong> con instrucciones y archivos de contexto.</li>
+      <li>Qué pasa cuando activo un <strong>conector</strong> y Claude accede a algo real.</li>
+    </ul>
+    <p class="demo-nota">Voy a compartir pantalla. Interrúmpeme cuando algo no te cuadre.</p>
+  </section>
+
+  <!-- COLS + CARDS -->
+  <section data-toc-label="Personalización" class="slide " data-section="Conocer a Claude">
+    <h2 class="title"><em>Personalizar</em> Claude</h2>
+    <div class="cols ">
+      <div class="card">
+        <p class="card-label">Aplica siempre</p>
+        <p class="card-title">Preferencias de cuenta</p>
+        <p class="card-body">Tu nombre, tu trabajo, cómo quieres que te hable, qué evitar. Se configuran una vez en ajustes y viajan con cada chat.</p>
+      </div>
+      <div class="card">
+        <p class="card-label">Aplica por conversación</p>
+        <p class="card-title">Estilos</p>
+        <p class="card-body">Tonos y formatos que eliges al vuelo: formal, conciso, con viñetas. Puedes crear los tuyos a partir de un documento de referencia.</p>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- PRÁCTICA -->
+  <section data-toc-label="Práctica 1" class="slide practica-slide " data-section="Conocer a Claude">
+    <span class="practica-tiempo">⏱ 5 min</span>
+    <p class="practica-label">Práctica <span class="practica-label-numero">01</span></p>
+    <h2 class="practica-titulo">Personaliza <em>Claude</em></h2>
+    <ol class="practica-pasos">
+      <li>Abre <strong>Settings → Profile</strong> y escribe dos o tres líneas sobre ti: tu rol en AGIR, el tipo de trabajo que haces, qué esperas de Claude.</li>
+      <li>Crea un <strong>estilo propio</strong>: piensa en un tono que usas seguido (por ejemplo, respuestas a ciudadanía) y descríbelo en una frase.</li>
+      <li>Prueba el estilo en un chat nuevo y observa la diferencia.</li>
+    </ol>
+    <p class="practica-entregable"><span class="practica-entregable-label">Al terminar</span>Claude respondiendo con tu contexto y tu tono.</p>
+  </section>
+
+  <!-- TITULO + CUERPO -->
+  <section data-toc-label="Proyectos" class="slide " data-section="Conocer a Claude">
+    <h2 class="title">Los <em>proyectos</em> son tu jardín contextual</h2>
+    <p class="body">Un proyecto es un espacio persistente con instrucciones propias, archivos de referencia y un historial de conversaciones que <em>comparten contexto</em>. Sirve para separar trabajos distintos sin que se contaminen: comunicación externa, análisis de normativas, respuestas ciudadanas, planeación... Cada uno con sus reglas y sus materiales.
+</p>
+  </section>
+
+  <!-- COLS + CARDS -->
+  <section data-toc-label="Anatomía" class="slide " data-section="Conocer a Claude">
+    <h2 class="title">Buenas prácticas para <em>proyectos</em></h2>
+    <div class="cols three">
+      <div class="card">
+        <p class="card-label">Lo que siempre aplica</p>
+        <p class="card-title">Instrucciones</p>
+        <p class="card-body">Quién eres, qué tono usas, qué reglas no quieres repetir en cada chat.</p>
+      </div>
+      <div class="card">
+        <p class="card-label">El material de referencia</p>
+        <p class="card-title">Archivos</p>
+        <p class="card-body">Normativas, plantillas, glosarios, ejemplos. Lo que Claude consulta para responder con precisión.</p>
+      </div>
+      <div class="card">
+        <p class="card-label">El trabajo real</p>
+        <p class="card-title">Conversaciones</p>
+        <p class="card-body">Cada chat hereda instrucciones y archivos del proyecto. El contexto ya está — tú solo das la consigna.</p>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- PRÁCTICA -->
+  <section data-toc-label="Práctica 2" class="slide practica-slide " data-section="Conocer a Claude">
+    <span class="practica-tiempo">⏱ 10 min</span>
+    <p class="practica-label">Práctica <span class="practica-label-numero">02</span></p>
+    <h2 class="practica-titulo">Monta tu <em>proyecto AGIR</em></h2>
+    <ol class="practica-pasos">
+      <li>Crea un <strong>proyecto nuevo</strong> en Claude. Ponle un nombre claro — el área o tipo de trabajo que haces en AGIR.</li>
+      <li>Copia el <strong>template de instrucciones</strong> de la siguiente slide al campo de instrucciones del proyecto. Puedes dejarlo tal cual o ajustarlo a tu contexto.</li>
+      <li>Sube <strong>uno o dos documentos propios</strong> de los que trajiste — los que vayas a trabajar en el siguiente bloque.</li>
+      <li>Abre un <strong>chat nuevo dentro del proyecto</strong> y haz una pregunta de prueba que use el contexto del proyecto.</li>
+    </ol>
+    <p class="practica-entregable"><span class="practica-entregable-label">Al terminar</span>Un proyecto funcional de AGIR que vas a usar durante el resto del taller.</p>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Template" class="slide diagram-slide " data-section="Conocer a Claude">
+    <div class="diagram-header">
+      <h2 class="diagram-title">Template de <em>instrucciones</em></h2>
+    </div>
+    <div class="diagram-body">
+      <div style="max-width:920px;width:100%;">
+  <div style="font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:.9rem;text-transform:uppercase;">
+    Pégalo en el campo de instrucciones del proyecto
+  </div>
+  <div style="background:var(--bg2);color:var(--bg);padding:2rem 2.2rem;border-radius:6px;font-family:var(--font-mono);font-size:.95rem;line-height:1.7;white-space:pre-wrap;">Trabajo en la Agencia de Gestión Integral de Residuos (AGIR) del Gobierno de la Ciudad de México, en el área de [completa con tu área]. Mi función es [completa con tu función].
+
+  Responde siempre en español, con tono institucional pero directo. Evita tecnicismos innecesarios y lenguaje corporativo vacío.
+
+  Cuando te pida redactar para ciudadanía, usa lenguaje claro y accesible. Cuando te pida redactar para uso interno o instancias superiores, puedes usar registro técnico.
+
+  Si algo requiere verificación normativa, cifras oficiales o datos específicos de AGIR que no estén en los archivos del proyecto, dilo explícitamente — no inventes.
+
+  Antes de ejecutar tareas ambiguas, hazme preguntas para comprender qué necesito.</div>
+  <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--muted);margin-top:.9rem;font-style:italic;">
+    Ajusta los campos [entre corchetes] a tu contexto. Puedes agregar reglas propias si algo te resulta clave.
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <section data-toc-label="Trabajar con Claude" class="slide divider " data-section="">
+    <p class="label">Trabajar con Claude</p>
+    <h2 class="title">Trabajar con Claude</h2>
+    <span class="sec-num" aria-hidden="true">3</span>
+  </section>
+
+  <!-- SUBSECCION ENTRY -->
+  <section data-toc-label="Redacción" class="slide subseccion-entry " data-section="Trabajar con Claude" data-subsection="Redacción">
+    <p class="label">Trabajar con Claude · Redacción</p>
+    <h2 class="title">Redacción</h2>
+  </section>
+
+  <!-- TITULO + BULLETS -->
+  <section data-subsection="Redacción" data-toc-label="Técnicas" class="slide " data-section="Trabajar con Claude">
+    <h2 class="title">Tres formas de <em>redactar</em> con Claude</h2>
+    <ul class="bullets">
+      <li><span><strong>Borradores desde cero</strong> — primera versión de comunicados, oficios, respuestas ciudadanas. El contexto que das define la utilidad del borrador.</span></li>
+      <li><span><strong>Redacción sobre formatos</strong> — subir una plantilla institucional y pedir contenido que se ajuste a esa estructura.</span></li>
+      <li><span><strong>Revisión de textos propios</strong> — pedir revisión con criterios específicos, no con "mejóralo".</span></li>
+      
+    </ul>
+  </section>
+
+  <!-- DEMO -->
+  <section data-subsection="Redacción" data-toc-label="Demo 02" class="slide demo-slide " data-section="Trabajar con Claude">
+    <span class="demo-tiempo">⏱ 15 min</span>
+    <p class="demo-label"><span class="demo-label-live">LIVE</span><span>Demo</span><span class="demo-label-numero">02</span></p>
+    <h2 class="demo-titulo">Redactar con <em>Claude</em> — en vivo</h2>
+    <p class="demo-mirar-label">Qué mirar</p><ul class="demo-mirar">
+      <li>Cómo un <strong>borrador desde cero</strong> cambia al dar audiencia, tono y restricciones.</li>
+      <li>Cómo se sube un <strong>formato institucional</strong> y se pide contenido que respete la estructura.</li>
+      <li>Cómo se pide <strong>revisión con criterios específicos</strong> (claridad, tono, consistencia) en lugar de "mejora este texto".</li>
+    </ul>
+    <p class="demo-nota">Voy a compartir pantalla con documentos de ejemplo. Interrúmpeme cuando quieras entender algo en detalle.</p>
+  </section>
+
+  <!-- PRÁCTICA -->
+  <section data-subsection="Redacción" data-toc-label="Práctica 3" class="slide practica-slide " data-section="Trabajar con Claude">
+    <span class="practica-tiempo">⏱ 20 min</span>
+    <p class="practica-label">Práctica <span class="practica-label-numero">03</span></p>
+    <h2 class="practica-titulo">Redacta algo <em>tuyo</em></h2>
+    <ol class="practica-pasos">
+      <li>Abre un <strong>chat nuevo dentro de tu proyecto AGIR</strong>. El contexto del proyecto va a viajar con tu consigna.</li>
+      <li>Elige <strong>una de las tres técnicas</strong> de la demo y aplícala a uno de los documentos que ya subiste al proyecto — o a algo que quieras redactar desde cero.</li>
+      <li>Itera: si el primer resultado no sirve, <strong>ajusta el contexto</strong> (audiencia, tono, restricciones) y vuelve a pedir.</li>
+      <li>Si acabas antes, prueba una segunda técnica en el mismo chat o en uno nuevo del mismo proyecto.</li>
+    </ol>
+    <p class="practica-entregable"><span class="practica-entregable-label">Al terminar</span>Un texto trabajado dentro de tu proyecto AGIR que puedas seguir usando después del taller.</p>
+  </section>
+
+  <!-- REFLEXIÓN -->
+  <section data-subsection="Redacción" data-toc-label="Reflexión" class="slide reflexion-slide " data-section="Trabajar con Claude">
+    <span class="reflexion-tiempo">⏱ 5 min</span>
+    <p class="reflexion-label"><span class="reflexion-sub">Redacción</span>Reflexión</p>
+    <p class="reflexion-pregunta">¿Qué <em>cambió</em> cuando le diste criterios claros?</p>
+    <p class="reflexion-prompts-label">También podemos pensar</p><ul class="reflexion-prompts">
+      <li>¿Dónde sentiste que el borrador fue útil? ¿Dónde se quedó corto?</li>
+      <li>¿Qué dejaste que Claude hiciera? ¿Qué te quedaste tú?</li>
+      <li>¿Qué te hubiera costado pedir sin antes haber escrito los criterios?</li>
+    </ul>
+  </section>
+
+  <!-- SUBSECCION ENTRY -->
+  <section data-toc-label="Documentos" class="slide subseccion-entry " data-section="Trabajar con Claude" data-subsection="Documentos">
+    <p class="label">Trabajar con Claude · Documentos</p>
+    <h2 class="title">Documentos</h2>
+  </section>
+
+  <!-- TITULO + BULLETS -->
+  <section data-subsection="Documentos" data-toc-label="Técnicas" class="slide " data-section="Trabajar con Claude">
+    <h2 class="title">Cuatro formas de <em>procesar</em> documentos</h2>
+    <ul class="bullets">
+      <li><span><strong>Síntesis</strong> — resúmenes ejecutivos con distinto nivel de detalle y distintas audiencias.</span></li>
+      <li><span><strong>Comparación</strong> — contrastar dos versiones, identificar diferencias sustantivas, producir análisis de cambios.</span></li>
+      <li><span><strong>Extracción de datos</strong> — sacar cifras, fechas, compromisos, responsables y hallazgos clave de documentos densos.</span></li>
+      <li><span><strong>Visualización y transformación</strong> — convertir información de un formato a otro: tabla a narrativa, minuta a acuerdos, diagnóstico a presentación.</span></li>
+      
+    </ul>
+  </section>
+
+  <!-- DEMO -->
+  <section data-subsection="Documentos" data-toc-label="Demo 03" class="slide demo-slide " data-section="Trabajar con Claude">
+    <span class="demo-tiempo">⏱ 15 min</span>
+    <p class="demo-label"><span class="demo-label-live">LIVE</span><span>Demo</span><span class="demo-label-numero">03</span></p>
+    <h2 class="demo-titulo">Procesar documentos — en vivo</h2>
+    <p class="demo-mirar-label">Qué mirar</p><ul class="demo-mirar">
+      <li>Cómo pedir una <strong>síntesis</strong> cambia según audiencia (técnica vs. directiva vs. ciudadana).</li>
+      <li>Cómo Claude <strong>extrae datos</strong> específicos y los devuelve en tabla — no como texto.</li>
+      <li>Cómo un <strong>artefacto</strong> convierte una minuta en una lista de acuerdos que puedes seguir editando.</li>
+    </ul>
+    <p class="demo-nota">Voy a usar documentos de ejemplo. Si quieres que pruebe algo específico de tu documento durante la demo, dímelo.</p>
+  </section>
+
+  <!-- PRÁCTICA -->
+  <section data-subsection="Documentos" data-toc-label="Práctica 4" class="slide practica-slide " data-section="Trabajar con Claude">
+    <span class="practica-tiempo">⏱ 20 min</span>
+    <p class="practica-label">Práctica <span class="practica-label-numero">04</span></p>
+    <h2 class="practica-titulo">Procesa un documento <em>tuyo</em></h2>
+    <ol class="practica-pasos">
+      <li>Abre un <strong>chat nuevo dentro de tu proyecto AGIR</strong>. Si necesitas trabajar con un documento que no subiste antes, agrégalo ahora al proyecto.</li>
+      <li>Elige <strong>una de las cuatro técnicas</strong>: sintetiza, compara, extrae datos o transforma. No intentes las cuatro — escoge la más útil para ese documento.</li>
+      <li>Define <strong>criterios específicos</strong> antes de pedir: qué audiencia, qué nivel de detalle, qué formato de salida esperas.</li>
+      <li>Si acabas antes, aplica una segunda técnica al mismo documento o procesa otro documento del proyecto.</li>
+    </ol>
+    <p class="practica-entregable"><span class="practica-entregable-label">Al terminar</span>Un documento tuyo procesado por Claude — síntesis, tabla, comparación o transformación — que puedas seguir usando.</p>
+  </section>
+
+  <!-- REFLEXIÓN -->
+  <section data-subsection="Documentos" data-toc-label="Reflexión" class="slide reflexion-slide " data-section="Trabajar con Claude">
+    <span class="reflexion-tiempo">⏱ 5 min</span>
+    <p class="reflexion-label"><span class="reflexion-sub">Documentos</span>Reflexión</p>
+    <p class="reflexion-pregunta">¿Qué <em>no</em> hubieras visto sin Claude?</p>
+    <p class="reflexion-prompts-label">También podemos pensar</p><ul class="reflexion-prompts">
+      <li>¿Qué tan fiel te pareció la síntesis al documento original?</li>
+      <li>¿Encontraste algo que Claude entendió mal? ¿Cómo te diste cuenta?</li>
+      <li>¿Qué tareas de tu semana se parecen a lo que acabas de hacer?</li>
+    </ul>
+  </section>
+
+  <!-- SUBSECCION ENTRY -->
+  <section data-toc-label="Análisis" class="slide subseccion-entry " data-section="Trabajar con Claude" data-subsection="Análisis">
+    <p class="label">Trabajar con Claude · Análisis</p>
+    <h2 class="title">Análisis</h2>
+  </section>
+
+  <!-- TITULO + BULLETS -->
+  <section data-subsection="Análisis" data-toc-label="Técnicas" class="slide " data-section="Trabajar con Claude">
+    <h2 class="title">Tres formas de <em>pensar</em> con Claude</h2>
+    <ul class="bullets">
+      <li><span><strong>Extracción de insights</strong> — patrones, tendencias y puntos de atención que no son evidentes en una lectura rápida.</span></li>
+      <li><span><strong>Fortalezas y debilidades</strong> — someter un documento propio a análisis crítico con criterios de evaluación definidos por ti.</span></li>
+      <li><span><strong>Escenarios y alternativas</strong> — explorar opciones: "si cambio X, ¿qué implicaciones tiene?". Útil para planeación y anticipación.</span></li>
+      
+    </ul>
+  </section>
+
+  <!-- DEMO -->
+  <section data-subsection="Análisis" data-toc-label="Demo 04" class="slide demo-slide " data-section="Trabajar con Claude">
+    <span class="demo-tiempo">⏱ 15 min</span>
+    <p class="demo-label"><span class="demo-label-live">LIVE</span><span>Demo</span><span class="demo-label-numero">04</span></p>
+    <h2 class="demo-titulo">Analizar con Claude — en vivo</h2>
+    <p class="demo-mirar-label">Qué mirar</p><ul class="demo-mirar">
+      <li>Cómo cambian los <strong>insights</strong> cuando defino el foco del análisis en lugar de pedir "dime lo más importante".</li>
+      <li>Cómo se piden <strong>fortalezas y debilidades</strong> con criterios de evaluación explícitos antes del análisis.</li>
+      <li>Cómo se <strong>encadenan tareas</strong> en una misma conversación: leer → extraer hallazgos → identificar debilidades → redactar recomendaciones.</li>
+    </ul>
+    <p class="demo-nota">Aquí el criterio humano pesa más que en los módulos anteriores. Presten atención a dónde aparece la decisión — esa parte no se delega.</p>
+  </section>
+
+  <!-- PRÁCTICA -->
+  <section data-subsection="Análisis" data-toc-label="Práctica 5" class="slide practica-slide " data-section="Trabajar con Claude">
+    <span class="practica-tiempo">⏱ 20 min</span>
+    <p class="practica-label">Práctica <span class="practica-label-numero">05</span></p>
+    <h2 class="practica-titulo">Analiza algo <em>tuyo</em></h2>
+    <ol class="practica-pasos">
+      <li>Abre un <strong>chat nuevo dentro de tu proyecto AGIR</strong>. Elige un documento del proyecto que quieras someter a análisis — una propuesta, un plan, un comunicado, un diagnóstico.</li>
+      <li>Antes de pedir el análisis, <strong>define tus criterios</strong>: ¿qué es "bueno" para este documento? ¿qué es "débil"? Escríbelos.</li>
+      <li>Pide a Claude que analice el documento <strong>contra esos criterios</strong>. Lee la respuesta con distancia: no todo lo que dice es correcto.</li>
+      <li>Si acabas antes, pide escenarios alternativos: "si cambio X en este documento, ¿qué implica?".</li>
+    </ol>
+    <p class="practica-entregable"><span class="practica-entregable-label">Al terminar</span>Un análisis crítico de un documento tuyo, hecho contra criterios que tú definiste.</p>
+  </section>
+
+  <!-- REFLEXIÓN -->
+  <section data-subsection="Análisis" data-toc-label="Reflexión" class="slide reflexion-slide " data-section="Trabajar con Claude">
+    <span class="reflexion-tiempo">⏱ 5 min</span>
+    <p class="reflexion-label"><span class="reflexion-sub">Análisis</span>Reflexión</p>
+    <p class="reflexion-pregunta">¿Dónde apareció <em>tu</em> criterio?</p>
+    <p class="reflexion-prompts-label">También podemos pensar</p><ul class="reflexion-prompts">
+      <li>¿Qué parte del análisis firmarías sin dudar? ¿Cuál no?</li>
+      <li>¿Cambió tu opinión sobre el documento después de leer el análisis?</li>
+      <li>¿Qué harías distinto la próxima vez antes de pedir un análisis?</li>
+    </ul>
+  </section>
+
+  <!-- DIVIDER -->
+  <section data-toc-label="Cierre" class="slide divider " data-section="">
+    <p class="label">Cierre</p>
+    <h2 class="title">Para <em>terminar</em></h2>
+    <span class="sec-num" aria-hidden="true">4</span>
+  </section>
+
+  <!-- RECAP -->
+  <section data-toc-label="Lo que vimos" class="slide " data-section="Cierre">
+    <h2 class="title">Lo que <em>vimos</em> hoy</h2>
+    <div class="recap-list">
+      <div class="recap-item">
+        <span class="recap-num">01</span>
+        <span class="recap-text">La IA no piensa, <strong>produce texto plausible</strong>. Lo útil o inútil lo decides tú.</span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">02</span>
+        <span class="recap-text">El contexto lo es todo. <strong>Sin contexto suficiente, la respuesta es genérica</strong>.</span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">03</span>
+        <span class="recap-text">Hay tareas que se delegan y tareas que no. <strong>El criterio no se delega</strong>.</span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">04</span>
+        <span class="recap-text">Claude es una herramienta. <strong>Vimos tres usos distintos con una misma lógica</strong>: dar contexto, revisar, decidir.</span>
+      </div>
+      <div class="recap-item">
+        <span class="recap-num">05</span>
+        <span class="recap-text">El proyecto que armaron hoy es <strong>el punto de partida</strong>, no el resultado final. Se afina con uso.</span>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- PREGUNTA -->
+  <section data-toc-label="Preguntas" class="slide pregunta-slide " data-section="Cierre">
+    
+    <p class="pregunta-label">Pregunta</p>
+    <p class="pregunta-texto">¿Algo más?</p>
+    <p class="pregunta-nota">10 min para preguntas, comentarios y reflexiones.</p>
+  </section>
+
+  <!-- TITULO + CUERPO -->
+  <section data-toc-label="Siguiente piso" class="slide " data-section="Cierre">
+    <h2 class="title">Esto fue un <em>primer piso</em></h2>
+    <p class="body">Lo que hicieron hoy es el uso básico de Claude — un chat con un proyecto, archivos de referencia y conversaciones puntuales. Funciona y resuelve mucho. Pero hay un piso más arriba donde Claude deja de ser solo un chat y empieza a trabajar directamente con los archivos de su computadora. Se llama <em>Cowork</em></p>
+  </section>
+
+  <!-- DIAGRAMA -->
+  <section data-toc-label="Cowork" class="slide diagram-slide " data-section="Cierre">
+    <div class="diagram-header">
+      <h2 class="diagram-title">Claude <em>Cowork</em></h2>
+    </div>
+    <div class="diagram-body">
+      <div style="max-width:1080px;width:100%;">
+  <div style="font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:1.4rem;text-transform:uppercase;">
+    Ejemplo — redactar oficios AGIR con una skill
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;">
+    <div style="background:var(--bg);border:1px solid rgba(28,28,30,.12);padding:1.8rem 1.6rem;border-radius:6px;">
+      <div style="font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);margin-bottom:1rem;text-transform:uppercase;">
+        En el chat (lo que hicimos hoy)
+      </div>
+      <ul style="list-style:none;padding:0;margin:0;font-family:var(--font-body);font-size:1rem;line-height:1.55;color:var(--ink);">
+        <li style="padding:.6rem 0;border-bottom:1px solid rgba(28,28,30,.08);">Abres un proyecto en claude.ai</li>
+        <li style="padding:.6rem 0;border-bottom:1px solid rgba(28,28,30,.08);">Subes la normativa y el manual de estilo cada vez</li>
+        <li style="padding:.6rem 0;border-bottom:1px solid rgba(28,28,30,.08);">Escribes el prompt con criterios</li>
+        <li style="padding:.6rem 0;">Copias el resultado y lo pegas en Word</li>
+      </ul>
+    </div>
+    <div style="background:var(--bg2);color:var(--bg);padding:1.8rem 1.6rem;border-radius:6px;">
+      <div style="font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;opacity:.7;margin-bottom:1rem;text-transform:uppercase;">
+        Con Cowork + una skill
+      </div>
+      <ul style="list-style:none;padding:0;margin:0;font-family:var(--font-body);font-size:1rem;line-height:1.55;">
+        <li style="padding:.6rem 0;border-bottom:1px solid rgba(244,240,235,.15);">Tu carpeta de trabajo <em>es</em> el proyecto</li>
+        <li style="padding:.6rem 0;border-bottom:1px solid rgba(244,240,235,.15);">La skill ya sabe dónde están los documentos</li>
+        <li style="padding:.6rem 0;border-bottom:1px solid rgba(244,240,235,.15);">Los criterios viven dentro de la skill</li>
+        <li style="padding:.6rem 0;">Claude escribe el archivo directo en tu carpeta</li>
+      </ul>
+    </div>
+  </div>
+  <div style="font-family:var(--font-mono);font-size:.78rem;color:var(--muted);margin-top:1.4rem;font-style:italic;text-align:center;">
+    Una <strong style="font-style:normal;color:var(--ink);">skill</strong> es una instrucción guardada que Claude ejecuta — criterios, pasos y contexto empacados en un solo flujo.
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <!-- COLS + CARDS -->
+  <section data-toc-label="Caminos" class="slide " data-section="Cierre">
+    <h2 class="title"><em>Caminos</em> para seguir</h2>
+    <div class="cols three">
+      <div class="card">
+        <p class="card-label"></p>
+        <p class="card-title">Profundizar la práctica</p>
+        <p class="card-body">Usar Claude todos los días. El criterio se afina con uso, no con lectura. En un mes tendrán mejor idea de dónde aprieta y dónde no.</p>
+      </div>
+      <div class="card">
+        <p class="card-label"></p>
+        <p class="card-title">Construir algo propio</p>
+        <p class="card-body">Un aumento personal. Un sistema a medida para una tarea específica que hagan seguido. Se diseña desde el problema real, no desde una plantilla. Va más allá del chat.</p>
+      </div>
+      <div class="card">
+        <p class="card-label"></p>
+        <p class="card-title">Integrar IA con criterio</p>
+        <p class="card-body">Capacitación más amplia, diagnóstico organizacional, política de uso interna, aumentos a nivel de toda la organización.</p>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section data-toc-label="Gracias" class="slide cierre " data-section="Cierre">
+    <h1 class="title">¡Gracias!</h1>
+    <div class="cierre-rule"></div>
+    
+    <div class="cierre-contacto">
+      <p class="cierre-nombre">Armando Sobrino</p>
+      <div class="cierre-links">
+        <span class="cierre-dato">iatelier.org</span>
+        <span class="cierre-dato">armando@iatelier.org</span>
+        <span class="cierre-dato">Substack @armandosmh</span>
+        
+      </div>
+    </div>
+  </section>
+</div><!-- /stage -->
+
+<script>
+  const slides     = document.querySelectorAll('.slide');
+  const counter    = document.getElementById('counter');
+  const secLabel   = document.getElementById('section-label');
+  const progress   = document.getElementById('progress');
+  const tocEl      = document.getElementById('toc');
+  const tocList    = document.getElementById('toc-list');
+  const tocSecName = document.getElementById('toc-section-name');
+  const tocBtn     = document.getElementById('toc-btn');
+  const total      = slides.length;
+  let current      = 0;
+  let currentStep  = 0;
+  let animating    = false;
+  let tocExpanded  = false;
+
+  // tocEnabled se inyecta por build.py según meta.barra_lateral
+  // Si no existe en el HTML, la barra no se activa.
+  const TOC_ENABLED = typeof true !== 'undefined' ? true : false;
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  // ── TOC: inicializar si está habilitada ──────────────────────
+  if (TOC_ENABLED) {
+    document.body.classList.add('toc-enabled');
+  }
+
+  // ── TOC: construir lista plana de todos los slides con sección ──
+  // Devuelve un array ordenado: [{ idx, label, section, subsection }, ...]
+  // Además construye tocSections: array ordenado de secciones únicas
+  function buildTocIndex() {
+    const flat = [];
+    const sectionsOrder = [];
+    const sectionsSet = new Set();
+    slides.forEach((slide, i) => {
+      const sec = (slide.dataset.section || '').trim();
+      if (!sec) return;
+      const sub = (slide.dataset.subsection || '').trim();
+      // Preferir data-toc-label (editorial); si no existe, usar el título automático
+      const tocLabelAttr = (slide.dataset.tocLabel || '').trim();
+      const titleEl = slide.querySelector('.title, .diagram-title');
+      let label = tocLabelAttr || (titleEl ? titleEl.textContent.trim().replace(/\s+/g, ' ') : '');
+      // Solo truncar si el label viene del título automático (no del atributo editorial)
+      if (!tocLabelAttr && label.length > 28) label = label.slice(0, 26) + '…';
+      if (!label) label = `Slide ${i + 1}`;
+      flat.push({ idx: i, label, section: sec, subsection: sub });
+      if (!sectionsSet.has(sec)) {
+        sectionsSet.add(sec);
+        sectionsOrder.push(sec);
+      }
+    });
+    return { flat, sectionsOrder };
+  }
+  const { flat: tocFlat, sectionsOrder: tocSections } = buildTocIndex();
+
+  // ── TOC: construir la lista completa (una sola vez) ──────────
+  // Los items se guardan en un Map para actualizar sus clases después
+  const tocItemEls = new Map(); // idx → li element
+  const tocSubSepEls = [];     // [{ el, firstIdx }] — subsection separators with their first slide index
+
+  function buildTocFull() {
+    if (!TOC_ENABLED) return;
+    tocList.innerHTML = '';
+    tocSubSepEls.length = 0;
+    tocSections.forEach((sec, secIdx) => {
+      // Separador de sección
+      if (secIdx > 0) {
+        const sep = document.createElement('li');
+        sep.className = 'toc-section-sep';
+        sep.setAttribute('aria-hidden', 'true');
+        sep.innerHTML = `<span class="toc-section-sep-line"></span><span class="toc-section-sep-text">${sec}</span>`;
+        tocList.appendChild(sep);
+      } else {
+        const sep = document.createElement('li');
+        sep.className = 'toc-section-sep';
+        sep.setAttribute('aria-hidden', 'true');
+        sep.innerHTML = `<span class="toc-section-sep-line" style="margin-left:0;"></span><span class="toc-section-sep-text">${sec}</span>`;
+        tocList.appendChild(sep);
+      }
+
+      // Items de esta sección, agrupados por subsección
+      const items = tocFlat.filter(it => it.section === sec);
+      let currentSub = null;
+      items.forEach(({ idx, label, subsection }) => {
+        // Si hay subsección y cambió, insertar separador de subsección
+        if (subsection && subsection !== currentSub) {
+          currentSub = subsection;
+          const subSep = document.createElement('li');
+          subSep.className = 'toc-subsection-sep';
+          subSep.setAttribute('aria-hidden', 'true');
+          subSep.innerHTML = `<span class="toc-subsection-sep-line"></span><span class="toc-subsection-text">${subsection}</span>`;
+          tocList.appendChild(subSep);
+          tocSubSepEls.push({ el: subSep, firstIdx: idx });
+        } else if (!subsection && currentSub) {
+          currentSub = null;
+        }
+        const li = document.createElement('li');
+        li.className = 'toc-item' + (subsection ? ' toc-item-sub' : '');
+        li.innerHTML = `<span class="toc-dot"></span><span class="toc-label">${label}</span>`;
+        li.addEventListener('click', () => goTo(idx));
+        tocList.appendChild(li);
+        tocItemEls.set(idx, li);
+      });
+    });
+  }
+
+  // ── TOC: actualizar estados visitado/activo/por-venir ────────
+  function updateTocStates() {
+    if (!TOC_ENABLED) return;
+    tocItemEls.forEach((li, idx) => {
+      li.classList.remove('active', 'visited');
+      if (idx === current)      li.classList.add('active');
+      else if (idx < current)   li.classList.add('visited');
+    });
+    // Subsection separators: mark as visited when we've reached or passed their first slide
+    tocSubSepEls.forEach(({ el, firstIdx }) => {
+      el.classList.remove('visited');
+      if (firstIdx <= current) el.classList.add('visited');
+    });
+    // Progress line: calcular altura hasta el dot activo
+    const activeEl = tocItemEls.get(current);
+    if (activeEl) {
+      const dot = activeEl.querySelector('.toc-dot');
+      if (dot) {
+        const listRect = tocList.getBoundingClientRect();
+        const dotRect  = dot.getBoundingClientRect();
+        const offset   = (dotRect.top + dotRect.height / 2) - listRect.top + tocList.scrollTop;
+        tocList.style.setProperty('--toc-progress', `${offset}px`);
+      }
+      // Scroll suave para mantener el ítem activo visible
+      activeEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  }
+
+  // Alias para mantener compatibilidad con la llamada en updateUI
+  function renderToc(_sec) {
+    updateTocStates();
+  }
+
+  // ── TOC: toggle texto (colapsar/expandir) ────────────────────
+  function expandToc() {
+    tocExpanded = true;
+    document.body.classList.add('toc-expanded');
+    tocBtn.classList.add('expanded');
+  }
+  function collapseToc() {
+    tocExpanded = false;
+    document.body.classList.remove('toc-expanded');
+    tocBtn.classList.remove('expanded');
+  }
+  function toggleToc() { tocExpanded ? collapseToc() : expandToc(); }
+
+  if (tocBtn) tocBtn.addEventListener('click', () => {
+    if (!TOC_ENABLED) return;
+    toggleToc();
+  });
+
+  // ── Chrome + TOC update ──────────────────────────────────────
+  function updateUI() {
+    progress.style.width = `${((current + 1) / total) * 100}%`;
+
+    const sec = (slides[current].dataset.section || '').trim();
+    const sub = (slides[current].dataset.subsection || '').trim();
+    const num = `${pad(current + 1)} / ${pad(total)}`;
+    // Sección + subsección + número en la esquina superior derecha
+    // "SECCIÓN · Subsección · 01/12" or "SECCIÓN · 01/12" or just "01/12"
+    const labelParts = [sec, sub].filter(Boolean).join(' · ');
+    secLabel.textContent = labelParts ? `${labelParts} · ${num}` : num;
+
+    // Fondos oscuros → chrome blanco. Fondos claros → chrome oscuro (default).
+    // En v2 (persona/artefacto):
+    //   divider-criterio (rojo cadmio)  → texto oscuro → chrome oscuro (isLightAccent)
+    //   divider-artefacto (azul pizarra) → texto claro → chrome claro (isDark)
+    const isLightAccent = slides[current].classList.contains('divider-criterio') ||
+                          slides[current].classList.contains('divider-lampara');
+    const isDark = !isLightAccent && (
+                   slides[current].classList.contains('cover') ||
+                   slides[current].classList.contains('divider') ||
+                   slides[current].classList.contains('divider-artefacto') ||
+                   slides[current].classList.contains('divider-ladrillo') ||
+                   slides[current].classList.contains('subseccion-entry') ||
+                   slides[current].classList.contains('cierre'));
+    const chrome = [secLabel, document.getElementById('footer'),
+                    document.getElementById('nav')];
+    chrome.forEach(el => {
+      if (!el) return;
+      el.style.color = isDark ? 'rgba(255,255,255,.35)'
+                     : isLightAccent ? 'rgba(30,36,32,.4)'
+                     : '';
+    });
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.style.borderColor = isDark ? 'rgba(255,255,255,.3)'
+                            : isLightAccent ? 'rgba(30,36,32,.3)'
+                            : '';
+      btn.style.color = isDark ? 'rgba(255,255,255,.3)'
+                      : isLightAccent ? 'rgba(30,36,32,.3)'
+                      : '';
+    });
+    // toc-btn mantiene su color de estado independientemente del slide
+    if (tocExpanded) {
+      tocBtn.style.borderColor = 'var(--accent)';
+      tocBtn.style.color = 'var(--accent)';
+    } else {
+      tocBtn.style.borderColor = '';
+      tocBtn.style.color = '';
+    }
+    document.getElementById('footer-title').style.color = isDark ? 'rgba(255,255,255,.7)'
+                                                        : isLightAccent ? 'rgba(30,36,32,.7)'
+                                                        : '';
+    document.getElementById('footer-sub').style.color   = isDark ? 'rgba(255,255,255,.35)'
+                                                        : isLightAccent ? 'rgba(30,36,32,.4)'
+                                                        : '';
+    progress.style.background = isDark ? 'rgba(255,255,255,.4)'
+                               : isLightAccent ? 'rgba(30,36,32,.35)'
+                               : 'var(--accent)';
+
+    // Actualizar barra lateral
+    if (TOC_ENABLED) renderToc(sec);
+
+    // N — animar contadores si el slide tiene .big-num
+    animateCounters(slides[current]);
+
+    // J — actualizar progreso por sección
+    updateSecProgress();
+  }
+
+  // ── Navegación ───────────────────────────────────────────────
+  function goTo(n) {
+    if (animating) return;
+    const next = ((n % total) + total) % total;
+    if (next === current) return;
+
+    animating = true;
+    const dir = next > current ? 1 : -1;
+
+    const exiting = slides[current];
+    exiting.classList.remove('active');
+    for (let s = 0; s <= 20; s++) exiting.classList.remove('step-' + s);
+    exiting.classList.add('exit');
+    exiting.style.transform = `translateY(${dir < 0 ? '1.5rem' : '-1.5rem'})`;
+
+    current = next;
+    const entering = slides[current];
+    entering.style.transition = 'none';
+    entering.style.transform = `translateY(${dir > 0 ? '1.5rem' : '-1.5rem'})`;
+    entering.style.opacity = '0';
+    entering.classList.add('active');
+    currentStep = 0;
+    entering.classList.add('step-0');
+
+    // L — aplicar spotlight inicial (step 0) si el slide lo tiene
+    applySpotlight(entering, 0);
+
+    entering.getBoundingClientRect(); // force reflow
+
+    entering.style.transition = '';
+    entering.style.transform = '';
+    entering.style.opacity   = '';
+
+    updateUI();
+
+    // K — cortinilla al entrar en una sección nueva (cualquier tipo de divider)
+    const enteringIsDivider = entering.classList.contains('divider');
+    if (enteringIsDivider) triggerSectionWipe(entering);
+
+    const cleanupDelay = enteringIsDivider ? 530 : 380;
+    setTimeout(() => {
+      document.querySelectorAll('.slide.exit').forEach(s => {
+        s.classList.remove('exit');
+        s.style.transform = '';
+        s.style.opacity   = '';
+      });
+      animating = false;
+    }, cleanupDelay);
+  }
+
+  // ── Avance con pasos internos ─────────────────────────────────
+  // data-steps="N" = el slide admite N avances internos.
+  // Arranca en step-0 y puede llegar hasta step-N.
+  // Cuando currentStep ya es N, el siguiente avance pasa al slide siguiente.
+  function tryAdvance() {
+    const slide = slides[current];
+    const totalSteps = parseInt(slide.dataset.steps || '0');
+    if (currentStep < totalSteps) {
+      slide.classList.remove('step-' + currentStep);
+      currentStep++;
+      slide.classList.add('step-' + currentStep);
+      // L — actualizar spotlight en cada avance de paso
+      applySpotlight(slide, currentStep);
+    } else {
+      goTo(current + 1);
+    }
+  }
+
+  document.getElementById('next').addEventListener('click', () => tryAdvance());
+  document.getElementById('prev').addEventListener('click', () => goTo(current - 1));
+
+  document.addEventListener('keydown', e => {
+    if ((e.key === 'T' || e.key === 't') && TOC_ENABLED) { toggleToc(); return; }
+    if (e.key === 'Escape' && tocExpanded) { collapseToc(); return; }
+    if (['ArrowRight','ArrowDown',' '].includes(e.key)) { e.preventDefault(); tryAdvance(); }
+    if (['ArrowLeft','ArrowUp'].includes(e.key))        { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    if (e.key === 'End')  { e.preventDefault(); goTo(total - 1); }
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) { if (dx < 0) tryAdvance(); else goTo(current - 1); }
+  }, { passive: true });
+
+  // ── N. CONTADORES ANIMADOS ───────────────────────────────────
+  // Parsea .big-num en el primer render y guarda el valor numérico
+  // en data-count-target para reutilizarlo en cada visita al slide.
+
+  function initCounters() {
+    document.querySelectorAll('.big-num').forEach(el => {
+      if (el.dataset.countTarget) return; // ya inicializado
+      const raw = el.textContent.trim();
+      // Captura: prefijo (no-dígito), número (int o decimal), sufijo
+      const m = raw.match(/^([^0-9-]*)(-?[\d,]+(?:\.\d+)?)([^0-9,]*)$/);
+      if (!m) return;
+      el.dataset.countPrefix  = m[1];
+      el.dataset.countTarget  = m[2].replace(/,/g, '');
+      el.dataset.countSuffix  = m[3];
+      el.dataset.countIsFloat = m[2].includes('.') ? '1' : '0';
+    });
+  }
+
+  function animateCounters(slideEl) {
+    slideEl.querySelectorAll('.big-num[data-count-target]').forEach(el => {
+      const target  = parseFloat(el.dataset.countTarget);
+      const prefix  = el.dataset.countPrefix || '';
+      const suffix  = el.dataset.countSuffix || '';
+      const isFloat = el.dataset.countIsFloat === '1';
+      if (isNaN(target)) return;
+      const dur = 1300;
+      const t0  = performance.now();
+      function tick(now) {
+        const elapsed = Math.min((now - t0) / dur, 1);
+        const eased   = 1 - Math.pow(1 - elapsed, 3); // ease-out cubic
+        const val     = target * eased;
+        el.textContent = prefix + (isFloat ? val.toFixed(1) : Math.round(val)) + suffix;
+        if (elapsed < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // ── K. CORTINILLA DE SECCIÓN ─────────────────────────────────
+  const sectionWipe = document.getElementById('section-wipe');
+
+  function triggerSectionWipe(slideEl) {
+    if (!sectionWipe) return;
+    const wipeColor = slideEl.classList.contains('divider-criterio')   ? 'wipe-criterio'
+                    : slideEl.classList.contains('divider-artefacto')  ? 'wipe-artefacto'
+                    : slideEl.classList.contains('divider-lampara')    ? 'wipe-lampara'
+                    : slideEl.classList.contains('divider-ladrillo')   ? 'wipe-ladrillo'
+                    : 'wipe-divider';
+    sectionWipe.className = wipeColor + ' wipe-active';
+    // Limpiar clase después de que termine la animación (520ms)
+    setTimeout(() => { sectionWipe.className = wipeColor; }, 520);
+  }
+
+  // ── L. SPOTLIGHT EN SVGs CON STEPS ───────────────────────────
+  // Gestiona sp-lit / sp-dim en elementos con [data-step]
+  // cuando el slide tiene [data-spotlight].
+
+  function applySpotlight(slideEl, stepN) {
+    if (!slideEl.dataset.spotlight) return;
+    const targets = slideEl.querySelectorAll('[data-step]');
+    if (!targets.length) return;
+    targets.forEach(el => {
+      const elStep = parseInt(el.dataset.step);
+      el.classList.remove('sp-lit', 'sp-dim');
+      if (elStep === stepN)       el.classList.add('sp-lit');
+      else if (elStep < stepN)    el.classList.add('sp-dim');
+      // elStep > stepN: sin clase (oculto por CSS base)
+    });
+  }
+
+  // ── B. AUTO-STEPS PARA DIAGRAMAS ─────────────────────────────
+  // Detecta la estructura del diagram-body (grid o directa),
+  // añade data-auto-cols al elemento grid y fija data-steps
+  // al nº de filas o elementos detectados.
+
+  function parseGridCols(gridTemplateColumns) {
+    const str = (gridTemplateColumns || '').trim();
+    const m = str.match(/^repeat\s*\(\s*(\d+)/i);
+    if (m) return parseInt(m[1]);
+    return str.split(/\s+/).filter(Boolean).length;
+  }
+
+  function initAutoSteps() {
+    document.querySelectorAll('.slide[data-auto-steps]').forEach(slide => {
+      const body = slide.querySelector('.diagram-body');
+      if (!body) return;
+
+      let count = 0;
+
+      // Caso 1: hay un elemento con grid-template-columns inline
+      const gridEl = body.querySelector('[style*="grid-template-columns"]');
+      if (gridEl) {
+        const styleStr = gridEl.getAttribute('style') || '';
+        const m = styleStr.match(/grid-template-columns\s*:\s*([^;]+)/);
+        if (m) {
+          const cols  = parseGridCols(m[1]);
+          count = Math.ceil(gridEl.children.length / cols);
+          gridEl.dataset.autoCols = String(cols);
+        }
+      }
+
+      // Caso 2: varios hijos directos de diagram-body (sin grid)
+      if (!count && body.children.length > 1) {
+        count = body.children.length;
+        body.dataset.autoDirect = 'true';
+        slide.dataset.autoDirect = 'true';
+      }
+
+      // data-steps = nº de avances (count - 1), porque step-0 ya revela
+      // la primera fila/elemento y cada avance revela uno más.
+      if (count > 1) slide.dataset.steps = count - 1;
+    });
+  }
+
+  // ── J. PROGRESO POR SECCIÓN ──────────────────────────────────
+  // Construye dots indicadores en #sec-progress mostrando la
+  // posición del slide actual dentro de su sección.
+  const secProgressEl = document.getElementById('sec-progress');
+
+  function updateSecProgress() {
+    if (!secProgressEl) return;
+    const slide    = slides[current];
+    const sec      = (slide.dataset.section || '').trim();
+    const isDark   = slide.classList.contains('cover') ||
+                     slide.classList.contains('divider') ||
+                     slide.classList.contains('divider-artefacto') ||
+                     slide.classList.contains('divider-ladrillo') ||
+                     slide.classList.contains('subseccion-entry') ||
+                     slide.classList.contains('cierre') ||
+                     slide.classList.contains('quote-slide');
+    const isLight  = slide.classList.contains('divider-criterio') ||
+                     slide.classList.contains('divider-lampara');
+
+    if (!sec) {
+      secProgressEl.classList.add('hidden');
+      return;
+    }
+
+    // Slides de la misma sección (excluye covers/dividers que tienen data-section="")
+    const secSlides  = Array.from(slides).filter(s => (s.dataset.section || '').trim() === sec);
+    const posInSec   = secSlides.indexOf(slide);
+
+    if (secSlides.length <= 1) {
+      secProgressEl.classList.add('hidden');
+      return;
+    }
+
+    // Construir dots
+    secProgressEl.innerHTML = secSlides.map((_, i) => {
+      let cls = 'sp-dot';
+      if (i < posInSec)  cls += ' sp-visited';
+      if (i === posInSec) cls += ' sp-active';
+      return `<span class="${cls}"></span>`;
+    }).join('');
+
+    // Adaptar color al fondo del slide
+    secProgressEl.className = isDark  ? 'sec-progress-dark'
+                            : isLight ? 'sec-progress-light'
+                            : '';
+    secProgressEl.classList.remove('hidden');
+  }
+
+  // Construir la barra completa una sola vez, luego actualizar estados
+  // ── M. COMPARATIVA VISUAL — drag handler ─────────────────────
+  // Actualiza --split en el .comp-container al arrastrar.
+  // El .comp-handle es solo visual; el container captura los eventos.
+
+  document.querySelectorAll('.comp-container').forEach(container => {
+    let dragging = false;
+
+    function setSplit(clientX) {
+      const rect = container.getBoundingClientRect();
+      const pct  = Math.max(5, Math.min(95, ((clientX - rect.left) / rect.width) * 100));
+      container.style.setProperty('--split', pct + '%');
+      const handle = container.querySelector('.comp-handle');
+      if (handle) handle.style.left = pct + '%';
+    }
+
+    container.addEventListener('mousedown', e => {
+      dragging = true;
+      setSplit(e.clientX);
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', e => {
+      if (dragging) setSplit(e.clientX);
+    });
+    document.addEventListener('mouseup', () => { dragging = false; });
+
+    container.addEventListener('touchstart', e => {
+      dragging = true;
+      setSplit(e.touches[0].clientX);
+    }, { passive: true });
+    document.addEventListener('touchmove', e => {
+      if (dragging) setSplit(e.touches[0].clientX);
+    }, { passive: true });
+    document.addEventListener('touchend', () => { dragging = false; });
+  });
+
+  slides[current].classList.add('step-0');
+  initCounters();
+  initAutoSteps();   // B — detectar grids y fijar data-steps dinámicamente
+  buildTocFull();
+  updateUI();
+
+</script>
+</body>
+</html>
