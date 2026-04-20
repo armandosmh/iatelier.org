@@ -1,0 +1,1101 @@
+/* ============================================================
+   GUÍAS IATELIER — CSS unificado (v2)
+   Un solo archivo para: pantalla, print color, print BW
+   ============================================================ */
+
+/* ---------- FONTS ---------- */
+
+@font-face {
+  font-family: 'Maax';
+  src: url('../../../fonts/205TF-Maax-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('../../../fonts/205TF-Maax-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('../../../fonts/205TF-Maax-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('../../../fonts/205TF-Maax-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('../../../fonts/205TF-Maax-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Maax';
+  src: url('../../../fonts/205TF-Maax-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* Inter y DM Mono se cargan desde Google Fonts en el HTML para screen.
+   Para print (WeasyPrint) dependemos de las fuentes del sistema.
+   Fallback chain incluye DejaVu Sans que es sans razonable. */
+
+/* ---------- TOKENS ---------- */
+
+:root {
+  --cadmio: #D92B1F;
+  --azul:   #3D5A6E;
+  --marfil: #F4F0EB;
+  --tinta:  #1C1C1E;
+  --arena:  #8C8070;
+  --arena-light: #C4B9A8;
+
+  --bg: var(--marfil);
+  --fg: var(--tinta);
+  --muted: var(--arena);
+  --accent: var(--cadmio);
+  --artifact: var(--azul);
+  --rule: rgba(28, 28, 30, 0.12);
+
+  --font-display: 'Maax', 'Inter', 'DejaVu Sans', system-ui, sans-serif;
+  --font-body:    'Inter', 'DejaVu Sans', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'DejaVu Sans Mono', ui-monospace, 'Menlo', monospace;
+
+  --maax-ss: "ss02";
+
+  --scale-xs:   0.7rem;
+  --scale-sm:   0.85rem;
+  --scale-base: 1rem;
+  --scale-md:   1.15rem;
+  --scale-lg:   1.4rem;
+  --scale-xl:   1.85rem;
+  --scale-2xl:  2.6rem;
+  --scale-3xl:  4rem;
+  --scale-huge: 8rem;
+}
+
+/* ---------- RESET ---------- */
+
+* { box-sizing: border-box; }
+
+html {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Forzamos scrollbar siempre visible para que el viewport no se
+     ensanche cuando cambia si hay overflow o no (eso causaba el
+     parpadeo al ocultar la sidebar). scrollbar-gutter no siempre
+     basta; overflow-y: scroll garantiza el espacio reservado. */
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+body { margin: 0; padding: 0; }
+
+/* ============================================================
+   PANTALLA — layout editorial con presencia
+   ============================================================ */
+
+/* Banda cadmio vertical fija en el borde derecho (solo screen).
+   Es la señal visual de iatelier que sostiene toda la lectura. */
+.brand-stripe {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 6px;
+  background: var(--accent);
+  z-index: 50;
+}
+
+/* Header fijo arriba (screen) */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 40;
+  font-family: var(--font-mono);
+  font-size: var(--scale-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--fg);
+}
+
+.site-header .brand-logo {
+  height: 22px;
+  width: auto;
+  color: var(--fg);
+  fill: currentColor;
+  display: block;
+}
+
+.site-header .tools {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.site-header .crumb {
+  color: var(--muted);
+}
+.site-header .crumb strong {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.site-header .theme-toggle,
+.site-header .nav-toggle {
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  padding: 0.35rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: var(--scale-xs);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.site-header .theme-toggle:hover,
+.site-header .nav-toggle:hover {
+  color: var(--fg);
+  border-color: var(--fg);
+}
+
+/* Cuando el sidebar está oculto, el botón Índice se resalta en cadmio */
+.site-header .nav-toggle.is-closed {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.progress {
+  position: fixed;
+  top: 52px;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0;
+  z-index: 60;
+  transition: width 0.1s ease-out;
+}
+
+/* Layout principal: nav izquierdo + contenido.
+   Para evitar parpadeo al toggle, NO animamos grid-template-columns
+   ni max-width del .site (eso reflowea todo el documento y hace
+   saltar el texto horizontalmente). En su lugar:
+   - .site__main tiene max-width + margin: 0 auto, así queda centrado
+     en su celda con o sin sidebar visible.
+   - El toggle solo cambia la columna del grid (instantáneo) y anima
+     opacity + transform del .site__nav.
+   - No se anima el reflow del contenido → se siente fluido. */
+.site {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-top: 52px;
+  min-height: 100vh;
+}
+
+.site.is-nav-hidden {
+  grid-template-columns: 0 minmax(0, 1fr);
+}
+
+.site__nav {
+  padding: 3rem 1rem 3rem 2.5rem;
+  border-right: 1px solid var(--rule);
+  position: sticky;
+  top: 52px;
+  align-self: start;
+  height: calc(100vh - 52px);
+  /* overflow lo controla .is-nav-scrollable para poder apagarlo
+     durante la transición de ocultado y evitar que parpadee la
+     scrollbar interna del nav mientras se encoge. */
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-feature-settings: var(--maax-ss);
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.18s ease, transform 0.22s ease;
+}
+
+/* Solo habilitamos el scroll interno del nav cuando está estable
+   en estado visible (clase añadida por JS tras terminar la
+   transición inicial y tras cada "mostrar"). Mientras se oculta
+   o se muestra, el nav no muestra scrollbar. */
+.site__nav.is-nav-scrollable {
+  overflow-y: auto;
+}
+
+.site.is-nav-hidden .site__nav {
+  opacity: 0;
+  transform: translateX(-16px);
+  pointer-events: none;
+  /* Durante el ocultado, forzamos sin overflow para que la
+     scrollbar interna no aparezca al encoger. */
+  overflow: hidden;
+  visibility: hidden;
+  transition: opacity 0.15s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+}
+
+.site__nav h2 {
+  font-size: var(--scale-xs);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 0 0 1.5rem 0;
+  font-weight: 400;
+}
+
+.site__nav ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: toc;
+}
+
+.site__nav ol li {
+  counter-increment: toc;
+  margin: 0.1rem 0;
+  position: relative;
+  padding-left: 2.3rem;
+  font-size: var(--scale-sm);
+  line-height: 1.35;
+}
+
+.site__nav ol li a {
+  display: block;
+  padding: 0.45rem 0;
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.site__nav ol li::before {
+  content: counter(toc, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: var(--scale-xs);
+  color: var(--muted);
+}
+
+.site__nav ol li a:hover {
+  color: var(--accent);
+}
+
+.site__nav ol li a.is-active {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.site__nav ol li a.is-active::after {
+  content: "";
+  position: absolute;
+  left: -2.5rem;
+  top: 0.85rem;
+  width: 1.2rem;
+  height: 2px;
+  background: var(--accent);
+}
+
+.site__main {
+  padding: 3.5rem 5rem 8rem;
+  max-width: 780px;
+  /* Centrado dentro de su columna del grid: cuando la sidebar
+     está visible queda alineado naturalmente; cuando se oculta,
+     el contenido se centra en la pantalla en vez de saltar. */
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* ---------- PORTADA (screen: pantalla completa) ---------- */
+
+.cover {
+  min-height: calc(100vh - 52px);
+  margin: -3.5rem -5rem 4rem;
+  padding: 5rem 5rem 4rem;
+  background: var(--bg);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: relative;
+  page-break-after: always;
+  break-after: page;
+}
+
+.cover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 12px;
+  background: var(--accent);
+}
+
+.cover__meta {
+  font-family: var(--font-mono);
+  font-size: var(--scale-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.cover__meta .meta-num {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.cover__title {
+  align-self: center;
+  padding: 2rem 0;
+}
+
+.cover__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--scale-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.cover__eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 2px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+.cover__title h1 {
+  font-family: var(--font-display);
+  font-feature-settings: var(--maax-ss);
+  font-weight: 900;
+  font-size: var(--scale-3xl);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin: 0;
+  color: var(--fg);
+}
+
+/* "para AGIR" — destinatario, va justo bajo el título grande.
+   Mantiene la familia display pero más ligero y en rojo. */
+.cover__title .cover__for {
+  font-family: var(--font-display);
+  font-feature-settings: var(--maax-ss);
+  font-weight: 700;
+  font-size: var(--scale-2xl);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0.6rem 0 0;
+  color: var(--accent);
+}
+
+.cover__title .subtitle {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-style: normal;
+  font-size: var(--scale-md);
+  line-height: 1.45;
+  letter-spacing: 0;
+  margin: 1.4rem 0 0;
+  color: var(--fg);
+  max-width: 36ch;
+}
+
+.cover__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--scale-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+.cover__footer .logo {
+  height: 1.4rem;
+  width: auto;
+  color: var(--fg);
+}
+
+.cover__footer .tagline {
+  color: var(--fg);
+}
+
+/* ---------- ÍNDICE ---------- */
+
+.toc {
+  page-break-after: always;
+  break-after: page;
+  padding: 2rem 0;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.toc__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.toc__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--scale-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.toc__rule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  margin: 0 1.5rem;
+}
+
+.toc__count {
+  font-family: var(--font-mono);
+  font-size: var(--scale-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+.toc h2 {
+  font-family: var(--font-display);
+  font-feature-settings: var(--maax-ss);
+  font-weight: 900;
+  font-size: var(--scale-2xl);
+  letter-spacing: -0.025em;
+  margin: 0 0 3rem 0;
+  color: var(--fg);
+}
+
+.toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: tocmain;
+}
+
+.toc ol li {
+  counter-increment: tocmain;
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  align-items: baseline;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-display);
+  font-feature-settings: var(--maax-ss);
+  font-size: var(--scale-md);
+  font-weight: 400;
+  transition: padding-left 0.15s;
+}
+
+.toc ol li:hover {
+  padding-left: 0.5rem;
+}
+
+.toc ol li::before {
+  content: counter(tocmain, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: var(--scale-sm);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.toc ol li a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.toc ol li a:hover {
+  color: var(--accent);
+}
+
+.toc ol li .folio {
+  font-family: var(--font-mono);
+  font-size: var(--scale-sm);
+  color: var(--muted);
+}
+
+/* ---------- APERTURA DE CAPÍTULO ---------- */
+
+.chapter-open {
+  page-break-before: always;
+  break-before: page;
+  padding: 3rem 0 2rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.chapter-open__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--scale-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.chapter-open__number {
+  font-family: var(--font-display);
+  font-feature-settings: var(--maax-ss);
+  font-weight: 900;
+  font-size: var(--scale-huge);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  margin: 0;
+}
+
+.chapter-open h1 {
+  font-family: var(--font-display);
+  font-feature-settings: var(--maax-ss);
+  font-weight: 500;
+  font-size: var(--scale-2xl);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 1rem 0 0;
+  color: var(--fg);
+  max-width: 22ch;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--fg);
+}
+
+/* ---------- TIPOGRAFÍA DE CUERPO ---------- */
+
+.content h2 {
+  font-family: var(--font-display);
+  font-feature-settings: var(--maax-ss);
+  font-weight: 500;
+  font-size: var(--scale-lg);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 2.8rem 0 1rem;
+  color: var(--fg);
+}
+
+.content h3 {
+  font-family: var(--font-display);
+  font-feature-settings: var(--maax-ss);
+  font-weight: 700;
+  font-size: var(--scale-md);
+  line-height: 1.2;
+  margin: 1.8rem 0 0.6rem;
+  color: var(--fg);
+}
+
+.content p {
+  margin: 0 0 1rem;
+  text-align: left;
+  hyphens: auto;
+}
+
+.content strong {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.content em { font-style: italic; }
+
+.content a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.content ul, .content ol {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.content ul li, .content ol li {
+  margin: 0.25rem 0;
+}
+
+.content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.content ul li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.content ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.content code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: rgba(28, 28, 30, 0.06);
+  padding: 0.12em 0.35em;
+  border-radius: 2px;
+}
+
+.content blockquote {
+  font-family: var(--font-display);
+  font-feature-settings: var(--maax-ss);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--scale-md);
+  line-height: 1.35;
+  border-left: 2px solid var(--accent);
+  padding: 0.25rem 0 0.25rem 1.2rem;
+  margin: 1.5rem 0;
+  color: var(--fg);
+}
+
+/* ---------- CALLOUTS ---------- */
+
+.callout {
+  margin: 1.8rem 0;
+  padding: 1.1rem 1.3rem;
+  position: relative;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.callout__label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--scale-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.callout__subtitle {
+  font-family: var(--font-display);
+  font-size: var(--scale-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  margin-top: -0.25rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+}
+
+.callout p:last-child { margin-bottom: 0; }
+
+/* Criterio: borde sólido grueso cadmio a la izquierda, fondo tenue */
+.callout--criterio {
+  border-left: 4px solid var(--accent);
+  background: rgba(217, 43, 31, 0.05);
+  padding-left: 1.3rem;
+}
+.callout--criterio .callout__label {
+  color: var(--accent);
+}
+
+/* Artefacto: borde sólido azul + fondo tenue azul. Cuerpo en mono.
+   FIX: quitamos el "dashed" que se rompía feo en PDF. */
+.callout--artefacto {
+  border-left: 4px solid var(--artifact);
+  background: rgba(61, 90, 110, 0.06);
+  padding-left: 1.3rem;
+  font-family: var(--font-mono);
+  font-size: var(--scale-sm);
+  line-height: 1.6;
+}
+.callout--artefacto .callout__label {
+  color: var(--artifact);
+}
+
+/* En BW: el artefacto NO usa borde sólido grueso (eso es criterio).
+   Usa doble línea vertical — tipográficamente distinto. */
+html.bw .callout--artefacto {
+  border-left: 3px double #1C1C1E;
+  background: transparent;
+  padding-left: 1.5rem;
+}
+
+/* Nota: sin borde, texto tenue */
+.callout--nota {
+  border-left: 2px solid var(--arena-light);
+  background: transparent;
+  padding-left: 1rem;
+  color: var(--fg);
+  font-size: var(--scale-sm);
+}
+.callout--nota .callout__label {
+  color: var(--muted);
+}
+
+/* Botón copiar (solo screen) */
+.callout__copy {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--scale-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  padding: 0.25rem 0.55rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+.callout__copy:hover {
+  color: var(--fg);
+  border-color: var(--fg);
+}
+
+/* ---------- FIGURAS / CAPTURAS ---------- */
+
+.content figure {
+  margin: 2rem 0;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.content figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+}
+
+.content figcaption {
+  font-family: var(--font-mono);
+  font-size: var(--scale-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-top: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--accent);
+}
+
+/* ---------- DARK MODE (solo screen) ---------- */
+
+html.dark {
+  --bg: var(--tinta);
+  --fg: var(--marfil);
+  --muted: var(--arena-light);
+  --rule: rgba(244, 240, 235, 0.15);
+}
+
+html.dark .content code {
+  background: rgba(244, 240, 235, 0.1);
+}
+
+html.dark .callout--criterio {
+  background: rgba(217, 43, 31, 0.14);
+}
+
+html.dark .callout--artefacto {
+  background: rgba(61, 90, 110, 0.22);
+}
+
+html.dark .cover__footer .logo,
+html.dark .site-header .brand-logo {
+  color: var(--fg);
+}
+
+/* ============================================================
+   PRINT — Carta, color + estructura de página
+   ============================================================ */
+
+@page {
+  size: Letter;
+  margin: 2.5cm 2.8cm 2.5cm 2.5cm;
+
+  @top-left {
+    content: "iatelier · Guía de Claude";
+    font-family: 'DM Mono', 'DejaVu Sans Mono', monospace;
+    font-size: 8pt;
+    color: #8C8070;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  @top-right {
+    content: counter(page, decimal-leading-zero) " / " counter(pages, decimal-leading-zero);
+    font-family: 'DM Mono', 'DejaVu Sans Mono', monospace;
+    font-size: 8pt;
+    color: #8C8070;
+  }
+
+  @bottom-center {
+    content: "iatelier — Ideas Aumentadas";
+    font-family: 'DM Mono', 'DejaVu Sans Mono', monospace;
+    font-size: 7.5pt;
+    color: #8C8070;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* Páginas especiales: portada y TOC sin header/folio */
+@page cover {
+  margin: 0;
+  background: #F4F0EB;
+  @top-left   { content: ""; }
+  @top-right  { content: ""; }
+  @bottom-center { content: ""; }
+}
+
+@page toc {
+  @top-left {
+    content: "iatelier · Guía de Claude";
+    font-family: 'DM Mono', 'DejaVu Sans Mono', monospace;
+    font-size: 8pt;
+    color: #8C8070;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  @top-right { content: ""; }
+  @bottom-center {
+    content: "iatelier — Ideas Aumentadas";
+    font-family: 'DM Mono', 'DejaVu Sans Mono', monospace;
+    font-size: 7.5pt;
+    color: #8C8070;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+}
+
+@media print {
+  html {
+    font-size: 11pt;
+    line-height: 1.65;
+    background: white;
+  }
+
+  .brand-stripe,
+  .site-header,
+  .progress,
+  .site__nav,
+  .callout__copy {
+    display: none !important;
+  }
+
+  .site {
+    display: block;
+    max-width: none;
+    padding-top: 0;
+  }
+
+  .site__main {
+    padding: 0;
+    max-width: none;
+  }
+
+  /* Portada en print: @page cover tiene margin:0, así que el .cover
+     debe ocupar toda la página (carta = 21.59cm × 27.94cm) y pintar
+     el fondo marfil hasta los bordes. Flex column con space-between
+     para que meta quede arriba, título al 40% de altura, footer pegado
+     al borde inferior. */
+  .cover {
+    min-height: 27.94cm;
+    height: 27.94cm;
+    width: 21.59cm;
+    margin: 0;
+    padding: 2.5cm 2.5cm 2.5cm 2.5cm;
+    page: cover;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    box-sizing: border-box;
+  }
+
+  .cover::before {
+    width: 40%;
+    height: 0.4cm;
+    top: 0;
+    left: 0;
+  }
+
+  .cover__meta {
+    margin-top: 0.5cm;
+  }
+
+  .cover__title {
+    padding: 0;
+    margin-top: 5cm;   /* empuja el título un poco bajo la meta */
+    flex: 1 0 auto;    /* ocupa el espacio sobrante */
+    width: 100%;
+  }
+
+  .cover__title h1 {
+    font-size: 56pt;   /* tamaño explícito en pt para print */
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+  }
+
+  .cover__title .cover__for {
+    font-size: 38pt;
+    margin-top: 0.4cm;
+  }
+
+  .cover__footer {
+    margin-top: 0;
+    flex-shrink: 0;
+  }
+
+  /* En BW el fondo de la página se sobrescribe a blanco para no manchar tóner */
+  html.bw .cover { background: #FFFFFF; }
+
+  .toc { page: toc; }
+
+  .content h2,
+  .content h3,
+  .chapter-open__number,
+  .chapter-open h1 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .content p,
+  .content li {
+    orphans: 3;
+    widows: 3;
+  }
+}
+
+/* ============================================================
+   BW — blanco y negro para impresión láser
+   Activado con html.bw
+   ============================================================ */
+
+html.bw {
+  --cadmio: #1C1C1E;
+  --azul:   #1C1C1E;
+  --marfil: #FFFFFF;
+  --tinta:  #1C1C1E;
+  --arena:  #6B6B6B;
+  --arena-light: #B0B0B0;
+  --accent: #1C1C1E;
+  --artifact: #1C1C1E;
+  --rule: rgba(0, 0, 0, 0.25);
+}
+
+html.bw .content figure img {
+  filter: grayscale(100%) contrast(1.15);
+}
+
+html.bw .cover::before {
+  background: #1C1C1E;
+}
+
+/* En BW la @page cover debe ser blanca, no marfil. Redefinimos. */
+@media print {
+  html.bw {
+    /* truco: no podemos redefinir @page dentro de un selector, pero
+       como .cover en BW ya tiene background: #FFF (regla de arriba),
+       el fondo visible es blanco salvo por los márgenes del @page cover.
+       Como @page cover tiene margin:0, los bordes del .cover cubren
+       toda la página, así que el background: #F4F0EB del @page queda oculto. */
+  }
+}
+
+html.bw .cover__meta .meta-num,
+html.bw .cover__eyebrow,
+html.bw .toc__eyebrow {
+  color: #1C1C1E;
+}
+
+html.bw .cover__eyebrow::before {
+  background: #1C1C1E;
+}
+
+html.bw .chapter-open__number {
+  color: #1C1C1E;
+}
+
+html.bw .cover__title .cover__for {
+  color: #1C1C1E;
+}
+
+html.bw .content ul li::before {
+  color: #1C1C1E;
+}
+
+html.bw .content a {
+  text-decoration-color: #1C1C1E;
+}
+
+html.bw .content figcaption {
+  border-left-color: #1C1C1E;
+}
+
+html.bw .callout--criterio {
+  border-left-width: 5px;
+  border-left-style: solid;
+  background: transparent;
+}
+
+html.bw .callout--nota {
+  border-left-width: 1px;
+  border-left-style: solid;
+  background: transparent;
+}
+
+html.bw .toc ol li::before {
+  color: #1C1C1E;
+  font-weight: 500;
+}
+
+html.bw .callout--criterio .callout__label { font-weight: 700; }
+html.bw .callout--artefacto .callout__label { font-weight: 500; }
+html.bw .callout--nota .callout__label {
+  font-weight: 400;
+  font-style: italic;
+}

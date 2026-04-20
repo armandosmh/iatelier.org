@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía de Claude — iatelier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="guia.css">
+  <style>
+    .cover__footer { display: none; }
+    .pdf-downloads {
+      margin-top: auto;
+      padding: 0.75rem 0;
+      border-top: 1px solid var(--rule, rgba(0,0,0,0.08));
+      font-family: var(--font-mono, monospace);
+      font-size: var(--scale-xs, 0.75rem);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted, rgba(0,0,0,0.55));
+    }
+    .pdf-downloads a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; }
+    .pdf-downloads a:hover { color: var(--accent, #c8102e); }
+    @media print { .pdf-downloads { display: none; } }
+  </style>
+</head>
+<body>
+  <!-- BANDA CADMIO FIJA (solo screen) -->
+  <div class="brand-stripe"></div>
+
+  <!-- HEADER FIJO (solo screen) -->
+  <header class="site-header">
+    <div class="brand">
+      <svg class="brand-logo" viewBox="0 0 2107 502" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="iatelier">
+        <path d="M7.23672 85.5917C-0.879461 69.7664 -2.30731 53.7425 3.65597 37.2535C4.71918 34.3137 6.27491 31.5519 7.63517 28.3498C15.9207 15.2624 26.9134 6.16202 41.7762 2.13603C76.1355 -7.17111 109.311 16.0067 113.58 49.255C118.599 88.3442 86.0903 119.792 47.1343 113.429C29.9096 110.616 16.0689 101.719 7.23672 85.5917Z"/>
+        <path d="M7.39962 480.352C7.3915 477.757 7.53505 475.598 7.53564 473.44C7.56456 367.276 7.5812 261.113 7.68033 154.49C40.2172 154.03 72.673 154.03 105.526 154.03C105.526 267.364 105.526 380.462 105.526 493.841C72.9966 493.841 40.4574 493.841 7.4846 493.841C7.4846 489.366 7.4846 485.077 7.39962 480.352Z"/>
+        <path d="M361.629 475.992C361.629 402.382 361.629 329.271 361.629 255.701C300.891 255.701 240.647 255.701 180.1 255.701C180.1 221.681 180.1 188.121 180.1 154.276C274.427 154.276 368.665 154.276 463.206 154.276C463.206 267.342 463.206 380.391 463.206 493.777C429.319 493.777 395.765 493.777 361.629 493.777C361.629 488.037 361.629 482.264 361.629 475.992Z"/>
+        <path d="M307.696 337.954C340.301 368.028 349.164 411.754 330.649 450.12C306.237 500.707 239.475 517.903 193.94 484.922C163.772 463.071 149.622 433.193 155.126 396.093C160.705 358.49 182.391 332.345 218.499 320.333C250.799 309.588 280.878 316.091 307.696 337.954Z"/>
+        <path d="M667.719 244.994C664.402 244.994 661.576 244.994 658.354 244.994C658.354 297.9 658.354 350.595 658.354 403.715C683.538 403.715 708.777 403.715 734.393 403.715C734.393 433.862 734.393 463.589 734.393 493.716C676.457 493.716 618.275 493.716 559.635 493.716C559.635 411.018 559.635 328.303 559.635 245.078C544.625 245.078 530.06 245.078 515.237 245.078C515.237 214.646 515.237 184.724 515.237 154.262C529.813 154.262 544.368 154.262 559.394 154.262C559.394 122.334 559.394 90.9386 559.394 59.2688C592.424 59.2688 624.978 59.2688 657.881 59.2688C657.881 90.7298 657.881 121.991 657.881 153.889C684.07 153.889 709.923 153.889 736.021 153.889C736.021 184.454 736.021 214.381 736.021 244.994C713.363 244.994 690.787 244.994 667.719 244.994Z"/>
+        <path d="M993.731 152.877C1047.52 169.797 1080.17 206.936 1097.55 258.89C1107.29 287.993 1107.94 318.025 1106.16 348.796C1029.55 348.796 953.004 348.796 875.863 348.796C879.388 370.048 888.937 386.838 906.406 398.647C921.149 408.614 937.742 411.901 955.32 411.426C973.784 410.926 991.587 407.447 1007.05 397.095C1017.33 390.219 1026.41 381.572 1036.68 373.189C1057.18 392.37 1078.77 412.579 1100.64 433.045C1088.57 448.39 1074.95 461.641 1058.99 472.408C1023.99 496.023 984.843 503.419 943.439 501.461C915.324 500.132 888.465 493.602 863.585 480.155C815.81 454.333 787.987 413.954 778.889 360.886C771.464 317.571 776.197 275.31 796.477 235.986C827.243 176.328 877.074 146.709 944.07 145.88C960.817 145.672 977.274 147.932 993.731 152.877ZM890.245 283.108C927.671 283.108 965.097 283.108 1002.79 283.108C1000.23 262.511 990.641 247.551 972.284 238.69C955.951 230.807 938.951 230.785 922.181 236.215C899.593 243.529 886.606 259.96 880.923 282.705C881.638 282.891 881.956 283.042 882.277 283.047C884.609 283.084 886.942 283.091 890.245 283.108Z"/>
+        <path d="M1263.76 313.993C1263.76 374.134 1263.76 433.775 1263.76 493.766C1230.99 493.766 1198.44 493.766 1165.61 493.766C1165.61 332.15 1165.61 170.59 1165.61 8.62637C1198.18 8.62637 1230.7 8.62637 1263.76 8.62637C1263.76 110.296 1263.76 211.894 1263.76 313.993Z"/>
+        <path d="M1409.57 110.992C1366.45 125.102 1326.7 90.4004 1334.6 45.9722C1339.26 19.7364 1363.25 0.140643 1390.86 0.000678149C1417.5 -0.134345 1441.82 19.9092 1446.7 46.0197C1451.96 74.2005 1436.69 101.176 1409.57 110.992Z"/>
+        <path d="M1340.92 344.993C1340.92 281.211 1340.92 217.929 1340.92 154.341C1373.9 154.341 1406.46 154.341 1439.32 154.341C1439.32 267.431 1439.32 380.472 1439.32 493.816C1406.7 493.816 1374.13 493.816 1340.92 493.816C1340.92 444.35 1340.92 394.921 1340.92 344.993Z"/>
+        <path d="M1520.74 420.894C1503.8 392.387 1496.43 361.617 1496.05 329.101C1495.61 291.221 1503.43 255.202 1523.77 222.87C1556.31 171.173 1603.86 145.996 1664.68 145.929C1706.42 145.883 1743.62 158.59 1774.25 187.779C1800.02 212.342 1814.92 242.906 1822.62 277.32C1827.87 300.811 1827.29 324.573 1826.4 348.899C1749.65 348.899 1673.1 348.899 1596.03 348.899C1599.51 369.829 1608.86 386.436 1625.98 398.247C1640.8 408.474 1657.51 411.873 1675.26 411.43C1693.36 410.979 1710.79 407.566 1726.17 397.733C1734.37 392.496 1741.57 385.685 1749.06 379.385C1751.42 377.395 1753.24 374.76 1755.63 372.061C1777.43 392.467 1798.92 412.585 1821.39 433.618C1812.66 442.451 1804.53 451.642 1795.41 459.731C1766.59 485.307 1732.33 497.925 1694.22 501.01C1663.43 503.503 1633.35 500.346 1604.34 489.468C1568.87 476.168 1540.81 453.639 1520.74 420.894ZM1710.59 252.598C1691.11 231.17 1666.84 228.429 1641.06 236.702C1619.09 243.75 1606.56 260.393 1601.12 282.714C1641.92 282.714 1682.27 282.714 1722.73 282.714C1721.77 271.4 1717.87 261.69 1710.59 252.598Z"/>
+        <path d="M1886.57 443.993C1886.57 347.192 1886.57 250.891 1886.57 154.293C1919.45 154.293 1952.04 154.293 1984.94 154.293C1984.94 267.328 1984.94 380.402 1984.94 493.796C1952.29 493.796 1919.73 493.796 1886.57 493.796C1886.57 477.362 1886.57 460.928 1886.57 443.993Z"/>
+        <g transform="translate(1873.6, 65.6) scale(2.3333)"><path d="M93.009941,71.763451 C87.178253,81.448624 78.088303,85.793503 68.565407,83.733223 C59.619362,81.797745 52.265858,74.113373 51.064991,65.445358 C49.737038,55.860008 54.461941,46.588127 62.934765,42.152767 C70.757393,38.057781 80.894463,39.276917 87.583252,45.117119 C95.077332,51.660450 97.092529,61.166870 93.009941,71.763451Z"/></g>
+      </svg>
+    </div>
+    <div class="tools">
+      <span class="crumb"><strong>Guía 01</strong> · Abril 2026 · v1.0</span>
+      <button class="nav-toggle" id="navToggle" aria-label="Ocultar índice" title="Ocultar índice">Índice</button>
+      <button class="theme-toggle" id="themeToggle">Modo claro</button>
+    </div>
+  </header>
+
+  <div class="progress" id="progress"></div>
+
+  <div class="site">
+    <!-- TOC LATERAL -->
+        <nav class="site__nav" aria-label="Índice de la guía">
+      <h2>Guía de Claude</h2>
+      <ol>
+        <li><a href="#cap-1">Qué es Claude</a></li>
+        <li><a href="#cap-2">La interfaz</a></li>
+        <li><a href="#cap-3">Conversación y contexto</a></li>
+        <li><a href="#cap-4">Archivos e imágenes</a></li>
+        <li><a href="#cap-5">Funcionalidades</a></li>
+        <li><a href="#cap-6">Patrones de uso</a></li>
+        <li><a href="#cap-7">Errores comunes</a></li>
+        <li><a href="#cap-8">Límites de Claude</a></li>
+        <li><a href="#cap-9">Privacidad y datos</a></li>
+        <li><a href="#cap-10">Para seguir explorando</a></li>
+      </ol>
+    </nav>
+
+    <main class="site__main">
+      <!-- PORTADA -->
+      <section class="cover">
+        <div class="cover__meta">
+          <span class="meta-num">Guía 01</span>
+          <span>Abril 2026 · v1.0</span>
+        </div>
+
+        <div class="cover__title">
+          <div class="cover__eyebrow">Guías Iatelier</div>
+          <h1>Guía de Claude</h1>
+          <p class="cover__for">para la AGIR</p>
+          <p class="subtitle">Referencia para trabajar con criterio en claude.ai</p>
+        </div>
+
+                <aside class="pdf-downloads" aria-label="Descargas">
+          <a href="guia-claude-agir.pdf" download>Descargar PDF (color)</a>
+          <span aria-hidden="true"> · </span>
+          <a href="guia-claude-agir-bw.pdf" download>Descargar PDF (blanco y negro)</a>
+        </aside>
+        <div class="cover__footer">
+          <svg class="logo" width="2107" height="502" viewBox="0 0 2107 502" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<!-- i (first - dot) -->
+<path d="M7.23672 85.5917C-0.879461 69.7664 -2.30731 53.7425 3.65597 37.2535C4.71918 34.3137 6.27491 31.5519 7.63517 28.3498C15.9207 15.2624 26.9134 6.16202 41.7762 2.13603C76.1355 -7.17111 109.311 16.0067 113.58 49.255C118.599 88.3442 86.0903 119.792 47.1343 113.429C29.9096 110.616 16.0689 101.719 7.23672 85.5917Z" fill="currentColor"/>
+
+<!-- i (first - stem) -->
+<path d="M7.39962 480.352C7.3915 477.757 7.53505 475.598 7.53564 473.44C7.56456 367.276 7.5812 261.113 7.68033 154.49C40.2172 154.03 72.673 154.03 105.526 154.03C105.526 267.364 105.526 380.462 105.526 493.841C72.9966 493.841 40.4574 493.841 7.4846 493.841C7.4846 489.366 7.4846 485.077 7.39962 480.352Z" fill="currentColor"/>
+
+<!-- a (stem) -->
+<path d="M361.629 475.992C361.629 402.382 361.629 329.271 361.629 255.701C300.891 255.701 240.647 255.701 180.1 255.701C180.1 221.681 180.1 188.121 180.1 154.276C274.427 154.276 368.665 154.276 463.206 154.276C463.206 267.342 463.206 380.391 463.206 493.777C429.319 493.777 395.765 493.777 361.629 493.777C361.629 488.037 361.629 482.264 361.629 475.992Z" fill="currentColor"/>
+
+<!-- a (dot/circle) -->
+<path d="M307.696 337.954C340.301 368.028 349.164 411.754 330.649 450.12C306.237 500.707 239.475 517.903 193.94 484.922C163.772 463.071 149.622 433.193 155.126 396.093C160.705 358.49 182.391 332.345 218.499 320.333C250.799 309.588 280.878 316.091 307.696 337.954Z" fill="currentColor"/>
+
+<!-- t -->
+<path d="M667.719 244.994C664.402 244.994 661.576 244.994 658.354 244.994C658.354 297.9 658.354 350.595 658.354 403.715C683.538 403.715 708.777 403.715 734.393 403.715C734.393 433.862 734.393 463.589 734.393 493.716C676.457 493.716 618.275 493.716 559.635 493.716C559.635 411.018 559.635 328.303 559.635 245.078C544.625 245.078 530.06 245.078 515.237 245.078C515.237 214.646 515.237 184.724 515.237 154.262C529.813 154.262 544.368 154.262 559.394 154.262C559.394 122.334 559.394 90.9386 559.394 59.2688C592.424 59.2688 624.978 59.2688 657.881 59.2688C657.881 90.7298 657.881 121.991 657.881 153.889C684.07 153.889 709.923 153.889 736.021 153.889C736.021 184.454 736.021 214.381 736.021 244.994C713.363 244.994 690.787 244.994 667.719 244.994Z" fill="currentColor"/>
+
+<!-- e (first) -->
+<path d="M993.731 152.877C1047.52 169.797 1080.17 206.936 1097.55 258.89C1107.29 287.993 1107.94 318.025 1106.16 348.796C1029.55 348.796 953.004 348.796 875.863 348.796C879.388 370.048 888.937 386.838 906.406 398.647C921.149 408.614 937.742 411.901 955.32 411.426C973.784 410.926 991.587 407.447 1007.05 397.095C1017.33 390.219 1026.41 381.572 1036.68 373.189C1057.18 392.37 1078.77 412.579 1100.64 433.045C1088.57 448.39 1074.95 461.641 1058.99 472.408C1023.99 496.023 984.843 503.419 943.439 501.461C915.324 500.132 888.465 493.602 863.585 480.155C815.81 454.333 787.987 413.954 778.889 360.886C771.464 317.571 776.197 275.31 796.477 235.986C827.243 176.328 877.074 146.709 944.07 145.88C960.817 145.672 977.274 147.932 993.731 152.877ZM890.245 283.108C927.671 283.108 965.097 283.108 1002.79 283.108C1000.23 262.511 990.641 247.551 972.284 238.69C955.951 230.807 938.951 230.785 922.181 236.215C899.593 243.529 886.606 259.96 880.923 282.705C881.638 282.891 881.956 283.042 882.277 283.047C884.609 283.084 886.942 283.091 890.245 283.108Z" fill="currentColor"/>
+
+<!-- l -->
+<path d="M1263.76 313.993C1263.76 374.134 1263.76 433.775 1263.76 493.766C1230.99 493.766 1198.44 493.766 1165.61 493.766C1165.61 332.15 1165.61 170.59 1165.61 8.62637C1198.18 8.62637 1230.7 8.62637 1263.76 8.62637C1263.76 110.296 1263.76 211.894 1263.76 313.993Z" fill="currentColor"/>
+
+<!-- i (second - dot) -->
+<path d="M1409.57 110.992C1366.45 125.102 1326.7 90.4004 1334.6 45.9722C1339.26 19.7364 1363.25 0.140643 1390.86 0.000678149C1417.5 -0.134345 1441.82 19.9092 1446.7 46.0197C1451.96 74.2005 1436.69 101.176 1409.57 110.992Z" fill="currentColor"/>
+
+<!-- i (second - stem) -->
+<path d="M1340.92 344.993C1340.92 281.211 1340.92 217.929 1340.92 154.341C1373.9 154.341 1406.46 154.341 1439.32 154.341C1439.32 267.431 1439.32 380.472 1439.32 493.816C1406.7 493.816 1374.13 493.816 1340.92 493.816C1340.92 444.35 1340.92 394.921 1340.92 344.993Z" fill="currentColor"/>
+
+<!-- e (second) -->
+<path d="M1520.74 420.894C1503.8 392.387 1496.43 361.617 1496.05 329.101C1495.61 291.221 1503.43 255.202 1523.77 222.87C1556.31 171.173 1603.86 145.996 1664.68 145.929C1706.42 145.883 1743.62 158.59 1774.25 187.779C1800.02 212.342 1814.92 242.906 1822.62 277.32C1827.87 300.811 1827.29 324.573 1826.4 348.899C1749.65 348.899 1673.1 348.899 1596.03 348.899C1599.51 369.829 1608.86 386.436 1625.98 398.247C1640.8 408.474 1657.51 411.873 1675.26 411.43C1693.36 410.979 1710.79 407.566 1726.17 397.733C1734.37 392.496 1741.57 385.685 1749.06 379.385C1751.42 377.395 1753.24 374.76 1755.63 372.061C1777.43 392.467 1798.92 412.585 1821.39 433.618C1812.66 442.451 1804.53 451.642 1795.41 459.731C1766.59 485.307 1732.33 497.925 1694.22 501.01C1663.43 503.503 1633.35 500.346 1604.34 489.468C1568.87 476.168 1540.81 453.639 1520.74 420.894ZM1710.59 252.598C1691.11 231.17 1666.84 228.429 1641.06 236.702C1619.09 243.75 1606.56 260.393 1601.12 282.714C1641.92 282.714 1682.27 282.714 1722.73 282.714C1721.77 271.4 1717.87 261.69 1710.59 252.598Z" fill="currentColor"/>
+
+<!-- r (stem) -->
+<path d="M1886.57 443.993C1886.57 347.192 1886.57 250.891 1886.57 154.293C1919.45 154.293 1952.04 154.293 1984.94 154.293C1984.94 267.328 1984.94 380.402 1984.94 493.796C1952.29 493.796 1919.73 493.796 1886.57 493.796C1886.57 477.362 1886.57 460.928 1886.57 443.993Z" fill="currentColor"/>
+
+<!-- r (dot/circle — replaces rectangular arm) -->
+<g transform="translate(1873.6, 65.6) scale(2.3333)">
+  <path d="M93.009941,71.763451 C87.178253,81.448624 78.088303,85.793503 68.565407,83.733223 C59.619362,81.797745 52.265858,74.113373 51.064991,65.445358 C49.737038,55.860008 54.461941,46.588127 62.934765,42.152767 C70.757393,38.057781 80.894463,39.276917 87.583252,45.117119 C95.077332,51.660450 97.092529,61.166870 93.009941,71.763451Z" fill="currentColor"/>
+</g>
+
+</svg>
+
+          <span class="tagline">Ideas Aumentadas</span>
+        </div>
+      </section>
+
+      <!-- ÍNDICE -->
+      <section class="toc">
+        <div class="toc__header">
+          <span class="toc__eyebrow">Índice</span>
+          <span class="toc__rule"></span>
+          <span class="toc__count">10 capítulos</span>
+        </div>
+        <h2>Contenido</h2>
+        <ol>
+          <li><a href="#cap-1">Qué es Claude</a></li>
+          <li><a href="#cap-2">La interfaz</a></li>
+          <li><a href="#cap-3">Conversación y contexto</a></li>
+          <li><a href="#cap-4">Archivos e imágenes</a></li>
+          <li><a href="#cap-5">Funcionalidades</a></li>
+          <li><a href="#cap-6">Patrones de uso</a></li>
+          <li><a href="#cap-7">Errores comunes</a></li>
+          <li><a href="#cap-8">Límites de Claude</a></li>
+          <li><a href="#cap-9">Privacidad y datos</a></li>
+          <li><a href="#cap-10">Para seguir explorando</a></li>
+        </ol>
+      </section>
+
+
+<article id="cap-1" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">01</div>
+    <h1>Qué es Claude</h1>
+  </header>
+
+<h2>La empresa</h2>
+
+<p>Claude es un modelo de lenguaje desarrollado por <strong>Anthropic</strong>, una empresa fundada en 2021 con sede en San Francisco. La compañía surgió de un grupo de personas que trabajaban en OpenAI y decidieron crear una empresa con énfasis en seguridad, alineación y usabilidad de los modelos.</p>
+
+<p>No hace falta saber más que eso para usar la herramienta. Si te interesa la historia y la visión de la empresa, la información está disponible en <code>anthropic.com</code>.</p>
+
+<h2>La familia de modelos</h2>
+
+<p>Claude no es un solo modelo, es una familia. En 2026 hay tres tamaños, cada uno con un perfil distinto:</p>
+
+<p><strong>Haiku.</strong> El más rápido y económico. Ideal para tareas sencillas y de alto volumen: extracciones simples, clasificación, respuestas breves.</p>
+
+<p><strong>Sonnet.</strong> El modelo de uso diario. Equilibra capacidad y velocidad. Sirve para la mayoría de las tareas normales: redacción, análisis, síntesis, conversación sostenida.</p>
+
+<p><strong>Opus.</strong> El más capaz. Razona mejor con problemas complejos, instrucciones largas, tareas con muchos pasos. Es más lento y cuesta más.</p>
+
+<p>Cada tamaño se actualiza con el tiempo (Opus 4.5, Opus 4.6, Opus 4.7; Sonnet 4.5, 4.6; y así). Los números cambian, la lógica de los tamaños se mantiene: <em>Haiku rápido, Sonnet equilibrado, Opus potente</em>.</p>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Qué modelo usar</div>
+  <p>Empieza con Sonnet. Cambia a Opus cuando la tarea sea claramente más compleja: análisis largos, razonamiento de varios pasos, documentos densos donde la calidad importa más que la velocidad. Baja a Haiku cuando solo necesites algo rápido y sin matices.</p>
+</aside>
+
+<figure>
+  <img src="img/02-selector-modelo.jpg" alt="Selector de modelo con las tres opciones y el toggle de pensamiento adaptativo">
+  <figcaption>Selector de modelo con las tres opciones y el toggle de pensamiento adaptativo</figcaption>
+</figure>
+
+<p>El selector de modelo está en la caja de entrada. Desde ahí también se activa <strong>Pensamiento adaptativo</strong>: el modelo invierte más tiempo razonando antes de responder, útil en problemas que requieren varios pasos o mucho cuidado. Gasta más cupo de mensajes que una respuesta normal.</p>
+
+<h2>Los planes</h2>
+
+<p>Claude se ofrece en varios planes. Los principales son <strong>Free</strong>, <strong>Pro</strong>, <strong>Team</strong> y <strong>Enterprise</strong>.</p>
+
+<h3>Free (sin costo)</h3>
+
+<p>Pensado para que pruebes la herramienta. Incluye:</p>
+
+<ul>
+  <li>Acceso a Sonnet en web, móvil y escritorio.</li>
+  <li>Cupo de mensajes limitado. Funciona con una ventana deslizante de 5 horas, no por día calendario: del orden de 15 a 40 mensajes cada 5 horas según demanda del sistema, longitud de las conversaciones y archivos adjuntos.</li>
+  <li>Acceso a Proyectos y Artefactos (desde principios de 2026 son gratuitos).</li>
+  <li>Memoria básica.</li>
+  <li>Búsqueda web.</li>
+  <li>Conectores básicos.</li>
+</ul>
+
+<p>No incluye:</p>
+
+<ul>
+  <li>Acceso a Opus.</li>
+  <li>Investigación profunda (Research).</li>
+  <li>Conectores avanzados ni custom.</li>
+  <li>Claude Code ni Claude Cowork.</li>
+</ul>
+
+<p>Suficiente para conocer la herramienta. Insuficiente para trabajar con ella a diario.</p>
+
+<h3>Pro ($17 USD/mes anual, $20 USD/mes mensual)</h3>
+
+<p>El plan estándar para uso individual intensivo. Amplía respecto a Free:</p>
+
+<ul>
+  <li>Cupo de uso aproximadamente 5 veces mayor que Free (del orden de 45 mensajes cada 5 horas, variable por demanda; hay un tope semanal adicional que los usuarios típicos no alcanzan).</li>
+  <li>Acceso a <strong>Opus</strong>.</li>
+  <li><strong>Proyectos</strong> sin límite de cantidad.</li>
+  <li><strong>Research</strong> (investigación profunda).</li>
+  <li><strong>Estilos</strong> personalizados.</li>
+  <li><strong>Conectores</strong> (integraciones con Gmail, Slack, Google Drive, Notion y otros).</li>
+  <li>Acceso a <strong>Claude Code</strong> y <strong>Claude Cowork</strong>.</li>
+  <li>Funcionalidades beta de generación de Excel y PowerPoint.</li>
+</ul>
+
+<p>Es el plan que la mayoría de usuarios individuales que trabajan con Claude a diario van a necesitar.</p>
+
+<h3>Team ($20 USD/usuario/mes anual, $25 USD/usuario/mes mensual — asiento Standard)</h3>
+
+<p>Pensado para equipos y organizaciones entre 5 y 150 personas. Lo clave:</p>
+
+<ul>
+  <li>Todo lo de Pro para cada usuario.</li>
+  <li><strong>Administración centralizada</strong>: un administrador gestiona usuarios, accesos, facturación y políticas.</li>
+  <li><strong>Facturación única</strong> a nombre de la organización (no reembolsos individuales).</li>
+  <li><strong>SSO</strong> y verificación de dominio.</li>
+  <li><strong>Búsqueda empresarial</strong> entre los conectores habilitados.</li>
+  <li><strong>Controles de administrador</strong> sobre integraciones y acceso.</li>
+  <li><strong>Por defecto, Anthropic no usa el contenido de Team para entrenar modelos</strong> (ver capítulo 9).</li>
+</ul>
+
+<p>Team también ofrece un asiento <strong>Premium</strong> a $100 USD/mes (anual) o $125/mes (mensual) con cupos de uso más altos para usuarios intensivos dentro de la organización.</p>
+
+<p>Para una agencia de gobierno, una OSC o una consultora pequeña, Team suele ser la opción razonable. Deja de ser cada persona con su cuenta personal y se convierte en una herramienta institucional con reglas claras de uso de datos.</p>
+
+<h3>Enterprise</h3>
+
+<p>Para organizaciones con necesidades más sofisticadas. Agrega sobre Team:</p>
+
+<ul>
+  <li>Control de acceso basado en roles (RBAC).</li>
+  <li>SCIM para gestión de usuarios automatizada.</li>
+  <li>Logs de auditoría.</li>
+  <li>API de cumplimiento.</li>
+  <li>Retención de datos personalizada.</li>
+  <li>Listas blancas de IPs.</li>
+  <li>Opción compatible con HIPAA.</li>
+  <li>Algunos modelos con <strong>ventana de contexto de 500,000 tokens</strong> (en el resto de planes, 200,000).</li>
+</ul>
+
+<p>El precio es por asiento ($20 USD) más consumo a tarifas de API, con contrato a medida.</p>
+
+<h3>Max (desde $100 USD/mes)</h3>
+
+<p>Para usuarios individuales con uso muy intensivo. Amplía los cupos de Pro. Hay una versión "5x" (cinco veces los cupos de Pro) y una "20x" (veinte veces). Relevante si tu carga diaria de trabajo con Claude es alta; para la mayoría, Pro es suficiente.</p>
+
+<h3>Una aclaración importante sobre el contexto</h3>
+
+<p>La <strong>ventana de contexto</strong> —cuánto texto puede procesar Claude en una sola conversación, ver capítulo 3— es de <strong>200,000 tokens en todos los planes pagados</strong> (Pro, Max, Team y Enterprise en los modelos estándar). Solo Enterprise ofrece, en modelos específicos, una ventana ampliada de 500,000 tokens. Es decir, pagar más no te da automáticamente más contexto; te da más <em>cupo</em> (mensajes por ventana de tiempo), funcionalidades adicionales y, en Team/Enterprise, garantías de datos.</p>
+
+<h2>Qué plan elegir</h2>
+
+<p>Tres criterios simples:</p>
+
+<p><strong>Si vas a probar la herramienta unos días sin compromiso:</strong> Free.</p>
+
+<p><strong>Si la vas a usar como parte de tu trabajo diario, pero tu organización no tiene cuenta:</strong> Pro.</p>
+
+<p><strong>Si tu organización quiere adoptarla formalmente:</strong> Team. La diferencia principal respecto a tener a todos con cuenta Pro personal es doble: administración centralizada y, más importante, <strong>las conversaciones de Team no se usan para entrenamiento</strong> por política de Anthropic. Para cualquier organización que trabaje con información institucional, esta distinción no es menor.</p>
+
+<aside class="callout callout--nota">
+  <span class="callout__label">Nota</span>
+  <div class="callout__subtitle">Verificado abril 2026</div>
+  <p>Los precios y los cupos de mensajes pueden cambiar. Consulta <code>claude.com/pricing</code> para la información actualizada.</p>
+</aside>
+</article>
+
+<article id="cap-2" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">02</div>
+    <h1>La interfaz</h1>
+  </header>
+
+<p>Claude web vive en <code>claude.ai</code>. También hay aplicación de escritorio para macOS y Windows y apps móviles para iOS y Android. Esta guía describe la interfaz web; las otras son variaciones con el mismo esqueleto.</p>
+
+<p>Las capturas de esta guía son de abril de 2026. Anthropic rediseña la interfaz con frecuencia, así que los iconos y la posición exacta de algunos botones pueden cambiar. Lo que describimos es la estructura funcional, que cambia menos.</p>
+
+<h2>El esqueleto de la pantalla</h2>
+
+<figure>
+  <img src="img/01-esqueleto.jpg" alt="Esqueleto de la interfaz de Claude">
+  <figcaption>Esqueleto de la interfaz de Claude</figcaption>
+</figure>
+
+<p>Al abrir <code>claude.ai</code> y entrar a una conversación, vas a ver tres zonas:</p>
+
+<p><strong>Barra lateral (izquierda).</strong> Es el índice de tu historial. Aparecen las conversaciones recientes, el acceso a tus proyectos, artefactos guardados, y el atajo a "Personalizar" (donde viven habilidades y conectores). Desde abajo entras a la configuración de tu cuenta. En pantallas pequeñas la barra lateral se esconde; se abre con el icono de menú.</p>
+
+<p><strong>Área central.</strong> El cuerpo de la conversación. Los mensajes tuyos aparecen a la derecha, las respuestas de Claude a la izquierda. Si la conversación activa un artefacto (ver capítulo 5), el área central se divide en dos: conversación a la izquierda, artefacto a la derecha.</p>
+
+<p><strong>Caja de entrada (abajo).</strong> Donde escribes. Tiene, junto al campo de texto:</p>
+
+<ul>
+  <li>El botón <code>+</code> que despliega un menú con adjuntar archivos, capturas de pantalla, agregar al proyecto, <strong>Habilidades</strong>, <strong>Conectores</strong>, <strong>Investigación</strong>, <strong>Búsqueda web</strong> y <strong>Usar estilo</strong>.</li>
+  <li>El selector de modelo (Sonnet, Opus, Haiku), cuando tu plan te da a elegir. Desde ahí también se activa <em>Pensamiento adaptativo</em> (ver capítulo 1).</li>
+  <li>El botón de dictado por voz.</li>
+  <li>El botón de enviar.</li>
+</ul>
+
+<figure>
+  <img src="img/03-menu-mas.jpg" alt="Menú desplegable del botón +">
+  <figcaption>Menú desplegable del botón +</figcaption>
+</figure>
+
+<p>Cuando pegas texto muy largo, la caja puede convertirlo en un "adjunto de texto" en vez de mandarlo como mensaje inline. Es útil, no ensucia la conversación y Claude lo procesa igual.</p>
+
+<h2>Cómo empezar una conversación</h2>
+
+<p>Hay dos rutas.</p>
+
+<p><strong>Nueva conversación suelta.</strong> Click en "Nuevo chat" (arriba de la barra lateral). Sirve para preguntas puntuales, pruebas rápidas, tareas únicas.</p>
+
+<p><strong>Nueva conversación dentro de un proyecto.</strong> Click en el proyecto desde la barra lateral, luego "Nuevo chat" ahí. Esta conversación arranca con todo el contexto del proyecto cargado: instrucciones personalizadas, archivos en el "conocimiento del proyecto", y lo que haya en la memoria del proyecto. Ver capítulo 5.</p>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <p>Para trabajo serio, la segunda ruta casi siempre es mejor. Para cosas sueltas, la primera está bien.</p>
+</aside>
+
+<h2>Historial y búsqueda</h2>
+
+<p>Todas tus conversaciones quedan guardadas en la barra lateral. Puedes:</p>
+
+<ul>
+  <li><strong>Volver a una conversación</strong> haciendo click en ella. Sigues donde la dejaste, con todo el contexto.</li>
+  <li><strong>Renombrar una conversación</strong> para que sea más fácil de ubicar después.</li>
+  <li><strong>Archivar</strong> o <strong>eliminar</strong> conversaciones que ya no necesites.</li>
+  <li><strong>Buscar</strong> por palabras clave dentro de tu historial.</li>
+</ul>
+
+<p>Si usaste memoria (capítulo 5), Claude puede referenciar cosas dichas en conversaciones previas sin que tengas que recordar en cuál fue.</p>
+
+<h2>Modos de salida e interacción</h2>
+
+<p>Además de texto normal en la conversación, Claude puede producir o permitir:</p>
+
+<ul>
+  <li><strong>Artefactos</strong> (capítulo 5.3) — panel lateral con contenido estructurado: código, documentos, tablas, visualizaciones interactivas.</li>
+  <li><strong>Archivos descargables</strong> — textos, PDFs, hojas de cálculo, presentaciones generadas como archivo.</li>
+  <li><strong>Código ejecutable</strong> — Claude corre código dentro de la conversación y devuelve el resultado (cálculos, procesamiento de datos).</li>
+  <li><strong>Investigación</strong> (capítulo 5.4) — modo largo que busca en internet y produce un reporte con fuentes.</li>
+</ul>
+
+<p>Cuál de estos usa depende de lo que le pidas y, en algunos casos, de funcionalidades que enciendes explícitamente.</p>
+
+<h2>Configuración que conviene conocer</h2>
+
+<p>En la configuración de tu cuenta (icono de tu perfil, abajo a la izquierda), hay secciones que conviene revisar al menos una vez:</p>
+
+<p><strong>General.</strong> Ahí está tu perfil y las <strong>instrucciones personalizadas globales</strong>, que se aplican a <em>todas</em> tus conversaciones. Las de proyecto suelen sumar, no reemplazar. Ver capítulo 5.2.</p>
+
+<figure>
+  <img src="img/04-config-general.jpg" alt="Configuración → General">
+  <figcaption>Configuración → General</figcaption>
+</figure>
+
+<p><strong>Privacidad.</strong> Control sobre si Anthropic puede usar tus conversaciones para entrenar modelos futuros, metadatos de ubicación, exportación de datos y gestión de chats compartidos. Ver capítulo 9.</p>
+
+<figure>
+  <img src="img/05-config-privacidad.jpg" alt="Configuración → Privacidad">
+  <figcaption>Configuración → Privacidad</figcaption>
+</figure>
+
+<p><strong>Capacidades.</strong> Aquí se encienden y apagan funcionalidades experimentales y betas. Vale la pena revisar qué tienes encendido.</p>
+
+<p><strong>Personalizar.</strong> Sección aparte (no dentro de Configuración) a la que se llega desde la barra lateral. Agrupa <strong>Habilidades</strong> y <strong>Conectores</strong>. Los conectores también se pueden activar desde el botón <code>+</code> de la caja de entrada (ver arriba). Ver capítulos 5.7 y 5.8.</p>
+
+<h2>La versión móvil</h2>
+
+<p>Las apps de iOS y Android siguen la misma lógica con pantallas compactadas. Puedes dictar por voz (útil para borradores rápidos) y adjuntar archivos desde el sistema.</p>
+
+<p>Limitaciones prácticas: en móvil es incómodo trabajar con artefactos grandes, revisar documentos largos o hacer research. Sirve para consultas, borradores cortos y continuar conversaciones que empezaste en computadora.</p>
+
+<aside class="callout callout--nota">
+  <span class="callout__label">Nota</span>
+  <div class="callout__subtitle">Verificado abril 2026</div>
+  <p>Anthropic rediseña la interfaz periódicamente; las ubicaciones exactas de botones y menús pueden moverse. La estructura general —sidebar con historial, área central con la conversación y caja de entrada abajo— ha sido estable y es probable que siga siéndolo.</p>
+</aside>
+</article>
+
+<article id="cap-3" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">03</div>
+    <h1>Cómo funciona una conversación</h1>
+  </header>
+
+<p>Esta es la sección más importante para entender por qué Claude a veces funciona muy bien y a veces empieza a perder el hilo.</p>
+
+<h2>Qué es realmente un mensaje</h2>
+
+<p>Cuando escribes algo en Claude y presionas enter, no estás hablando con una entidad que te recuerda desde la última vez. Lo que ocurre es distinto. Claude recibe <strong>todo el texto de la conversación hasta ese momento</strong> y, a partir de eso, genera una respuesta.</p>
+
+<p>Esto tiene tres consecuencias que conviene tener presentes:</p>
+
+<p>La primera es que <strong>cada respuesta se produce leyendo la conversación completa desde cero</strong>. Claude no "guarda" nada en memoria interna. Si en tu primer mensaje le dijiste que trabajas en gobierno y en el décimo le pides un texto, va a usar esa información porque sigue ahí, escrita en la conversación, no porque la recuerde.</p>
+
+<p>La segunda es que <strong>entre conversaciones distintas no hay continuidad</strong>. Si abres una conversación nueva mañana, Claude no sabe qué hablaron ayer. Tampoco sabe tu nombre, tu puesto, ni nada de lo anterior, salvo que uses funciones específicas diseñadas para eso (proyectos, instrucciones personalizadas, memoria).</p>
+
+<p>La tercera es que <strong>Claude no aprende de ti</strong> entre conversaciones. Si le corriges un error hoy, mañana va a cometer el mismo error en una conversación nueva. Lo que puedes hacer es guardar las correcciones importantes en instrucciones personalizadas o en un proyecto, para que formen parte del contexto de futuras conversaciones (ver capítulo 5).</p>
+
+<h2>Qué es la ventana de contexto</h2>
+
+<p>La ventana de contexto es la cantidad máxima de texto que Claude puede procesar en una sola conversación. Incluye todo: tus mensajes, las respuestas previas de Claude, los documentos que adjuntaste, las instrucciones del proyecto si estás dentro de uno, y las instrucciones personalizadas.</p>
+
+<p>Se mide en <em>tokens</em>, no en palabras. Un token es aproximadamente 3 a 4 caracteres en español. Para fines prácticos, puedes pensar que 1,000 tokens son más o menos 750 palabras, pero lo que importa es entender que hay un límite.</p>
+
+<aside class="callout callout--nota">
+  <span class="callout__label">Nota</span>
+  <p>La ventana de contexto de Claude es grande. En los modelos actuales permite manejar documentos extensos sin problemas, decenas o incluso cientos de páginas, dependiendo del plan. Pero <strong>grande no significa infinito</strong>, y más importante, <strong>tener espacio no es lo mismo que usarlo bien</strong>.</p>
+</aside>
+
+<h2>Qué pasa cuando la ventana se llena</h2>
+
+<p>Hay dos fenómenos distintos y vale la pena separarlos.</p>
+
+<p><strong>Antes de llegar al límite, la calidad empieza a bajar.</strong> Mucho antes de que la conversación esté llena, cuando la ventana lleva mucho contenido, Claude tiene más cosas a las cuales atender y le cuesta distinguir lo importante de lo accesorio. Síntomas típicos:</p>
+
+<ul>
+  <li>Repite cosas que ya dijo antes.</li>
+  <li>Ignora instrucciones que diste al principio.</li>
+  <li>Contradice algo que él mismo estableció páginas arriba.</li>
+  <li>Se enreda en tareas que al inicio resolvía bien.</li>
+  <li>Mezcla información de distintos documentos adjuntos.</li>
+</ul>
+
+<p>El modelo no se "rompe". El contexto se saturó de ruido.</p>
+
+<p><strong>Al llegar al límite, Claude resume y sigue.</strong> En claude.ai, cuando una conversación está a punto de alcanzar el tope de la ventana, Claude compacta la conversación: produce un resumen del historial, reemplaza los mensajes anteriores por ese resumen, y continúa a partir de ahí. Vas a ver un aviso tipo "organizando mis pensamientos" mientras lo hace (uno o dos minutos). Tu historial completo sigue visible en la conversación para que tú lo puedas leer, pero el modelo, de ahí en adelante, solo usa el resumen como memoria de lo previo.</p>
+
+<p>Esto te permite seguir escribiendo en la misma conversación. Pero tiene un costo importante: <strong>el resumen pierde detalle</strong>. Matices que habías trabajado, decisiones finas, términos exactos, ejemplos concretos que Claude había entendido bien, todo eso se comprime. Cada ciclo de compactación pierde un poco más. Una conversación que ha sido compactada dos o tres veces tiende a volverse vaga, generalista, y a olvidar con precisión lo que al principio tenía claro.</p>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Cuándo cortar</div>
+  <p>El hecho de que Claude pueda compactar y seguir no significa que debas dejarlo llegar a ese punto. La compactación es una red de seguridad, no una estrategia. Si vas a hacer trabajo serio, conviene cerrar la conversación bastante antes y abrir una nueva con un resumen breve escrito por ti, que tú controlas, en lugar de uno automático que pierde lo que importa.</p>
+</aside>
+
+<h2>Cuándo empezar una conversación nueva</h2>
+
+<p>La regla práctica: <strong>cuando el tema cambia, empieza una conversación nueva</strong>. No por prolijidad, sino porque el contexto viejo contamina el nuevo.</p>
+
+<p>Si llevas una hora pidiéndole a Claude que revise un oficio y ahora quieres analizar un reporte distinto, abre conversación nueva. El contexto del oficio anterior no ayuda y, de hecho, puede perjudicar al análisis del reporte.</p>
+
+<p>Otros momentos para abrir conversación nueva:</p>
+
+<ul>
+  <li>Cuando notes que Claude empieza a responder peor que al principio.</li>
+  <li>Cuando detectes que está repitiendo errores que ya corregiste.</li>
+  <li>Cuando la conversación se haya desviado tanto que ya no recuerdas por qué empezaste.</li>
+  <li>Cuando vayas a empezar una tarea distinta, aunque sea con el mismo documento.</li>
+</ul>
+
+<p>No es un problema cerrar muchas conversaciones. Es mejor trabajar en conversaciones cortas y bien enfocadas que en una gigante que lo abarca todo.</p>
+
+<h2>Cómo gestionar el contexto con criterio</h2>
+
+<p><strong>Pon lo importante al principio.</strong> Al inicio de la conversación, establece el contexto: quién eres, para qué es la tarea, qué criterios aplican, qué restricciones hay. Esto lo puedes hacer a mano o, mejor, dentro de un proyecto con instrucciones personalizadas. Ver capítulo 5.</p>
+
+<p><strong>Adjunta solo lo necesario.</strong> Si vas a trabajar con un documento de 200 páginas pero solo te interesan los capítulos 3 y 4, extráelos antes de subir. Un documento completo ocupa espacio en la ventana y añade ruido.</p>
+
+<p><strong>Cuando veas degradación, corta.</strong> No insistas en seguir en la misma conversación. Resume en un párrafo lo que ya definiste, ábrete una nueva, pega el resumen y continúa. El minuto que inviertes en esto te ahorra media hora peleándote con una conversación cansada.</p>
+
+<h2>Un matiz sobre "memoria"</h2>
+
+<p>Claude tiene, según el plan, funcionalidades llamadas <em>memoria</em> o <em>personalización</em> que le permiten recordar cosas entre conversaciones. Estas funcionalidades no son memoria en el sentido tradicional sino que funcionan guardando información en un lugar específico que se inyecta automáticamente en el contexto de las nuevas conversaciones. Sigue siendo contexto, solo que no lo escribes tú cada vez. Ver capítulo 5 para los detalles.</p>
+</article>
+
+<article id="cap-4" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">04</div>
+    <h1>Adjuntar archivos e imágenes</h1>
+  </header>
+
+<p>Claude trabaja bien con documentos. Subir un archivo y pedirle que lo lea suele ser más útil que pegar texto en la conversación, porque conserva estructura, imágenes y formato.</p>
+
+<h2>Cómo adjuntar</h2>
+
+<p>En la caja de entrada hay un botón de adjuntar (clip o <code>+</code>). Acepta:</p>
+
+<ul>
+  <li><strong>Documentos:</strong> PDF, Word (.docx), texto plano, Markdown, CSV, Excel (.xlsx), PowerPoint (.pptx).</li>
+  <li><strong>Imágenes:</strong> PNG, JPG, GIF, WebP.</li>
+  <li><strong>Código:</strong> cualquier archivo de texto con extensión reconocida (.py, .js, .html, .md, etc.).</li>
+</ul>
+
+<p>Arrastrar y soltar funciona. También pegar imágenes directamente desde el portapapeles.</p>
+
+<h2>Límites actuales</h2>
+
+<p>En claude.ai, a abril de 2026:</p>
+
+<ul>
+  <li><strong>Tamaño máximo por archivo:</strong> 30 MB.</li>
+  <li><strong>Archivos por conversación:</strong> hasta 20.</li>
+  <li><strong>Imágenes:</strong> hasta 8,000 × 8,000 píxeles.</li>
+  <li><strong>PDFs:</strong> análisis visual completo (texto + imágenes + gráficas) hasta aproximadamente 100 páginas. Más allá, Claude prioriza el texto.</li>
+</ul>
+
+<p>Dentro de Proyectos (Pro y superiores), puedes guardar archivos en el "conocimiento del proyecto" con los mismos límites de tamaño, pero sin el tope de 20 por conversación.</p>
+
+<p>Estos números pueden cambiar. Verifica en la documentación oficial si estás cerca del límite.</p>
+
+<h2>El tamaño no siempre es lo que cuenta</h2>
+
+<p>Un detalle que confunde: un PDF de 5 MB lleno de texto denso puede ocupar más espacio útil en la ventana de contexto (capítulo 3) que un PDF de 20 MB lleno de imágenes. La razón es que Claude convierte cada archivo a tokens, y el texto genera más tokens por megabyte que las imágenes.</p>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <p>Que un archivo esté dentro del límite de 30 MB no garantiza que sea buena idea subirlo entero. Si tienes un documento muy grande y solo necesitas trabajar con una sección, <strong>extrae la sección antes de subir</strong>. Vas a tener conversaciones más limpias y mejores respuestas.</p>
+</aside>
+
+<h2>PDFs</h2>
+
+<p>Los PDFs son el formato que más vas a subir. Algunos matices:</p>
+
+<p><strong>PDFs bien formados (exportados desde Word, Google Docs, etc.):</strong> Claude los lee como texto nativo. Funcionan muy bien.</p>
+
+<p><strong>PDFs escaneados (imágenes de documentos físicos):</strong> Claude puede leerlos con OCR, pero el resultado depende mucho de la calidad del escaneo. Escaneos con manchas, borrones, texto inclinado o resolución baja van a dar transcripciones con errores. Si el documento importa, verifica lo que Claude extraiga contra el original.</p>
+
+<p><strong>PDFs con tablas densas:</strong> funcionan, pero a veces confunde filas y columnas en tablas muy pobladas. Si la tabla contiene datos que vas a usar, pídele a Claude que te la devuelva como tabla de texto y revísala contra el original.</p>
+
+<p><strong>PDFs protegidos con contraseña:</strong> no se pueden procesar. Hay que desprotegerlos antes.</p>
+
+<p><strong>PDFs muy largos (más de ~100 páginas):</strong> Claude los lee, pero es mejor estrategia subir solo los capítulos o secciones relevantes. Reduces ruido y mejoras calidad de respuesta.</p>
+
+<h2>Imágenes</h2>
+
+<p>Claude puede <em>ver</em> imágenes: interpretarlas, describirlas, analizarlas, responder preguntas sobre ellas.</p>
+
+<p><strong>Lo que funciona bien:</strong></p>
+
+<ul>
+  <li>Diagramas y esquemas con texto claro.</li>
+  <li>Fotografías para identificar objetos, personas (en términos generales), escenas.</li>
+  <li>Capturas de pantalla para explicar qué está pasando en una interfaz.</li>
+  <li>Gráficas razonablemente limpias.</li>
+</ul>
+
+<p><strong>Lo que funciona peor:</strong></p>
+
+<ul>
+  <li>Gráficas con muchos datos densos: puede leer mal valores numéricos.</li>
+  <li>Tablas escaneadas en baja calidad.</li>
+  <li>Texto manuscrito difícil de leer.</li>
+  <li>Imágenes muy saturadas de información.</li>
+</ul>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Para imágenes con datos críticos</div>
+  <p>Si la imagen contiene información clave (números, nombres, fechas), verifica manualmente lo que Claude extraiga. No asumas que su lectura es perfecta.</p>
+</aside>
+
+<h2>Documentos Word y otros formatos</h2>
+
+<p><strong>Word (.docx):</strong> funciona bien. Claude lee el texto, respeta los estilos en lo esencial, identifica tablas e imágenes.</p>
+
+<p><strong>Excel (.xlsx) y CSV:</strong> los procesa como datos tabulares. Para hojas de cálculo con fórmulas complejas, Claude puede necesitar que le expliques qué columnas contienen qué.</p>
+
+<p><strong>PowerPoint (.pptx):</strong> extrae el texto de cada diapositiva. No siempre conserva bien el flujo visual, pero sí el contenido.</p>
+
+<p><strong>Markdown y texto plano:</strong> ideales. Son los formatos con los que Claude trabaja más natural.</p>
+
+<h2>Trucos prácticos</h2>
+
+<p><strong>Cuando un documento es muy largo.</strong> Divídelo. Sube primero el índice o el resumen ejecutivo para que Claude tenga el mapa general. Luego sube la sección específica con la que vas a trabajar.</p>
+
+<p><strong>Cuando subas varios documentos relacionados.</strong> Ponles nombres descriptivos antes de subir. "reporte-trimestre-q1.pdf" es mejor que "documento1.pdf". Claude se refiere a los archivos por su nombre.</p>
+
+<p><strong>Cuando quieras que Claude compare dos versiones.</strong> Súbelas las dos y pídele explícitamente la comparación. Dile en qué te quieres enfocar (cambios de fondo, cambios de forma, presencia/ausencia de un apartado).</p>
+
+<p><strong>Cuando una imagen sea clave y quieras asegurar precisión.</strong> Además de subir la imagen, transcribe tú los datos críticos en el mensaje. Así Claude tiene dos fuentes para el mismo dato y es más difícil que se equivoque.</p>
+
+<p><strong>Cuando los documentos contengan datos sensibles.</strong> Anonimiza antes de subir (ver capítulo 9). Reemplaza nombres propios, números de identificación, datos financieros concretos. Claude puede trabajar perfectamente con "Persona A" y "organización X" en lugar de datos reales.</p>
+
+<aside class="callout callout--nota">
+  <span class="callout__label">Nota</span>
+  <div class="callout__subtitle">Verificado abril 2026</div>
+  <p>Los límites de tamaño y cantidad pueden ampliarse con el tiempo. Revisa la documentación oficial si planeas subir algo en el borde del límite.</p>
+</aside>
+</article>
+
+<article id="cap-5" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">05</div>
+    <h1>Funcionalidades clave</h1>
+  </header>
+
+<p>Este capítulo cubre las funcionalidades que más vas a usar en claude.ai. No es un inventario exhaustivo. Anthropic agrega funcionalidades con frecuencia y algunas son experimentales. A continuación van seis que se usan de forma cotidiana en el momento de actualización de esta guía.</p>
+
+<h2>5.1 Proyectos</h2>
+
+<p><strong>Qué es.</strong> Un proyecto es un espacio de trabajo que agrupa conversaciones relacionadas con un mismo tema, con dos cosas adicionales:</p>
+
+<ol>
+  <li><strong>Instrucciones personalizadas del proyecto:</strong> un texto que Claude lee al inicio de <em>todas</em> las conversaciones dentro del proyecto. Sirve para fijar contexto recurrente. Sugerencias: quién eres, qué hace tu área, qué formato prefieres, qué términos evitar.</li>
+  <li><strong>Conocimiento del proyecto:</strong> archivos (documentos, PDFs, imágenes) que Claude puede consultar en cualquier conversación del proyecto, sin que tengas que volverlos a subir cada vez.</li>
+</ol>
+
+<p><strong>Para qué sirve.</strong> Para todo trabajo recurrente. Si cada dos días escribes oficios institucionales, tener un proyecto "Oficios" con las instrucciones de formato y dos o tres ejemplos bien hechos te ahorra repetir lo mismo en cada conversación.</p>
+
+<p><strong>Cuándo usarlo.</strong> Apenas notes que estás poniendo el mismo contexto en varias conversaciones. Es la señal clara de que corresponde un proyecto.</p>
+
+<p><strong>Cómo crear uno.</strong></p>
+
+<ol>
+  <li>En la barra lateral, click en "Proyectos" y luego "Crear nuevo proyecto".</li>
+  <li>Ponle nombre y descripción corta.</li>
+  <li>Añade instrucciones personalizadas (ver 5.2 para cómo escribirlas bien).</li>
+  <li>Sube los archivos de referencia (opcional, pero recomendable).</li>
+  <li>Abre una conversación dentro del proyecto y empieza a trabajar.</li>
+</ol>
+
+<figure>
+  <img src="img/06-crear-proyecto.jpg" alt="Modal para crear un proyecto personal">
+  <figcaption>Modal para crear un proyecto personal</figcaption>
+</figure>
+
+<p>Un proyecto abierto se ve así: instrucciones, memoria y archivos a la derecha, conversaciones listadas al centro. La memoria del proyecto se construye automáticamente con el uso.</p>
+
+<figure>
+  <img src="img/07-proyecto-abierto.jpg" alt="Proyecto abierto con instrucciones, memoria y archivos">
+  <figcaption>Proyecto abierto con instrucciones, memoria y archivos</figcaption>
+</figure>
+
+<p><strong>Buenas prácticas.</strong></p>
+
+<ul>
+  <li>Un proyecto por tipo de trabajo, no por cliente. "Oficios institucionales" es mejor proyecto que "Cliente X", porque oficios los haces todo el tiempo y cliente X quizás no.</li>
+  <li>Pocas instrucciones y muy precisas mejor que muchas y vagas. Los proyectos no son todoterreno.</li>
+  <li>Cada cierto tiempo (una vez al mes), revisa las instrucciones del proyecto. Si algo cambió, actualízalo. Los proyectos obsoletos son peor que no tener proyecto.</li>
+</ul>
+
+<p><strong>Proyectos compartidos (planes Team y Enterprise).</strong> Puedes compartir proyectos con miembros de tu organización. Todos usan las mismas instrucciones y los mismos archivos. Muy útil para estandarizar formas de trabajar.</p>
+
+<h2>5.2 Instrucciones personalizadas</h2>
+
+<p>Claude acepta instrucciones personalizadas en <strong>dos niveles</strong>:</p>
+
+<p><strong>Globales (a tu cuenta).</strong> Se aplican a todas tus conversaciones, estén en proyecto o sueltas. Sirven para decir cosas como: "Respóndeme en español. Soy abogado, da por sentado el vocabulario jurídico básico."</p>
+
+<p><strong>De proyecto.</strong> Se aplican solo a las conversaciones dentro de ese proyecto. Se suman a las globales (no las reemplazan). Son más específicas: "Este proyecto es para redactar oficios institucionales. Formato: encabezado en alineación izquierda con fecha y destinatario, cuerpo en párrafos cortos, despedida formal estándar. Nunca cierres con 'Saludos cordiales'."</p>
+
+<p><strong>Qué meter en instrucciones personalizadas.</strong></p>
+
+<ul>
+  <li>Quién eres profesionalmente (rol, área, sector).</li>
+  <li>Tono y estilo que prefieres.</li>
+  <li>Formatos y convenciones que siempre aplican.</li>
+  <li>Errores o expresiones a evitar.</li>
+  <li>Información recurrente que Claude necesita para no preguntar siempre lo mismo.</li>
+</ul>
+
+<p><strong>Qué NO meter.</strong></p>
+
+<ul>
+  <li>Datos puntuales de una tarea específica. Eso va en el mensaje de la conversación.</li>
+  <li>Información sensible de terceros.</li>
+  <li>Textos demasiado largos. Si tus instrucciones pasan de 500 palabras, probablemente tengan demasiadas cosas mezcladas. Revisa qué es realmente útil.</li>
+</ul>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Cómo escribirlas</div>
+  <p>Escribe tus instrucciones como le hablarías a un asistente nuevo que todavía no te conoce bien. Directo y sin rodeos.</p>
+</aside>
+
+<h2>5.3 Artefactos</h2>
+
+<p><strong>Qué son.</strong> Un artefacto es un panel lateral donde Claude produce contenido que tiene sentido ver aparte de la conversación: un documento, una tabla, un diagrama, una pieza de código, una visualización interactiva.</p>
+
+<figure>
+  <img src="img/09-artefacto.jpg" alt="Artefacto abierto junto a la conversación">
+  <figcaption>Artefacto abierto junto a la conversación</figcaption>
+</figure>
+
+<p><strong>Cómo aparecen.</strong> Claude decide cuándo crear un artefacto en función de lo que le pides. En general los crea cuando:</p>
+
+<ul>
+  <li>El contenido es sustantivo (más de 15 líneas).</li>
+  <li>Es algo que probablemente vas a querer editar, copiar o reusar fuera de la conversación.</li>
+  <li>Tiene sentido por sí mismo, independiente del flujo conversacional.</li>
+</ul>
+
+<p>No tienes que pedirlos explícitamente, aunque puedes decir "quiero esto como artefacto" si notas que lo hace como texto normal y prefieres verlo aparte.</p>
+
+<p><strong>Qué puedes hacer con un artefacto.</strong></p>
+
+<ul>
+  <li>Leerlo y copiarlo.</li>
+  <li>Pedirle a Claude que lo modifique ("cambia el tercer párrafo", "agrega una columna", "hazlo más corto").</li>
+  <li>Descargarlo (como PDF, Word, etc., según el tipo).</li>
+  <li>En algunos casos, publicarlo con un enlace público o compartirlo.</li>
+</ul>
+
+<p><strong>Ejemplos de uso cotidiano.</strong></p>
+
+<ul>
+  <li>Un borrador de oficio o comunicado: sale como artefacto de texto que editas iterativamente.</li>
+  <li>Una tabla comparativa entre dos documentos: sale como artefacto tabular que puedes descargar.</li>
+  <li>Un diagrama de flujo: sale como artefacto visual que puedes ajustar conversacionalmente.</li>
+  <li>Una mini-aplicación para probar algo (ej. una calculadora): sale como artefacto interactivo que puedes usar en el navegador.</li>
+</ul>
+
+<p><strong>Buenas prácticas.</strong> Trata los artefactos como documentos vivos, no como salida final. Iteras sobre ellos como harías sobre un borrador en Word. Cuando uno está listo, lo exportas y lo cierras.</p>
+
+<h2>5.4 Investigación (Research)</h2>
+
+<p><strong>Qué es.</strong> Un modo en el que Claude busca información en internet, lee muchas fuentes, y produce un reporte con referencias. Es más lento que una conversación normal, puede tardar varios minutos, pero el resultado es mucho más profundo.</p>
+
+<p><strong>Cuándo usarlo.</strong></p>
+
+<ul>
+  <li>Cuando el tema requiera información actual. Particularmente para datos después de la fecha de corte del modelo.</li>
+  <li>Cuando quieras un panorama sobre algo que no conoces a fondo.</li>
+  <li>Cuando necesites reunir referencias y fuentes para un documento propio.</li>
+  <li>Cuando tu pregunta amerite consultar varias fuentes en vez de una respuesta rápida.</li>
+</ul>
+
+<p><strong>Cuándo NO usarlo.</strong></p>
+
+<ul>
+  <li>Para preguntas sencillas con respuesta corta.</li>
+  <li>Cuando ya tienes el material y lo que falta es procesarlo (para eso hay adjuntos).</li>
+  <li>Si la decisión no amerita esperar varios minutos.</li>
+</ul>
+
+<p><strong>Cómo se usa.</strong> En la caja de entrada hay un botón o conmutador de "Investigación" (el nombre puede variar: <em>Research</em>, <em>Investigación profunda</em>). Lo activas, escribes tu pregunta con todo el detalle que puedas, y Claude inicia el proceso. Al terminar te entrega un reporte con secciones, conclusiones y lista de fuentes consultadas.</p>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Verifica las fuentes</div>
+  <p>Las fuentes que Claude cita en el reporte son reales (las consultó). Pero eso no significa que su lectura de cada fuente sea perfecta. Para decisiones importantes, <strong>abre las fuentes originales y verifica</strong> que lo que dice Claude coincida con el texto fuente.</p>
+</aside>
+
+<h2>5.5 Estilos de respuesta</h2>
+
+<p><strong>Qué son.</strong> Formatos preestablecidos para cambiar cómo responde Claude sin tener que repetírselo cada vez. Vienen algunos por defecto (Normal, Conciso, Explicativo, Formal) y puedes crear los tuyos.</p>
+
+<p><strong>Cómo usarlos.</strong> En la caja de entrada hay un selector de estilo. Lo cambias antes de escribir el mensaje y Claude adapta la respuesta. Puedes cambiarlo durante una conversación y a partir de ese momento se aplica a los mensajes siguientes.</p>
+
+<p><strong>Cuándo crear un estilo custom.</strong> Cuando tienes una forma específica de comunicar que usas seguido. Por ejemplo: respuestas breves para moverte rápido en consultas, respuestas formales para redactar, respuestas explicativas cuando estás aprendiendo.</p>
+
+<p><strong>Cómo crear uno.</strong> En configuración hay una sección de estilos. Le describes el estilo en palabras o le subes un texto que represente la manera de escribir que buscas. Claude genera un perfil de estilo que puedes nombrar y reutilizar.</p>
+
+<h2>5.6 Memoria</h2>
+
+<p><strong>Qué es.</strong> Una funcionalidad que permite a Claude recordar cosas entre conversaciones distintas. En la práctica, Claude mantiene un resumen de lo que ha aprendido sobre ti (rol, proyectos, preferencias) y lo aplica automáticamente en conversaciones nuevas.</p>
+
+<p><strong>Cómo funciona.</strong></p>
+
+<ul>
+  <li>Por defecto, Claude puede actualizar la memoria a partir de tus conversaciones.</li>
+  <li>Puedes decirle explícitamente "recuerda esto" y queda guardado de inmediato.</li>
+  <li>Puedes decirle "olvida esto" y lo elimina.</li>
+  <li>Puedes ver y editar el contenido de la memoria desde configuración.</li>
+</ul>
+
+<p><strong>Qué conviene guardar en memoria.</strong></p>
+
+<ul>
+  <li>Tu rol y tu área de trabajo.</li>
+  <li>Proyectos actuales relevantes.</li>
+  <li>Preferencias de tono y formato.</li>
+  <li>Hechos que se repiten en muchas conversaciones.</li>
+</ul>
+
+<p><strong>Qué NO conviene guardar.</strong></p>
+
+<ul>
+  <li>Datos puntuales de una tarea que ya terminó.</li>
+  <li>Información sensible.</li>
+  <li>Cosas que pueden cambiar y generar confusión después.</li>
+</ul>
+
+<p><strong>Importante.</strong> La memoria es personal y vive en tus conversaciones. En planes Team/Enterprise, las memorias no se comparten entre miembros: cada uno tiene la suya.</p>
+
+<h2>5.7 Conectores y MCP</h2>
+
+<p><strong>Qué son.</strong> Integraciones que conectan a Claude con otras herramientas (Gmail, Slack, Notion, Google Drive, GitHub, etc.) para que pueda leer información de esas herramientas o actuar en ellas: leer tu bandeja de entrada, buscar en tus documentos de Drive, publicar un mensaje en Slack.</p>
+
+<p>Técnicamente funcionan sobre un estándar abierto llamado <strong>MCP (Model Context Protocol)</strong>, que Anthropic publicó para que cualquier herramienta pueda conectarse a cualquier modelo que lo soporte. No necesitas entender el protocolo para usar los conectores, se instalan con un click.</p>
+
+<p><strong>Quién los puede usar.</strong> Planes Pro, Max, Team y Enterprise. Free tiene un subconjunto limitado.</p>
+
+<p><strong>Cómo se usan.</strong></p>
+
+<ol>
+  <li>Entrar a <strong>Personalizar → Conectores</strong> desde la barra lateral (o abrir el menú <code>+</code> de la caja de entrada y seleccionar Conectores).</li>
+  <li>Elegir el conector del directorio (Google Drive, Gmail, Calendar, Notion, Linear, etc.) y pulsar "Conectar".</li>
+  <li>Autorizar el acceso en la cuenta respectiva (abre una ventana de login estándar).</li>
+  <li>En la conversación, puedes invocar el conector explícitamente ("busca en mi Drive el archivo X") o Claude lo usa cuando lo necesita.</li>
+</ol>
+
+<figure>
+  <img src="img/08-directorio-conectores.jpg" alt="Directorio de conectores de Anthropic y socios">
+  <figcaption>Directorio de conectores de Anthropic y socios</figcaption>
+</figure>
+
+<p><strong>Buenas prácticas.</strong></p>
+
+<ul>
+  <li>Habilita solo los conectores que vas a usar. Cada conector aumenta la superficie de datos expuesta.</li>
+  <li>Revisa los permisos que pides y que otorgas. Un conector "lectura y escritura" es más peligroso que uno "solo lectura".</li>
+  <li>Para datos sensibles, preguntarte si quieres que Claude tenga acceso aunque el proveedor sea confiable.</li>
+</ul>
+
+<p><strong>Conectores custom.</strong> Los planes de pago permiten conectar a sistemas propios si tu organización tiene un servidor MCP. Esto es más técnico y normalmente pasa por el área de TI.</p>
+
+<figure>
+  <img src="img/10-personalizar-conectores.jpg" alt="Personalizar → Conectores, con un conector propio (GitHub) conectado">
+  <figcaption>Personalizar → Conectores, con un conector propio (GitHub) conectado</figcaption>
+</figure>
+
+<h2>5.8 Habilidades</h2>
+
+<p><strong>Qué son.</strong> Paquetes de instrucciones y archivos que Claude activa cuando los necesita para un tipo de tarea específico: dar formato a un documento Word, armar una hoja de Excel con formato decente, construir un PDF con campos, preparar una presentación. Cada habilidad es como un pequeño manual que Claude consulta <em>solo cuando aplica</em> y que le enseña a hacer ese tipo de trabajo bien.</p>
+
+<p><strong>Dónde viven.</strong> En <strong>Personalizar → Habilidades</strong>, la misma sección que agrupa los conectores. También se pueden invocar desde el menú <code>+</code> de la caja de entrada.</p>
+
+<p><strong>Cuándo te importan.</strong> Para el 80% del trabajo cotidiano no vas a necesitar tocarlas: Claude las aplica solo cuando pides algo que las dispara. Es una funcionalidad más avanzada, útil si quieres que Claude siga formatos específicos de tu organización o si vas a crear habilidades propias (esto requiere curva de aprendizaje mayor y no lo cubrimos aquí).</p>
+
+<p><strong>Qué no confundir.</strong> Una habilidad no es lo mismo que unas instrucciones personalizadas de proyecto. Las instrucciones se aplican siempre dentro del proyecto; una habilidad solo cuando la tarea la requiere. Y una habilidad no es un conector: no se conecta a ninguna herramienta externa, es conocimiento y plantillas que Claude usa internamente.</p>
+
+<h2>Funcionalidades que no vemos aquí</h2>
+
+<p>Algunas cosas están fuera del alcance de esta guía porque entran en otras:</p>
+
+<ul>
+  <li><strong>Código ejecutable</strong> en la conversación (cuando Claude necesita calcular algo o procesar datos estructurados).</li>
+  <li><strong>Generación y edición de archivos</strong> (Excel, Word, PDF) como salida.</li>
+  <li><strong>Voz</strong> en apps móviles.</li>
+  <li><strong>Claude Code y Claude Cowork</strong>, que son productos distintos de claude.ai.</li>
+</ul>
+
+<p>Para estos, la documentación oficial en <code>docs.claude.com</code> es la referencia actualizada.</p>
+
+<aside class="callout callout--nota">
+  <span class="callout__label">Nota</span>
+  <div class="callout__subtitle">Verificado abril 2026</div>
+  <p>Las funcionalidades descritas cambian con frecuencia. La estructura general (proyectos, instrucciones, artefactos, investigación, memoria, conectores) ha sido estable desde finales de 2024 y es muy probable que siga siéndolo.</p>
+</aside>
+</article>
+
+<article id="cap-6" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">06</div>
+    <h1>Patrones de uso</h1>
+  </header>
+
+<p>Las funcionalidades de Claude son útiles en la medida en que sepas aplicarlas. Este capítulo no trata de botones ni de menús, sino de cinco formas de pedir las cosas que, en la práctica, separan el uso casual del uso con criterio.</p>
+
+<p>Cada patrón tiene la misma estructura: qué es, cuándo aplica, cómo se ve antes y después.</p>
+
+<h2>6.1 Da contexto antes de pedir</h2>
+
+<p><strong>Qué es.</strong> Antes de hacer una petición, decirle a Claude quién eres, para qué es la tarea, a quién va dirigida, qué tono aplica y qué restricciones hay.</p>
+
+<p><strong>Por qué.</strong> Claude no sabe nada de ti ni de tu trabajo salvo lo que le digas. Un borrador para un comunicado interno de tu área no se parece al mismo comunicado dirigido a la prensa. Si no le das contexto, te va a dar un promedio que no le sirve a nadie.</p>
+
+<aside class="callout callout--artefacto">
+  <span class="callout__label">Ejemplo de prompt</span>
+  <div class="callout__subtitle">Antes (sin contexto)</div>
+  <p>Redáctame un comunicado sobre la campaña de separación de residuos.</p>
+  <button class="callout__copy" aria-label="Copiar ejemplo">Copiar</button>
+</aside>
+
+<aside class="callout callout--artefacto">
+  <span class="callout__label">Ejemplo de prompt</span>
+  <div class="callout__subtitle">Después (con contexto)</div>
+  <p>Soy parte del equipo de comunicación de una agencia de gobierno de la Ciudad de México que se ocupa de la gestión de residuos. Necesito redactar un comunicado dirigido a vecinos de una colonia piloto donde vamos a lanzar una campaña de separación de residuos orgánicos. El tono debe ser cercano, directo, sin lenguaje técnico. Máximo una cuartilla. El propósito principal es que entiendan qué se les va a pedir y cuándo empieza.</p>
+  <button class="callout__copy" aria-label="Copiar ejemplo">Copiar</button>
+</aside>
+
+<p>El segundo produce un primer borrador útil. El primero produce un texto genérico que sirve como relleno.</p>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Dónde guardar el contexto</div>
+  <p>El tiempo que inviertas en dar contexto se paga con creces en la calidad del borrador. Escribe contexto reutilizable en instrucciones personalizadas o proyectos (capítulo 5) para no repetirlo cada vez.</p>
+</aside>
+
+<h2>6.2 Pide borrador, no pieza final</h2>
+
+<p><strong>Qué es.</strong> Tratar cada salida de Claude como una primera versión que tú vas a revisar, corregir y aprobar. Nunca como un producto terminado.</p>
+
+<p><strong>Por qué.</strong> Claude produce textos que suenan bien. Esa fluidez es una trampa: "suena bien" no equivale a "está correcto". Hay errores de hecho, matices fuera de lugar, afirmaciones que no puedes sostener si alguien te pregunta la fuente. Tu trabajo es revisar, no publicar lo que salga.</p>
+
+<p>Esto es especialmente importante en contextos institucionales: si firmas un oficio, tú respondes por cada palabra, independientemente de quién o qué la escribió.</p>
+
+<p><strong>Cómo aplicarlo.</strong> Tres hábitos:</p>
+
+<ol>
+  <li>Nunca copies-y-pegas una respuesta directo al destinatario. Siempre pasa por tu lectura antes.</li>
+  <li>Verifica cifras, fechas, nombres y cualquier dato que Claude afirme. No asumas que son correctos.</li>
+  <li>Si Claude cita una fuente, ábrela y verifica que diga lo que dice que dice. Con frecuencia no.</li>
+</ol>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">La prueba de la fuente</div>
+  <p>Si no puedes defender una frase ante alguien que te pregunte "¿cómo lo sabes?", no la uses, aunque suene bien.</p>
+</aside>
+
+<h2>6.3 Itera con críticas, no empieces de cero</h2>
+
+<p><strong>Qué es.</strong> Cuando un borrador no te convence, decirle a Claude qué no funciona y por qué, en vez de pedirle una versión nueva desde cero.</p>
+
+<p><strong>Por qué.</strong> Borrar la conversación y empezar de nuevo tira el contexto que ya construiste. Además, te obliga a volver a explicar todo. Si el borrador está al 70%, iterar es más rápido que reescribir.</p>
+
+<aside class="callout callout--artefacto">
+  <span class="callout__label">Ejemplo de prompt</span>
+  <div class="callout__subtitle">Antes (empezando de cero)</div>
+  <p>Este borrador no me gusta. Hazme otro.</p>
+  <button class="callout__copy" aria-label="Copiar ejemplo">Copiar</button>
+</aside>
+
+<p>Claude no sabe qué no te gustó, así que produce otra versión aleatoria que quizá esté peor.</p>
+
+<aside class="callout callout--artefacto">
+  <span class="callout__label">Ejemplo de prompt</span>
+  <div class="callout__subtitle">Después (iterando con crítica)</div>
+  <p>Este borrador no me funciona por tres razones: el primer párrafo suena demasiado burocrático, el tercer párrafo repite lo que ya se dijo en el segundo, y el cierre no tiene una llamada a la acción clara. Arregla esas tres cosas manteniendo el tono y la estructura general.</p>
+  <button class="callout__copy" aria-label="Copiar ejemplo">Copiar</button>
+</aside>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Sé específico</div>
+  <p>"No me gusta" no es útil. "El segundo párrafo es muy largo" sí. "El tono es demasiado formal para una comunicación interna" sí. "Falta mencionar la fecha" sí.</p>
+</aside>
+
+<h2>6.4 Pide estructura antes que contenido</h2>
+
+<p><strong>Qué es.</strong> Para textos largos o complejos, pedirle primero un índice o esquema, discutirlo, y solo entonces pedirle que desarrolle el contenido.</p>
+
+<p><strong>Por qué.</strong> Es mucho más fácil corregir un índice de 8 puntos que un documento de 15 páginas. Si la estructura está mal, todo lo que cuelga de ella va a estar mal. Trabajar por etapas te ahorra iteraciones grandes sobre texto ya escrito.</p>
+
+<p>Ejemplo para un informe trimestral:</p>
+
+<aside class="callout callout--artefacto">
+  <span class="callout__label">Ejemplo de prompt</span>
+  <div class="callout__subtitle">Paso 1 — pedir estructura</div>
+  <p>Primero, propón un índice de 6 a 8 secciones para un informe trimestral de actividades del área. Considera que la audiencia principal es la dirección general y que tienen 15 minutos para leerlo. Solo dame el índice, todavía no desarrolles el contenido.</p>
+  <button class="callout__copy" aria-label="Copiar ejemplo">Copiar</button>
+</aside>
+
+<p>Revisas el índice, ajustas, y luego:</p>
+
+<aside class="callout callout--artefacto">
+  <span class="callout__label">Ejemplo de prompt</span>
+  <div class="callout__subtitle">Paso 2 — pedir contenido</div>
+  <p>Perfecto. Desarrolla ahora la sección 3 siguiendo ese esquema. Usa los datos del documento que subí.</p>
+  <button class="callout__copy" aria-label="Copiar ejemplo">Copiar</button>
+</aside>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Cuándo invertir en estructura</div>
+  <p>Cuanto más largo o más importante sea el producto final, más vale invertir en discutir la estructura antes de escribirla. Para un correo corto no hace falta. Para un informe, un diagnóstico o una propuesta, sí.</p>
+</aside>
+
+<h2>6.5 Usa a Claude como interlocutor, no solo como ejecutor</h2>
+
+<p><strong>Qué es.</strong> En vez de pedirle que haga cosas, usarlo para pensar: que encuentre huecos en tu argumento, que te haga preguntas, que te diga qué estás asumiendo sin decirlo.</p>
+
+<p><strong>Por qué.</strong> Claude es mejor reactivo que proactivo. Le cuesta generar ideas verdaderamente originales, pero es bueno encontrando debilidades en lo que ya existe. Es un lector crítico útil, no un autor inspirado.</p>
+
+<p>Ejemplos de uso como interlocutor:</p>
+
+<aside class="callout callout--artefacto">
+  <span class="callout__label">Ejemplo de prompt</span>
+  <div class="callout__subtitle">Ataque a supuestos</div>
+  <p>Aquí está mi propuesta. Antes de pulirla, quiero que la ataques. ¿Qué supuestos estoy haciendo que no son obvios? ¿Qué puede estar mal en el razonamiento? ¿Qué le falta? ¿Qué argumentos en contra podrían presentarme y cómo los respondería?</p>
+  <button class="callout__copy" aria-label="Copiar ejemplo">Copiar</button>
+</aside>
+
+<aside class="callout callout--artefacto">
+  <span class="callout__label">Ejemplo de prompt</span>
+  <div class="callout__subtitle">Simulación de audiencia</div>
+  <p>Voy a presentar este análisis en una reunión con directivos. Simula que eres ellos. ¿Qué preguntas me harías? ¿En qué podrías no estar de acuerdo?</p>
+  <button class="callout__copy" aria-label="Copiar ejemplo">Copiar</button>
+</aside>
+
+<aside class="callout callout--artefacto">
+  <span class="callout__label">Ejemplo de prompt</span>
+  <div class="callout__subtitle">Detectar huecos</div>
+  <p>Este diagnóstico me suena bien pero tengo la sensación de que me estoy perdiendo algo. Léelo y dime qué no está dicho pero debería estarlo.</p>
+  <button class="callout__copy" aria-label="Copiar ejemplo">Copiar</button>
+</aside>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Dónde queda el juicio</div>
+  <p>Tú decides qué es correcto. Claude te ayuda a ver lo que no habías visto. El juicio se queda contigo.</p>
+</aside>
+
+<h2>Nota final</h2>
+
+<p>Estos cinco patrones no son recetas. Son formas de orientar la relación con la herramienta. Cuando los veas aplicados varias veces, te van a salir solos. Al principio, tenlos presentes a propósito.</p>
+</article>
+
+<article id="cap-7" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">07</div>
+    <h1>Errores comunes</h1>
+  </header>
+
+<p>Lista de los errores que aparecen una y otra vez cuando la gente empieza a usar Claude. Ninguno es grave si lo detectas a tiempo. Todos se vuelven problema si los ignoras.</p>
+
+<h2>7.1 Asumir que lo que suena bien es correcto</h2>
+
+<p>Claude produce textos fluidos, bien estructurados, que suenan autoritarios. Eso no garantiza que lo que dicen sea cierto. Los modelos de lenguaje pueden afirmar con total seguridad cosas falsas —esto se llama <em>alucinación</em>— y lo hacen de forma indistinguible del contenido correcto.</p>
+
+<p><strong>Qué hacer:</strong> Verifica cifras, fechas, nombres propios, citas textuales y afirmaciones sobre hechos concretos. No te fíes del tono.</p>
+
+<h2>7.2 Creer que las fuentes citadas son reales</h2>
+
+<p>Cuando Claude cita un artículo, un libro, un informe o una ley, hay una probabilidad real de que esa referencia no exista, que exista pero no diga lo que él afirma, o que mezcle autores y títulos que no corresponden.</p>
+
+<p><strong>Qué hacer:</strong> Si vas a usar una cita, ábrela y verifica. Si Claude te dice "según un estudio de la Universidad X de 2023", busca ese estudio antes de incluirlo. Si no lo encuentras, trata la referencia como inexistente hasta que se demuestre lo contrario.</p>
+
+<h2>7.3 Esperar que recuerde conversaciones previas</h2>
+
+<p>Cada conversación nueva empieza en blanco. Si ayer definiste con Claude un formato de informe y hoy abres otra conversación para pedirle un informe, no va a saber nada de lo que acordaron.</p>
+
+<p><strong>Qué hacer:</strong> Usa proyectos e instrucciones personalizadas (capítulo 5) para guardar información que quieras que esté presente en varias conversaciones. O pégala al principio de cada conversación nueva.</p>
+
+<h2>7.4 Subir documentos innecesariamente grandes</h2>
+
+<p>Adjuntar un documento de 300 páginas cuando solo necesitas trabajar con dos capítulos satura la ventana de contexto, consume recursos y degrada la calidad de las respuestas. El modelo tiene que "leer" todo aunque tú solo te refieras a una parte.</p>
+
+<p><strong>Qué hacer:</strong> Extrae la parte relevante antes de subir. Si el documento es largo y necesitas trabajar con todo, considera dividirlo en secciones y trabajar por partes.</p>
+
+<h2>7.5 No dar contexto y luego sorprenderse del resultado</h2>
+
+<p>"Redáctame un oficio" va a producir un oficio genérico. No puedes esperar que Claude adivine a quién se dirige, con qué propósito, qué restricciones de formato tiene o qué tono aplica.</p>
+
+<p><strong>Qué hacer:</strong> Antes de hacer la petición, escribe un párrafo de contexto. Quién eres, para qué es, a quién va, qué tono, qué restricciones. Ver capítulo 6.1.</p>
+
+<h2>7.6 Iterar borrando en vez de corrigiendo</h2>
+
+<p>Cuando un borrador no convence, la tentación es borrar la conversación y empezar de cero. Eso tira el contexto que ya construiste y obliga a Claude a adivinar qué cambió de criterio.</p>
+
+<p><strong>Qué hacer:</strong> Decirle a Claude qué no funcionó y por qué, manteniendo la conversación. Ver capítulo 6.3.</p>
+
+<h2>7.7 Pedir que haga todo en un solo mensaje</h2>
+
+<p>"Lee este documento, haz un resumen, identifica fortalezas y debilidades, propón mejoras y redacta un comunicado para difundirlo." Todo en una sola instrucción.</p>
+
+<p>El resultado suele ser un promedio de todas esas tareas, ejecutadas a medias. Claude funciona mejor con pasos explícitos.</p>
+
+<p><strong>Qué hacer:</strong> Encadena la conversación: pide el resumen, revísalo, luego pide el análisis, revísalo, luego pide el comunicado. Cada paso se apoya en el anterior y puedes corregir a tiempo.</p>
+
+<h2>7.8 Subir información que no debería salir de la organización</h2>
+
+<p>Todo lo que escribes en Claude viaja por internet hacia los servidores de Anthropic. Aunque haya políticas de privacidad (ver capítulo 9), hay información que simplemente no debería salir de tu entorno: datos personales sensibles de terceros, información clasificada, contraseñas, credenciales, datos médicos o financieros de terceros, secretos industriales.</p>
+
+<p><strong>Qué hacer:</strong> Antes de subir algo, pregúntate: "¿esto lo mandaría por correo sin cifrar a alguien externo?" Si la respuesta es no, no lo subas a Claude. Si necesitas trabajar con esa información, anonimízala primero o trabaja sin ella.</p>
+
+<h2>7.9 Confundir conversación con aprendizaje</h2>
+
+<p>Claude no aprende de ti. Si le corriges un error diez veces en una conversación, lo va a corregir en esa conversación. En otra conversación distinta va a cometer exactamente el mismo error.</p>
+
+<p><strong>Qué hacer:</strong> Las correcciones importantes —sobre tu estilo, preferencias, contexto— guárdalas en instrucciones personalizadas o proyectos. Así se aplican automáticamente en conversaciones futuras.</p>
+
+<h2>7.10 No leer lo que Claude escribió antes de seguir</h2>
+
+<p>Las respuestas largas pueden contener ajustes, supuestos o preguntas intermedias que no notas si ojeas la respuesta por encima. "Ah, Claude te pidió aclarar un punto antes de seguir" o "Claude te dice que hizo una suposición que tú deberías validar".</p>
+
+<p><strong>Qué hacer:</strong> Lee la respuesta completa antes de responder. No escaneo rápido, lectura real.</p>
+
+<h2>7.11 Usarlo para decisiones que requieren responsabilidad humana</h2>
+
+<p>Claude puede ayudarte a pensar una decisión, listar opciones, identificar riesgos. No debe <em>tomar</em> la decisión por ti cuando se trata de algo con consecuencias reales: despedir a alguien, aprobar un presupuesto, firmar un contrato, redactar algo que se publique en tu nombre sin que lo revises.</p>
+
+<p><strong>Qué hacer:</strong> Úsalo como interlocutor. La decisión y la responsabilidad se quedan contigo.</p>
+
+<h2>7.12 Confiar en que está al día con la información reciente</h2>
+
+<p>Claude tiene una fecha de corte de conocimiento. Todo lo que pasó después de esa fecha no lo sabe. Si le preguntas sobre eventos recientes, noticias de los últimos meses o cambios normativos recientes, puede que responda con información desactualizada o que invente algo plausible.</p>
+
+<p><strong>Qué hacer:</strong> Si tienes acceso a la función de investigación (research) con búsqueda en internet, úsala explícitamente para temas actuales. Si no, verifica contra fuentes actualizadas.</p>
+</article>
+
+<article id="cap-8" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">08</div>
+    <h1>Límites de Claude</h1>
+  </header>
+
+<p>Claude es muy bueno en varias cosas y muy malo en otras. La mayoría de los problemas ocurren cuando se le usa para cosas que no hace bien, asumiendo que sí las hace. Este capítulo enumera los límites reales, sin dramatismo.</p>
+
+<h2>8.1 Información posterior a su fecha de corte</h2>
+
+<p>Los modelos tienen una fecha a partir de la cual dejan de conocer lo que pasó en el mundo. Eventos recientes, noticias, cambios de personal en puestos públicos, resultados electorales o deportivos, nuevas leyes publicadas en el último año. Todo lo anterior puede ser parte de lo que el modelo no sabe.</p>
+
+<p><strong>Qué pasa en la práctica.</strong> Si le preguntas sobre algo posterior a esa fecha, puede ocurrir que:</p>
+
+<ul>
+  <li>Te diga honestamente que no lo sabe.</li>
+  <li>Te responda con información vieja como si fuera actual.</li>
+  <li>Invente algo plausible que suena razonable pero es falso.</li>
+</ul>
+
+<p><strong>Cómo manejarlo:</strong> Para temas actuales, usa la función de investigación (búsqueda web) cuando esté disponible. Si no está, verifica contra fuentes externas. No asumas que lo que Claude dice sobre eventos recientes es correcto.</p>
+
+<h2>8.2 Cálculos matemáticos complejos</h2>
+
+<p>Claude entiende lo que pides matemáticamente, pero no lo calcula como una calculadora. Lo predice palabra por palabra, y eso falla cuando los números son grandes o los pasos muchos.</p>
+
+<p>Suma de tres dígitos: bien. Multiplicación de dos números de seis dígitos: probablemente mal. Cálculos financieros encadenados, porcentajes compuestos, estadística compleja: no te fíes sin verificar.</p>
+
+<p><strong>Cómo manejarlo:</strong> Cuando la herramienta lo permita, Claude puede usar un intérprete de código o herramientas matemáticas que sí calculan correctamente. Si usas esa vía, verifica que efectivamente la use. Para cálculos importantes, confirma en una calculadora o una hoja de cálculo.</p>
+
+<h2>8.3 Información muy específica y localizada</h2>
+
+<p>Nombres propios de personas poco conocidas, domicilios de oficinas, horarios de atención al público, números de teléfono, regulaciones municipales, detalles burocráticos de una dependencia específica. Esto suele estar mal o inventado.</p>
+
+<p><strong>Cómo manejarlo:</strong> Verifica siempre contra la fuente oficial. Nunca incluyas en un oficio o comunicado un dato de este tipo sin haberlo confirmado.</p>
+
+<h2>8.4 Contexto muy largo sin curaduría</h2>
+
+<p>Aunque la ventana de contexto de Claude es grande, llenarla de documentos no es una estrategia. Cuanto más material adjuntas, más difícil le resulta priorizar lo relevante. Además, mezclar muchos documentos en una misma conversación hace que empiece a confundir información de uno con otro.</p>
+
+<p><strong>Cómo manejarlo:</strong> Sube solo lo que vas a trabajar. Si tienes diez documentos, decide con cuáles de los diez necesitas estar en esta conversación. Mejor cuatro conversaciones cortas que una con todo junto.</p>
+
+<h2>8.5 Generar contenido verdaderamente nuevo</h2>
+
+<p>Claude es bueno reformulando, combinando, sintetizando, organizando. No es bueno teniendo ideas genuinamente nuevas. Lo que produce es una recombinación sofisticada de patrones presentes en lo que ya ha visto.</p>
+
+<p><strong>Cómo manejarlo:</strong> Si pides una idea original, lee lo que te dé con escepticismo. Úsalo como insumo para tu pensamiento, no como la respuesta. Las ideas buenas suelen salir de conversaciones iterativas donde tú aportas criterio y contexto.</p>
+
+<h2>8.6 Entender imágenes complejas</h2>
+
+<p>Claude puede ver imágenes: gráficas, diagramas, capturas de pantalla, fotografías. Pero no es perfecto. En gráficas densas puede leer mal los valores. En tablas escaneadas puede equivocarse con los números. En fotografías con mucho detalle puede no identificar correctamente lo que ves.</p>
+
+<p><strong>Cómo manejarlo:</strong> Cuando le pidas interpretar una imagen importante, verifica lo que afirme. Si la imagen es una tabla con datos que vas a usar, considera transcribirla en texto para reducir el riesgo de error.</p>
+
+<h2>8.7 Tareas que requieren acción real en el mundo</h2>
+
+<p>Claude no puede, por sí solo:</p>
+
+<ul>
+  <li>Enviar correos.</li>
+  <li>Hacer pagos ni transacciones.</li>
+  <li>Llamar a alguien.</li>
+  <li>Navegar por un sitio web haciendo clic en botones.</li>
+  <li>Abrir archivos en tu computadora local.</li>
+  <li>Firmar documentos.</li>
+</ul>
+
+<p>Existen funcionalidades y productos que conectan a Claude con herramientas externas para hacer algunas de estas cosas (ver capítulo 5.6 sobre conectores y MCP). Pero Claude por sí mismo, dentro de claude.ai, no actúa en el mundo, solo produce texto.</p>
+
+<p><strong>Cómo manejarlo:</strong> Úsalo para preparar lo que vas a hacer, no para hacerlo. El comunicado lo escribe contigo, tú lo envías. La planeación la piensan juntos, tú la ejecutas.</p>
+
+<h2>8.8 Contextos muy específicos o técnicos</h2>
+
+<p>Claude es muy bueno en temas generales y aceptable en muchos temas técnicos. En temas muy especializados, muy locales o muy recientes, su conocimiento puede ser superficial o estar desactualizado. Lo mismo con normativas sectoriales específicas, procedimientos internos de una organización, o jergas muy de nicho.</p>
+
+<p><strong>Cómo manejarlo:</strong> Aporta contexto especializado tú mismo: sube documentos de referencia, define términos, explica el marco. Claude es mucho mejor trabajando con información que tú le diste que con información que él "sabe".</p>
+
+<h2>8.9 Razonar con certeza sobre su propia fiabilidad</h2>
+
+<p>Si le preguntas a Claude "¿estás seguro?", la respuesta que te dé no es un indicador confiable. Los modelos de lenguaje no tienen una métrica interna de certeza accesible. Pueden sonar totalmente seguros de algo que es falso, y pueden sonar dubitativos de algo que es correcto.</p>
+
+<p><strong>Cómo manejarlo:</strong> No uses la seguridad aparente como señal. Verifica externamente. Si algo importa, confírmalo fuera de Claude.</p>
+
+<h2>Resumen operativo</h2>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">La regla general</div>
+  <p>Claude es útil como colaborador, no como oráculo. Todo lo que produce es un insumo que tú evalúas y aprovechas. Lo que dice no es la respuesta; es una propuesta que tú validas, corriges o descartas.</p>
+</aside>
+</article>
+
+<article id="cap-9" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">09</div>
+    <h1>Privacidad y datos</h1>
+  </header>
+
+<p>Todo lo que escribes o subes a Claude pasa por los servidores de Anthropic. Este capítulo explica qué hacen con esa información y qué puedes y qué no puedes controlar. No es un capítulo jurídico, es lo que necesitas saber para tomar decisiones sensatas sobre qué subir y qué no.</p>
+
+<h2>Lo básico: qué pasa cuando escribes</h2>
+
+<p>Cuando mandas un mensaje o adjuntas un archivo, el contenido viaja cifrado a los servidores de Anthropic. Allí lo procesa el modelo y devuelve la respuesta. El contenido también se guarda en tu historial de conversaciones para que puedas volver a verlo.</p>
+
+<p>Eso ocurre siempre, en todos los planes.</p>
+
+<p>Lo que varía por plan es <strong>qué puede hacer Anthropic con ese contenido más allá de servirte la respuesta</strong>.</p>
+
+<h2>Planes consumidor (Free, Pro, Max)</h2>
+
+<p>En 2025 Anthropic cambió su política y ahora, en planes individuales, <strong>pregunta explícitamente</strong> si puedes contribuir tus conversaciones al entrenamiento de modelos futuros.</p>
+
+<p><strong>Si aceptas (el toggle está activado):</strong></p>
+
+<ul>
+  <li>Tus conversaciones pueden usarse para entrenar modelos.</li>
+  <li>Se guardan hasta cinco años.</li>
+</ul>
+
+<p><strong>Si no aceptas (el toggle está desactivado):</strong></p>
+
+<ul>
+  <li>Tus conversaciones no se usan para entrenar modelos.</li>
+  <li>Se guardan 30 días (salvo obligación legal de retención mayor).</li>
+</ul>
+
+<p>El control está en Configuración → Privacidad. Revísalo al menos una vez. Por defecto en cuentas nuevas, el toggle puede venir en un estado u otro dependiendo de cuándo y cómo creaste la cuenta.</p>
+
+<p><strong>Modo incógnito.</strong> Las conversaciones marcadas como incógnito están excluidas del entrenamiento incluso si tu toggle general está activado. No quedan en el historial normal. Útiles para consultas puntuales que no quieras guardar.</p>
+
+<h2>Planes comerciales (Team, Enterprise)</h2>
+
+<p>Aquí la política es distinta y más favorable a organizaciones:</p>
+
+<p><strong>Las conversaciones de Team y Enterprise no se usan para entrenar modelos por política de Anthropic</strong>. No es un toggle que puedas apagar: está cubierto por los términos comerciales, que son distintos de los términos de consumidor.</p>
+
+<p>Esta es, en la práctica, la razón principal por la que una organización con información institucional sensible debería tener Team en vez de que cada persona use su Pro personal. La diferencia no es tanto de funcionalidad como de gobernanza de datos.</p>
+
+<p>Enterprise además ofrece cumplimiento normativo adicional, SSO, control administrativo más granular y contratos a medida.</p>
+
+<h2>Qué nunca debería subirse</h2>
+
+<p>Independientemente de tu plan, hay información que no conviene que salga de tu entorno:</p>
+
+<ul>
+  <li><strong>Datos personales de terceros que no consintieron:</strong> nombres propios completos, direcciones, teléfonos, documentos de identidad, datos médicos, historiales financieros.</li>
+  <li><strong>Información clasificada o confidencial:</strong> por obligación legal, contractual o por sentido común. Si un documento tiene el sello "confidencial", piénsalo dos veces.</li>
+  <li><strong>Credenciales y secretos:</strong> contraseñas, tokens de API, claves privadas, códigos de seguridad.</li>
+  <li><strong>Datos de salud de personas identificables.</strong></li>
+  <li><strong>Información financiera que implique cuentas concretas.</strong></li>
+  <li><strong>Estrategia o secretos industriales</strong> que darían ventaja a un competidor.</li>
+</ul>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Regla del correo</div>
+  <p>Si no lo mandarías por correo electrónico sin cifrar a alguien externo, no lo subas a Claude.</p>
+</aside>
+
+<h2>Anonimizar antes de subir</h2>
+
+<p>Muchas veces el trabajo real se puede hacer con información anonimizada. Es una práctica sólida, no un parche:</p>
+
+<ul>
+  <li>Reemplaza nombres reales por "Persona A", "Persona B", "Organización X".</li>
+  <li>Cambia cifras específicas por rangos ("alrededor de 500 beneficiarios", no la cifra exacta).</li>
+  <li>Quita datos de contacto antes de subir.</li>
+  <li>Reemplaza nombres de lugares si no son relevantes para el análisis.</li>
+</ul>
+
+<p>Una vez Claude te da un resultado sobre los datos anonimizados, reincorporas los datos reales a la versión final que tú mismo escribes o editas. El trabajo del modelo se hace sobre lo anonimizado; la información sensible nunca sale de tu máquina.</p>
+
+<h2>Quién ve tus conversaciones</h2>
+
+<p>Las conversaciones son privadas para tu cuenta. Excepciones razonables:</p>
+
+<ul>
+  <li><strong>Soporte técnico:</strong> si reportas un problema con una conversación específica, podrías tener que compartir contenido con el equipo de Anthropic.</li>
+  <li><strong>Revisión de seguridad:</strong> Anthropic puede revisar conversaciones sospechosas de violar las políticas de uso (por ejemplo, intentos de generar contenido nocivo).</li>
+  <li><strong>Entrenamiento (solo con tu consentimiento en planes consumidor):</strong> personas humanas pueden ver fragmentos como parte del proceso de mejora del modelo.</li>
+  <li><strong>Cumplimiento legal:</strong> si media una orden judicial, Anthropic puede estar obligado a entregar datos.</li>
+</ul>
+
+<p>En planes Team/Enterprise, el administrador de la cuenta tiene ciertos controles administrativos (gestión de usuarios, facturación, auditoría), pero no acceso directo al contenido de conversaciones individuales salvo en casos específicos bajo controles definidos.</p>
+
+<h2>Exportar y borrar</h2>
+
+<p>Tienes derecho a:</p>
+
+<ul>
+  <li><strong>Descargar tus datos.</strong> Desde configuración puedes exportar tu historial.</li>
+  <li><strong>Borrar conversaciones individuales.</strong> Las borradas se eliminan (con algún tiempo de retención para propósitos de seguridad y copias de respaldo).</li>
+  <li><strong>Borrar tu cuenta.</strong> Desde configuración. Esto inicia un proceso de eliminación de datos asociados a la cuenta.</li>
+</ul>
+
+<p>Los detalles exactos (cuánto tardan en eliminarse las copias de respaldo, qué retenciones son obligatorias por ley) están en la política de privacidad de Anthropic.</p>
+
+<h2>Una reflexión final</h2>
+
+<p>La pregunta correcta no es "¿es seguro Claude?". Ninguna herramienta cloud es "segura" en términos absolutos. La pregunta correcta es "¿qué información es razonable subir a Claude para la tarea que tengo entre manos?". Esa pregunta se responde caso por caso, con criterio, sabiendo qué datos estás moviendo y a dónde.</p>
+
+<p>Tres reglas que cubren el 95% de las situaciones:</p>
+
+<ol>
+  <li>Para trabajar con información institucional sensible, <strong>usa Team o Enterprise</strong>, no una cuenta personal.</li>
+  <li><strong>Anonimiza</strong> antes de subir cuando sea posible.</li>
+  <li><strong>No subas</strong> lo que no mandarías por correo a alguien externo.</li>
+</ol>
+
+<aside class="callout callout--nota">
+  <span class="callout__label">Nota</span>
+  <div class="callout__subtitle">Verificado abril 2026</div>
+  <p>Las políticas de privacidad y los mecanismos de control cambian con el tiempo. La política oficial, siempre vigente, está en <code>privacy.claude.com</code>.</p>
+</aside>
+</article>
+
+<article id="cap-10" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">10</div>
+    <h1>Para seguir explorando</h1>
+  </header>
+
+<p>Esta guía es un punto de partida. Si te interesa profundizar, acá van los recursos que vale la pena conocer.</p>
+
+<h2>Fuentes oficiales de Anthropic</h2>
+
+<p>Estas cambian con frecuencia y son la referencia autoritativa cuando algo de esta guía ya no coincida con lo que ves en pantalla.</p>
+
+<ul>
+  <li><strong>Documentación de Claude:</strong> <code>docs.claude.com</code>. Manual oficial, cubre web, API y funcionalidades avanzadas.</li>
+  <li><strong>Centro de ayuda:</strong> <code>support.claude.com</code>. Artículos cortos sobre funcionalidades específicas, preguntas frecuentes, solución de problemas.</li>
+  <li><strong>Precios y planes:</strong> <code>claude.com/pricing</code>. La página que conviene revisar antes de cualquier decisión de plan.</li>
+  <li><strong>Novedades:</strong> <code>anthropic.com/news</code>. Anuncios de nuevos modelos y funcionalidades.</li>
+  <li><strong>Política de privacidad:</strong> <code>privacy.claude.com</code>. Política vigente.</li>
+</ul>
+
+<h2>Para aprender a usar Claude mejor</h2>
+
+<p>Dos recursos gratuitos que valen la pena:</p>
+
+<ul>
+  <li><strong>Curso de prompt engineering de Anthropic</strong> (en GitHub y en su documentación). Es un curso para desarrolladores, pero la mayoría de los principios son aplicables a quien use Claude por la web. La parte de cómo dar contexto y estructurar peticiones es especialmente útil.</li>
+  <li><strong>Changelog de Claude</strong> (en <code>docs.claude.com</code>). Actualizado frecuentemente con los cambios del producto. Útil si quieres ir siguiendo cómo evoluciona.</li>
+</ul>
+
+<h2>Más allá de Claude web</h2>
+
+<p>Esta guía cubrió solo <code>claude.ai</code>. Claude también vive en otros lugares:</p>
+
+<ul>
+  <li><strong>Claude Desktop</strong> — aplicación nativa para Mac y Windows que incluye funcionalidades adicionales (sistema de archivos, integraciones más profundas).</li>
+  <li><strong>Claude Cowork</strong> — modo dentro de Claude Desktop para gestión de archivos, documentos y tareas. Pensado para trabajo no técnico.</li>
+  <li><strong>Claude Code</strong> — herramienta de línea de comandos para desarrollo de software.</li>
+  <li><strong>Claude API</strong> — para integrar Claude dentro de aplicaciones propias.</li>
+</ul>
+
+<p>Si tu uso se expande, cada una de estas amerita una guía aparte. iatelier tiene planeadas algunas.</p>
+
+<h2>La familia de guías iatelier</h2>
+
+<p>Esta es la primera guía de una familia en construcción. Las siguientes contemplan:</p>
+
+<ul>
+  <li><strong>IA con criterio</strong> — guía madre sobre el marco conceptual con el que trabajamos la IA en iatelier.</li>
+  <li><strong>Gemini</strong> — referencia equivalente a esta, para Gemini.</li>
+  <li><strong>ChatGPT</strong> — referencia equivalente a esta, para ChatGPT.</li>
+  <li><strong>Claude Cowork</strong> — guía específica para el modo Cowork de Claude Desktop.</li>
+</ul>
+
+<p>Si quieres saber cuándo sale cada una, el canal de comunicación es el newsletter.</p>
+
+<h2>Recursos iatelier</h2>
+
+<ul>
+  <li><strong>Sitio:</strong> <code>iatelier.org</code>.</li>
+  <li><strong>Newsletter:</strong> quincenal, sobre IA con criterio y la práctica de iatelier. Suscripción desde el sitio.</li>
+  <li><strong>Contacto:</strong> <code>iatelier.org/contacto</code> para dudas específicas, propuestas, comentarios sobre esta guía.</li>
+</ul>
+
+<h2>Bibliografía mínima</h2>
+
+<p>Si quieres entender de dónde viene el marco con el que trabajamos la IA en iatelier, estos dos son los puntos de partida:</p>
+
+<ul>
+  <li><strong>Douglas Engelbart</strong>, <em>Augmenting Human Intellect: A Conceptual Framework</em> (1962). El texto fundacional del concepto de <em>aumento</em>. Disponible en versión digital gratuita.</li>
+  <li><strong>Anthropic</strong>, <em>Core Views on AI Safety</em> (<code>anthropic.com/news/core-views-on-ai-safety</code>). Articula cómo Anthropic piensa la seguridad de los modelos; útil para entender el enfoque del producto.</li>
+</ul>
+
+<p>Más allá de eso, el mejor recurso es la práctica. Empieza con una tarea real, aplica lo que está en esta guía, itera. El criterio no se construye leyendo, se construye trabajando con la herramienta y prestando atención a lo que pasa.</p>
+
+<hr>
+
+<p><strong>Gracias por leer.</strong></p>
+
+<p>Si esta guía te fue útil o tienes comentarios para mejorarla, escríbenos. Esta es la primera versión y va a evolucionar con el feedback de quienes la usen.</p>
+
+<p><em>— iatelier. Ideas Aumentadas.</em></p>
+</article>
+    </main>
+  </div>
+
+  <script>
+    // Progress bar
+    const progress = document.getElementById('progress');
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progress.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    // Dark mode toggle
+    const toggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    toggle.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      toggle.textContent = root.classList.contains('dark') ? 'Modo claro' : 'Modo oscuro';
+    });
+
+    // Sidebar toggle.
+    // La scrollbar interna del .site__nav se gestiona con la clase
+    // .is-nav-scrollable: solo existe cuando el nav está visible y
+    // la transición ya terminó. Así no aparece ni durante el ocultado
+    // ni durante el mostrado → sin parpadeo.
+    const navToggle = document.getElementById('navToggle');
+    const site = document.querySelector('.site');
+    const siteNav = document.querySelector('.site__nav');
+    const NAV_KEY = 'iatelier-guia-nav-hidden';
+    const NAV_TRANSITION_MS = 220;
+    let navScrollTimer = null;
+
+    const setNavHidden = (hidden) => {
+      // Antes de animar: quitamos scrollbar para que no parpadee.
+      if (siteNav) siteNav.classList.remove('is-nav-scrollable');
+      if (navScrollTimer) { clearTimeout(navScrollTimer); navScrollTimer = null; }
+
+      site.classList.toggle('is-nav-hidden', hidden);
+      navToggle.classList.toggle('is-closed', hidden);
+      navToggle.setAttribute('aria-label', hidden ? 'Mostrar índice' : 'Ocultar índice');
+      navToggle.setAttribute('title', hidden ? 'Mostrar índice' : 'Ocultar índice');
+      try { sessionStorage.setItem(NAV_KEY, hidden ? '1' : '0'); } catch (e) {}
+
+      // Si queda visible, rehabilitamos el scroll interno cuando la
+      // transición haya terminado para que el usuario pueda scrollear
+      // el índice si es largo.
+      if (!hidden && siteNav) {
+        navScrollTimer = setTimeout(() => {
+          siteNav.classList.add('is-nav-scrollable');
+          navScrollTimer = null;
+        }, NAV_TRANSITION_MS + 50);
+      }
+    };
+
+    // Estado inicial: restaurar si estaba oculto, o activar scroll si
+    // está visible (porque el CSS arranca en visible por defecto).
+    try {
+      if (sessionStorage.getItem(NAV_KEY) === '1') {
+        setNavHidden(true);
+      } else if (siteNav) {
+        // Habilitar scroll del nav tras un frame (arranca visible).
+        requestAnimationFrame(() => siteNav.classList.add('is-nav-scrollable'));
+      }
+    } catch (e) {}
+
+    navToggle.addEventListener('click', () => {
+      setNavHidden(!site.classList.contains('is-nav-hidden'));
+    });
+
+    // Copy buttons
+    document.querySelectorAll('.callout__copy').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const callout = btn.closest('.callout');
+        const text = callout.querySelector('p').innerText;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => {
+            const original = btn.textContent;
+            btn.textContent = 'Copiado';
+            setTimeout(() => btn.textContent = original, 1500);
+          });
+        }
+      });
+    });
+
+    // TOC active section
+    const sections = document.querySelectorAll('article[id]');
+    const links = document.querySelectorAll('.site__nav a');
+    const setActive = () => {
+      let current = null;
+      sections.forEach(s => {
+        const rect = s.getBoundingClientRect();
+        if (rect.top < window.innerHeight / 2.5) current = s.id;
+      });
+      links.forEach(a => {
+        a.classList.toggle('is-active', a.getAttribute('href') === '#' + current);
+      });
+    };
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+  </script>
+
+  <style>
+    #pw-overlay {
+      position: fixed; inset: 0; z-index: 99999;
+      background: #f2efe8; display: flex;
+      align-items: center; justify-content: center;
+      font-family: 'Maax', 'Inter', sans-serif;
+    }
+    #pw-overlay.hidden { display: none; }
+    #pw-box {
+      text-align: center; padding: 2rem; max-width: 28rem;
+    }
+    #pw-logo {
+      font-weight: 500; font-size: 1.75rem; margin-bottom: 1.5rem;
+      color: #111;
+    }
+    #pw-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: #666; margin-bottom: 1.25rem;
+    }
+    #pw-input {
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1px solid #ccc; background: #fff;
+      font-family: inherit; font-size: 1rem;
+      border-radius: 2px; outline: none;
+      text-align: center;
+    }
+    #pw-input:focus { border-color: #c8102e; }
+    #pw-error {
+      min-height: 1.2em; margin-top: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem; color: #c8102e;
+    }
+    #pw-btn {
+      margin-top: 1rem; padding: 0.6rem 2rem;
+      background: #c8102e; color: #fff; border: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
+      cursor: pointer; border-radius: 2px;
+    }
+    #pw-btn:hover { background: #a50d24; }
+  </style>
+
+  <div id="pw-overlay">
+    <div id="pw-box">
+      <div id="pw-logo">iatelier</div>
+      <div id="pw-label">Ingresa la contraseña para continuar</div>
+      <input id="pw-input" type="password" placeholder="contraseña" autocomplete="off" autofocus />
+      <div id="pw-error"></div>
+      <button id="pw-btn">Entrar</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const EXPECTED = "52dc7bc4b2277edd3fea4c374507e83d6aad6a9a57da1711db3f19ee5b3b4cea";
+      const SKEY = "iatelier-pw-ok";
+      const overlay = document.getElementById('pw-overlay');
+      const input   = document.getElementById('pw-input');
+      const btn     = document.getElementById('pw-btn');
+      const errMsg  = document.getElementById('pw-error');
+
+      // If already unlocked this session, skip the gate.
+      try {
+        if (sessionStorage.getItem(SKEY) === EXPECTED) {
+          overlay.classList.add('hidden');
+          return;
+        }
+      } catch (e) {}
+
+      document.body.style.overflow = 'hidden';
+
+      async function sha256(text) {
+        const bytes = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest('SHA-256', bytes);
+        return Array.from(new Uint8Array(hash))
+          .map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+
+      async function attempt() {
+        const got = await sha256(input.value);
+        if (got === EXPECTED) {
+          overlay.classList.add('hidden');
+          document.body.style.overflow = '';
+          try { sessionStorage.setItem(SKEY, EXPECTED); } catch (e) {}
+        } else {
+          errMsg.textContent = 'Contraseña incorrecta.';
+          input.value = '';
+          input.focus();
+        }
+      }
+
+      btn.addEventListener('click', attempt);
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+    })();
+  </script>
+
+</body>
+</html>
