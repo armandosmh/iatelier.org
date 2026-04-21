@@ -144,6 +144,11 @@ body { margin: 0; padding: 0; }
   align-items: center;
   gap: 0.6rem;
   color: var(--fg);
+  text-decoration: none;
+}
+
+.site-header .brand:hover {
+  color: var(--accent);
 }
 
 .site-header .brand-logo {
