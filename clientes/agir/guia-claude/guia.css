@@ -376,6 +376,12 @@ body { margin: 0; padding: 0; }
   margin-top: 1rem;
 }
 
+/* En pantalla, la meta de la portada duplica el crumb del header fijo,
+   así que se oculta. En print se conserva porque ahí no hay header. */
+@media screen {
+  .cover__meta { display: none; }
+}
+
 .cover__meta .meta-num {
   color: var(--accent);
   font-weight: 500;
