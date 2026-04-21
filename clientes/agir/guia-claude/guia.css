@@ -850,6 +850,284 @@ html.dark .site-header .brand-logo {
 }
 
 /* ============================================================
+   RESPONSIVE — tablet y móvil (solo screen)
+   ============================================================ */
+
+/* ---------- Tablet / móvil grande (≤900px) ----------
+   A este tamaño colapsamos la sidebar del índice (queda accesible
+   desde el botón "Índice" del header, que en esta skin hace overlay).
+   Reducimos paddings laterales para dar aire al contenido. */
+@media screen and (max-width: 900px) {
+  html {
+    font-size: 17px;
+  }
+
+  .site {
+    display: block;
+    max-width: 100%;
+    padding-top: 52px;
+  }
+
+  .site__nav {
+    display: none;
+  }
+
+  .site__main {
+    padding: 2.5rem 2rem 6rem;
+    max-width: 680px;
+  }
+
+  /* La portada hereda los márgenes negativos del main; recalculamos. */
+  .cover {
+    margin: -2.5rem -2rem 3rem;
+    padding: 4rem 2rem 3rem;
+    min-height: calc(100vh - 52px);
+  }
+
+  .cover__title h1 {
+    font-size: 3rem;
+  }
+
+  .cover__title .cover__for {
+    font-size: 2rem;
+  }
+
+  .chapter-open__number {
+    font-size: 6rem;
+  }
+
+  .chapter-open h1 {
+    font-size: 2rem;
+    max-width: none;
+  }
+
+  /* Header: ocultamos el toggle de índice (ya no hay sidebar que togglear)
+     y apretamos el espaciado para que quepa bien. */
+  .site-header {
+    padding: 0 1.25rem;
+    gap: 0.75rem;
+  }
+
+  .site-header .nav-toggle {
+    display: none;
+  }
+
+  .site-header .tools {
+    gap: 0.75rem;
+  }
+}
+
+/* ---------- Móvil (≤600px) ----------
+   Aquí viene el trabajo fino: bajar tipografías de portada y
+   aperturas de capítulo, padding mínimo para ganar ancho útil,
+   y esconder el crumb del header (queda el logo + modo claro). */
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 16px;
+    /* En móvil no forzamos scrollbar-gutter: stable; no sobra espacio. */
+    scrollbar-gutter: auto;
+  }
+
+  /* La banda cadmio del borde derecho se adelgaza un poco para
+     no comerle ancho al contenido. */
+  .brand-stripe {
+    width: 3px;
+  }
+
+  .site-header {
+    padding: 0 0.9rem;
+    height: 48px;
+  }
+
+  .site-header .crumb {
+    display: none;
+  }
+
+  .site-header .brand-logo {
+    height: 18px;
+  }
+
+  .site-header .theme-toggle {
+    padding: 0.3rem 0.55rem;
+    height: 24px;
+    font-size: 0.65rem;
+  }
+
+  .progress {
+    top: 48px;
+  }
+
+  .site {
+    padding-top: 48px;
+  }
+
+  .site__main {
+    padding: 1.75rem 1.2rem 4rem;
+  }
+
+  /* PORTADA móvil — tipografía contenida, márgenes ajustados
+     al nuevo padding del main. */
+  .cover {
+    margin: -1.75rem -1.2rem 2.5rem;
+    padding: 2.5rem 1.2rem 2rem;
+    min-height: calc(100vh - 48px);
+  }
+
+  .cover::before {
+    width: 70%;
+    height: 8px;
+  }
+
+  .cover__meta {
+    font-size: 0.65rem;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: flex-start;
+  }
+
+  .cover__title {
+    padding: 1.5rem 0;
+  }
+
+  .cover__eyebrow {
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .cover__title h1 {
+    font-size: 2.4rem;
+    line-height: 0.98;
+  }
+
+  .cover__title .cover__for {
+    font-size: 1.6rem;
+  }
+
+  .cover__title .subtitle {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+
+  .cover__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding-top: 1.25rem;
+  }
+
+  .pdf-downloads {
+    font-size: 0.65rem;
+  }
+
+  /* APERTURA DE CAPÍTULO móvil */
+  .chapter-open {
+    padding: 2rem 0 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .chapter-open__number {
+    font-size: 4.5rem;
+  }
+
+  .chapter-open h1 {
+    font-size: 1.7rem;
+    line-height: 1.1;
+    padding-bottom: 1.25rem;
+  }
+
+  /* CUERPO: bajamos un poco los h2/h3 para que no canten */
+  .content h2 {
+    font-size: 1.3rem;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .content h3 {
+    font-size: 1.05rem;
+    margin: 1.4rem 0 0.5rem;
+  }
+
+  .content blockquote {
+    font-size: 1.05rem;
+    padding-left: 1rem;
+  }
+
+  /* CALLOUTS: en móvil el padding horizontal puede comerse mucho
+     ancho del texto. Aflojamos un poco. */
+  .callout {
+    padding: 0.9rem 1rem;
+    margin: 1.4rem 0;
+  }
+
+  .callout--criterio,
+  .callout--artefacto {
+    padding-left: 1rem;
+  }
+
+  .callout__copy {
+    /* El botón de copiar en móvil estorba más de lo que ayuda en un
+       layout angosto: lo escondemos. Se puede seleccionar manualmente. */
+    display: none;
+  }
+
+  .callout__subtitle {
+    font-size: 1rem;
+  }
+
+  /* FIGURAS: ya son width:100%, solo ajustamos márgenes y caption */
+  .content figure {
+    margin: 1.5rem 0;
+  }
+
+  .content figcaption {
+    font-size: 0.65rem;
+    padding-left: 0.6rem;
+  }
+
+  /* ÍNDICE (página TOC, no la sidebar): apretamos el grid para que
+     los números quepan cómodos y el folio no se pierda. */
+  .toc {
+    padding: 1rem 0;
+    margin-bottom: 2.5rem;
+  }
+
+  .toc__header {
+    margin-bottom: 2rem;
+  }
+
+  .toc__rule {
+    margin: 0 0.75rem;
+  }
+
+  .toc h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .toc ol li {
+    grid-template-columns: 2rem 1fr;
+    font-size: 1rem;
+    padding: 0.85rem 0;
+    row-gap: 0.2rem;
+  }
+
+  .toc ol li .folio {
+    grid-column: 2;
+    font-size: 0.75rem;
+  }
+
+  /* Código inline no se rompe si tiene palabras largas; evitamos
+     overflow horizontal forzando wrap. */
+  .content code {
+    word-break: break-word;
+  }
+
+  /* Palabras URLs largas en prosa: que no abran scroll horizontal. */
+  .content a {
+    word-break: break-word;
+  }
+}
+
+/* ============================================================
    PRINT — Carta, color + estructura de página
    ============================================================ */
 
