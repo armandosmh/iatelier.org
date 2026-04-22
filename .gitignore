@@ -1,1 +1,16 @@
+# macOS metadata
 .DS_Store
+**/.DS_Store
+
+# Claude / herramientas internas (no publicar en GitHub Pages)
+CLAUDE.md
+.claude/
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.swp
+
+# Logs y temporales
+*.log
+.tmp/
