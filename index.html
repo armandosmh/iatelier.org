@@ -399,13 +399,13 @@
       background: var(--tinta);
       color: var(--marfil);
       text-align: center;
-      padding: var(--space-2xl) clamp(1.5rem, 5vw, 4rem);
+      padding: var(--space-xl) clamp(1.5rem, 5vw, 4rem) var(--space-3xl);
     }
 
     .newsletter > h2 {
       font-size: clamp(1.8rem, 3.5vw, 2.8rem);
       font-weight: 700;
-      margin-bottom: var(--space-md);
+      margin-bottom: var(--space-lg);
     }
 
     .newsletter > .nl-intro {
@@ -422,7 +422,7 @@
       gap: clamp(2rem, 5vw, 4rem);
       max-width: 820px;
       margin: 0 auto;
-      text-align: left;
+      text-align: center;
     }
 
     @media (max-width: 720px) {
@@ -477,7 +477,7 @@
       border: 1.5px solid var(--marfil);
       cursor: pointer;
       transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease;
-      align-self: flex-start;
+      align-self: center;
       text-decoration: none;
     }
     .newsletter .btn-outline:hover {
@@ -778,7 +778,6 @@
        ============================ -->
   <section class="newsletter grain-dark" id="newsletter">
     <h2 class="reveal">Sigue el trabajo de iatelier</h2>
-    <p class="nl-intro reveal reveal-delay-1">Dos formas de mantenerte cerca.</p>
 
     <div class="nl-options">
       <div class="nl-option reveal reveal-delay-2">
