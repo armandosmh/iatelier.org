@@ -402,18 +402,71 @@
       padding: var(--space-3xl) clamp(1.5rem, 5vw, 4rem);
     }
 
-    .newsletter h2 {
+    .newsletter > h2 {
       font-size: clamp(1.8rem, 3.5vw, 2.8rem);
       font-weight: 700;
       margin-bottom: var(--space-md);
     }
 
-    .newsletter .nl-desc {
+    .newsletter > .nl-intro {
       font-size: clamp(1rem, 1.3vw, 1.1rem);
       color: var(--arena-light);
       max-width: 520px;
-      margin: 0 auto var(--space-xl);
+      margin: 0 auto var(--space-2xl);
       line-height: 1.6;
+    }
+
+    .nl-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    @media (max-width: 720px) {
+      .nl-options {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+    }
+
+    .nl-option {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: var(--space-lg) 0;
+      border-top: 1px solid rgba(244, 240, 235, 0.15);
+    }
+
+    .nl-option-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--arena);
+      margin-bottom: var(--space-md);
+    }
+
+    .nl-option h3 {
+      font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      color: var(--marfil);
+    }
+
+    .nl-option h3 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--arena-light);
+    }
+
+    .nl-option-desc {
+      font-size: clamp(0.92rem, 1.1vw, 1rem);
+      color: var(--arena-light);
+      line-height: 1.55;
+      margin: var(--space-md) 0 var(--space-lg);
     }
 
     .newsletter .btn-primary {
@@ -430,11 +483,36 @@
       border: none;
       cursor: pointer;
       transition: background 0.3s ease, transform 0.15s ease;
+      align-self: flex-start;
     }
     .newsletter .btn-primary:hover {
       background: #b8221a;
     }
     .newsletter .btn-primary:active {
+      transform: scale(0.97);
+    }
+
+    .newsletter .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--marfil);
+      padding: 1rem 2.5rem;
+      font-family: var(--font-display);
+      font-feature-settings: "ss02" 1;
+      font-weight: 700;
+      font-size: clamp(0.88rem, 1.1vw, 1rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--marfil);
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease;
+      align-self: flex-start;
+    }
+    .newsletter .btn-secondary:hover {
+      background: var(--marfil);
+      color: var(--tinta);
+    }
+    .newsletter .btn-secondary:active {
       transform: scale(0.97);
     }
 
@@ -724,13 +802,31 @@
 
 
   <!-- ============================
-       NEWSLETTER
+       NEWSLETTER — dos formas de seguir iatelier
        ============================ -->
   <section class="newsletter grain-dark" id="newsletter">
-    <h2 class="reveal">Ideas Aumentadas</h2>
-    <p class="nl-desc reveal reveal-delay-1">Soy Armando. Cada dos semanas escribo reflexiones, hallazgos y experimentos con inteligencia artificial.</p>
+    <h2 class="reveal">Sigue el trabajo de iatelier</h2>
+    <p class="nl-intro reveal reveal-delay-1">Dos formas de mantenerte cerca.</p>
 
-    <a href="https://armandosmh.substack.com/subscribe" class="btn-primary reveal reveal-delay-2" target="_blank">Suscríbete en Substack</a>
+    <div class="nl-options">
+      <div class="nl-option reveal reveal-delay-2">
+        <div>
+          <span class="nl-option-label">Ensayos</span>
+          <h3>Ideas Aumentadas <em>— Substack</em></h3>
+          <p class="nl-option-desc">Reflexiones, hallazgos y experimentos con IA. Cada dos semanas. Lectura larga.</p>
+        </div>
+        <a href="https://armandosmh.substack.com/subscribe" class="btn-primary" target="_blank">Leer en Substack</a>
+      </div>
+
+      <div class="nl-option reveal reveal-delay-3">
+        <div>
+          <span class="nl-option-label">Talleres</span>
+          <h3>Avísame cuando abra</h3>
+          <p class="nl-option-desc">Nuevas fechas de talleres y cursos. Un correo al mes como máximo.</p>
+        </div>
+        <button data-tally-open="pbPjBy" data-tally-overlay="1" class="btn-secondary">Avísame</button>
+      </div>
+    </div>
   </section>
 
 
@@ -852,6 +948,9 @@
       dropdowns.forEach((d) => d.classList.remove('open'));
     });
   </script>
+
+  <!-- Tally embed -->
+  <script async src="https://tally.so/widgets/embed.js"></script>
 
 </body>
 </html>

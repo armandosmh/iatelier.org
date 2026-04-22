@@ -309,6 +309,60 @@
     }
 
     /* ========================================
+       AVÍSAME SECTION — captura de interés
+       ======================================== */
+    .avisame {
+      background: var(--marfil);
+      color: var(--tinta);
+      text-align: center;
+      padding: var(--space-2xl) clamp(1.5rem, 5vw, 4rem);
+      border-top: 1px solid rgba(28, 28, 30, 0.08);
+    }
+
+    .avisame-inner {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .avisame h2 {
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+      color: var(--tinta);
+    }
+
+    .avisame-desc {
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      color: var(--arena);
+      max-width: 520px;
+      margin: 0 auto var(--space-lg);
+      line-height: 1.6;
+    }
+
+    .avisame-cta {
+      display: inline-block;
+      background: transparent;
+      color: var(--tinta);
+      padding: 0.85rem 2rem;
+      font-family: var(--font-display);
+      font-feature-settings: "ss02" 1;
+      font-weight: 700;
+      font-size: clamp(0.85rem, 1vw, 0.95rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--tinta);
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease;
+    }
+    .avisame-cta:hover {
+      background: var(--tinta);
+      color: var(--marfil);
+    }
+    .avisame-cta:active {
+      transform: scale(0.97);
+    }
+
+    /* ========================================
        CTA SECTION
        ======================================== */
     .cta-section {
@@ -630,6 +684,18 @@
       </div>
     </article>
 
+  </section>
+
+
+  <!-- ============================
+       AVÍSAME — captura de interés
+       ============================ -->
+  <section class="avisame" id="avisame">
+    <div class="avisame-inner">
+      <h2 class="reveal">¿Estas fechas no te acomodan?</h2>
+      <p class="avisame-desc reveal reveal-delay-1">Déjame tu correo y te aviso cuando abra nuevas fechas o lance un taller nuevo. Un correo al mes como máximo.</p>
+      <button data-tally-open="pbPjBy" data-tally-overlay="1" class="avisame-cta reveal reveal-delay-2">Avísame →</button>
+    </div>
   </section>
 
 
