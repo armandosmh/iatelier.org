@@ -834,6 +834,59 @@ html.bw .callout--artefacto {
   border-left: 2px solid var(--accent);
 }
 
+/* ---------- TABLAS ---------- */
+
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.8rem 0;
+  font-size: var(--scale-sm);
+  line-height: 1.45;
+  page-break-inside: auto;
+  break-inside: auto;
+}
+
+.content table thead th {
+  font-family: var(--font-display);
+  font-weight: 500;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: var(--scale-xs);
+  color: var(--fg);
+  padding: 0.55rem 0.7rem;
+  border-bottom: 2px solid var(--fg);
+  vertical-align: bottom;
+}
+
+.content table tbody td {
+  padding: 0.7rem 0.7rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+.content table tbody tr:last-child td {
+  border-bottom: 1px solid var(--fg);
+}
+
+.content table tbody td:first-child {
+  font-weight: 500;
+}
+
+.content table tbody td strong {
+  font-weight: 600;
+}
+
+.content table tbody td em {
+  font-style: italic;
+}
+
+/* Romper menos las filas; permitir partir tabla entre páginas pero no una fila */
+.content table tr {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
 /* ---------- DARK MODE (solo screen) ---------- */
 
 html.dark {
