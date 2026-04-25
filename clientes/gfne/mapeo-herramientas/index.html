@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapeo de herramientas — IA para creación de contenido — iatelier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="guia.css">
+  <style>
+    .cover__footer { display: none; }
+    .pdf-downloads {
+      margin-top: auto;
+      padding: 0.75rem 0;
+      border-top: 1px solid var(--rule, rgba(0,0,0,0.08));
+      font-family: var(--font-mono, monospace);
+      font-size: var(--scale-xs, 0.75rem);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted, rgba(0,0,0,0.55));
+    }
+    .pdf-downloads a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; }
+    .pdf-downloads a:hover { color: var(--accent, #c8102e); }
+    @media print { .pdf-downloads { display: none; } }
+  </style>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "91cf4721ddf94b1cb461c2d8a7258139"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</head>
+<body>
+  <!-- BANDA CADMIO FIJA (solo screen) -->
+  <div class="brand-stripe"></div>
+
+  <!-- HEADER FIJO (solo screen) -->
+  <header class="site-header">
+    <a class="brand" href="https://iatelier.org" aria-label="iatelier — ir al sitio">
+      <svg class="brand-logo" viewBox="0 0 2107 502" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="iatelier">
+        <path d="M7.23672 85.5917C-0.879461 69.7664 -2.30731 53.7425 3.65597 37.2535C4.71918 34.3137 6.27491 31.5519 7.63517 28.3498C15.9207 15.2624 26.9134 6.16202 41.7762 2.13603C76.1355 -7.17111 109.311 16.0067 113.58 49.255C118.599 88.3442 86.0903 119.792 47.1343 113.429C29.9096 110.616 16.0689 101.719 7.23672 85.5917Z"/>
+        <path d="M7.39962 480.352C7.3915 477.757 7.53505 475.598 7.53564 473.44C7.56456 367.276 7.5812 261.113 7.68033 154.49C40.2172 154.03 72.673 154.03 105.526 154.03C105.526 267.364 105.526 380.462 105.526 493.841C72.9966 493.841 40.4574 493.841 7.4846 493.841C7.4846 489.366 7.4846 485.077 7.39962 480.352Z"/>
+        <path d="M361.629 475.992C361.629 402.382 361.629 329.271 361.629 255.701C300.891 255.701 240.647 255.701 180.1 255.701C180.1 221.681 180.1 188.121 180.1 154.276C274.427 154.276 368.665 154.276 463.206 154.276C463.206 267.342 463.206 380.391 463.206 493.777C429.319 493.777 395.765 493.777 361.629 493.777C361.629 488.037 361.629 482.264 361.629 475.992Z"/>
+        <path d="M307.696 337.954C340.301 368.028 349.164 411.754 330.649 450.12C306.237 500.707 239.475 517.903 193.94 484.922C163.772 463.071 149.622 433.193 155.126 396.093C160.705 358.49 182.391 332.345 218.499 320.333C250.799 309.588 280.878 316.091 307.696 337.954Z"/>
+        <path d="M667.719 244.994C664.402 244.994 661.576 244.994 658.354 244.994C658.354 297.9 658.354 350.595 658.354 403.715C683.538 403.715 708.777 403.715 734.393 403.715C734.393 433.862 734.393 463.589 734.393 493.716C676.457 493.716 618.275 493.716 559.635 493.716C559.635 411.018 559.635 328.303 559.635 245.078C544.625 245.078 530.06 245.078 515.237 245.078C515.237 214.646 515.237 184.724 515.237 154.262C529.813 154.262 544.368 154.262 559.394 154.262C559.394 122.334 559.394 90.9386 559.394 59.2688C592.424 59.2688 624.978 59.2688 657.881 59.2688C657.881 90.7298 657.881 121.991 657.881 153.889C684.07 153.889 709.923 153.889 736.021 153.889C736.021 184.454 736.021 214.381 736.021 244.994C713.363 244.994 690.787 244.994 667.719 244.994Z"/>
+        <path d="M993.731 152.877C1047.52 169.797 1080.17 206.936 1097.55 258.89C1107.29 287.993 1107.94 318.025 1106.16 348.796C1029.55 348.796 953.004 348.796 875.863 348.796C879.388 370.048 888.937 386.838 906.406 398.647C921.149 408.614 937.742 411.901 955.32 411.426C973.784 410.926 991.587 407.447 1007.05 397.095C1017.33 390.219 1026.41 381.572 1036.68 373.189C1057.18 392.37 1078.77 412.579 1100.64 433.045C1088.57 448.39 1074.95 461.641 1058.99 472.408C1023.99 496.023 984.843 503.419 943.439 501.461C915.324 500.132 888.465 493.602 863.585 480.155C815.81 454.333 787.987 413.954 778.889 360.886C771.464 317.571 776.197 275.31 796.477 235.986C827.243 176.328 877.074 146.709 944.07 145.88C960.817 145.672 977.274 147.932 993.731 152.877ZM890.245 283.108C927.671 283.108 965.097 283.108 1002.79 283.108C1000.23 262.511 990.641 247.551 972.284 238.69C955.951 230.807 938.951 230.785 922.181 236.215C899.593 243.529 886.606 259.96 880.923 282.705C881.638 282.891 881.956 283.042 882.277 283.047C884.609 283.084 886.942 283.091 890.245 283.108Z"/>
+        <path d="M1263.76 313.993C1263.76 374.134 1263.76 433.775 1263.76 493.766C1230.99 493.766 1198.44 493.766 1165.61 493.766C1165.61 332.15 1165.61 170.59 1165.61 8.62637C1198.18 8.62637 1230.7 8.62637 1263.76 8.62637C1263.76 110.296 1263.76 211.894 1263.76 313.993Z"/>
+        <path d="M1409.57 110.992C1366.45 125.102 1326.7 90.4004 1334.6 45.9722C1339.26 19.7364 1363.25 0.140643 1390.86 0.000678149C1417.5 -0.134345 1441.82 19.9092 1446.7 46.0197C1451.96 74.2005 1436.69 101.176 1409.57 110.992Z"/>
+        <path d="M1340.92 344.993C1340.92 281.211 1340.92 217.929 1340.92 154.341C1373.9 154.341 1406.46 154.341 1439.32 154.341C1439.32 267.431 1439.32 380.472 1439.32 493.816C1406.7 493.816 1374.13 493.816 1340.92 493.816C1340.92 444.35 1340.92 394.921 1340.92 344.993Z"/>
+        <path d="M1520.74 420.894C1503.8 392.387 1496.43 361.617 1496.05 329.101C1495.61 291.221 1503.43 255.202 1523.77 222.87C1556.31 171.173 1603.86 145.996 1664.68 145.929C1706.42 145.883 1743.62 158.59 1774.25 187.779C1800.02 212.342 1814.92 242.906 1822.62 277.32C1827.87 300.811 1827.29 324.573 1826.4 348.899C1749.65 348.899 1673.1 348.899 1596.03 348.899C1599.51 369.829 1608.86 386.436 1625.98 398.247C1640.8 408.474 1657.51 411.873 1675.26 411.43C1693.36 410.979 1710.79 407.566 1726.17 397.733C1734.37 392.496 1741.57 385.685 1749.06 379.385C1751.42 377.395 1753.24 374.76 1755.63 372.061C1777.43 392.467 1798.92 412.585 1821.39 433.618C1812.66 442.451 1804.53 451.642 1795.41 459.731C1766.59 485.307 1732.33 497.925 1694.22 501.01C1663.43 503.503 1633.35 500.346 1604.34 489.468C1568.87 476.168 1540.81 453.639 1520.74 420.894ZM1710.59 252.598C1691.11 231.17 1666.84 228.429 1641.06 236.702C1619.09 243.75 1606.56 260.393 1601.12 282.714C1641.92 282.714 1682.27 282.714 1722.73 282.714C1721.77 271.4 1717.87 261.69 1710.59 252.598Z"/>
+        <path d="M1886.57 443.993C1886.57 347.192 1886.57 250.891 1886.57 154.293C1919.45 154.293 1952.04 154.293 1984.94 154.293C1984.94 267.328 1984.94 380.402 1984.94 493.796C1952.29 493.796 1919.73 493.796 1886.57 493.796C1886.57 477.362 1886.57 460.928 1886.57 443.993Z"/>
+        <g transform="translate(1873.6, 65.6) scale(2.3333)"><path d="M93.009941,71.763451 C87.178253,81.448624 78.088303,85.793503 68.565407,83.733223 C59.619362,81.797745 52.265858,74.113373 51.064991,65.445358 C49.737038,55.860008 54.461941,46.588127 62.934765,42.152767 C70.757393,38.057781 80.894463,39.276917 87.583252,45.117119 C95.077332,51.660450 97.092529,61.166870 93.009941,71.763451Z"/></g>
+      </svg>
+    </a>
+    <div class="tools">
+      <span class="crumb">Abril 2026 · v1.0</span>
+      <button class="nav-toggle" id="navToggle" aria-label="Ocultar índice" title="Ocultar índice">Índice</button>
+      <button class="theme-toggle" id="themeToggle">Modo claro</button>
+    </div>
+  </header>
+
+  <div class="progress" id="progress"></div>
+
+  <div class="site">
+    <!-- TOC LATERAL -->
+        <nav class="site__nav" aria-label="Índice de la guía">
+      <h2>Mapeo de herramientas</h2>
+      <ol>
+        <li><a href="#cap-1">Cómo leer este mapa</a></li>
+        <li><a href="#cap-2">Criterios para elegir</a></li>
+        <li><a href="#cap-3">Fase 1 — Ideación</a></li>
+        <li><a href="#cap-4">Fase 2 — Guion</a></li>
+        <li><a href="#cap-5">Fase 3 — Producción</a></li>
+        <li><a href="#cap-6">Fase 4 — Post-producción</a></li>
+        <li><a href="#cap-7">Fase 4.5 — Repurposing</a></li>
+        <li><a href="#cap-8">Fase 5 — Publicación</a></li>
+        <li><a href="#cap-9">Fase 6 — Aprendizaje</a></li>
+        <li><a href="#cap-10">Resumen ejecutivo</a></li>
+      </ol>
+    </nav>
+
+    <main class="site__main">
+      <!-- PORTADA -->
+      <section class="cover">
+        <div class="cover__meta">
+          <span class="meta-num">Guía —</span>
+          <span>Abril 2026 · v1.0</span>
+        </div>
+
+        <div class="cover__title">
+          <div class="cover__eyebrow">Material Taller</div>
+          <h1>Mapeo de herramientas</h1>
+          <p class="cover__for">IA para creación de contenido</p>
+          <p class="subtitle">Material de referencia complementario al taller GFNE — abril 2026</p>
+        </div>
+
+                <aside class="pdf-downloads" aria-label="Descargas">
+          <a href="mapeo-herramientas-gfne.pdf" download>PDF (color)</a>
+          <span aria-hidden="true"> · </span>
+<a href="mapeo-herramientas-gfne-bw.pdf" download>PDF (blanco y negro)</a>
+          <span aria-hidden="true"> · </span>
+<a href="../guia-claude/">Ver guía de Claude</a>
+          <span aria-hidden="true"> · </span>
+<a href="../taller/">Ver presentación</a>
+        </aside>
+        <div class="cover__footer">
+          <svg class="logo" width="2107" height="502" viewBox="0 0 2107 502" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<!-- i (first - dot) -->
+<path d="M7.23672 85.5917C-0.879461 69.7664 -2.30731 53.7425 3.65597 37.2535C4.71918 34.3137 6.27491 31.5519 7.63517 28.3498C15.9207 15.2624 26.9134 6.16202 41.7762 2.13603C76.1355 -7.17111 109.311 16.0067 113.58 49.255C118.599 88.3442 86.0903 119.792 47.1343 113.429C29.9096 110.616 16.0689 101.719 7.23672 85.5917Z" fill="currentColor"/>
+
+<!-- i (first - stem) -->
+<path d="M7.39962 480.352C7.3915 477.757 7.53505 475.598 7.53564 473.44C7.56456 367.276 7.5812 261.113 7.68033 154.49C40.2172 154.03 72.673 154.03 105.526 154.03C105.526 267.364 105.526 380.462 105.526 493.841C72.9966 493.841 40.4574 493.841 7.4846 493.841C7.4846 489.366 7.4846 485.077 7.39962 480.352Z" fill="currentColor"/>
+
+<!-- a (stem) -->
+<path d="M361.629 475.992C361.629 402.382 361.629 329.271 361.629 255.701C300.891 255.701 240.647 255.701 180.1 255.701C180.1 221.681 180.1 188.121 180.1 154.276C274.427 154.276 368.665 154.276 463.206 154.276C463.206 267.342 463.206 380.391 463.206 493.777C429.319 493.777 395.765 493.777 361.629 493.777C361.629 488.037 361.629 482.264 361.629 475.992Z" fill="currentColor"/>
+
+<!-- a (dot/circle) -->
+<path d="M307.696 337.954C340.301 368.028 349.164 411.754 330.649 450.12C306.237 500.707 239.475 517.903 193.94 484.922C163.772 463.071 149.622 433.193 155.126 396.093C160.705 358.49 182.391 332.345 218.499 320.333C250.799 309.588 280.878 316.091 307.696 337.954Z" fill="currentColor"/>
+
+<!-- t -->
+<path d="M667.719 244.994C664.402 244.994 661.576 244.994 658.354 244.994C658.354 297.9 658.354 350.595 658.354 403.715C683.538 403.715 708.777 403.715 734.393 403.715C734.393 433.862 734.393 463.589 734.393 493.716C676.457 493.716 618.275 493.716 559.635 493.716C559.635 411.018 559.635 328.303 559.635 245.078C544.625 245.078 530.06 245.078 515.237 245.078C515.237 214.646 515.237 184.724 515.237 154.262C529.813 154.262 544.368 154.262 559.394 154.262C559.394 122.334 559.394 90.9386 559.394 59.2688C592.424 59.2688 624.978 59.2688 657.881 59.2688C657.881 90.7298 657.881 121.991 657.881 153.889C684.07 153.889 709.923 153.889 736.021 153.889C736.021 184.454 736.021 214.381 736.021 244.994C713.363 244.994 690.787 244.994 667.719 244.994Z" fill="currentColor"/>
+
+<!-- e (first) -->
+<path d="M993.731 152.877C1047.52 169.797 1080.17 206.936 1097.55 258.89C1107.29 287.993 1107.94 318.025 1106.16 348.796C1029.55 348.796 953.004 348.796 875.863 348.796C879.388 370.048 888.937 386.838 906.406 398.647C921.149 408.614 937.742 411.901 955.32 411.426C973.784 410.926 991.587 407.447 1007.05 397.095C1017.33 390.219 1026.41 381.572 1036.68 373.189C1057.18 392.37 1078.77 412.579 1100.64 433.045C1088.57 448.39 1074.95 461.641 1058.99 472.408C1023.99 496.023 984.843 503.419 943.439 501.461C915.324 500.132 888.465 493.602 863.585 480.155C815.81 454.333 787.987 413.954 778.889 360.886C771.464 317.571 776.197 275.31 796.477 235.986C827.243 176.328 877.074 146.709 944.07 145.88C960.817 145.672 977.274 147.932 993.731 152.877ZM890.245 283.108C927.671 283.108 965.097 283.108 1002.79 283.108C1000.23 262.511 990.641 247.551 972.284 238.69C955.951 230.807 938.951 230.785 922.181 236.215C899.593 243.529 886.606 259.96 880.923 282.705C881.638 282.891 881.956 283.042 882.277 283.047C884.609 283.084 886.942 283.091 890.245 283.108Z" fill="currentColor"/>
+
+<!-- l -->
+<path d="M1263.76 313.993C1263.76 374.134 1263.76 433.775 1263.76 493.766C1230.99 493.766 1198.44 493.766 1165.61 493.766C1165.61 332.15 1165.61 170.59 1165.61 8.62637C1198.18 8.62637 1230.7 8.62637 1263.76 8.62637C1263.76 110.296 1263.76 211.894 1263.76 313.993Z" fill="currentColor"/>
+
+<!-- i (second - dot) -->
+<path d="M1409.57 110.992C1366.45 125.102 1326.7 90.4004 1334.6 45.9722C1339.26 19.7364 1363.25 0.140643 1390.86 0.000678149C1417.5 -0.134345 1441.82 19.9092 1446.7 46.0197C1451.96 74.2005 1436.69 101.176 1409.57 110.992Z" fill="currentColor"/>
+
+<!-- i (second - stem) -->
+<path d="M1340.92 344.993C1340.92 281.211 1340.92 217.929 1340.92 154.341C1373.9 154.341 1406.46 154.341 1439.32 154.341C1439.32 267.431 1439.32 380.472 1439.32 493.816C1406.7 493.816 1374.13 493.816 1340.92 493.816C1340.92 444.35 1340.92 394.921 1340.92 344.993Z" fill="currentColor"/>
+
+<!-- e (second) -->
+<path d="M1520.74 420.894C1503.8 392.387 1496.43 361.617 1496.05 329.101C1495.61 291.221 1503.43 255.202 1523.77 222.87C1556.31 171.173 1603.86 145.996 1664.68 145.929C1706.42 145.883 1743.62 158.59 1774.25 187.779C1800.02 212.342 1814.92 242.906 1822.62 277.32C1827.87 300.811 1827.29 324.573 1826.4 348.899C1749.65 348.899 1673.1 348.899 1596.03 348.899C1599.51 369.829 1608.86 386.436 1625.98 398.247C1640.8 408.474 1657.51 411.873 1675.26 411.43C1693.36 410.979 1710.79 407.566 1726.17 397.733C1734.37 392.496 1741.57 385.685 1749.06 379.385C1751.42 377.395 1753.24 374.76 1755.63 372.061C1777.43 392.467 1798.92 412.585 1821.39 433.618C1812.66 442.451 1804.53 451.642 1795.41 459.731C1766.59 485.307 1732.33 497.925 1694.22 501.01C1663.43 503.503 1633.35 500.346 1604.34 489.468C1568.87 476.168 1540.81 453.639 1520.74 420.894ZM1710.59 252.598C1691.11 231.17 1666.84 228.429 1641.06 236.702C1619.09 243.75 1606.56 260.393 1601.12 282.714C1641.92 282.714 1682.27 282.714 1722.73 282.714C1721.77 271.4 1717.87 261.69 1710.59 252.598Z" fill="currentColor"/>
+
+<!-- r (stem) -->
+<path d="M1886.57 443.993C1886.57 347.192 1886.57 250.891 1886.57 154.293C1919.45 154.293 1952.04 154.293 1984.94 154.293C1984.94 267.328 1984.94 380.402 1984.94 493.796C1952.29 493.796 1919.73 493.796 1886.57 493.796C1886.57 477.362 1886.57 460.928 1886.57 443.993Z" fill="currentColor"/>
+
+<!-- r (dot/circle — replaces rectangular arm) -->
+<g transform="translate(1873.6, 65.6) scale(2.3333)">
+  <path d="M93.009941,71.763451 C87.178253,81.448624 78.088303,85.793503 68.565407,83.733223 C59.619362,81.797745 52.265858,74.113373 51.064991,65.445358 C49.737038,55.860008 54.461941,46.588127 62.934765,42.152767 C70.757393,38.057781 80.894463,39.276917 87.583252,45.117119 C95.077332,51.660450 97.092529,61.166870 93.009941,71.763451Z" fill="currentColor"/>
+</g>
+
+</svg>
+
+          <span class="tagline">Ideas Aumentadas</span>
+        </div>
+      </section>
+
+      <!-- ÍNDICE -->
+      <section class="toc">
+        <div class="toc__header">
+          <span class="toc__eyebrow">Índice</span>
+          <span class="toc__rule"></span>
+          <span class="toc__count">10 capítulos</span>
+        </div>
+        <h2>Contenido</h2>
+        <ol>
+          <li><a href="#cap-1">Cómo leer este mapa</a></li>
+          <li><a href="#cap-2">Criterios para elegir</a></li>
+          <li><a href="#cap-3">Fase 1 — Ideación</a></li>
+          <li><a href="#cap-4">Fase 2 — Guion</a></li>
+          <li><a href="#cap-5">Fase 3 — Producción</a></li>
+          <li><a href="#cap-6">Fase 4 — Post-producción</a></li>
+          <li><a href="#cap-7">Fase 4.5 — Repurposing</a></li>
+          <li><a href="#cap-8">Fase 5 — Publicación</a></li>
+          <li><a href="#cap-9">Fase 6 — Aprendizaje</a></li>
+          <li><a href="#cap-10">Resumen ejecutivo</a></li>
+        </ol>
+      </section>
+
+
+<article id="cap-1" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">01</div>
+    <h1>Cómo usar este material</h1>
+  </header>
+
+<hr>
+
+<p>title: "Mapeo de herramientas" subtitle: "IA para creadores de contenido — GFNE" author: "iatelier — Ideas Aumentadas" date: "Abril 2026" lang: es</p>
+
+<hr>
+
+<p>Este es un documento de consulta que recoge las herramientas mencionadas durante el taller, organizadas por fase del flujo de producción de un Reel. No está pensado para leerse de corrido — sirve cuando tengas una decisión concreta que tomar (qué contratar, qué probar, qué reemplazar).</p>
+
+<aside class="callout callout--nota">
+  <span class="callout__label">Nota</span>
+  <div class="callout__subtitle">Vigencia</div>
+  <p>Los precios están en USD/mes salvo nota. Vigentes a abril de 2026. El ecosistema cambia rápido — verifica antes de contratar.</p>
+</aside>
+
+<h2>Cómo está organizado</h2>
+
+<p>El flujo de un Reel se descompone en seis fases. Cada capítulo cubre una fase con sus tareas, las herramientas que las resuelven hoy, su rango de costo y las consideraciones para elegir.</p>
+
+<p><strong>Las fases:</strong></p>
+
+<ol>
+  <li><strong>Ideación</strong> — explorar fuentes, destilar ideas-candidatas.</li>
+  <li><strong>Guion</strong> — escribir borradores con tu voz.</li>
+  <li><strong>Producción</strong> — generar material audiovisual sintético.</li>
+  <li><strong>Post-producción</strong> — procesar el material grabado.</li>
+  <li><strong>Repurposing</strong> — convertir contenido largo en clips cortos <em>(fase puente)</em>.</li>
+  <li><strong>Publicación</strong> — programar, captar, responder.</li>
+  <li><strong>Aprendizaje</strong> — cerrar el ciclo con tus métricas.</li>
+</ol>
+
+<p>Antes de las fases hay un capítulo corto con los <strong>cinco criterios</strong> para decidir si vale la pena contratar una herramienta nueva. Al final, un <strong>resumen ejecutivo</strong> con las tres ideas que sostienen el documento.</p>
+
+<h2>Lo que no es</h2>
+
+<ul>
+  <li><strong>No es un catálogo exhaustivo.</strong> Es el subconjunto que vimos en sesión, más algunos huecos obvios que se agregaron después.</li>
+  <li><strong>No es un ranking.</strong> Cada herramienta resuelve un caso distinto. Lo importante es saber para qué sirve y cuándo no la necesitas.</li>
+  <li><strong>No reemplaza el criterio.</strong> El documento te ayuda a comparar; la decisión sigue siendo tuya.</li>
+</ul>
+</article>
+
+<article id="cap-2" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">02</div>
+    <h1>Criterios para elegir una herramienta</h1>
+  </header>
+
+<p>Antes de pagar una suscripción, pasar por estas cinco preguntas. Es la diferencia entre acumular suscripciones y construir un flujo que de verdad sirve.</p>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Caso de uso real</div>
+  <p>¿Esto resuelve una tarea que ya hago, o una que creo que debería hacer? Las suscripciones que se acumulan sin uso real son el costo invisible más grande.</p>
+</aside>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Costo total</div>
+  <p>Plan mensual + costo por uso (créditos, exportaciones, API). Algunos planes "baratos" cobran extra por cada exportación. Calcular el costo real de un mes de uso típico antes de contratar.</p>
+</aside>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Propiedad del contenido</div>
+  <p>¿Quién es dueño de lo que generas? ¿La plataforma puede usar tu material para entrenar sus modelos? Revisar términos antes de subir guiones, voz o material original.</p>
+</aside>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Sesgos y trazabilidad</div>
+  <p>¿Puedes saber de dónde sale la respuesta? ¿La herramienta cita fuentes, o solo te entrega una conclusión? Para trabajo con criterio, la trazabilidad importa más que la fluidez.</p>
+</aside>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Solapamiento con lo que ya pagas</div>
+  <p>Antes de contratar algo nuevo, revisar si una herramienta general (Claude, ChatGPT, el scheduler que ya usas) cubre el caso. Casi siempre la respuesta es sí.</p>
+</aside>
+</article>
+
+<article id="cap-3" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">03</div>
+    <h1>Fase 1 — Ideación</h1>
+  </header>
+
+<p><strong>Tarea cognitiva:</strong> explorar fuentes, destilar ideas-candidatas, mantener un proyecto vivo con tu contexto cargado.</p>
+
+<table>
+  <thead><tr><th>Herramienta</th><th>Qué hace</th><th>Para qué caso sirve</th><th>Costo</th><th>Consideraciones</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Claude (Anthropic)</strong></td><td>Asistente generalista con artefactos, proyectos, memoria, conectores y skills.</td><td>Destilar fuentes densas, mantener un proyecto con tu guía de voz e instrucciones, generar ideas-candidatas con fuente marcada.</td><td>Gratis · Pro $20/mes · Max desde $100/mes</td><td>Lo usamos como base del taller. Versión gratuita: hasta 5 proyectos. Lo eligimos por trazabilidad (cita fuentes), proyectos como espacio persistente y postura editorial de Anthropic en seguridad.</td></tr>
+  <tr><td><strong>ChatGPT (OpenAI)</strong></td><td>Asistente generalista equivalente.</td><td>Mismo caso de uso que Claude.</td><td>Gratis · Plus $20/mes · Pro $200/mes</td><td>Alternativa razonable si ya lo pagas. Cambia detalles: la estructura de proyectos y memoria es distinta, y la integración con voz/imagen está más madura.</td></tr>
+  <tr><td><strong>Gemini (Google)</strong></td><td>Asistente generalista con integración nativa al ecosistema Google.</td><td>Misma función que Claude/ChatGPT, pero si tus fuentes viven en Google Drive, Docs o Gmail, la integración es directa.</td><td>Gratis · Advanced $20/mes</td><td>Útil si tu corpus de trabajo ya está en Google.</td></tr>
+  <tr><td><strong>NotebookLM (Google)</strong></td><td>Cuaderno con fuentes acotadas: tú decides qué entra, el modelo solo responde con base en eso.</td><td>Investigación con un corpus cerrado donde no quieres que el modelo se invente nada.</td><td>Gratis</td><td>Útil cuando la trazabilidad es crítica. No reemplaza una IA generalista, es complementario.</td></tr>
+  <tr><td><strong>Perplexity</strong></td><td>Buscador con IA que cita fuentes web en cada respuesta.</td><td>Verificación rápida de datos, investigación de coyuntura, contraste de versiones cuando las fuentes se contradicen.</td><td>Gratis · Pro $20/mes</td><td>Más fuerte que Claude/ChatGPT para hechos recientes y verificación. <strong>No es asistente de proyecto</strong>, no guarda contexto persistente.</td></tr>
+  <tr><td><strong>Granola</strong></td><td>Transcripción de calls y reuniones con identificación de hablantes y resumen automático.</td><td>Cuando tu fuente de Fase 1 es una entrevista grabada, una call con un experto, o conversaciones que no son documentos.</td><td>Gratis · Pro $14/mes</td><td>Útil para creadores que entrevistan. La transcripción + resumen entra directo al proyecto como fuente.</td></tr>
+  </tbody>
+</table>
+
+<aside class="callout callout--nota">
+  <span class="callout__label">Nota</span>
+  <div class="callout__subtitle">Modelos de Claude</div>
+  <p><strong>Opus 4.7</strong> — el más capaz, lento. <strong>Sonnet 4.6</strong> — caballo de batalla. <strong>Haiku 4.5</strong> — rápido y económico. Default razonable: Sonnet.</p>
+</aside>
+</article>
+
+<article id="cap-4" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">04</div>
+    <h1>Fase 2 — Guion</h1>
+  </header>
+
+<p><strong>Tarea cognitiva:</strong> destilar tu guía de voz desde guiones previos, escribir borradores que suenen a ti, evitar el <em>IA slop</em>.</p>
+
+<table>
+  <thead><tr><th>Herramienta</th><th>Qué hace</th><th>Para qué caso sirve</th><th>Costo</th><th>Consideraciones</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Claude / ChatGPT con proyecto bien armado</strong></td><td>Escribir guiones con tu voz cargada como instrucciones del proyecto + guía de voz como archivo.</td><td>Primer borrador, segunda versión con feedback específico, variaciones por hook o duración.</td><td>Incluido en el plan general.</td><td>El criterio es el mismo de la Fase 1. Lo que cambia es la carga del proyecto: instrucciones + guía de voz + ideas-candidatas. <strong>Sin proyecto bien armado, vas a obtener slop.</strong></td></tr>
+  </tbody>
+</table>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Sobre el <em>IA slop</em></div>
+  <p>La IA escribe genérico cuando no la obligas a ser específica. Las técnicas que funcionan: ejemplos concretos de tu voz, instrucciones direccionales ("evita simetrías", "no uses estructura de tres puntos"), guía de voz cargada como archivo de referencia.</p>
+</aside>
+</article>
+
+<article id="cap-5" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">05</div>
+    <h1>Fase 3 — Producción</h1>
+  </header>
+
+<p><strong>Tarea operativa:</strong> generar material audiovisual sintético — voz, b-roll, animación, música, doblaje.</p>
+
+<aside class="callout callout--nota">
+  <span class="callout__label">Nota</span>
+  <div class="callout__subtitle">Sólido vs. frágil en 2026</div>
+  <p><strong>Sólido:</strong> voiceover sintético, voz clonada, b-roll abstracto/atmosférico, animación de gráficas, música y SFX, lip-sync para doblaje.</p>
+
+<p><strong>Frágil:</strong> humanos hablando con sincronía labial perfecta, manos haciendo tareas detalladas, texto legible dentro del video, continuidad de un mismo personaje &gt;5 seg, físicas reales, escenas con varias personas interactuando.</p>
+</aside>
+
+<table>
+  <thead><tr><th>Tarea</th><th>Plataformas</th><th>Rango de costo</th><th>Consideraciones</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Voiceover sintético en español</strong></td><td>ElevenLabs, OpenAI TTS, PlayHT</td><td>$5–$99/mes (API: $15/M chars)</td><td>ElevenLabs es la referencia para español. OpenAI TTS está integrado si ya pagas ChatGPT.</td></tr>
+  <tr><td><strong>Voz clonada propia</strong></td><td>ElevenLabs, Resemble, PlayHT</td><td>$22–$99/mes</td><td>Necesitas una muestra limpia (5–30 min de audio sin ruido). Considerar términos de uso: ¿la plataforma puede usar tu voz clonada para otra cosa?</td></tr>
+  <tr><td><strong>B-roll abstracto, atmosférico, fondos</strong></td><td>Seedance 2.0, Veo 3.1 (Google), Kling, Runway, Sora 2</td><td>$7–$200/mes</td><td>Sólido para fondos y atmósferas. <strong>Frágil para personajes y físicas reales.</strong> Seedance 2.0 es el modelo más potente hoy según benchmarks.</td></tr>
+  <tr><td><strong>Animación de gráficas y datos</strong></td><td>Claude (artefactos), Flourish, Cavalry</td><td>$0–$20/mes</td><td>Claude y Cavalry tienen plan gratis. Para gráficas con identidad propia, los artefactos de Claude permiten iterar visualmente.</td></tr>
+  <tr><td><strong>Música y SFX generativos</strong></td><td>Suno, Udio, ElevenLabs Sound</td><td>$10–$30/mes</td><td>Verificar licencia de uso comercial; varía entre plataformas y entre planes.</td></tr>
+  <tr><td><strong>Lip-sync para doblaje a otro idioma</strong></td><td>HeyGen, Rask, ElevenLabs Studio</td><td>$29–$60/mes</td><td>Funciona razonablemente en idiomas mayoritarios. <strong>Implicaciones éticas:</strong> estás poniendo palabras en boca de alguien.</td></tr>
+  </tbody>
+</table>
+</article>
+
+<article id="cap-6" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">06</div>
+    <h1>Fase 4 — Post-producción</h1>
+  </header>
+
+<p><strong>Tarea operativa:</strong> procesar el material grabado — transcribir, cortar, limpiar audio, remover fondos, normalizar.</p>
+
+<aside class="callout callout--nota">
+  <span class="callout__label">Nota</span>
+  <div class="callout__subtitle">Sólido vs. frágil en 2026</div>
+  <p><strong>Sólido:</strong> transcripción y subtitulado automático, edición por texto, mejora de audio, remoción de fondo, color match automático, normalización de loudness.</p>
+
+<p><strong>Frágil:</strong> edición con criterio narrativo, transiciones que no se sientan plantilla, color grading con voz propia, decisiones de ritmo emocional, motion graphics complejos sin retoque, eliminar objetos en movimiento sin artefactos.</p>
+</aside>
+
+<table>
+  <thead><tr><th>Tarea</th><th>Plataformas</th><th>Rango de costo</th><th>Consideraciones</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Transcripción y subtítulos automáticos</strong></td><td>Whisper, Descript, CapCut, ZapCap</td><td>$0–$24/mes</td><td>Whisper es gratis y open-source pero requiere setup. CapCut tiene plan gratis con la función incluida.</td></tr>
+  <tr><td><strong>Subtítulos animados (kinetic typography)</strong></td><td>Submagic, Opus Clip, CapCut Pro</td><td>$10–$24/mes</td><td>Subtítulos estilo TikTok/Reels con énfasis visual palabra por palabra. Distinto de subtítulos planos — afecta retención en los primeros 3 segundos.</td></tr>
+  <tr><td><strong>Edición por texto</strong></td><td>Descript, CapCut Pro</td><td>$10–$24/mes</td><td>Cortas borrando palabras del transcript. Cambia el flujo de trabajo: editar como editas un documento.</td></tr>
+  <tr><td><strong>Mejora de audio / remoción de ruido</strong></td><td>Adobe Enhance Speech, ElevenLabs Voice Isolator, Auphonic, Audacity</td><td>$0–$11/mes</td><td>Adobe y ElevenLabs tienen plan gratis. <strong>Audacity es open-source y completamente gratis</strong> — requiere más manejo manual pero no tiene techo de uso. Para casos sencillos los gratis bastan.</td></tr>
+  <tr><td><strong>Remoción de fondo / rotoscopia</strong></td><td>CapCut, Runway (Magic Mask), DaVinci Studio</td><td>$0–$35/mes</td><td>CapCut gratis funciona para casos simples. Runway Magic Mask para casos complejos.</td></tr>
+  <tr><td><strong>Color match automático</strong></td><td>DaVinci Resolve (gratis), DaVinci Studio</td><td>$0 / $295 compra única</td><td>DaVinci Resolve gratis es de las herramientas profesionales más completas sin suscripción.</td></tr>
+  <tr><td><strong>Normalización de loudness</strong></td><td>Auphonic, Adobe Audition, CapCut Pro</td><td>$0–$23/mes</td><td>Crítico para que tu contenido suene consistente entre videos y al volumen estándar de cada plataforma.</td></tr>
+  </tbody>
+</table>
+</article>
+
+<article id="cap-7" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">07</div>
+    <h1>Fase 4.5 — Repurposing (largo → corto)</h1>
+  </header>
+
+<p><strong>Tarea operativa puente:</strong> convertir contenido largo (entrevistas, podcasts, conferencias, lives) en clips cortos para Reels, Shorts y TikTok.</p>
+
+<p>Es la fase que el flujo del taller asume pero no aborda: si grabas entrevistas o lives largos, el cuello de botella es decidir qué fragmentos cortar. La IA hace este trabajo en minutos cuando antes tomaba horas.</p>
+
+<table>
+  <thead><tr><th>Herramienta</th><th>Qué hace</th><th>Costo</th><th>Consideraciones</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Opus Clip</strong></td><td>Sube un video largo, identifica los momentos con más potencial viral, los corta y los formatea con subtítulos automáticos.</td><td>Gratis (limitado) · Starter $9.5/mes · Pro $24/mes</td><td>El default razonable. Su algoritmo de "viralidad" tiende a sesgos genéricos; <strong>revisa los clips antes de publicar</strong>, no es plug-and-play.</td></tr>
+  <tr><td><strong>Vizard / Munch</strong></td><td>Equivalentes a Opus Clip con énfasis distinto: Vizard prioriza marca y branding, Munch detecta temas y los agrupa.</td><td>$20–$30/mes</td><td>Útiles si Opus Clip te entrega clips muy planos. Probar gratis antes de pagar.</td></tr>
+  <tr><td><strong>Descript</strong></td><td>Edición por texto + posibilidad de extraer fragmentos.</td><td>$10–$24/mes</td><td>Si ya pagas Descript para edición, sirve para repurposing manual. Menos automático, más control.</td></tr>
+  </tbody>
+</table>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Cuándo automatizar el repurposing</div>
+  <p>El repurposing automático funciona cuando el contenido largo tiene momentos densos identificables (entrevistas, masterclasses). Falla cuando el material es uniforme (charlas con un solo arco narrativo). Si tu contenido es del segundo tipo, mejor cortar a mano.</p>
+</aside>
+</article>
+
+<article id="cap-8" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">08</div>
+    <h1>Fase 5 — Publicación</h1>
+  </header>
+
+<p><strong>Tarea operativa:</strong> programar, decidir cuándo publicar, escribir captions y hashtags, responder DMs.</p>
+
+<h2>Programación (schedulers)</h2>
+
+<table>
+  <thead><tr><th>Herramienta</th><th>Qué hace</th><th>Costo</th><th>Consideraciones</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Buffer</strong></td><td>Plan gratis con 3 canales y 10 posts. Multiplataforma.</td><td>Free–$6/mes</td><td>Ideal para arrancar sin pagar. Calendario simple.</td></tr>
+  <tr><td><strong>Later</strong></td><td>Planeación visual fuerte. Smart Scheduling con IA, integración con Canva.</td><td>$18.75/mes</td><td>Si tu flujo es muy visual y trabajas en Canva.</td></tr>
+  <tr><td><strong>Metricool</strong></td><td>Scheduler + analítica + benchmarks de competencia en un solo lugar.</td><td>$20/mes</td><td>Útil si ya quieres consolidar scheduling y métricas en una sola herramienta.</td></tr>
+  </tbody>
+</table>
+
+<h2>Horarios óptimos</h2>
+
+<table>
+  <thead><tr><th>Herramienta</th><th>Qué hace</th><th>Costo</th><th>Consideraciones</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Later, Metricool, Sprout</strong></td><td>Analizan tu audiencia específica y proponen ventanas de publicación.</td><td>Incluido en schedulers</td><td><strong>Si ya pagas el scheduler, no necesitas herramienta extra.</strong></td></tr>
+  <tr><td><strong>Iconosquare, Sociali.ai</strong></td><td>Predictivo con accuracy reportada del 85%.</td><td>Variable</td><td>Útil cuando publicas en volumen y necesitas afinar más allá del benchmark general.</td></tr>
+  </tbody>
+</table>
+
+<h2>Thumbnails y miniaturas (YouTube, blog, LinkedIn)</h2>
+
+<table>
+  <thead><tr><th>Herramienta</th><th>Qué hace</th><th>Costo</th><th>Consideraciones</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Ideogram</strong></td><td>Generación de imagen con texto legible — el único modelo público que respeta tipografía con consistencia.</td><td>Gratis · Plus $7/mes · Pro $16/mes</td><td>El default para thumbnails que llevan texto. Los demás generadores aún fallan en texto legible.</td></tr>
+  <tr><td><strong>Recraft</strong></td><td>Generación con control vectorial y consistencia de estilo entre imágenes.</td><td>Gratis · Pro $10/mes</td><td>Útil cuando necesitas mantener identidad visual a lo largo de una serie. Exporta vectores.</td></tr>
+  <tr><td><strong>Midjourney</strong></td><td>Generación de imagen de referencia, alta calidad estética.</td><td>$10–$60/mes</td><td>No recomendable para thumbnails con texto, pero sí para imágenes base que después editas en Canva o Photoshop.</td></tr>
+  </tbody>
+</table>
+
+<h2>Captions y hashtags con IA</h2>
+
+<table>
+  <thead><tr><th>Herramienta</th><th>Qué hace</th><th>Costo</th><th>Consideraciones</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Claude / ChatGPT</strong></td><td>Con tu guía de voz cargada en el proyecto, generan captions y hashtags en tu tono.</td><td>Incluido en el plan general.</td><td><strong>Sustituye a especialistas si tu proyecto está bien armado.</strong> Es el caso más claro de "una herramienta general bien configurada vence a una especializada genérica".</td></tr>
+  <tr><td><strong>Flick</strong></td><td>Especialista Instagram. Hashtags inteligentes con análisis de alcance, optimización por algoritmo.</td><td>Variable</td><td>Útil solo si tu prioridad es alcance por hashtag en IG y trabajas a volumen.</td></tr>
+  </tbody>
+</table>
+
+<h2>Responder DMs y comentarios</h2>
+
+<table>
+  <thead><tr><th>Herramienta</th><th>Qué hace</th><th>Costo</th><th>Consideraciones</th></tr></thead>
+  <tbody>
+  <tr><td><strong>ManyChat</strong></td><td>Estándar para autoresponder de DMs en Instagram. Gratis hasta 1000 contactos.</td><td>$0–$15/mes</td><td>Cumple con la API oficial de Meta. El default razonable.</td></tr>
+  <tr><td><strong>ReplyRush</strong></td><td>Especialista Instagram, compromiso fuerte con compliance de Meta.</td><td>Variable</td><td>Útil si toda tu comunidad vive en IG y necesitas algo más específico.</td></tr>
+  <tr><td><strong>Chatfuel</strong></td><td>Más simple que ManyChat. Plan gratis hasta 50 conversaciones.</td><td>$0–$15/mes</td><td>Bueno para empezar antes de pagar.</td></tr>
+  </tbody>
+</table>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Sobre los autoresponders</div>
+  <p>Los autoresponders rompen la confianza si se sienten plantilla. Úsalos para FAQ y respuestas de bienvenida, no para conversaciones reales con tu audiencia.</p>
+</aside>
+</article>
+
+<article id="cap-9" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">09</div>
+    <h1>Fase 6 — Aprendizaje</h1>
+  </header>
+
+<p><strong>Tarea cognitiva:</strong> cerrar el ciclo. Llevar lo que aprendiste de la analítica de vuelta a tu proyecto.</p>
+
+<table>
+  <thead><tr><th>Herramienta</th><th>Qué hace</th><th>Para qué caso sirve</th><th>Costo</th><th>Consideraciones</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Claude / ChatGPT con métricas + guiones</strong></td><td>Cruza analítica nativa con guiones para identificar patrones — qué hooks retienen, qué temas funcionan, qué duraciones pegan.</td><td>Cerrar el círculo virtuoso entre lo que publicas y lo que actualizas en tu proyecto.</td><td>Incluido en el plan general.</td><td>Sin los guiones, la IA solo ve números. No puede inferir qué decisión narrativa sostuvo cada métrica. <strong>Subir siempre métricas + guiones juntos.</strong></td></tr>
+  <tr><td><strong>Analítica nativa de IG / TikTok / YouTube</strong></td><td>Reach, retención, saves, comentarios.</td><td>Fuente primaria de los datos.</td><td>Gratis</td><td>Antes de pagar herramientas de analítica externas, agotar la nativa.</td></tr>
+  </tbody>
+</table>
+</article>
+
+<article id="cap-10" class="content">
+  <header class="chapter-open">
+    <div class="chapter-open__eyebrow">Capítulo</div>
+    <div class="chapter-open__number">10</div>
+    <h1>Resumen ejecutivo</h1>
+  </header>
+
+<p>Si solo te quedas con tres ideas:</p>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Una herramienta general bien configurada reemplaza a media docena de especializadas</div>
+  <p>Claude o ChatGPT con un proyecto cargado (instrucciones + guía de voz + ideas-candidatas) sustituye, en la mayoría de los casos, herramientas especializadas para captions, hashtags, ideación, análisis de métricas. Antes de pagar especialistas, exprime el generalista.</p>
+</aside>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">Saber dónde está el filo de la herramienta</div>
+  <p>Lo que ya funciona sólido en 2026: voz sintética, transcripción, edición por texto, mejora de audio, b-roll abstracto, captions, scheduling. Lo que todavía es frágil: video con personajes, motion graphics narrativos, edición con criterio, eliminación de objetos en movimiento. Pelear contra lo frágil cuesta tiempo y plata; conocer el filo te ahorra frustración.</p>
+</aside>
+
+<aside class="callout callout--criterio">
+  <span class="callout__label">Criterio</span>
+  <div class="callout__subtitle">El círculo virtuoso se cierra con métricas + guiones juntos</div>
+  <p>Sin el guion, los números no significan nada. Con el guion, cada número se vuelve una hipótesis sobre tu voz: qué hook retuvo, qué tema funcionó, qué duración pegó. Esa lectura cruzada es la que actualiza tu proyecto y mejora el siguiente reel.</p>
+</aside>
+
+<hr>
+
+<p><em>iatelier — Ideas Aumentadas</em></p>
+
+<p><em>Taller GFNE · 25 de abril de 2026</em></p>
+</article>
+    </main>
+  </div>
+
+  <script>
+    // Progress bar
+    const progress = document.getElementById('progress');
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progress.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    // Dark mode toggle
+    const toggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    toggle.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      toggle.textContent = root.classList.contains('dark') ? 'Modo claro' : 'Modo oscuro';
+    });
+
+    // Sidebar toggle.
+    // La scrollbar interna del .site__nav se gestiona con la clase
+    // .is-nav-scrollable: solo existe cuando el nav está visible y
+    // la transición ya terminó. Así no aparece ni durante el ocultado
+    // ni durante el mostrado → sin parpadeo.
+    const navToggle = document.getElementById('navToggle');
+    const site = document.querySelector('.site');
+    const siteNav = document.querySelector('.site__nav');
+    const NAV_KEY = 'iatelier-guia-nav-hidden';
+    const NAV_TRANSITION_MS = 220;
+    let navScrollTimer = null;
+
+    const setNavHidden = (hidden) => {
+      // Antes de animar: quitamos scrollbar para que no parpadee.
+      if (siteNav) siteNav.classList.remove('is-nav-scrollable');
+      if (navScrollTimer) { clearTimeout(navScrollTimer); navScrollTimer = null; }
+
+      site.classList.toggle('is-nav-hidden', hidden);
+      navToggle.classList.toggle('is-closed', hidden);
+      navToggle.setAttribute('aria-label', hidden ? 'Mostrar índice' : 'Ocultar índice');
+      navToggle.setAttribute('title', hidden ? 'Mostrar índice' : 'Ocultar índice');
+      try { sessionStorage.setItem(NAV_KEY, hidden ? '1' : '0'); } catch (e) {}
+
+      // Si queda visible, rehabilitamos el scroll interno cuando la
+      // transición haya terminado para que el usuario pueda scrollear
+      // el índice si es largo.
+      if (!hidden && siteNav) {
+        navScrollTimer = setTimeout(() => {
+          siteNav.classList.add('is-nav-scrollable');
+          navScrollTimer = null;
+        }, NAV_TRANSITION_MS + 50);
+      }
+    };
+
+    // Estado inicial: restaurar si estaba oculto, o activar scroll si
+    // está visible (porque el CSS arranca en visible por defecto).
+    try {
+      if (sessionStorage.getItem(NAV_KEY) === '1') {
+        setNavHidden(true);
+      } else if (siteNav) {
+        // Habilitar scroll del nav tras un frame (arranca visible).
+        requestAnimationFrame(() => siteNav.classList.add('is-nav-scrollable'));
+      }
+    } catch (e) {}
+
+    navToggle.addEventListener('click', () => {
+      setNavHidden(!site.classList.contains('is-nav-hidden'));
+    });
+
+    // Copy buttons
+    document.querySelectorAll('.callout__copy').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const callout = btn.closest('.callout');
+        const text = callout.querySelector('p').innerText;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => {
+            const original = btn.textContent;
+            btn.textContent = 'Copiado';
+            setTimeout(() => btn.textContent = original, 1500);
+          });
+        }
+      });
+    });
+
+    // TOC active section
+    const sections = document.querySelectorAll('article[id]');
+    const links = document.querySelectorAll('.site__nav a');
+    const setActive = () => {
+      let current = null;
+      sections.forEach(s => {
+        const rect = s.getBoundingClientRect();
+        if (rect.top < window.innerHeight / 2.5) current = s.id;
+      });
+      links.forEach(a => {
+        a.classList.toggle('is-active', a.getAttribute('href') === '#' + current);
+      });
+    };
+    window.addEventListener('scroll', setActive, { passive: true });
+    setActive();
+  </script>
+
+  <style>
+    #pw-overlay {
+      position: fixed; inset: 0; z-index: 99999;
+      background: #f2efe8; display: flex;
+      align-items: center; justify-content: center;
+      font-family: 'Maax', 'Inter', sans-serif;
+    }
+    #pw-overlay.hidden { display: none; }
+    #pw-box {
+      text-align: center; padding: 2rem; max-width: 28rem;
+    }
+    #pw-logo {
+      font-weight: 500; font-size: 1.75rem; margin-bottom: 1.5rem;
+      color: #111;
+    }
+    #pw-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: #666; margin-bottom: 1.25rem;
+    }
+    #pw-input {
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1px solid #ccc; background: #fff;
+      font-family: inherit; font-size: 1rem;
+      border-radius: 2px; outline: none;
+      text-align: center;
+    }
+    #pw-input:focus { border-color: #c8102e; }
+    #pw-error {
+      min-height: 1.2em; margin-top: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem; color: #c8102e;
+    }
+    #pw-btn {
+      margin-top: 1rem; padding: 0.6rem 2rem;
+      background: #c8102e; color: #fff; border: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
+      cursor: pointer; border-radius: 2px;
+    }
+    #pw-btn:hover { background: #a50d24; }
+  </style>
+
+  <div id="pw-overlay">
+    <div id="pw-box">
+      <div id="pw-logo">iatelier</div>
+      <div id="pw-label">Ingresa la contraseña para continuar</div>
+      <input id="pw-input" type="password" placeholder="contraseña" autocomplete="off" autofocus />
+      <div id="pw-error"></div>
+      <button id="pw-btn">Entrar</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const EXPECTED = "b8803498f1b3572dc3b5b6d2155325e3796b778fb0c763039fcb8d1688a49c67";
+      const SKEY = "iatelier-pw-ok";
+      const overlay = document.getElementById('pw-overlay');
+      const input   = document.getElementById('pw-input');
+      const btn     = document.getElementById('pw-btn');
+      const errMsg  = document.getElementById('pw-error');
+
+      // If already unlocked this session, skip the gate.
+      try {
+        if (sessionStorage.getItem(SKEY) === EXPECTED) {
+          overlay.classList.add('hidden');
+          return;
+        }
+      } catch (e) {}
+
+      document.body.style.overflow = 'hidden';
+
+      async function sha256(text) {
+        const bytes = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest('SHA-256', bytes);
+        return Array.from(new Uint8Array(hash))
+          .map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+
+      async function attempt() {
+        const got = await sha256(input.value);
+        if (got === EXPECTED) {
+          overlay.classList.add('hidden');
+          document.body.style.overflow = '';
+          try { sessionStorage.setItem(SKEY, EXPECTED); } catch (e) {}
+        } else {
+          errMsg.textContent = 'Contraseña incorrecta.';
+          input.value = '';
+          input.focus();
+        }
+      }
+
+      btn.addEventListener('click', attempt);
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+    })();
+  </script>
+
+</body>
+</html>
