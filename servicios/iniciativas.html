@@ -3,29 +3,34 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Formación para organizaciones — iatelier</title>
-  <meta name="description" content="Formación en IA diseñada a medida de tu equipo. Diagnóstico, sesiones prácticas y acompañamiento."/>
-  <link rel="icon" href="img/favicon.svg" type="image/svg+xml"/>
-  <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+  <title>Para iniciativas — iatelier</title>
+  <meta name="description" content="Formación y aumentos para iniciativas y redes que invierten en formar o construir herramientas para una población externa: aliados, miembros, beneficiarios, contraparte."/>
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Formación para organizaciones — iatelier"/>
-  <meta property="og:description" content="Formación en IA diseñada a medida de tu equipo. Diagnóstico, sesiones prácticas y acompañamiento."/>
+  <meta property="og:title" content="Para iniciativas — iatelier"/>
+  <meta property="og:description" content="Formación y aumentos para iniciativas y redes que invierten en formar a una población externa."/>
   <meta property="og:image" content="https://iatelier.org/img/og-image.png"/>
+  <meta property="og:url" content="https://iatelier.org/servicios/iniciativas.html"/>
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="iatelier — Ideas Aumentadas"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Para iniciativas — iatelier"/>
+  <meta name="twitter:description" content="Formación y aumentos para iniciativas y redes que invierten en formar a una población externa."/>
+  <meta name="twitter:image" content="https://iatelier.org/img/og-image.png"/>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="../styles.css"/>
 
   <style>
     body {
       font-family: var(--font-body);
-      color: var(--marfil);
-      background: var(--tinta);
+      color: var(--tinta);
+      background: var(--marfil);
       line-height: 1.6;
       overflow-x: hidden;
       min-height: 100vh;
@@ -33,206 +38,18 @@
       flex-direction: column;
     }
 
-    /* ========================================
-       MAIN — PAGE SECTIONS
-       ======================================== */
-    main {
-      flex: 1;
-      margin-top: 60px;
-    }
+    main { flex: 1; margin-top: 60px; }
 
-    .section {
-      padding: 4rem clamp(1.5rem, 5vw, 4rem);
-    }
-
-    /* Hero / Header Section */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      min-height: 42vh;
-      padding: 4rem clamp(1.5rem, 5vw, 4rem) 3rem;
-      background: linear-gradient(135deg, rgba(61, 90, 110, 0.08) 0%, rgba(61, 90, 110, 0.03) 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-      font-weight: 700;
-      margin-bottom: var(--space-md);
-      max-width: 900px;
-    }
-
-    .hero .tagline {
-      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
-      color: rgba(244, 240, 235, 0.75);
-      max-width: 600px;
-      line-height: 1.6;
-    }
-
-    /* Línea separadora */
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(140, 128, 112, 0.25) 30%, rgba(140, 128, 112, 0.25) 70%, transparent 100%);
-      margin: 0;
-    }
-
-    /* Content Sections */
-    .content-section {
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .content-section h2 {
-      font-size: clamp(1.9rem, 2.8vw, 2.6rem);
-      font-weight: 700;
-      margin-bottom: var(--space-lg);
+    /* ====== HERO (oscuro, full bleed) ====== */
+    .audiencia-hero {
+      background: var(--tinta);
       color: var(--marfil);
-    }
-
-    .content-section > p,
-    .content-section > ul {
-      font-size: clamp(1.05rem, 1.15vw, 1.15rem);
-      color: rgba(244, 240, 235, 0.82);
-      margin-bottom: var(--space-lg);
-      line-height: 1.75;
-    }
-
-    .content-section ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .content-section ul li {
-      padding-left: 2.5rem;
-      margin-bottom: var(--space-md);
-      position: relative;
-    }
-
-    .content-section ul li::before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: var(--cadmio);
-      font-weight: 700;
-    }
-
-    /* Process Cards */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: var(--space-lg);
-      margin: var(--space-xl) 0 0;
-    }
-
-    .process-card {
-      padding: var(--space-xl);
-      border: 1px solid rgba(255, 255, 255, 0.10);
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 2px;
-      transition: all 0.3s ease;
+      padding: var(--space-2xl) clamp(1.5rem, 5vw, 4rem);
       position: relative;
       overflow: hidden;
     }
 
-    /* Grain texture en las cards */
-    .process-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: var(--grain);
-      background-repeat: repeat;
-      background-size: 256px 256px;
-      opacity: 0.04;
-      mix-blend-mode: soft-light;
-      pointer-events: none;
-    }
-
-    .process-card:hover {
-      border-color: rgba(61, 90, 110, 0.4);
-      background: rgba(61, 90, 110, 0.06);
-      transform: translateY(-4px);
-    }
-
-    .process-card .number {
-      display: inline-block;
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 2.8rem;
-      color: var(--arena-light);
-      line-height: 1;
-      margin-bottom: var(--space-sm);
-      letter-spacing: -0.04em;
-    }
-
-    .process-card h3 {
-      font-size: clamp(1.1rem, 1.3vw, 1.35rem);
-      font-weight: 700;
-      margin-bottom: var(--space-md);
-      color: var(--marfil);
-    }
-
-    .process-card p {
-      font-size: 1rem;
-      color: rgba(244, 240, 235, 0.72);
-      line-height: 1.7;
-    }
-
-    /* Organization Types List */
-    .org-types {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin: var(--space-lg) 0 0;
-    }
-
-    .org-type {
-      padding: 0.55rem 1.1rem;
-      border: 1px solid rgba(61, 90, 110, 0.35);
-      background: rgba(61, 90, 110, 0.06);
-      border-radius: 2px;
-      transition: all 0.2s ease;
-    }
-
-    .org-type:hover {
-      background: rgba(61, 90, 110, 0.12);
-      border-color: rgba(61, 90, 110, 0.6);
-    }
-
-    .org-type p {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: rgba(244, 240, 235, 0.8);
-      font-weight: 400;
-    }
-
-    /* CTA Section */
-    .cta-section {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 4rem clamp(1.5rem, 5vw, 4rem);
-      background: rgba(61, 90, 110, 0.06);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Grain en CTA */
-    .cta-section::before {
+    .audiencia-hero::after {
       content: '';
       position: absolute;
       inset: 0;
@@ -244,32 +61,272 @@
       pointer-events: none;
     }
 
-    /* Línea separadora en CTA */
-    .cta-section::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background: var(--arena);
-    }
-
-    .cta-section h2 {
-      font-size: clamp(1.9rem, 2.8vw, 2.6rem);
-      font-weight: 700;
-      margin-bottom: var(--space-md);
-      max-width: 700px;
+    .audiencia-hero-inner {
+      max-width: 980px;
+      margin: 0 auto;
       position: relative;
       z-index: 1;
     }
 
-    .cta-section p {
-      font-size: clamp(1.05rem, 1.15vw, 1.15rem);
-      color: rgba(244, 240, 235, 0.72);
-      margin-bottom: var(--space-xl);
-      max-width: 520px;
+    .audiencia-hero .audience-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      margin-bottom: var(--space-md);
+      display: block;
+    }
+
+    .audiencia-hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+      max-width: 900px;
+      color: var(--marfil);
+    }
+
+    .audiencia-hero h1 .accent { color: var(--cadmio); }
+
+    .audiencia-hero .lead {
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      line-height: 1.6;
+      color: var(--arena-light);
+      max-width: 720px;
+    }
+
+    .section {
+      padding: var(--space-xl) clamp(1.5rem, 5vw, 4rem);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      margin-bottom: var(--space-md);
+      display: block;
+    }
+
+    .section h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+      max-width: 800px;
+    }
+
+    .section p {
+      font-size: clamp(1rem, 1.15vw, 1.1rem);
+      line-height: 1.75;
+      color: var(--arena);
+      margin-bottom: var(--space-md);
+      max-width: 760px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(140, 128, 112, 0.25) 30%, rgba(140, 128, 112, 0.25) 70%, transparent 100%);
+    }
+
+    .section-grain { position: relative; }
+    .section-grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--grain);
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      opacity: 0.04;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .section-grain > * { position: relative; z-index: 1; }
+
+    .mark {
+      background: linear-gradient(
+        104deg,
+        transparent 0%,
+        rgba(217, 43, 31, 0.10) 5%,
+        rgba(217, 43, 31, 0.18) 20%,
+        rgba(217, 43, 31, 0.18) 80%,
+        rgba(217, 43, 31, 0.06) 95%,
+        transparent 100%
+      );
+    }
+
+    /* Casos */
+    .casos-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .casos-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .caso {
+      padding: var(--space-md) 0;
+      border-top: 2px solid var(--tinta);
+    }
+
+    .caso .caso-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      margin-bottom: var(--space-sm);
+    }
+
+    .caso h3 {
+      font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+      font-weight: 700;
+      color: var(--tinta);
+      margin-bottom: var(--space-sm);
+    }
+
+    .caso p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--arena);
+      margin: 0;
+    }
+
+    /* Catálogo */
+    .catalogo {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    @media (min-width: 900px) {
+      .catalogo {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+      }
+    }
+
+    .producto {
+      background: white;
+      border: 1px solid rgba(140, 128, 112, 0.18);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .producto:hover {
+      border-color: var(--cadmio);
+      transform: translateY(-2px);
+    }
+
+    .producto-header { margin-bottom: var(--space-md); }
+
+    .producto h3 {
+      font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+      font-weight: 700;
+      color: var(--tinta);
+      margin-bottom: var(--space-sm);
+    }
+
+    .producto-precio {
+      font-family: var(--font-display);
+      font-feature-settings: "ss02" 1;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--cadmio);
+    }
+
+    .producto-precio small {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--arena);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .producto-body {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--arena);
+      flex: 1;
+      margin-bottom: var(--space-md);
+    }
+
+    .producto-meta {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--arena);
+      margin-bottom: var(--space-md);
+    }
+
+    .producto-cta {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      border-bottom: 1.5px solid var(--cadmio);
+      padding-bottom: 2px;
+      align-self: flex-start;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .producto-cta:hover {
+      color: var(--tinta);
+      border-color: var(--tinta);
+    }
+
+    /* CTA final */
+    .cta-final {
+      background: var(--tinta);
+      color: var(--marfil);
+      padding: var(--space-2xl) clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--grain);
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      opacity: 0.05;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .cta-final h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+      color: var(--marfil);
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-final p {
+      font-size: clamp(1rem, 1.15vw, 1.1rem);
+      color: var(--arena-light);
+      max-width: 600px;
+      margin: 0 auto var(--space-lg);
       line-height: 1.7;
       position: relative;
       z-index: 1;
@@ -286,10 +343,10 @@
       font-size: clamp(0.88rem, 1.1vw, 1rem);
       letter-spacing: -0.01em;
       text-transform: uppercase;
+      text-decoration: none;
       border: none;
       cursor: pointer;
       transition: background 0.3s ease, transform 0.15s ease;
-      text-decoration: none;
       position: relative;
       z-index: 1;
     }
@@ -297,59 +354,8 @@
       background: #b8221a;
       transform: translateY(-2px);
     }
-    .btn-cta:active {
-      transform: scale(0.97);
-    }
 
-    /* Mark override: sobre fondo oscuro */
-    .mark {
-      color: var(--marfil) !important;
-      background: linear-gradient(
-        104deg,
-        transparent 0%,
-        rgba(217, 43, 31, 0.15) 5%,
-        rgba(217, 43, 31, 0.25) 20%,
-        rgba(217, 43, 31, 0.25) 80%,
-        rgba(217, 43, 31, 0.08) 95%,
-        transparent 100%
-      ) !important;
-    }
-
-    /* Grain en secciones de contenido */
-    .section-grain {
-      position: relative;
-    }
-    .section-grain::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: var(--grain);
-      background-repeat: repeat;
-      background-size: 256px 256px;
-      opacity: 0.035;
-      mix-blend-mode: soft-light;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .section-grain > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Número de sección pequeño */
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--cadmio);
-      margin-bottom: 1.2rem;
-      display: block;
-    }
-
-    /* ========================================
-       FOOTER
-       ======================================== */
+    /* Footer */
     .footer {
       background: var(--tinta);
       display: flex;
@@ -359,11 +365,7 @@
       border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .footer-logo svg {
-      height: 18px;
-      width: auto;
-      color: var(--arena);
-    }
+    .footer-logo svg { height: 16px; width: auto; color: var(--arena); }
 
     .footer-copy {
       font-family: var(--font-mono);
@@ -373,23 +375,8 @@
       color: var(--arena);
     }
 
-    /* ========================================
-       RESPONSIVE
-       ======================================== */
     @media (max-width: 768px) {
-      .process-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .org-types {
-        grid-template-columns: 1fr;
-      }
-
-      .footer {
-        flex-direction: column;
-        gap: var(--space-lg);
-        text-align: center;
-      }
+      .footer { flex-direction: column; gap: var(--space-md); text-align: center; }
     }
   </style>
 
@@ -409,7 +396,7 @@
         <path d="M361.629 475.992C361.629 402.382 361.629 329.271 361.629 255.701C300.891 255.701 240.647 255.701 180.1 255.701C180.1 221.681 180.1 188.121 180.1 154.276C274.427 154.276 368.665 154.276 463.206 154.276C463.206 267.342 463.206 380.391 463.206 493.777C429.319 493.777 395.765 493.777 361.629 493.777C361.629 488.037 361.629 482.264 361.629 475.992Z" fill="currentColor"/>
         <path d="M307.696 337.954C340.301 368.028 349.164 411.754 330.649 450.12C306.237 500.707 239.475 517.903 193.94 484.922C163.772 463.071 149.622 433.193 155.126 396.093C160.705 358.49 182.391 332.345 218.499 320.333C250.799 309.588 280.878 316.091 307.696 337.954Z" fill="currentColor"/>
         <path d="M667.719 244.994C664.402 244.994 661.576 244.994 658.354 244.994C658.354 297.9 658.354 350.595 658.354 403.715C683.538 403.715 708.777 403.715 734.393 403.715C734.393 433.862 734.393 463.589 734.393 493.716C676.457 493.716 618.275 493.716 559.635 493.716C559.635 411.018 559.635 328.303 559.635 245.078C544.625 245.078 530.06 245.078 515.237 245.078C515.237 214.646 515.237 184.724 515.237 154.262C529.813 154.262 544.368 154.262 559.394 154.262C559.394 122.334 559.394 90.9386 559.394 59.2688C592.424 59.2688 624.978 59.2688 657.881 59.2688C657.881 90.7298 657.881 121.991 657.881 153.889C684.07 153.889 709.923 153.889 736.021 153.889C736.021 184.454 736.021 214.381 736.021 244.994C713.363 244.994 690.787 244.994 667.719 244.994Z" fill="currentColor"/>
-        <path d="M993.731 152.877C1047.52 169.797 1080.17 206.936 1097.55 258.89C1107.29 287.993 1107.94 318.025 1106.16 348.796C1029.55 348.796 953.004 348.796 875.863 348.796C879.388 370.048 888.937 386.838 906.406 398.647C921.149 408.614 937.742 411.901 955.32 411.426C973.784 410.926 991.587 407.447 1007.05 397.095C1017.33 390.219 1026.41 381.572 1036.68 373.189C1057.18 392.37 1078.77 412.579 1100.64 433.045C1088.57 448.39 1074.95 461.641 1058.99 472.408C1023.99 496.023 984.843 503.419 943.439 501.461C915.324 500.132 888.465 493.602 863.585 480.155C815.81 454.333 787.987 413.954 778.889 360.886C771.464 317.571 776.197 275.31 796.477 235.986C827.243 176.328 877.074 146.709 944.07 145.88C960.817 145.672 977.274 147.932 993.731 152.877ZM890.245 283.108C927.671 283.108 965.097 283.108 1002.79 283.108C1000.23 262.511 990.641 247.551 972.284 238.69C955.951 230.807 938.951 230.785 922.181 236.215C899.593 243.529 886.606 259.96 880.923 282.705C881.638 282.891 881.956 283.042 882.277 283.047C884.609 283.084 886.942 283.091 890.245 283.108Z" fill="currentColor"/>
+        <path d="M993.731 152.877C1047.52 169.797 1080.17 206.936 1097.55 258.89C1107.29 287.993 1107.94 318.025 1106.16 348.796C1029.55 348.796 953.004 348.796 875.863 348.796C879.388 370.048 888.937 386.838 906.406 398.647C921.149 408.614 937.742 411.901 955.32 411.426C973.784 410.926 991.587 407.447 1007.05 397.095C1017.33 390.219 1026.41 381.572 1036.68 373.189C1057.18 392.37 1078.77 412.579 1100.64 433.045C1088.57 448.39 1074.95 461.641 1058.99 472.408C1023.99 496.023 984.843 503.419 943.439 501.461C915.324 500.132 888.465 493.602 863.585 480.155C815.81 454.333 787.987 413.954 778.889 360.886C771.464 317.571 776.197 275.31 796.477 235.986C827.243 176.328 877.074 146.709 944.07 145.880C960.817 145.672 977.274 147.932 993.731 152.877ZM890.245 283.108C927.671 283.108 965.097 283.108 1002.79 283.108C1000.23 262.511 990.641 247.551 972.284 238.69C955.951 230.807 938.951 230.785 922.181 236.215C899.593 243.529 886.606 259.96 880.923 282.705C881.638 282.891 881.956 283.042 882.277 283.047C884.609 283.084 886.942 283.091 890.245 283.108Z" fill="currentColor"/>
         <path d="M1263.76 313.993C1263.76 374.134 1263.76 433.775 1263.76 493.766C1230.99 493.766 1198.44 493.766 1165.61 493.766C1165.61 332.15 1165.61 170.59 1165.61 8.62637C1198.18 8.62637 1230.7 8.62637 1263.76 8.62637C1263.76 110.296 1263.76 211.894 1263.76 313.993Z" fill="currentColor"/>
         <path d="M1409.57 110.992C1366.45 125.102 1326.7 90.4004 1334.6 45.9722C1339.26 19.7364 1363.25 0.140643 1390.86 0.000678149C1417.5 -0.134345 1441.82 19.9092 1446.7 46.0197C1451.96 74.2005 1436.69 101.176 1409.57 110.992Z" fill="currentColor"/>
         <path d="M1340.92 344.993C1340.92 281.211 1340.92 217.929 1340.92 154.341C1373.9 154.341 1406.46 154.341 1439.32 154.341C1439.32 267.431 1439.32 380.472 1439.32 493.816C1406.7 493.816 1374.13 493.816 1340.92 493.816C1340.92 444.35 1340.92 394.921 1340.92 344.993Z" fill="currentColor"/>
@@ -425,108 +412,141 @@
     </button>
     <div class="nav-overlay"></div>
     <div class="nav-links">
-      <a href="index.html" class="nav-link">Inicio</a>
-      <a href="cursos.html" class="nav-link">Cursos</a>
+      <a href="/index.html" class="nav-link">Inicio</a>
+      <a href="/cursos.html" class="nav-link">Cursos</a>
       <div class="nav-dropdown">
         <button class="nav-dropdown-trigger">Servicios</button>
         <div class="nav-dropdown-menu">
-          <a href="formacion.html">Formación para organizaciones</a>
-          <a href="aumentos.html">Aumentos a medida</a>
+          <a href="/servicios/profesionales.html">Para profesionales</a>
+          <a href="/servicios/equipos.html">Para equipos</a>
+          <a href="/servicios/iniciativas.html">Para iniciativas</a>
         </div>
       </div>
-      <a href="historia.html" class="nav-link">Historia</a>
-      <a href="contacto.html" class="nav-cta">Hablemos</a>
+      <a href="/historia.html" class="nav-link">Historia</a>
+      <a href="/contacto.html" class="nav-cta">Hablemos</a>
     </div>
   </nav>
 
-  <!-- Main content -->
   <main>
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-inner">
-        <span class="section-label">Servicios — Formación</span>
-        <h1>Formación para organizaciones</h1>
-        <p class="tagline">Cursos y talleres diseñados para tu equipo.</p>
+    <!-- HERO -->
+    <section class="audiencia-hero">
+      <div class="audiencia-hero-inner">
+        <span class="audience-tag">Servicios — Iniciativas</span>
+        <h1>Trabajamos con <span class="accent">iniciativas</span> que forman a una población más allá de su equipo.</h1>
+        <p class="lead">Con organizaciones que contratan para formar o construir herramientas para alguien externo: aliados, miembros de una red, beneficiarios, contraparte. El producto se contrata aquí; el destinatario está allá.</p>
       </div>
     </section>
 
     <div class="section-divider"></div>
 
-    <!-- What is it? -->
+    <!-- BLOQUE: Con quién es -->
     <section class="section section-grain">
-      <div class="content-section">
-        <span class="section-label">01 — Propuesta</span>
-        <h2>Qué ofrecemos</h2>
-        <p>Programas de formación en IA <span class="mark">diseñados específicamente para tu equipo</span>. No importa cuál sea tu sector, tu nivel de experiencia o los problemas concretos que enfrentas: podemos armar un programa que tenga sentido para ti.</p>
-        <p>No son cursos genéricos. Hablamos con tu equipo, entendemos el contexto en el que trabajan, el sector donde se mueven y los desafíos reales que quieren resolver con IA. Después diseñamos <span class="mark">sesiones prácticas sobre problemas reales</span>.</p>
-      </div>
+      <span class="section-label">01 — Con quién</span>
+      <h2>Iniciativas institucionales y redes profesionales.</h2>
+      <p>Trabajamos bajo dos lógicas que comparten la misma operación pero distinto discurso. Por un lado, <span class="mark">iniciativas institucionales</span> que sirven a un tercero: refugiados, municipios, comunidades, beneficiarios. Por otro, <span class="mark">redes profesionales</span> que invierten en formar o equipar a sus miembros: colegios, redes sectoriales, asociaciones.</p>
+      <p>Ciclo de venta más largo, ticket más alto, contratante institucional y rendición de cuentas a múltiples stakeholders. El catálogo es el mismo que para Equipos. La adaptación está en cómo se diseña y se entrega.</p>
     </section>
 
     <div class="section-divider"></div>
 
-    <!-- How it works -->
+    <!-- BLOQUE: Casos -->
     <section class="section">
-      <div class="content-section">
-        <span class="section-label">02 — Proceso</span>
-        <h2>Cómo funciona</h2>
-        <div class="process-grid">
-          <div class="process-card">
-            <div class="number">01</div>
-            <h3>Diagnóstico</h3>
-            <p>Entendemos tu contexto: sector, equipo, experiencias previas con IA, desafíos específicos que quieren resolver.</p>
-          </div>
-          <div class="process-card">
-            <div class="number">02</div>
-            <h3>Diseño</h3>
-            <p>Armamos un programa a medida con contenidos, herramientas, dinámicas y casos prácticos relevantes para tu realidad.</p>
-          </div>
-          <div class="process-card">
-            <div class="number">03</div>
-            <h3>Implementación</h3>
-            <p>Sesiones en vivo, trabajo práctico, feedback personalizado y acompañamiento continuo durante el programa.</p>
-          </div>
+      <span class="section-label">02 — Casos</span>
+      <h2>Cómo se ve esto en la práctica.</h2>
+
+      <div class="casos-grid">
+        <div class="caso">
+          <div class="caso-tag">Iniciativa institucional</div>
+          <h3>Programa para gobierno subnacional</h3>
+          <p>Una iniciativa internacional contrata formación o aumentos para municipios y autoridades locales que están bajo su programa. iatelier diseña con el contratante, entrega al destinatario.</p>
+        </div>
+        <div class="caso">
+          <div class="caso-tag">Iniciativa institucional</div>
+          <h3>Aumentos para una población servida</h3>
+          <p>Una organización con misión social construye, con iatelier, herramientas que sus beneficiarios o contrapartes pueden usar directamente. La organización es cliente; quien las usa es otro.</p>
+        </div>
+        <div class="caso">
+          <div class="caso-tag">Red profesional</div>
+          <h3>Capacitación a miembros de un colegio o red</h3>
+          <p>Un colegio profesional o red sectorial contrata formación para sus afiliados. La organización absorbe el costo; los miembros se benefician.</p>
+        </div>
+        <div class="caso">
+          <div class="caso-tag">Iniciativa institucional</div>
+          <h3>Política institucional con adopción externa</h3>
+          <p>Una agencia define lineamientos de uso de IA pensados no solo para su personal sino para los socios y contrapartes con los que opera.</p>
         </div>
       </div>
     </section>
 
     <div class="section-divider"></div>
 
-    <!-- For whom -->
+    <!-- BLOQUE: Catálogo -->
     <section class="section section-grain">
-      <div class="content-section">
-        <span class="section-label">03 — Clientes</span>
-        <h2>Para quién es</h2>
-        <p>Trabajamos con organizaciones de diferentes sectores. Gobiernos, ONGs, organismos de cooperación internacional, universidades, empresas privadas. Cualquiera que necesite que su equipo entienda IA y desarrolle criterio para usarla de manera estratégica.</p>
-        <div class="org-types">
-          <div class="org-type"><p>Gobierno</p></div>
-          <div class="org-type"><p>Sociedad Civil</p></div>
-          <div class="org-type"><p>Cooperación Internacional</p></div>
-          <div class="org-type"><p>Academia</p></div>
-          <div class="org-type"><p>Empresas</p></div>
+      <span class="section-label">03 — Qué ofrecemos</span>
+      <h2>El catálogo es el mismo; el diseño cambia según destinatario.</h2>
+
+      <div class="catalogo">
+
+        <div class="producto">
+          <div class="producto-header">
+            <h3>Capacitaciones a medida</h3>
+            <div class="producto-precio">
+              Desde $15,000 MXN
+              <small>cotización por reunión</small>
+            </div>
+          </div>
+          <p class="producto-body">Programas de formación diseñados para tu población externa: aliados, miembros, beneficiarios, contraparte. Adaptados al sector y al nivel de quienes participan, no al de la organización contratante. Becas para OSC con presupuesto limitado.</p>
+          <p class="producto-meta">4–24+ horas · Presencial o virtual</p>
+          <a href="/contacto.html" class="producto-cta">Hablemos →</a>
         </div>
+
+        <div class="producto">
+          <div class="producto-header">
+            <h3>Política de uso de IA</h3>
+            <div class="producto-precio">
+              Cotización por proyecto
+            </div>
+          </div>
+          <p class="producto-body">Documento de lineamientos pensado para que aplique no solo dentro del equipo, sino para los socios, contrapartes o miembros con los que tu organización opera. Útil cuando hay que coordinar criterios entre actores que no comparten línea jerárquica.</p>
+          <p class="producto-meta">2–4 semanas · Documento de lineamientos</p>
+          <a href="/contacto.html" class="producto-cta">Hablemos →</a>
+        </div>
+
+        <div class="producto">
+          <div class="producto-header">
+            <h3>Aumento organizacional</h3>
+            <div class="producto-precio">
+              Cotización por proyecto
+            </div>
+          </div>
+          <p class="producto-body">Diseño y construcción de aumentos que la organización pone a disposición de su población externa. Asistentes, agentes, sistemas de gestión de conocimiento. Incluye documentación y capacitación a usuarios. Costos de infraestructura aparte.</p>
+          <p class="producto-meta">4–12 semanas</p>
+          <a href="/contacto.html" class="producto-cta">Hablemos →</a>
+        </div>
+
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="cta-section">
-      <h2>Hablemos</h2>
-      <p>Cuéntanos qué necesitan y diseñamos un programa que funcione para su equipo.</p>
-      <a href="contacto.html" class="btn-cta">Empezar conversación</a>
+    <section class="cta-final">
+      <h2>Si la iniciativa contrata pero la usa otro, hablemos.</h2>
+      <p>Una llamada para entender contratante, destinatario y stakeholders. Salimos con una propuesta que respete las tres lógicas.</p>
+      <a href="/contacto.html" class="btn-cta">Empecemos por hablar</a>
     </section>
 
   </main>
 
   <!-- Footer -->
   <footer class="footer">
-    <a href="/" class="footer-logo">
+    <div class="footer-logo">
       <svg viewBox="0 0 2107 502" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M7.23672 85.5917C-0.879461 69.7664 -2.30731 53.7425 3.65597 37.2535C4.71918 34.3137 6.27491 31.5519 7.63517 28.3498C15.9207 15.2624 26.9134 6.16202 41.7762 2.13603C76.1355 -7.17111 109.311 16.0067 113.58 49.255C118.599 88.3442 86.0903 119.792 47.1343 113.429C29.9096 110.616 16.0689 101.719 7.23672 85.5917Z" fill="currentColor"/>
         <path d="M7.39962 480.352C7.3915 477.757 7.53505 475.598 7.53564 473.44C7.56456 367.276 7.5812 261.113 7.68033 154.49C40.2172 154.03 72.673 154.03 105.526 154.03C105.526 267.364 105.526 380.462 105.526 493.841C72.9966 493.841 40.4574 493.841 7.4846 493.841C7.4846 489.366 7.4846 485.077 7.39962 480.352Z" fill="currentColor"/>
         <path d="M361.629 475.992C361.629 402.382 361.629 329.271 361.629 255.701C300.891 255.701 240.647 255.701 180.1 255.701C180.1 221.681 180.1 188.121 180.1 154.276C274.427 154.276 368.665 154.276 463.206 154.276C463.206 267.342 463.206 380.391 463.206 493.777C429.319 493.777 395.765 493.777 361.629 493.777C361.629 488.037 361.629 482.264 361.629 475.992Z" fill="currentColor"/>
         <path d="M307.696 337.954C340.301 368.028 349.164 411.754 330.649 450.12C306.237 500.707 239.475 517.903 193.94 484.922C163.772 463.071 149.622 433.193 155.126 396.093C160.705 358.49 182.391 332.345 218.499 320.333C250.799 309.588 280.878 316.091 307.696 337.954Z" fill="currentColor"/>
         <path d="M667.719 244.994C664.402 244.994 661.576 244.994 658.354 244.994C658.354 297.9 658.354 350.595 658.354 403.715C683.538 403.715 708.777 403.715 734.393 403.715C734.393 433.862 734.393 463.589 734.393 493.716C676.457 493.716 618.275 493.716 559.635 493.716C559.635 411.018 559.635 328.303 559.635 245.078C544.625 245.078 530.06 245.078 515.237 245.078C515.237 214.646 515.237 184.724 515.237 154.262C529.813 154.262 544.368 154.262 559.394 154.262C559.394 122.334 559.394 90.9386 559.394 59.2688C592.424 59.2688 624.978 59.2688 657.881 59.2688C657.881 90.7298 657.881 121.991 657.881 153.889C684.07 153.889 709.923 153.889 736.021 153.889C736.021 184.454 736.021 214.381 736.021 244.994C713.363 244.994 690.787 244.994 667.719 244.994Z" fill="currentColor"/>
-        <path d="M993.731 152.877C1047.52 169.797 1080.17 206.936 1097.55 258.89C1107.29 287.993 1107.94 318.025 1106.16 348.796C1029.55 348.796 953.004 348.796 875.863 348.796C879.388 370.048 888.937 386.838 906.406 398.647C921.149 408.614 937.742 411.901 955.32 411.426C973.784 410.926 991.587 407.447 1007.05 397.095C1017.33 390.219 1026.41 381.572 1036.68 373.189C1057.18 392.37 1078.77 412.579 1100.64 433.045C1088.57 448.39 1074.95 461.641 1058.99 472.408C1023.99 496.023 984.843 503.419 943.439 501.461C915.324 500.132 888.465 493.602 863.585 480.155C815.81 454.333 787.987 413.954 778.889 360.886C771.464 317.571 776.197 275.31 796.477 235.986C827.243 176.328 877.074 146.709 944.07 145.88C960.817 145.672 977.274 147.932 993.731 152.877ZM890.245 283.108C927.671 283.108 965.097 283.108 1002.79 283.108C1000.23 262.511 990.641 247.551 972.284 238.69C955.951 230.807 938.951 230.785 922.181 236.215C899.593 243.529 886.606 259.96 880.923 282.705C881.638 282.891 881.956 283.042 882.277 283.047C884.609 283.084 886.942 283.091 890.245 283.108Z" fill="currentColor"/>
+        <path d="M993.731 152.877C1047.52 169.797 1080.17 206.936 1097.55 258.89C1107.29 287.993 1107.94 318.025 1106.16 348.796C1029.55 348.796 953.004 348.796 875.863 348.796C879.388 370.048 888.937 386.838 906.406 398.647C921.149 408.614 937.742 411.901 955.32 411.426C973.784 410.926 991.587 407.447 1007.05 397.095C1017.33 390.219 1026.41 381.572 1036.68 373.189C1057.18 392.37 1078.77 412.579 1100.64 433.045C1088.57 448.39 1074.95 461.641 1058.99 472.408C1023.99 496.023 984.843 503.419 943.439 501.461C915.324 500.132 888.465 493.602 863.585 480.155C815.81 454.333 787.987 413.954 778.889 360.886C771.464 317.571 776.197 275.31 796.477 235.986C827.243 176.328 877.074 146.709 944.07 145.880C960.817 145.672 977.274 147.932 993.731 152.877ZM890.245 283.108C927.671 283.108 965.097 283.108 1002.79 283.108C1000.23 262.511 990.641 247.551 972.284 238.69C955.951 230.807 938.951 230.785 922.181 236.215C899.593 243.529 886.606 259.96 880.923 282.705C881.638 282.891 881.956 283.042 882.277 283.047C884.609 283.084 886.942 283.091 890.245 283.108Z" fill="currentColor"/>
         <path d="M1263.76 313.993C1263.76 374.134 1263.76 433.775 1263.76 493.766C1230.99 493.766 1198.44 493.766 1165.61 493.766C1165.61 332.15 1165.61 170.59 1165.61 8.62637C1198.18 8.62637 1230.7 8.62637 1263.76 8.62637C1263.76 110.296 1263.76 211.894 1263.76 313.993Z" fill="currentColor"/>
         <path d="M1409.57 110.992C1366.45 125.102 1326.7 90.4004 1334.6 45.9722C1339.26 19.7364 1363.25 0.140643 1390.86 0.000678149C1417.5 -0.134345 1441.82 19.9092 1446.7 46.0197C1451.96 74.2005 1436.69 101.176 1409.57 110.992Z" fill="currentColor"/>
         <path d="M1340.92 344.993C1340.92 281.211 1340.92 217.929 1340.92 154.341C1373.9 154.341 1406.46 154.341 1439.32 154.341C1439.32 267.431 1439.32 380.472 1439.32 493.816C1406.7 493.816 1374.13 493.816 1340.92 493.816C1340.92 444.35 1340.92 394.921 1340.92 344.993Z" fill="currentColor"/>
@@ -536,12 +556,11 @@
           <path d="M93.009941,71.763451 C87.178253,81.448624 78.088303,85.793503 68.565407,83.733223 C59.619362,81.797745 52.265858,74.113373 51.064991,65.445358 C49.737038,55.860008 54.461941,46.588127 62.934765,42.152767 C70.757393,38.057781 80.894463,39.276917 87.583252,45.117119 C95.077332,51.660450 97.092529,61.166870 93.009941,71.763451Z" fill="currentColor"/>
         </g>
       </svg>
-    </a>
-    <p class="footer-copy">© 2026 iatelier — Ideas Aumentadas</p>
+    </div>
+    <span class="footer-copy">&copy; 2026 iatelier — Ideas Aumentadas</span>
   </footer>
 
   <script>
-    // === Mobile hamburger menu ===
     const hamburger = document.querySelector('.nav-hamburger');
     const navLinks = document.querySelector('.nav-links');
     const navOverlay = document.querySelector('.nav-overlay');
@@ -556,30 +575,24 @@
     hamburger.addEventListener('click', toggleMenu);
     navOverlay.addEventListener('click', toggleMenu);
 
-    // Close menu when clicking a link
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         if (navLinks.classList.contains('open')) toggleMenu();
       });
     });
 
-    // === Dropdown: click en touch, hover en desktop ===
     const dropdowns = document.querySelectorAll('.nav-dropdown');
-
     dropdowns.forEach((dd) => {
       const trigger = dd.querySelector('.nav-dropdown-trigger');
-
       trigger.addEventListener('click', (e) => {
         const isTouch = window.matchMedia('(hover: none)').matches;
         if (!isTouch) return;
-
         e.stopPropagation();
         const isOpen = dd.classList.contains('open');
         dropdowns.forEach((d) => d.classList.remove('open'));
         if (!isOpen) dd.classList.add('open');
       });
     });
-
     document.addEventListener('click', () => {
       dropdowns.forEach((d) => d.classList.remove('open'));
     });

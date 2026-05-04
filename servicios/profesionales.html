@@ -3,16 +3,28 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Inscripción confirmada — iatelier</title>
-  <meta name="robots" content="noindex, nofollow"/>
-  <link rel="icon" href="img/favicon.svg" type="image/svg+xml"/>
-  <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+  <title>Para profesionales — iatelier</title>
+  <meta name="description" content="Formación y aumentos a medida para profesionales que quieren integrar IA a su propio trabajo. Comunicadores, investigadores, profesionales del sector social, gobierno, cooperación y academia."/>
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Para profesionales — iatelier"/>
+  <meta property="og:description" content="Formación y aumentos a medida para profesionales que quieren integrar IA a su propio trabajo."/>
+  <meta property="og:image" content="https://iatelier.org/img/og-image.png"/>
+  <meta property="og:url" content="https://iatelier.org/servicios/profesionales.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="iatelier — Ideas Aumentadas"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Para profesionales — iatelier"/>
+  <meta name="twitter:description" content="Formación y aumentos a medida para profesionales que quieren integrar IA a su propio trabajo."/>
+  <meta name="twitter:image" content="https://iatelier.org/img/og-image.png"/>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="../styles.css"/>
 
   <style>
     body {
@@ -26,60 +38,309 @@
       flex-direction: column;
     }
 
-    /* ========================================
-       MAIN — CONFIRMACIÓN
-       ======================================== */
-    .confirmacion {
+    main {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: calc(var(--space-2xl) + 80px) clamp(1.5rem, 5vw, 3rem) var(--space-2xl);
-      width: 100%;
+      margin-top: 60px;
     }
 
-    .confirmacion h1 {
-      font-size: clamp(3rem, 7vw, 5rem);
+    /* ====== HERO (oscuro, full bleed) ====== */
+    .audiencia-hero {
+      background: var(--tinta);
+      color: var(--marfil);
+      padding: var(--space-2xl) clamp(1.5rem, 5vw, 4rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .audiencia-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--grain);
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      opacity: 0.05;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .audiencia-hero-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .audiencia-hero .audience-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      margin-bottom: var(--space-md);
+      display: block;
+    }
+
+    .audiencia-hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
       font-weight: 700;
       margin-bottom: var(--space-lg);
-      line-height: 1;
+      max-width: 900px;
+      color: var(--marfil);
     }
 
-    .confirmacion p {
-      font-size: clamp(1rem, 1.3vw, 1.15rem);
-      margin-bottom: var(--space-md);
-      max-width: 560px;
-    }
-
-    .confirmacion .cierre {
-      margin-top: var(--space-md);
-      font-size: clamp(0.95rem, 1.15vw, 1.05rem);
-      color: var(--tinta);
-    }
-
-    .confirmacion .cierre a {
+    .audiencia-hero h1 .accent {
       color: var(--cadmio);
-      border-bottom: 1px solid var(--cadmio);
-      transition: opacity 0.2s;
     }
 
-    .confirmacion .cierre a:hover {
-      opacity: 0.7;
+    .audiencia-hero .lead {
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      line-height: 1.6;
+      color: var(--arena-light);
+      max-width: 720px;
     }
 
-    .confirmacion .firma {
-      margin-top: var(--space-lg);
+    /* ====== SECTION SHELL ====== */
+    .section {
+      padding: var(--space-xl) clamp(1.5rem, 5vw, 4rem);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
       font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--arena);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      margin-bottom: var(--space-md);
+      display: block;
     }
 
-    /* ========================================
-       FOOTER
-       ======================================== */
+    .section h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      margin-bottom: var(--space-lg);
+      max-width: 800px;
+    }
+
+    .section p {
+      font-size: clamp(1rem, 1.15vw, 1.1rem);
+      line-height: 1.75;
+      color: var(--arena);
+      margin-bottom: var(--space-md);
+      max-width: 760px;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(140, 128, 112, 0.25) 30%, rgba(140, 128, 112, 0.25) 70%, transparent 100%);
+      margin: 0;
+    }
+
+    /* Grain layer for alternate sections */
+    .section-grain {
+      position: relative;
+    }
+    .section-grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--grain);
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      opacity: 0.04;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .section-grain > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Mark highlight */
+    .mark {
+      background: linear-gradient(
+        104deg,
+        transparent 0%,
+        rgba(217, 43, 31, 0.10) 5%,
+        rgba(217, 43, 31, 0.18) 20%,
+        rgba(217, 43, 31, 0.18) 80%,
+        rgba(217, 43, 31, 0.06) 95%,
+        transparent 100%
+      );
+    }
+
+    /* ====== CATÁLOGO (cards de productos) ====== */
+    .catalogo {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    @media (min-width: 768px) {
+      .catalogo {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-lg);
+      }
+    }
+
+    .producto {
+      background: white;
+      border: 1px solid rgba(140, 128, 112, 0.18);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .producto:hover {
+      border-color: var(--cadmio);
+      transform: translateY(-2px);
+    }
+
+    .producto-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-md);
+      gap: var(--space-md);
+    }
+
+    .producto h3 {
+      font-size: clamp(1.2rem, 1.7vw, 1.5rem);
+      font-weight: 700;
+      color: var(--tinta);
+      flex: 1;
+    }
+
+    .producto-precio {
+      font-family: var(--font-display);
+      font-feature-settings: "ss02" 1;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--cadmio);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .producto-precio small {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--arena);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .producto-body {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--arena);
+      flex: 1;
+      margin-bottom: var(--space-md);
+    }
+
+    .producto-meta {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--arena);
+      margin-bottom: var(--space-md);
+    }
+
+    .producto-cta {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      border-bottom: 1.5px solid var(--cadmio);
+      padding-bottom: 2px;
+      align-self: flex-start;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .producto-cta:hover {
+      color: var(--tinta);
+      border-color: var(--tinta);
+    }
+
+    /* ====== CTA FINAL ====== */
+    .cta-final {
+      background: var(--tinta);
+      color: var(--marfil);
+      padding: var(--space-2xl) clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--grain);
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      opacity: 0.05;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .cta-final h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+      color: var(--marfil);
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-final p {
+      font-size: clamp(1rem, 1.15vw, 1.1rem);
+      color: var(--arena-light);
+      max-width: 600px;
+      margin: 0 auto var(--space-lg);
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background: var(--cadmio);
+      color: var(--marfil);
+      padding: 1rem 2.5rem;
+      font-family: var(--font-display);
+      font-feature-settings: "ss02" 1;
+      font-weight: 700;
+      font-size: clamp(0.88rem, 1.1vw, 1rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.15s ease;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-cta:hover {
+      background: #b8221a;
+      transform: translateY(-2px);
+    }
+
+    /* ====== FOOTER ====== */
     .footer {
       background: var(--tinta);
       display: flex;
@@ -90,7 +351,7 @@
     }
 
     .footer-logo svg {
-      height: 18px;
+      height: 16px;
       width: auto;
       color: var(--arena);
     }
@@ -101,6 +362,14 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--arena);
+    }
+
+    @media (max-width: 768px) {
+      .footer {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+      }
     }
   </style>
 
@@ -136,35 +405,118 @@
     </button>
     <div class="nav-overlay"></div>
     <div class="nav-links">
-      <a href="index.html" class="nav-link">Inicio</a>
-      <a href="cursos.html" class="nav-link">Cursos</a>
+      <a href="/index.html" class="nav-link">Inicio</a>
+      <a href="/cursos.html" class="nav-link">Cursos</a>
       <div class="nav-dropdown">
         <button class="nav-dropdown-trigger">Servicios</button>
         <div class="nav-dropdown-menu">
-          <a href="servicios/profesionales.html">Para profesionales</a>
-          <a href="servicios/equipos.html">Para equipos</a>
-          <a href="servicios/iniciativas.html">Para iniciativas</a>
+          <a href="/servicios/profesionales.html">Para profesionales</a>
+          <a href="/servicios/equipos.html">Para equipos</a>
+          <a href="/servicios/iniciativas.html">Para iniciativas</a>
         </div>
       </div>
-      <a href="historia.html" class="nav-link">Historia</a>
-      <a href="contacto.html" class="nav-cta">Hablemos</a>
+      <a href="/historia.html" class="nav-link">Historia</a>
+      <a href="/contacto.html" class="nav-cta">Hablemos</a>
     </div>
   </nav>
 
+  <main>
 
-  <!-- Main content -->
-  <main class="confirmacion">
-    <h1>Listo.</h1>
-    <p>Recibí tu inscripción a <span class="mark">Trabajar con IA</span>. El lunes 27 de abril te mando por correo el link de tu sesión.</p>
+    <!-- HERO -->
+    <section class="audiencia-hero">
+      <div class="audiencia-hero-inner">
+        <span class="audience-tag">Servicios — Profesionales</span>
+        <h1>Trabajamos con <span class="accent">profesionales</span> que integran IA a su propio trabajo.</h1>
+        <p class="lead">Con quien decide invertir en su propia formación o en herramientas para el trabajo que hace todos los días. Comunicadores del sector social, investigadores académicos, profesionales en gobierno, OSC y cooperación internacional.</p>
+      </div>
+    </section>
 
-    <p class="cierre">
-      Mientras tanto, si quieres ver qué más hago en iatelier:
-      <a href="/">el resto del sitio</a> · <a href="historia.html">mi historia</a> · <a href="https://armandosmh.substack.com" target="_blank" rel="noopener">newsletter</a>
-    </p>
+    <div class="section-divider"></div>
 
-    <p class="firma">— Armando</p>
+    <!-- BLOQUE: Con quién es -->
+    <section class="section section-grain">
+      <span class="section-label">01 — Con quién</span>
+      <h2>Profesionales en sectores donde lo que se decide y se comunica afecta a otras personas.</h2>
+      <p>Trabajamos con profesionales de sociedad civil, gobierno, cooperación internacional y academia. Personas que necesitan <span class="mark">criterio para usar IA</span>, no recetas. Que quieren entender qué delegar y qué no, antes de cambiar cómo trabajan.</p>
+      <p>La premisa es simple: la IA no debe reemplazar tu pensamiento sino aumentarlo. Lo que ofrecemos aquí es formación para construir ese criterio y, si tiene sentido, herramientas a medida para tu trabajo.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- BLOQUE: Catálogo -->
+    <section class="section">
+      <span class="section-label">02 — Qué ofrecemos</span>
+      <h2>Cuatro formas de trabajar contigo.</h2>
+
+      <div class="catalogo">
+
+        <!-- Trabajar con IA -->
+        <div class="producto">
+          <div class="producto-header">
+            <h3>Trabajar con IA</h3>
+            <div class="producto-precio">
+              $600 MXN
+              <small>1 sesión</small>
+            </div>
+          </div>
+          <p class="producto-body">Curso virtual en vivo. El punto de entrada para usar IA con criterio: qué puede hacer, qué no, cuándo conviene y cuándo no. No es tutorial de prompts: es un marco de pensamiento que te sirve hoy y cuando cambien las herramientas mañana.</p>
+          <p class="producto-meta">3.5 h · Hasta 25 personas · 1 edición/mes</p>
+          <a href="/cursos.html#fundamentos" class="producto-cta">Ver próximas fechas →</a>
+        </div>
+
+        <!-- Crear con IA -->
+        <div class="producto">
+          <div class="producto-header">
+            <h3>Crear con IA</h3>
+            <div class="producto-precio">
+              $600 MXN
+              <small>1 sesión</small>
+            </div>
+          </div>
+          <p class="producto-body">Taller práctico para construir tu propio entorno de trabajo con IA. Configurar contexto, instalar y adaptar herramientas, integrar plataformas, construir aumentos sencillos paso a paso. Para quien ya tomó Trabajar con IA o tiene experiencia previa.</p>
+          <p class="producto-meta">4 h · Hasta 15 personas · 1 edición/trimestre</p>
+          <a href="/cursos.html#aumentos" class="producto-cta">Ver próximas fechas →</a>
+        </div>
+
+        <!-- Asesoría individual -->
+        <div class="producto">
+          <div class="producto-header">
+            <h3>Asesoría individual</h3>
+            <div class="producto-precio">
+              $500 MXN
+              <small>por hora</small>
+            </div>
+          </div>
+          <p class="producto-body">Sesiones uno a uno para resolver problemas concretos, dar orientación o recibir retroalimentación sobre algo en curso. Sin entregables formales: tiempo aplicado a tu problema. Útil cuando lo que necesitas es pensar mejor algo, no construir nada todavía.</p>
+          <p class="producto-meta">Por hora · Virtual o presencial</p>
+          <a href="/contacto.html" class="producto-cta">Hablemos →</a>
+        </div>
+
+        <!-- Aumento personal -->
+        <div class="producto">
+          <div class="producto-header">
+            <h3>Aumento personal</h3>
+            <div class="producto-precio">
+              Desde $4,000 MXN
+              <small>cotización por reunión</small>
+            </div>
+          </div>
+          <p class="producto-body">Diseño y construcción de un sistema de IA hecho para ti: asistentes, agentes, flujos automatizados. No plantilla, no genérico: se construye desde cero entendiendo cómo trabajas y qué problema real tienes. Diagnóstico, propuesta, desarrollo, entrega y soporte el primer mes.</p>
+          <p class="producto-meta">2–6 semanas</p>
+          <a href="/contacto.html" class="producto-cta">Hablemos →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-final">
+      <h2>¿No estás seguro de qué te conviene?</h2>
+      <p>Cuéntame qué problema tienes en mente y vemos juntos por dónde tiene sentido empezar.</p>
+      <a href="/contacto.html" class="btn-cta">Hablemos</a>
+    </section>
+
   </main>
-
 
   <!-- Footer -->
   <footer class="footer">
@@ -182,7 +534,7 @@
         <path d="M1520.74 420.894C1503.8 392.387 1496.43 361.617 1496.05 329.101C1495.61 291.221 1503.43 255.202 1523.77 222.87C1556.31 171.173 1603.86 145.996 1664.68 145.929C1706.42 145.883 1743.62 158.59 1774.25 187.779C1800.02 212.342 1814.92 242.906 1822.62 277.32C1827.87 300.811 1827.29 324.573 1826.4 348.899C1749.65 348.899 1673.1 348.899 1596.03 348.899C1599.51 369.829 1608.86 386.436 1625.98 398.247C1640.8 408.474 1657.51 411.873 1675.26 411.43C1693.36 410.979 1710.79 407.566 1726.17 397.733C1734.37 392.496 1741.57 385.685 1749.06 379.385C1751.42 377.395 1753.24 374.76 1755.63 372.061C1777.43 392.467 1798.92 412.585 1821.39 433.618C1812.66 442.451 1804.53 451.642 1795.41 459.731C1766.59 485.307 1732.33 497.925 1694.22 501.01C1663.43 503.503 1633.35 500.346 1604.34 489.468C1568.87 476.168 1540.81 453.639 1520.74 420.894ZM1710.59 252.598C1691.11 231.17 1666.84 228.429 1641.06 236.702C1619.09 243.75 1606.56 260.393 1601.12 282.714C1641.92 282.714 1682.27 282.714 1722.73 282.714C1721.77 271.4 1717.87 261.69 1710.59 252.598Z" fill="currentColor"/>
         <path d="M1886.57 443.993C1886.57 347.192 1886.57 250.891 1886.57 154.293C1919.45 154.293 1952.04 154.293 1984.94 154.293C1984.94 267.328 1984.94 380.402 1984.94 493.796C1952.29 493.796 1919.73 493.796 1886.57 493.796C1886.57 477.362 1886.57 460.928 1886.57 443.993Z" fill="currentColor"/>
         <g transform="translate(1873.6, 65.6) scale(2.3333)">
-          <path d="M93.009941,71.763451 C87.178303,81.448624 78.088303,85.793503 68.565407,83.733223 C59.619362,81.797745 52.265858,74.113373 51.064991,65.445358 C49.737038,55.860008 54.461941,46.588127 62.934765,42.152767 C70.757393,38.057781 80.894463,39.276917 87.583252,45.117119 C95.077332,51.660450 97.092529,61.166870 93.009941,71.763451Z" fill="currentColor"/>
+          <path d="M93.009941,71.763451 C87.178253,81.448624 78.088303,85.793503 68.565407,83.733223 C59.619362,81.797745 52.265858,74.113373 51.064991,65.445358 C49.737038,55.860008 54.461941,46.588127 62.934765,42.152767 C70.757393,38.057781 80.894463,39.276917 87.583252,45.117119 C95.077332,51.660450 97.092529,61.166870 93.009941,71.763451Z" fill="currentColor"/>
         </g>
       </svg>
     </div>
@@ -213,21 +565,17 @@
 
     // === Dropdown ===
     const dropdowns = document.querySelectorAll('.nav-dropdown');
-
     dropdowns.forEach((dd) => {
       const trigger = dd.querySelector('.nav-dropdown-trigger');
-
       trigger.addEventListener('click', (e) => {
         const isTouch = window.matchMedia('(hover: none)').matches;
         if (!isTouch) return;
-
         e.stopPropagation();
         const isOpen = dd.classList.contains('open');
         dropdowns.forEach((d) => d.classList.remove('open'));
         if (!isOpen) dd.classList.add('open');
       });
     });
-
     document.addEventListener('click', () => {
       dropdowns.forEach((d) => d.classList.remove('open'));
     });

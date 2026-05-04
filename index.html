@@ -240,6 +240,103 @@
     }
 
     /* ========================================
+       SECTION: BANDA TRABAJAR CON IA (puerta principal)
+       ======================================== */
+    .puerta-principal {
+      background: var(--marfil);
+      padding: var(--space-2xl) clamp(1.5rem, 5vw, 4rem);
+      border-top: 1px solid rgba(140, 128, 112, 0.18);
+      border-bottom: 1px solid rgba(140, 128, 112, 0.18);
+    }
+
+    .puerta-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    @media (min-width: 768px) {
+      .puerta-inner {
+        grid-template-columns: 7fr 5fr;
+        gap: var(--space-2xl);
+      }
+    }
+
+    .puerta-text .puerta-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      margin-bottom: var(--space-md);
+      display: block;
+    }
+
+    .puerta-text h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--tinta);
+      margin-bottom: var(--space-md);
+      max-width: 600px;
+    }
+
+    .puerta-text p {
+      font-size: clamp(1rem, 1.15vw, 1.1rem);
+      line-height: 1.7;
+      color: var(--arena);
+      max-width: 540px;
+    }
+
+    .puerta-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-md);
+    }
+    @media (min-width: 768px) {
+      .puerta-cta-wrap {
+        align-items: flex-end;
+      }
+    }
+
+    .puerta-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--arena);
+    }
+
+    .puerta-precio {
+      font-family: var(--font-display);
+      font-feature-settings: "ss02" 1;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--tinta);
+    }
+
+    .puerta-cta {
+      display: inline-block;
+      background: var(--cadmio);
+      color: var(--marfil);
+      padding: 0.9rem 2rem;
+      font-family: var(--font-display);
+      font-feature-settings: "ss02" 1;
+      font-weight: 700;
+      font-size: clamp(0.85rem, 1vw, 0.95rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s ease, transform 0.15s ease;
+    }
+    .puerta-cta:hover {
+      background: #b8221a;
+      transform: translateY(-2px);
+    }
+
+    /* ========================================
        SECTION: SERVICIOS (horizontal scroll)
        ======================================== */
     .servicios-wrapper {
@@ -665,8 +762,9 @@
       <div class="nav-dropdown">
         <button class="nav-dropdown-trigger">Servicios</button>
         <div class="nav-dropdown-menu">
-          <a href="formacion.html">Formación para organizaciones</a>
-          <a href="aumentos.html">Aumentos a medida</a>
+          <a href="servicios/profesionales.html">Para profesionales</a>
+          <a href="servicios/equipos.html">Para equipos</a>
+          <a href="servicios/iniciativas.html">Para iniciativas</a>
         </div>
       </div>
       <a href="historia.html" class="nav-link">Historia</a>
@@ -715,54 +813,54 @@
 
 
   <!-- ============================
-       SERVICIOS (horizontal scroll)
+       SERVICIOS — por audiencia
        ============================ -->
   <section class="servicios-wrapper" id="servicios">
     <div class="servicios-sticky">
 
       <div class="servicios-header">
-        <h2>Servicios</h2>
+        <h2>Con quién trabajamos</h2>
         <span class="scroll-hint"></span>
       </div>
 
       <div class="servicios-track" id="serviciosTrack">
 
-        <!-- Card 1: Cursos y talleres -->
+        <!-- Card 1: Profesionales -->
         <div class="service-card reveal">
           <div>
             <span class="card-number">01</span>
-            <h3>Cursos y talleres</h3>
-            <p class="card-body">Formación en uso consciente de IA para personas. Desde los fundamentos hasta talleres especializados por dominio. En vivo, con <span class="mark">enfoque práctico</span>.</p>
+            <h3>Con profesionales</h3>
+            <p class="card-body">Trabajamos con quien decide invertir en su <span class="mark">propia formación</span> o en herramientas para su trabajo. Comunicadores, investigadores y profesionales en sectores donde lo que se decide y comunica afecta a otras personas.</p>
           </div>
           <div class="card-footer">
-            <p class="card-meta">Sesiones en vivo · Grupos de hasta 25 personas</p>
-            <a href="cursos.html" class="card-cta">Ver cursos →</a>
+            <p class="card-meta">Cursos · Asesoría · Aumento personal</p>
+            <a href="servicios/profesionales.html" class="card-cta">Ver servicios →</a>
           </div>
         </div>
 
-        <!-- Card 2: Formación para organizaciones -->
+        <!-- Card 2: Equipos -->
         <div class="service-card reveal reveal-delay-1">
           <div>
             <span class="card-number">02</span>
-            <h3>Formación para organizaciones</h3>
-            <p class="card-body">Cursos y talleres diseñados desde las <span class="mark">necesidades de tu equipo</span>: el sector en el que trabajan, su nivel de experiencia con IA y los problemas concretos que quieren resolver.</p>
+            <h3>Con equipos</h3>
+            <p class="card-body">Trabajamos con organizaciones que invierten en formar o aumentar a su <span class="mark">equipo interno</span>. Capacitaciones a medida, política institucional de uso de IA y aumentos para procesos del equipo.</p>
           </div>
           <div class="card-footer">
-            <p class="card-meta">Diseño a medida · Presencial o virtual</p>
-            <a href="formacion.html" class="card-cta">Conoce más →</a>
+            <p class="card-meta">Capacitación · Política · Aumento organizacional</p>
+            <a href="servicios/equipos.html" class="card-cta">Ver servicios →</a>
           </div>
         </div>
 
-        <!-- Card 3: Aumentos a medida -->
+        <!-- Card 3: Iniciativas -->
         <div class="service-card reveal reveal-delay-2">
           <div>
             <span class="card-number">03</span>
-            <h3>Aumentos a medida</h3>
-            <p class="card-body">Diseño de herramientas y metodologías que <span class="mark">integran IA al trabajo real de personas y equipos</span>. Analizamos qué se puede delegar, qué no, y construimos un sistema que amplifica la capacidad sin quitar el control.</p>
+            <h3>Con iniciativas</h3>
+            <p class="card-body">Trabajamos con iniciativas y redes que invierten en formar o construir herramientas para una <span class="mark">población externa</span>: aliados, miembros, beneficiarios, contraparte. Mismo catálogo que Equipos, distinto destinatario.</p>
           </div>
           <div class="card-footer">
-            <p class="card-meta">Diagnóstico · Propuesta · Desarrollo · Entrega</p>
-            <a href="aumentos.html" class="card-cta">Conoce más →</a>
+            <p class="card-meta">Capacitación · Política · Aumento organizacional</p>
+            <a href="servicios/iniciativas.html" class="card-cta">Ver servicios →</a>
           </div>
         </div>
 
@@ -771,6 +869,23 @@
   </section>
 
 
+  <!-- ============================
+       PUERTA PRINCIPAL — Trabajar con IA
+       ============================ -->
+  <section class="puerta-principal" id="puerta">
+    <div class="puerta-inner">
+      <div class="puerta-text reveal">
+        <span class="puerta-tag">Curso mensual abierto</span>
+        <h2>Trabajar con IA</h2>
+        <p>El punto de entrada a iatelier. Curso virtual en vivo de 3.5 horas para construir un marco de pensamiento que te sirva con cualquier herramienta hoy y cuando cambien mañana. Una edición al mes.</p>
+      </div>
+      <div class="puerta-cta-wrap reveal reveal-delay-1">
+        <span class="puerta-meta">3.5 h · 1 sesión · hasta 25 personas</span>
+        <span class="puerta-precio">$600 MXN</span>
+        <a href="cursos.html#fundamentos" class="puerta-cta">Ver próximas fechas</a>
+      </div>
+    </div>
+  </section>
 
 
   <!-- ============================
