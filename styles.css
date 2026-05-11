@@ -181,16 +181,41 @@ a {
 .iat-logo {
   display: inline-block;
   background-color: currentColor;
-  -webkit-mask: url('img/logo.svg') no-repeat center / contain;
-          mask: url('img/logo.svg') no-repeat center / contain;
+  -webkit-mask-image: url("data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1188 442%22%3E%0A  %3Crect fill=%22white%22 x=%2298.45%22 y=%22161.41%22 width=%2245.89%22 height=%22183.22%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M121.4,94.97c-15.07,0-27.4,12.33-27.4,27.74s12.33,27.05,27.4,27.05,27.4-11.99,27.4-27.05-11.99-27.74-27.4-27.74Z%22/%3E%0A  %3Cpolygon fill=%22white%22 points=%22393.6 130.91 347.71 130.91 347.71 161.41 327.11 161.41 327.11 203.59 347.71 203.59 347.71 344.78 393.6 344.78 433.84 344.78 433.84 302.45 393.6 302.45 393.6 203.59 433.84 203.59 433.84 161.41 393.6 161.41 393.6 130.91%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M531.87,158.33c-53.08,0-90.07,40.41-90.07,95.2,0,58.22,38.36,94.18,93.83,94.18,44.52,0,69.18-24.66,80.14-47.6l-33.9-20.55c-9.59,15.07-22.95,27.4-46.23,27.4-26.03,0-43.15-14.72-45.55-39.04h130.82c.69-7.88.69-14.38.69-18.84,0-54.79-34.59-90.75-89.73-90.75ZM491.12,233.33c2.4-20.89,17.12-36.3,40.41-36.3,25,0,40.41,15.75,42.47,36.3h-82.88Z%22/%3E%0A  %3Crect fill=%22white%22 x=%22640.42%22 y=%2294.29%22 width=%2245.89%22 height=%22250.34%22/%3E%0A  %3Crect fill=%22white%22 x=%22713.02%22 y=%22161.41%22 width=%2245.89%22 height=%22183.22%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M735.97,94.97c-15.07,0-27.4,12.33-27.4,27.74s12.33,27.05,27.4,27.05,27.4-11.99,27.4-27.05-11.99-27.74-27.4-27.74Z%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M868.83,158.33c-53.08,0-90.07,40.41-90.07,95.2,0,58.22,38.36,94.18,93.83,94.18,44.52,0,69.18-24.66,80.14-47.6l-33.9-20.55c-9.59,15.07-22.94,27.4-46.23,27.4-26.03,0-43.15-14.72-45.55-39.04h130.82c.69-7.88.69-14.38.69-18.84,0-54.79-34.59-90.75-89.73-90.75ZM828.08,233.33c2.4-20.89,17.12-36.3,40.41-36.3,25,0,40.41,15.75,42.47,36.3h-82.87Z%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M274.59,161.62h-101.96v48.67h95.58v134.49h45.72v-134.49h0v-9.33c0-21.73-17.62-39.35-39.35-39.35Z%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M210.42,252.54c-25.87,0-47.15,21.27-47.15,47.72s21.27,46.57,47.15,46.57,47.15-21.27,47.15-46.57-20.7-47.72-47.15-47.72Z%22/%3E%0A  %3Crect fill=%22white%22 x=%22977%22 y=%22161.47%22 width=%2246.93%22 height=%22183.16%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M1063.58,159.11c-16.69,0-30.42,13.73-30.42,30.79s13.73,30.05,30.42,30.05,30.42-13.73,30.42-30.05-13.36-30.79-30.42-30.79Z%22/%3E%0A%3C/svg%3E%0A");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+          mask-image: url("data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1188 442%22%3E%0A  %3Crect fill=%22white%22 x=%2298.45%22 y=%22161.41%22 width=%2245.89%22 height=%22183.22%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M121.4,94.97c-15.07,0-27.4,12.33-27.4,27.74s12.33,27.05,27.4,27.05,27.4-11.99,27.4-27.05-11.99-27.74-27.4-27.74Z%22/%3E%0A  %3Cpolygon fill=%22white%22 points=%22393.6 130.91 347.71 130.91 347.71 161.41 327.11 161.41 327.11 203.59 347.71 203.59 347.71 344.78 393.6 344.78 433.84 344.78 433.84 302.45 393.6 302.45 393.6 203.59 433.84 203.59 433.84 161.41 393.6 161.41 393.6 130.91%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M531.87,158.33c-53.08,0-90.07,40.41-90.07,95.2,0,58.22,38.36,94.18,93.83,94.18,44.52,0,69.18-24.66,80.14-47.6l-33.9-20.55c-9.59,15.07-22.95,27.4-46.23,27.4-26.03,0-43.15-14.72-45.55-39.04h130.82c.69-7.88.69-14.38.69-18.84,0-54.79-34.59-90.75-89.73-90.75ZM491.12,233.33c2.4-20.89,17.12-36.3,40.41-36.3,25,0,40.41,15.75,42.47,36.3h-82.88Z%22/%3E%0A  %3Crect fill=%22white%22 x=%22640.42%22 y=%2294.29%22 width=%2245.89%22 height=%22250.34%22/%3E%0A  %3Crect fill=%22white%22 x=%22713.02%22 y=%22161.41%22 width=%2245.89%22 height=%22183.22%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M735.97,94.97c-15.07,0-27.4,12.33-27.4,27.74s12.33,27.05,27.4,27.05,27.4-11.99,27.4-27.05-11.99-27.74-27.4-27.74Z%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M868.83,158.33c-53.08,0-90.07,40.41-90.07,95.2,0,58.22,38.36,94.18,93.83,94.18,44.52,0,69.18-24.66,80.14-47.6l-33.9-20.55c-9.59,15.07-22.94,27.4-46.23,27.4-26.03,0-43.15-14.72-45.55-39.04h130.82c.69-7.88.69-14.38.69-18.84,0-54.79-34.59-90.75-89.73-90.75ZM828.08,233.33c2.4-20.89,17.12-36.3,40.41-36.3,25,0,40.41,15.75,42.47,36.3h-82.87Z%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M274.59,161.62h-101.96v48.67h95.58v134.49h45.72v-134.49h0v-9.33c0-21.73-17.62-39.35-39.35-39.35Z%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M210.42,252.54c-25.87,0-47.15,21.27-47.15,47.72s21.27,46.57,47.15,46.57,47.15-21.27,47.15-46.57-20.7-47.72-47.15-47.72Z%22/%3E%0A  %3Crect fill=%22white%22 x=%22977%22 y=%22161.47%22 width=%2246.93%22 height=%22183.16%22/%3E%0A  %3Cpath fill=%22white%22 d=%22M1063.58,159.11c-16.69,0-30.42,13.73-30.42,30.79s13.73,30.05,30.42,30.05,30.42-13.73,30.42-30.05-13.36-30.79-30.42-30.79Z%22/%3E%0A%3C/svg%3E%0A");
+          mask-repeat: no-repeat;
+          mask-position: center;
+          mask-size: contain;
+  /* The mask SVG uses fill="white" so it renders correctly under both
+     alpha and luminance interpretations. mask-mode: alpha is set as a
+     belt-and-suspenders for browsers that default to luminance. */
+  -webkit-mask-mode: alpha;
+          mask-mode: alpha;
   aspect-ratio: 1188 / 442;
-  /* anti-flash before the SVG loads */
-  min-width: 1px;
+  /* Default fallback height. Page-specific rules (.nav-logo .iat-logo,
+     .footer-logo .iat-logo, .hero .logo-hero) override this. Width is
+     intentionally left to aspect-ratio so any height override flows through. */
+  height: 22px;
+  width: auto;
 }
 
-.nav-logo {
-  height: 22px;
+/* The <a class="nav-logo"> wraps a <span class="iat-logo">. Make the anchor
+   inline-block so its height can shrink to the masked span and the click
+   target matches the visual. */
+.nav-logo,
+.footer-logo {
+  display: inline-block;
+  line-height: 0; /* kill the extra space below inline-block */
   color: var(--tinta);
+}
+
+/* Default nav-logo size — scales up on wide viewports. Page-specific rules
+   can still override .nav-logo .iat-logo if needed. */
+.nav-logo .iat-logo {
+  height: clamp(28px, 2.5vw, 50px);
 }
 
 .nav-links {
