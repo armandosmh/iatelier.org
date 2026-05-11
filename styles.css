@@ -162,9 +162,34 @@ a {
   -webkit-backdrop-filter: blur(20px);
 }
 
-.nav-logo svg {
+/* ========================================
+   LOGO UTILITY — mask-image with currentColor
+   ----------------------------------------
+   Single source of the logo lives in img/logo.svg (paths only,
+   no intrinsic color). The element gets its color from
+   `background-color: currentColor`, so the logo follows the
+   `color` property of its container — same behavior the old
+   inline SVG had via fill="currentColor".
+
+   Usage:
+     <a href="/" class="nav-logo iat-logo" aria-label="iatelier"></a>
+
+   Size by setting height (or width) on a wrapper class such as
+   .nav-logo, .footer-logo, .logo-hero; the aspect-ratio here
+   keeps the box correctly proportioned (1188/442).
+   ======================================== */
+.iat-logo {
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask: url('img/logo.svg') no-repeat center / contain;
+          mask: url('img/logo.svg') no-repeat center / contain;
+  aspect-ratio: 1188 / 442;
+  /* anti-flash before the SVG loads */
+  min-width: 1px;
+}
+
+.nav-logo {
   height: 22px;
-  width: auto;
   color: var(--tinta);
 }
 
