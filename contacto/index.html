@@ -3,16 +3,25 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Te aviso — iatelier</title>
-  <meta name="robots" content="noindex, nofollow"/>
-  <link rel="icon" href="img/favicon.svg" type="image/svg+xml"/>
-  <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+  <title>Hablemos — iatelier</title>
+  <meta name="description" content="Escríbenos para saber más sobre cursos, talleres o aumentos a medida con inteligencia artificial."/>
+  <link rel="canonical" href="https://iatelier.org/contacto/"/>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hablemos — iatelier"/>
+  <meta property="og:description" content="Escríbenos para saber más sobre cursos, talleres o aumentos a medida con inteligencia artificial."/>
+  <meta property="og:image" content="https://iatelier.org/img/og-image.png"/>
+  <meta property="og:url" content="https://iatelier.org/contacto/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="iatelier — Ideas Aumentadas"/>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="/styles.css"/>
 
   <style>
     body {
@@ -27,54 +36,49 @@
     }
 
     /* ========================================
-       MAIN — CONFIRMACIÓN DE AVISO
+       MAIN — CONTACT
        ======================================== */
-    .confirmacion {
+    .contacto {
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: calc(var(--space-2xl) + 80px) clamp(1.5rem, 5vw, 3rem) var(--space-2xl);
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      padding: calc(var(--space-2xl) + 60px) clamp(1.5rem, 5vw, 4rem) var(--space-xl);
+    }
+
+    .contacto h1 {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+    }
+
+    .contacto .subtitle {
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
+      color: var(--arena);
+      margin-bottom: var(--space-md);
+    }
+
+    .tally-embed {
+      max-width: 600px;
       width: 100%;
     }
 
-    .confirmacion h1 {
-      font-size: clamp(3rem, 7vw, 5rem);
-      font-weight: 700;
-      margin-bottom: var(--space-lg);
-      line-height: 1;
-    }
-
-    .confirmacion p {
-      font-size: clamp(1rem, 1.3vw, 1.15rem);
-      margin-bottom: var(--space-md);
-      max-width: 560px;
-    }
-
-    .confirmacion .cierre {
-      margin-top: var(--space-md);
-      font-size: clamp(0.95rem, 1.15vw, 1.05rem);
-      color: var(--tinta);
-    }
-
-    .confirmacion .cierre a {
-      color: var(--cadmio);
-      border-bottom: 1px solid var(--cadmio);
-      transition: opacity 0.2s;
-    }
-
-    .confirmacion .cierre a:hover {
-      opacity: 0.7;
-    }
-
-    .confirmacion .firma {
-      margin-top: var(--space-lg);
+    .contact-alt {
+      margin-top: var(--space-xl);
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       color: var(--arena);
+      letter-spacing: 0.04em;
+    }
+    .contact-alt a {
+      color: var(--arena-light);
+      border-bottom: 1px solid var(--arena);
+      transition: color 0.2s;
+    }
+    .contact-alt a:hover {
+      color: var(--tinta);
     }
 
     /* ========================================
@@ -138,16 +142,15 @@
 
 
   <!-- Main content -->
-  <main class="confirmacion">
-    <h1>Listo.</h1>
-    <p>Quedaste en la lista. Te escribo cuando abra <span class="mark">nuevas fechas</span> o lance un taller nuevo.</p>
+  <main class="contacto">
+    <h1>Hablemos</h1>
+    <p class="subtitle">Puedes contactarnos por este formulario o escribir directamente a <a href="mailto:info@iatelier.org" style="color: var(--cadmio); border-bottom: 1px solid var(--cadmio);">info@iatelier.org</a></p>
 
-    <p class="cierre">
-      Mientras tanto, si quieres ver más de iatelier:
-      <a href="/">el resto del sitio</a> · <a href="/historia/">mi historia</a> · <a href="https://armandosmh.substack.com" target="_blank" rel="noopener">mis ensayos en Substack</a>
-    </p>
+    <div class="tally-embed">
+      <iframe data-tally-src="https://tally.so/embed/D4JpOR?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="Hablemos"></iframe>
+      <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s)}</script>
+    </div>
 
-    <p class="firma">— Armando</p>
   </main>
 
 
@@ -175,13 +178,14 @@
     hamburger.addEventListener('click', toggleMenu);
     navOverlay.addEventListener('click', toggleMenu);
 
+    // Close menu when clicking a link
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         if (navLinks.classList.contains('open')) toggleMenu();
       });
     });
 
-    // === Dropdown ===
+    // === Dropdown: click en touch, hover en desktop ===
     const dropdowns = document.querySelectorAll('.nav-dropdown');
 
     dropdowns.forEach((dd) => {
