@@ -172,6 +172,76 @@
     }
 
     /* ========================================
+       MANIFIESTO — sección puente al manifiesto
+       ======================================== */
+    .manifiesto-puente {
+      background: var(--marfil);
+      padding: var(--space-2xl) clamp(1.5rem, 5vw, 4rem);
+      border-top: 1px solid rgba(140, 128, 112, 0.18);
+    }
+
+    .manifiesto-puente-inner {
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .manifiesto-puente .label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      margin-bottom: var(--space-md);
+      display: block;
+    }
+
+    .manifiesto-puente blockquote {
+      font-family: var(--font-display);
+      font-feature-settings: "ss02" 1;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      line-height: 1.4;
+      font-weight: 400;
+      color: var(--tinta);
+      margin: 0 auto var(--space-lg);
+      max-width: 760px;
+      letter-spacing: -0.005em;
+    }
+
+    .manifiesto-puente blockquote .accent {
+      color: var(--cadmio);
+      font-style: italic;
+    }
+
+    .manifiesto-puente .manifiesto-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tinta);
+      text-decoration: none;
+      border-bottom: 1px solid var(--cadmio);
+      padding-bottom: 2px;
+      transition: color 0.2s ease;
+    }
+
+    .manifiesto-puente .manifiesto-link:hover {
+      color: var(--cadmio);
+    }
+
+    .manifiesto-puente .manifiesto-link::after {
+      content: '→';
+      transition: transform 0.2s ease;
+    }
+
+    .manifiesto-puente .manifiesto-link:hover::after {
+      transform: translateX(3px);
+    }
+
+    /* ========================================
        FOOTER
        ======================================== */
     .footer {
@@ -262,6 +332,17 @@
 
       <p>Sigo creyendo que la tecnología puede expandir la agencia humana. Pero eso solo pasará si más personas la comprenden y si esa comprensión contribuye a lo que considero la misión más urgente de los próximos años: <span class="mark">asegurar que la inteligencia artificial sirva para crear un mundo más equitativo, no uno aún más desigual.</span> iatelier es mi pequeña contribución a esa misión.</p>
 
+    </section>
+
+    <!-- Manifiesto -->
+    <section class="manifiesto-puente">
+      <div class="manifiesto-puente-inner">
+        <span class="label">Punto de partida</span>
+        <blockquote>
+          iatelier existe para <span class="accent">pensar, crear y dialogar</span> con inteligencia artificial desde cinco puntos de partida.
+        </blockquote>
+        <a href="/manifiesto/" class="manifiesto-link">Leer el manifiesto</a>
+      </div>
     </section>
 
   </main>

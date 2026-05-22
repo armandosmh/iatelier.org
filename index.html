@@ -188,7 +188,7 @@
     .concepto {
       background: var(--marfil);
       color: var(--tinta);
-      padding: var(--space-3xl) clamp(1.5rem, 5vw, 4rem);
+      padding: var(--space-3xl) clamp(1.5rem, 5vw, 4rem) var(--space-2xl);
     }
 
     .concepto-inner {
@@ -334,6 +334,75 @@
     .puerta-cta:hover {
       background: #b8221a;
       transform: translateY(-2px);
+    }
+
+    /* ========================================
+       SECTION: MANIFIESTO (puente al manifiesto)
+       ======================================== */
+    .manifiesto-puente {
+      background: var(--marfil);
+      padding: 0 clamp(1.5rem, 5vw, 4rem) var(--space-3xl);
+    }
+
+    .manifiesto-puente-inner {
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .manifiesto-puente .label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      margin-bottom: var(--space-md);
+      display: block;
+    }
+
+    .manifiesto-puente blockquote {
+      font-family: var(--font-display);
+      font-feature-settings: "ss02" 1;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      line-height: 1.4;
+      font-weight: 400;
+      color: var(--tinta);
+      margin: 0 auto var(--space-lg);
+      max-width: 760px;
+      letter-spacing: -0.005em;
+    }
+
+    .manifiesto-puente blockquote .accent {
+      color: var(--cadmio);
+      font-style: italic;
+    }
+
+    .manifiesto-puente .manifiesto-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tinta);
+      text-decoration: none;
+      border-bottom: 1px solid var(--cadmio);
+      padding-bottom: 2px;
+      transition: color 0.2s ease;
+    }
+
+    .manifiesto-puente .manifiesto-link:hover {
+      color: var(--cadmio);
+    }
+
+    .manifiesto-puente .manifiesto-link::after {
+      content: '→';
+      transition: transform 0.2s ease;
+    }
+
+    .manifiesto-puente .manifiesto-link:hover::after {
+      transform: translateX(3px);
     }
 
     /* ========================================
@@ -765,7 +834,7 @@
     <div class="hero-content">
       <h1 class="hero-reveal hero-reveal-1">Inteligencia artificial con <span class="accent">criterio</span></h1>
 
-      <p class="subtitle hero-reveal hero-reveal-2">Formación y diseño de herramientas para pensar y trabajar mejor.</p>
+      <p class="subtitle hero-reveal hero-reveal-2">Taller-escuela para crear y pensar con inteligencia artificial.</p>
 
     </div>
   </section>
@@ -793,6 +862,20 @@
           <p>Nos especializamos en sectores donde lo que se decide y se comunica <span class="mark">afecta directamente la vida de las personas</span>: gobiernos, sociedad civil, cooperación internacional, academia.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+
+  <!-- ============================
+       MANIFIESTO — puente al manifiesto
+       ============================ -->
+  <section class="manifiesto-puente" id="manifiesto-puente">
+    <div class="manifiesto-puente-inner">
+      <span class="label reveal">Punto de partida</span>
+      <blockquote class="reveal reveal-delay-1">
+        iatelier existe para <span class="accent">pensar, crear y dialogar</span> con inteligencia artificial desde cinco puntos de partida.
+      </blockquote>
+      <a href="/manifiesto/" class="manifiesto-link reveal reveal-delay-2">Leer el manifiesto</a>
     </div>
   </section>
 

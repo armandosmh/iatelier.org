@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manifiesto — iatelier</title>
+  <meta name="description" content="Los cinco puntos de partida de iatelier: la IA como herramienta, bien común y pacto. Alfabetización en IA como alfabetización política."/>
+  <link rel="canonical" href="https://iatelier.org/manifiesto/"/>
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Manifiesto — iatelier"/>
+  <meta property="og:description" content="Los cinco puntos de partida de iatelier: la IA como herramienta, bien común y pacto. Alfabetización en IA como alfabetización política."/>
+  <meta property="og:image" content="https://iatelier.org/img/og-image.png"/>
+  <meta property="og:url" content="https://iatelier.org/manifiesto/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:site_name" content="iatelier — Ideas Aumentadas"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/styles.css"/>
+
+  <style>
+    /* ============================================================
+       MANIFIESTO
+       Cinco puntos. Números grandes en cadmio. Lectura sobria.
+       ============================================================ */
+
+    body {
+      font-family: var(--font-body);
+      color: var(--tinta);
+      background: var(--marfil);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main { flex: 1; padding-top: calc(60px + var(--space-xl)); }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .manifiesto-header {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: var(--space-xl) clamp(1.5rem, 5vw, 2rem) var(--space-lg);
+      text-align: left;
+    }
+
+    .manifiesto-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cadmio);
+      margin-bottom: var(--space-md);
+    }
+
+    .manifiesto-header h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.01em;
+    }
+
+    .manifiesto-intro {
+      font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+      line-height: 1.55;
+      color: var(--tinta);
+      max-width: 720px;
+      font-weight: 400;
+    }
+
+    .manifiesto-intro strong {
+      font-weight: 500;
+    }
+
+    .manifiesto-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--cadmio);
+      margin: var(--space-xl) auto;
+    }
+
+    /* ============================================================
+       PUNTOS — número grande en cadmio + cuerpo
+       ============================================================ */
+    .puntos {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 2rem);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .punto {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      padding-bottom: clamp(2rem, 4vw, 3rem);
+      border-bottom: 1px solid rgba(140, 128, 112, 0.18);
+    }
+
+    .punto:last-child {
+      border-bottom: none;
+    }
+
+    @media (min-width: 720px) {
+      .punto {
+        grid-template-columns: 160px 1fr;
+        gap: clamp(1.5rem, 3vw, 2.5rem);
+        align-items: start;
+      }
+    }
+
+    .punto-num {
+      font-family: var(--font-display, var(--font-body));
+      font-size: clamp(4.5rem, 10vw, 7rem);
+      font-weight: 700;
+      line-height: 0.85;
+      color: var(--cadmio);
+      letter-spacing: -0.04em;
+    }
+
+    @media (min-width: 720px) {
+      .punto-num {
+        text-align: right;
+        padding-top: 0.15em;
+      }
+    }
+
+    .punto-body h2 {
+      font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--tinta);
+      margin-bottom: var(--space-md);
+      letter-spacing: -0.005em;
+    }
+
+    .punto-body p {
+      font-size: clamp(1rem, 1.2vw, 1.1rem);
+      line-height: 1.8;
+      color: var(--tinta);
+      max-width: 620px;
+    }
+
+    /* ============================================================
+       CIERRE
+       ============================================================ */
+    .cierre {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: var(--space-2xl) clamp(1.5rem, 5vw, 2rem) var(--space-2xl);
+      text-align: center;
+    }
+
+    .cierre p {
+      font-family: var(--font-display);
+      font-feature-settings: "ss02" 1;
+      font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+      line-height: 1.45;
+      color: var(--tinta);
+      font-weight: 400;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .cierre p em {
+      font-style: italic;
+      color: var(--cadmio);
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      background: var(--tinta);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-lg) clamp(1.5rem, 5vw, 3rem);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer-logo .iat-logo {
+      height: 18px;
+      width: auto;
+      color: var(--arena);
+    }
+
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--arena);
+    }
+  </style>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "91cf4721ddf94b1cb461c2d8a7258139"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <nav class="site-nav">
+    <a href="/" class="nav-logo" aria-label="iatelier">
+      <span class="iat-logo" aria-hidden="true"></span>
+    </a>
+    <button class="nav-hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-overlay"></div>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Inicio</a>
+      <a href="/cursos/" class="nav-link">Cursos</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-trigger">Servicios</button>
+        <div class="nav-dropdown-menu">
+          <a href="/servicios/profesionales/">Para profesionales</a>
+          <a href="/servicios/equipos/">Para equipos</a>
+          <a href="/servicios/iniciativas/">Para iniciativas</a>
+        </div>
+      </div>
+      <a href="/historia/" class="nav-link">Historia</a>
+      <a href="/contacto/" class="nav-cta">Hablemos</a>
+    </div>
+  </nav>
+
+
+  <main>
+
+    <header class="manifiesto-header">
+      <p class="manifiesto-eyebrow">Manifiesto</p>
+      <h1>Cinco puntos de partida</h1>
+      <p class="manifiesto-intro">
+        iatelier es un taller-escuela para pensar y crear con inteligencia artificial, y estas son nuestros puntos de partida.
+      </p>
+    </header>
+
+    <div class="manifiesto-divider"></div>
+
+    <section class="puntos">
+
+      <article class="punto">
+        <div class="punto-num">1</div>
+        <div class="punto-body">
+          <h2>La IA es una herramienta.</h2>
+          <p>Una herramienta es un artefacto que hace posible o más sencillo lo que antes era imposible o difícil. El miedo, fascinación y potencia de la IA reside en que es una herramienta para crear y manipular lenguaje (texto, imagen, video, código), habilidades que antes creíamos únicas de la humanidad.</p>
+        </div>
+      </article>
+
+      <article class="punto">
+        <div class="punto-num">2</div>
+        <div class="punto-body">
+          <h2>La IA no es neutra ni determinada.</h2>
+          <p>Esta tecnología nació con sesgos, intereses y prácticas propias de sus datos de entrenamiento y quienes la diseñan y financian; no es neutra y hay que examinarla, criticarla y regularla. A la vez, su futuro es un espacio en disputa. Su forma final será resultado de las decisiones, conflictos y propuestas de quienes la construyan, usen y regulen.</p>
+        </div>
+      </article>
+
+      <article class="punto">
+        <div class="punto-num">3</div>
+        <div class="punto-body">
+          <h2>La IA es un bien común.</h2>
+          <p>La IA generativa fue creada a partir de la suma de buena parte del conocimiento y cultura humana — texto, código, imagen, voz, producidos por millones de personas a lo largo de siglos. Por su naturaleza, es un bien común y debe servir para aumentar la autonomía de personas y grupos antes que para concentrar el poder en unas cuantas corporaciones y gobiernos.</p>
+        </div>
+      </article>
+
+      <article class="punto">
+        <div class="punto-num">4</div>
+        <div class="punto-body">
+          <h2>Usar IA, y cualquier tecnología, es un pacto.</h2>
+          <p>Todo pacto transforma a las partes que lo firman: la herramienta hace algo por nosotrxs, pero también nos hace algo a nosotrxs. La IA puede aumentar enormemente las capacidades individuales y colectivas, pero tiene consecuencias, límites y costos. La cuestión es si somos conscientes del pacto y realmente estamos decidiendo o si solo estamos aceptando por inercia o imposición.</p>
+        </div>
+      </article>
+
+      <article class="punto">
+        <div class="punto-num">5</div>
+        <div class="punto-body">
+          <h2>La alfabetización en IA es alfabetización política.</h2>
+          <p>La IA —como antes el internet, los celulares o las computadoras— se volverá parte central de la infraestructura del mundo. Comprenderla, participar en su diseño y disputar su uso y regulación no son cuestiones de productividad sino de imaginación política. No basta con capacitación técnica, se necesita alfabetización crítica.</p>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="cierre">
+      <p>iatelier existe para ponerlas en práctica; <em>pensando, creando y dialogando</em>.</p>
+    </section>
+
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <span class="iat-logo" role="img" aria-label="iatelier"></span>
+    </div>
+    <span class="footer-copy">&copy; 2026 iatelier — Ideas Aumentadas</span>
+  </footer>
+
+  <script>
+    // === Mobile hamburger menu ===
+    const hamburger = document.querySelector('.nav-hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const navOverlay = document.querySelector('.nav-overlay');
+
+    function toggleMenu() {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+      navOverlay.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    navOverlay.addEventListener('click', toggleMenu);
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('open')) toggleMenu();
+      });
+    });
+  </script>
+
+</body>
+</html>
