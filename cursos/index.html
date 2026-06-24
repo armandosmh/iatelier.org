@@ -385,6 +385,26 @@
       transform: scale(0.97);
     }
 
+    /* ---- Avísame inline form ---- */
+    .avisame-form { max-width: 460px; margin: 0 auto; }
+    .avisame-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .avisame-email-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.82rem 1rem;
+      border: 1.5px solid var(--arena-light);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      background: #fff;
+      color: var(--tinta);
+      box-sizing: border-box;
+      -webkit-appearance: none;
+    }
+    .avisame-email-input:focus { outline: none; border-color: var(--tinta); }
+    .avisame-email-input::placeholder { color: var(--arena-light); }
+    .avisame-nota { font-size: 0.72rem; color: var(--arena); margin-top: 10px; }
+    .avisame-ok { display: none; color: var(--arena); font-size: 0.9rem; margin-top: var(--space-md); }
+
     /* ========================================
        CTA SECTION
        ======================================== */
@@ -621,8 +641,8 @@
           <span class="sesion-hora">10:00 – 13:00 · CDMX</span>
         </div>
         <div class="sesiones-cta-wrap">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSc0j6-XNsnQKJRL8xRiV2Z3zSYCFJKte7Um-VH-owozhGzfFQ/viewform" target="_blank" class="sesion-cta">Inscríbete →</a>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEeCyT_790XNqTI0_pg-HSTN4KK72YfWZeoolm8ZIrQA4VIA/viewform" target="_blank" class="sesion-cta-comunidad">Precio comunidad iatelier →</a>
+          <a href="/inscripciones/trabajar-con-ia/" class="sesion-cta">Inscríbete →</a>
+          <a href="/inscripciones/trabajar-con-ia-comunidad/" class="sesion-cta-comunidad">Precio comunidad iatelier →</a>
         </div>
       </div>
     </article>
@@ -715,7 +735,15 @@
     <div class="avisame-inner">
       <h2 class="reveal">¿Estas fechas no te acomodan?</h2>
       <p class="avisame-desc reveal reveal-delay-1">Déjame tu correo y te aviso cuando abra nuevas fechas o lance un taller nuevo. Un correo al mes como máximo.</p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSffFQoA8DscHI0LudL-6uXiVRh0Utxrpnwz9EttpV3TdpchqA/viewform" target="_blank" class="avisame-cta reveal reveal-delay-2">Avísame →</a>
+      <form class="avisame-form reveal reveal-delay-2" id="avisame-cursos" novalidate>
+        <input type="hidden" name="entry.1524947041" value="Autorizo a iatelier a escribirme sobre nuevos talleres. Puedo pedir que me quiten de la lista cuando quiera."/>
+        <div class="avisame-row">
+          <input type="email" name="entry.1139047362" placeholder="tu@correo.com" required class="avisame-email-input"/>
+          <button type="submit" class="avisame-cta">Avísame →</button>
+        </div>
+        <p class="avisame-nota">Un correo al mes como máximo.</p>
+      </form>
+      <p class="avisame-ok" id="avisame-cursos-ok">¡Listo! Te avisamos cuando haya novedades.</p>
     </div>
   </section>
 
@@ -818,9 +846,31 @@
     document.addEventListener('click', () => {
       dropdowns.forEach((d) => d.classList.remove('open'));
     });
-  </script>
 
-  <!-- Tally embed -->
+    // Avísame form
+    (function() {
+      const AVISAME_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSffFQoA8DscHI0LudL-6uXiVRh0Utxrpnwz9EttpV3TdpchqA/formResponse';
+      const form = document.getElementById('avisame-cursos');
+      const ok   = document.getElementById('avisame-cursos-ok');
+      if (!form) return;
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const email = form.querySelector('[type="email"]').value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+        const btn = form.querySelector('button');
+        btn.disabled = true;
+        try {
+          await fetch(AVISAME_URL, {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(new FormData(form)).toString()
+          });
+        } catch(_) {}
+        form.style.display = 'none';
+        ok.style.display = 'block';
+      });
+    })();
+  </script>
 
 </body>
 </html>

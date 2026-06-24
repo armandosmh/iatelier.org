@@ -81,6 +81,70 @@
       color: var(--tinta);
     }
 
+    /* ---- Formulario de contacto HTML ---- */
+    .contacto-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+    .contacto-field { display: flex; flex-direction: column; gap: 5px; }
+    .contacto-label {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 0.88rem;
+      color: var(--tinta);
+    }
+    .contacto-input,
+    .contacto-textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--arena-light);
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--tinta);
+      background: #fff;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .contacto-input:focus,
+    .contacto-textarea:focus {
+      outline: none;
+      border-color: var(--cadmio);
+      box-shadow: 0 0 0 3px rgba(217,43,31,0.08);
+    }
+    .contacto-input::placeholder,
+    .contacto-textarea::placeholder { color: var(--arena-light); }
+    .contacto-textarea { resize: vertical; min-height: 130px; }
+    .contacto-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 500px) { .contacto-row { grid-template-columns: 1fr; } }
+    .contacto-submit {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 28px;
+      background: var(--cadmio);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      align-self: flex-start;
+    }
+    .contacto-submit:hover:not(:disabled) { opacity: 0.88; }
+    .contacto-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .contacto-ok { text-align: center; padding: var(--space-lg) 0; color: var(--arena); display: none; }
+    .contacto-ok strong { display: block; font-size: 1.05rem; color: var(--tinta); margin-bottom: 0.4rem; }
+    .contacto-error {
+      font-size: 0.82rem;
+      color: var(--cadmio);
+      padding: 8px 12px;
+      border: 1.5px solid rgba(217,43,31,0.3);
+      border-radius: 6px;
+      background: rgba(217,43,31,0.05);
+      display: none;
+    }
+    .contacto-error.visible { display: block; }
+
     /* ========================================
        FOOTER
        ======================================== */
@@ -147,7 +211,32 @@
     <p class="subtitle">Puedes contactarnos por este formulario o escribir directamente a <a href="mailto:info@iatelier.org" style="color: var(--cadmio); border-bottom: 1px solid var(--cadmio);">info@iatelier.org</a></p>
 
     <div class="form-embed">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfMXT8RrIuqoyQVDy7p4D72xBuINtkjH5zF8aIy1Q5ZfwN7HA/viewform?embedded=true" loading="lazy" width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0" title="Hablemos">Cargando…</iframe>
+      <form class="contacto-form" id="contacto-form" novalidate>
+        <div class="contacto-row">
+          <div class="contacto-field">
+            <label class="contacto-label" for="c-nombre">Nombre(s)</label>
+            <input type="text" id="c-nombre" name="entry.352861446" class="contacto-input" required/>
+          </div>
+          <div class="contacto-field">
+            <label class="contacto-label" for="c-apellidos">Apellidos</label>
+            <input type="text" id="c-apellidos" name="entry.1642367675" class="contacto-input" required/>
+          </div>
+        </div>
+        <div class="contacto-field">
+          <label class="contacto-label" for="c-email">Correo electrónico</label>
+          <input type="email" id="c-email" name="entry.1843899023" class="contacto-input" required placeholder="tu@correo.com"/>
+        </div>
+        <div class="contacto-field">
+          <label class="contacto-label" for="c-mensaje">Mensaje</label>
+          <textarea id="c-mensaje" name="entry.1971625920" class="contacto-textarea" required placeholder="¿En qué puedo ayudarte?"></textarea>
+        </div>
+        <div class="contacto-error" id="contacto-error" role="alert"></div>
+        <button type="submit" class="contacto-submit" id="contacto-submit">Enviar →</button>
+      </form>
+      <div class="contacto-ok" id="contacto-ok">
+        <strong>¡Mensaje enviado!</strong>
+        <p>Respondo en menos de 48 horas.</p>
+      </div>
     </div>
 
   </main>
@@ -204,6 +293,43 @@
     document.addEventListener('click', () => {
       dropdowns.forEach((d) => d.classList.remove('open'));
     });
+
+    // Contacto form
+    (function() {
+      const CONTACTO_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfMXT8RrIuqoyQVDy7p4D72xBuINtkjH5zF8aIy1Q5ZfwN7HA/formResponse';
+      const form  = document.getElementById('contacto-form');
+      const ok    = document.getElementById('contacto-ok');
+      const btn   = document.getElementById('contacto-submit');
+      const errEl = document.getElementById('contacto-error');
+      if (!form) return;
+
+      function showErr(msg) { errEl.textContent = msg; errEl.classList.add('visible'); }
+      function hideErr()    { errEl.classList.remove('visible'); }
+
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        hideErr();
+        for (const f of form.querySelectorAll('[required]')) {
+          if (!f.value.trim()) { f.focus(); showErr('Por favor completa todos los campos.'); return; }
+        }
+        const email = form.querySelector('[type="email"]').value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          form.querySelector('[type="email"]').focus();
+          showErr('Verifica que el correo sea válido.'); return;
+        }
+        btn.disabled = true;
+        btn.textContent = 'Enviando…';
+        try {
+          await fetch(CONTACTO_URL, {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(new FormData(form)).toString()
+          });
+        } catch(_) {}
+        form.style.display = 'none';
+        ok.style.display = 'block';
+      });
+    })();
   </script>
 
 </body>

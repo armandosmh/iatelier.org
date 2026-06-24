@@ -788,6 +788,42 @@
        TEXTURE — Capa 1: Grano de fondo
        ======================================== */
 
+    /* ---- Avísame inline form (sección oscura) ---- */
+    .nl-avisame-form { width: 100%; }
+    .nl-avisame-email {
+      display: block;
+      width: 100%;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.07);
+      color: var(--marfil);
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+    }
+    .nl-avisame-email:focus { outline: none; border-color: rgba(255,255,255,0.45); }
+    .nl-avisame-email::placeholder { color: rgba(255,255,255,0.35); }
+    .nl-avisame-btn {
+      display: block;
+      width: 100%;
+      padding: 0.85rem;
+      background: transparent;
+      color: var(--marfil);
+      border: 1.5px solid var(--marfil);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+    .nl-avisame-btn:hover { background: var(--marfil); color: var(--tinta); }
+    .nl-avisame-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .nl-avisame-nota { font-size: 0.68rem; color: var(--arena); margin-top: 8px; }
+    .nl-avisame-ok { font-size: 0.9rem; color: var(--arena-light); display: none; }
 
   </style>
 
@@ -978,7 +1014,13 @@
           <h3>Avísame cuando abra</h3>
           <p class="nl-option-desc">Nuevas fechas de talleres y cursos. Un correo al mes como máximo.</p>
         </div>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSffFQoA8DscHI0LudL-6uXiVRh0Utxrpnwz9EttpV3TdpchqA/viewform" target="_blank" class="btn-outline">Avísame</a>
+        <form class="nl-avisame-form" id="avisame-index" novalidate>
+          <input type="hidden" name="entry.1524947041" value="Autorizo a iatelier a escribirme sobre nuevos talleres. Puedo pedir que me quiten de la lista cuando quiera."/>
+          <input type="email" name="entry.1139047362" placeholder="tu@correo.com" required class="nl-avisame-email"/>
+          <button type="submit" class="nl-avisame-btn">Avísame →</button>
+          <p class="nl-avisame-nota">Un correo al mes como máximo.</p>
+        </form>
+        <p class="nl-avisame-ok" id="avisame-index-ok">¡Listo! Te avisamos cuando haya novedades.</p>
       </div>
     </div>
   </section>
@@ -1086,9 +1128,31 @@
     document.addEventListener('click', () => {
       dropdowns.forEach((d) => d.classList.remove('open'));
     });
-  </script>
 
-  <!-- Tally embed -->
+    // Avísame form
+    (function() {
+      const AVISAME_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSffFQoA8DscHI0LudL-6uXiVRh0Utxrpnwz9EttpV3TdpchqA/formResponse';
+      const form = document.getElementById('avisame-index');
+      const ok   = document.getElementById('avisame-index-ok');
+      if (!form) return;
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const email = form.querySelector('[type="email"]').value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+        const btn = form.querySelector('button');
+        btn.disabled = true;
+        try {
+          await fetch(AVISAME_URL, {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(new FormData(form)).toString()
+          });
+        } catch(_) {}
+        form.style.display = 'none';
+        ok.style.display = 'block';
+      });
+    })();
+  </script>
 
 </body>
 </html>
