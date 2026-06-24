@@ -309,6 +309,28 @@
       margin-left: auto;
     }
 
+    .sesion-proximamente {
+      color: var(--arena);
+      font-style: italic;
+    }
+
+    .sesion-cta-comunidad {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--arena);
+      text-decoration: none;
+      border-bottom: 1px solid var(--arena);
+      display: inline-block;
+      margin-top: 0.9rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .sesion-cta-comunidad:hover {
+      color: var(--tinta);
+      border-color: var(--tinta);
+    }
+
     /* ========================================
        AVÍSAME SECTION — captura de interés
        ======================================== */
@@ -591,19 +613,16 @@
       <div class="sesiones">
         <p class="sesiones-title">Próximas sesiones</p>
         <div class="sesion">
-          <span class="sesion-fecha">Martes 26 de mayo, 2026</span>
+          <span class="sesion-fecha">Martes 14 de julio, 2026</span>
           <span class="sesion-hora">10:00 – 13:00 · CDMX</span>
         </div>
         <div class="sesion">
-          <span class="sesion-fecha">Sábado 30 de mayo, 2026</span>
-          <span class="sesion-hora">10:00 – 13:00 · CDMX</span>
-        </div>
-        <div class="sesion">
-          <span class="sesion-fecha">Martes 2 de junio, 2026</span>
+          <span class="sesion-fecha">Sábado 18 de julio, 2026</span>
           <span class="sesion-hora">10:00 – 13:00 · CDMX</span>
         </div>
         <div class="sesiones-cta-wrap">
-          <button data-tally-open="ja5k1R" data-tally-overlay="1" class="sesion-cta">Inscríbete →</button>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSc0j6-XNsnQKJRL8xRiV2Z3zSYCFJKte7Um-VH-owozhGzfFQ/viewform" target="_blank" class="sesion-cta">Inscríbete →</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeEeCyT_790XNqTI0_pg-HSTN4KK72YfWZeoolm8ZIrQA4VIA/viewform" target="_blank" class="sesion-cta-comunidad">Precio comunidad iatelier →</a>
         </div>
       </div>
     </article>
@@ -654,11 +673,7 @@
       <div class="sesiones">
         <p class="sesiones-title">Próximas sesiones</p>
         <div class="sesion">
-          <span class="sesion-fecha">Sábado 13 de junio, 2026</span>
-          <span class="sesion-hora">10:00 – 13:00 · CDMX</span>
-        </div>
-        <div class="sesiones-cta-wrap">
-          <button data-tally-open="Y5MXWB" data-tally-overlay="1" class="sesion-cta">Inscríbete →</button>
+          <span class="sesion-fecha sesion-proximamente">Nuevas fechas por anunciar</span>
         </div>
       </div>
     </article>
@@ -684,8 +699,8 @@
         </div>
       </div>
       <div class="sesiones">
-        <div class="sesiones-cta-wrap">
-          <button data-tally-open="gD7XbP" data-tally-overlay="1" class="sesion-cta">Inscríbete al pack →</button>
+        <div class="sesion">
+          <span class="sesion-fecha sesion-proximamente">Disponible cuando se confirmen las fechas de Crear con IA</span>
         </div>
       </div>
     </article>
@@ -700,7 +715,7 @@
     <div class="avisame-inner">
       <h2 class="reveal">¿Estas fechas no te acomodan?</h2>
       <p class="avisame-desc reveal reveal-delay-1">Déjame tu correo y te aviso cuando abra nuevas fechas o lance un taller nuevo. Un correo al mes como máximo.</p>
-      <button data-tally-open="pbPjBy" data-tally-overlay="1" class="avisame-cta reveal reveal-delay-2">Avísame →</button>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSffFQoA8DscHI0LudL-6uXiVRh0Utxrpnwz9EttpV3TdpchqA/viewform" target="_blank" class="avisame-cta reveal reveal-delay-2">Avísame →</a>
     </div>
   </section>
 
@@ -806,7 +821,6 @@
   </script>
 
   <!-- Tally embed -->
-  <script async src="https://tally.so/widgets/embed.js"></script>
 
 </body>
 </html>
