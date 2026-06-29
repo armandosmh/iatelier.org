@@ -371,7 +371,12 @@
               <input type="radio" name="entry.393168038" value="Academia"/>
               <span class="option-text"><span class="option-main">Academia</span></span>
             </label>
+            <label class="option-item">
+              <input type="radio" name="entry.393168038" value="Otro" id="sector-otro-radio"/>
+              <span class="option-text"><span class="option-main">Otro</span></span>
+            </label>
           </div>
+          <input type="text" id="sector-otro-texto" placeholder="¿Cuál es tu sector?" autocomplete="off" style="display:none; margin-top:8px;"/>
         </div>
 
         <hr class="form-divider"/>
@@ -468,6 +473,20 @@
     const confirmacion  = document.getElementById('form-confirmacion');
     const errorEl       = document.getElementById('form-error');
     const submitBtn     = document.getElementById('submit-btn');
+    const otroRadio     = document.getElementById('sector-otro-radio');
+    const otroTexto     = document.getElementById('sector-otro-texto');
+
+    form.querySelectorAll('input[name="entry.393168038"]').forEach(r => {
+      r.addEventListener('change', () => {
+        if (otroRadio.checked) {
+          otroTexto.style.display = 'block';
+          otroTexto.focus();
+        } else {
+          otroTexto.style.display = 'none';
+          otroTexto.value = '';
+        }
+      });
+    });
 
     function showError(msg) {
       errorEl.textContent = msg;
@@ -495,6 +514,11 @@
       }
       if (!form.querySelector('input[name="entry.393168038"]:checked')) {
         showError('Selecciona tu sector.'); return;
+      }
+      if (otroRadio.checked) {
+        const otroVal = otroTexto.value.trim();
+        if (!otroVal) { otroTexto.focus(); showError('Escribe tu sector.'); return; }
+        otroRadio.value = otroVal;
       }
       if (!form.querySelector('input[name="entry.1371493516"]:checked')) {
         showError('Necesitas confirmar que ya has usado un chatbot de IA antes de inscribirte.'); return;
